@@ -1,9 +1,11 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace organizer_gracza_backend.Model
 {
     public class User
     {
+        [Key]
         public int IdUser { get; set; }
         public string Nickname { get; set; }
         public string Email { get; set; }

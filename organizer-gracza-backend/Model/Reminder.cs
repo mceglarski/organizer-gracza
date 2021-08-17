@@ -1,10 +1,12 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace organizer_gracza_backend.Model
 {
     public class Reminder
     {
-        public int IdRemind { get; set; }
+        [Key]
+        public int IdReminder { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
         public DateTime ReminderDate { get; set; }
