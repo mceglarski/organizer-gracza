@@ -1,9 +1,11 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace organizer_gracza_backend.Model
 {
     public class ForumThread
     {
+        [Key]
         public int IdForumThread { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
