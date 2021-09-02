@@ -1,11 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using organizer_gracza_backend.Data;
+using organizer_gracza_backend.Extensions;
 
 namespace organizer_gracza_backend
 {
@@ -20,11 +18,10 @@ namespace organizer_gracza_backend
         }
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DataContext>(options =>
-            {
-                options.UseSqlite(_configuration.GetConnectionString("DefaultConnection"));
-            });
+            services.AddApplicationServices(_configuration);   
             services.AddControllers();
+            services.AddCors();
+            services.AddIdentityServices(_configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,6 +35,10 @@ namespace organizer_gracza_backend
             app.UseRouting();
 
             app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
+
+            app.UseAuthentication();
+            
+            app.UseAuthorization();
             
             app.UseEndpoints(endpoints =>
             {
