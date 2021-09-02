@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using organizer_gracza_backend.Data;
 using organizer_gracza_backend.DTOs;
+using organizer_gracza_backend.Interfaces;
 using organizer_gracza_backend.Model;
 
 namespace organizer_gracza_backend.Controllers
@@ -12,13 +13,15 @@ namespace organizer_gracza_backend.Controllers
     public class AccountController : BaseApiController
     {
         private readonly DataContext _context;
-        public AccountController(DataContext context)
+        private readonly ITokenService _tokenService;
+        public AccountController(DataContext context, ITokenService tokenService)
         {
+            _tokenService = tokenService;
             _context = context;
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult<User>> Register(RegisterDto registerDto)
+        public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
             if (await UserExists(registerDto.Nickname))
                 return BadRequest("Nickname is taken");
@@ -36,11 +39,15 @@ namespace organizer_gracza_backend.Controllers
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return user;
+            return new UserDto()
+            {
+                Nickname = user.Nickname,
+                Token = _tokenService.CreateToken(user)
+            };
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<User>> Login(LoginDto loginDto)
+        public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
             var user = await _context.Users
                 .SingleOrDefaultAsync(x => x.Nickname == loginDto.Nickname);
@@ -58,7 +65,11 @@ namespace organizer_gracza_backend.Controllers
                     return Unauthorized("Invalid password");
             }
 
-            return user;
+            return new UserDto()
+            {
+                Nickname = user.Nickname,
+                Token = _tokenService.CreateToken(user)
+            };
         }
 
         private async Task<bool> UserExists(string nickname)
