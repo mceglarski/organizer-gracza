@@ -1,0 +1,48 @@
+.events-short{
+  background-color: red;
+  width: 90%;
+  height: 350px;
+  bottom: 0;
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+  margin-left: 5%;
+}
+
+.events-short > div {
+  flex: 1 1 auto;
+  border: 2px black solid;
+  text-align: center;
+  margin: 5px;
+}
+.events-short-first{
+  background-color: black;
+  height: 330px;
+}
+.events-short-second{
+  background-color: black;
+  height: 330px;
+}
+.events-short-third{
+  background-color: black;
+  height: 330px;
+}
+.events-short-fourth{
+  background-color: black;
+  height: 330px;
+}
+.events-short-fifth{
+  background-color: black;
+  height: 330px;
+}
+.events-short-image{
+  background-color: black;
+  height: 65%;
+  width: 100%;
+}
+.events-short-description{
+  background-color: #292E37;
+  height: 35%;
+  width: 100%;
+}

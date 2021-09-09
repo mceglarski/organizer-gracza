@@ -1,0 +1,22 @@
+.news-extended{
+  background-color: aqua;
+  display: flex;
+  flex-direction: column;
+  width: 975px;
+  height: 400px;
+  margin-right: 10%;
+}
+.news-extended-image{
+  background-color: aquamarine;
+  height: 55%;
+  width: 100%;
+  border: 1px solid black;
+
+}
+.news-extended-description{
+  background-color: #292E37;
+  height: 45%;
+  width: 100%;
+  border: 1px solid black;
+
+}
