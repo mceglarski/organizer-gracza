@@ -12,6 +12,7 @@ import { NewsShortComponent } from './news/news-short/news-short.component';
 import { NewsExtendedComponent } from './news/news-extended/news-extended.component';
 import { EventsShortComponent } from './events/events-short/events-short.component';
 import { EventsExtendedComponent } from './events/events-extended/events-extended.component';
+import {IvyCarouselModule} from "angular-responsive-carousel";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { EventsExtendedComponent } from './events/events-extended/events-extende
   imports: [
     BrowserModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    IvyCarouselModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

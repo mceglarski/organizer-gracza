@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventsShortComponent implements OnInit {
 
+  public events: string[] = [];
+
   constructor() { }
 
   ngOnInit(): void {
+    this.events = ['event1', 'event2', 'event3','event4', 'event5', 'event6'];
   }
 
 }

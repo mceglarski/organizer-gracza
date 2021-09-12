@@ -1,42 +1,16 @@
 <div class="events-short">
-  <div class="events-short-first">
-    <div class="events-short-image">
 
-    </div>
-    <div class="events-short-description">
+  <carousel [loop]="true" [arrowsTheme]="'dark'"
+  [arrowsOutside]="true" [height]="350">
 
-    </div>
-  </div>
-  <div class="events-short-second">
-    <div class="events-short-image">
+    <div class="events-short-content carousel-cell" *ngFor="let event of events">
+        <div class="events-short-image">
+          jestem obrazkiem
+        </div>
+        <div class="events-short-description">
+          a ja opisem
+        </div>
+      </div>
 
-    </div>
-    <div class="events-short-description">
-
-    </div>
-  </div>
-  <div class="events-short-third">
-    <div class="events-short-image">
-
-    </div>
-    <div class="events-short-description">
-
-    </div>
-  </div>
-  <div class="events-short-fourth">
-    <div class="events-short-image">
-
-    </div>
-    <div class="events-short-description">
-
-    </div>
-  </div>
-  <div class="events-short-fifth">
-    <div class="events-short-image">
-
-    </div>
-    <div class="events-short-description">
-
-    </div>
-  </div>
+  </carousel>
 </div>
