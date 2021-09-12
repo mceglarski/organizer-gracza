@@ -1,5 +1,4 @@
 .header {
-  width: 100%;
   background-color: black;
   color: wheat;
 }
@@ -8,18 +7,17 @@
 }
 .flex-menu-container{
   display: flex;
-  margin-left: 50%;
-  margin-right: 10%;
+  width: 100%;
+  justify-content: flex-end;
+  margin-right: 20px;
 }
 .navbar-brand{
   margin-left: 10%;
   font-weight: bold;
   font-size: 22px;
 }
-.navbar-nav> li{
-  margin-left:10px;
-  margin-right:10px;
-}
+
+
 .btn{
-  margin-left: 10px;
+  /*margin-left: 10px;*/
 }

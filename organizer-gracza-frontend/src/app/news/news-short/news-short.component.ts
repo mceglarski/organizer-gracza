@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsShortComponent implements OnInit {
 
+  public newsArray: string[] = [];
+
   constructor() { }
 
   ngOnInit(): void {
+    this.newsArray = ['news1', 'news2', 'news3'];
   }
 
 }
