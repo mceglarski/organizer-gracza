@@ -13,6 +13,12 @@ import { NewsExtendedComponent } from './news/news-extended/news-extended.compon
 import { EventsShortComponent } from './events/events-short/events-short.component';
 import { EventsExtendedComponent } from './events/events-extended/events-extended.component';
 import {IvyCarouselModule} from "angular-responsive-carousel";
+import { AppRoutingModule } from './app-routing.module';
+import { LoginComponent } from './login/login.component';
+import { RegistrationComponent } from './registration/registration.component';
+import {RouterModule} from "@angular/router";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   declarations: [
@@ -24,13 +30,19 @@ import {IvyCarouselModule} from "angular-responsive-carousel";
     NewsShortComponent,
     NewsExtendedComponent,
     EventsShortComponent,
-    EventsExtendedComponent
+    EventsExtendedComponent,
+    LoginComponent,
+    RegistrationComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
     IvyCarouselModule,
+    AppRoutingModule,
+    RouterModule,
+    FormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

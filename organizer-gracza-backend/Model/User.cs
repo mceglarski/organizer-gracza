@@ -7,6 +7,7 @@ namespace organizer_gracza_backend.Model
     {
         [Key]
         public int IdUser { get; set; }
+        public string Username { get; set; }
         public string Nickname { get; set; }
         public string Email { get; set; }
         public byte[] PasswordHash { get; set; }

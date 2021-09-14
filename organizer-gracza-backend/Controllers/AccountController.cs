@@ -23,13 +23,14 @@ namespace organizer_gracza_backend.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
-            if (await UserExists(registerDto.Nickname))
+            if (await UserExists(registerDto.Username))
                 return BadRequest("Nickname is taken");
                 
             using var hmac = new HMACSHA512();
 
             var user = new User()
             {
+                Username = registerDto.Username.ToLower(),
                 Nickname = registerDto.Nickname.ToLower(),
                 Email = registerDto.Email,
                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
@@ -41,7 +42,7 @@ namespace organizer_gracza_backend.Controllers
 
             return new UserDto()
             {
-                Nickname = user.Nickname,
+                Username = user.Username,
                 Token = _tokenService.CreateToken(user)
             };
         }
@@ -50,7 +51,7 @@ namespace organizer_gracza_backend.Controllers
         public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
             var user = await _context.Users
-                .SingleOrDefaultAsync(x => x.Nickname == loginDto.Nickname);
+                .SingleOrDefaultAsync(x => x.Username == loginDto.Username);
 
             if (user == null)
                 return Unauthorized("Invalid nickname");
@@ -67,14 +68,14 @@ namespace organizer_gracza_backend.Controllers
 
             return new UserDto()
             {
-                Nickname = user.Nickname,
+                Username = user.Username,
                 Token = _tokenService.CreateToken(user)
             };
         }
 
         private async Task<bool> UserExists(string nickname)
         {
-            return await _context.Users.AnyAsync(x => x.Nickname == nickname.ToLower());
+            return await _context.Users.AnyAsync(x => x.Username == nickname.ToLower());
         }
     }
 }
