@@ -1,8 +1,8 @@
 <div class="header">
   <nav class="navbar navbar-expand-md navbar-dark fixed-top mt-4">
-    <a class="navbar-brand" href="#">GAMERZZ</a>
+    <a class="navbar-brand" href="#" (click)="consoling(login)">GAMERZZ</a>
     <div class="flex-menu-container">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav" *ngIf="login.loggedIn">
         <li class="nav-item">
           <a class="nav-link" href="#">TWÓJ PLAN</a>
         </li>

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Injectable, OnInit} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {AccountService} from "../_services/account.service";
 
 
 @Component({
@@ -7,11 +8,12 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+@Injectable()
 export class LoginComponent implements OnInit {
   model: any = {};
+  public loggedIn: boolean = false;
 
-  constructor(private modalService: NgbModal) {
-  }
+  constructor(private modalService: NgbModal, private accountService: AccountService) {}
 
   ngOnInit(): void {
 
@@ -22,6 +24,15 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    console.log(this.model);
+    this.accountService.login(this.model).subscribe(response => {
+      console.log(response);
+      this.loggedIn = true;
+    }, error => {
+      console.log(error);
+    })
+  }
+
+  logout(){
+    this.loggedIn = false;
   }
 }

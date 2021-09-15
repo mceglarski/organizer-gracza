@@ -9,19 +9,19 @@
     </button>
   </div>
   <div class="modal-body">
-    <form #loginForm="ngForm" (ngSubmit)="login()" autocomplete="off">
+    <form #loginForm="ngForm" (ngSubmit)="login()" autocomplete="off" id="loginForm">
       <div class="form-group">
         <input type="text" class="form-control" name="username"
                [(ngModel)]="model.username" placeholder="Nazwa użytkownika">
-        <input type="text" class="form-control" name="password"
+        <input type="password" class="form-control" name="password"
                [(ngModel)]="model.password" placeholder="Hasło">
       </div>
     </form>
     <button type="button" class="btn btn-link" (click)="modal.close()">Nie pamiętam hasła</button>
-    <button type="button" class="btn btn-link" (click)="modal.close()">Zarejestruj się</button>
+    <app-registration (click)="modal.close()"></app-registration>
   </div>
   <div class="modal-footer">
-    <button type="submit" class="btn btn-success" (click)="modal.close()">Zaloguj się</button>
+    <button type="submit" class="btn btn-success" form="loginForm" (click)="modal.close()">Zaloguj się</button>
     <button type="button" class="btn btn-danger" (click)="modal.close()">Anuluj</button>
   </div>
 </ng-template>

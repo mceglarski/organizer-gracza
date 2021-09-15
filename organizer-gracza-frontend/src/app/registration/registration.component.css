@@ -1,0 +1,29 @@
+.form-control{
+  margin-bottom: 10px;
+}
+.btn-link{
+  margin-left: 10%;
+}
+.modal-header{
+  background-color: #292E37;
+  border-bottom:2px solid #C3073F;
+}
+.modal-body{
+  background-color: #292E37;
+  border-bottom:2px solid #C3073F;
+}
+.modal-footer{
+  background-color: #292E37;
+  border: 0;
+}
+h4{
+  color: #C3073F;
+  font-weight: bold;
+}
+.close {
+  color: #fff;
+  opacity: 1;
+}
+input{
+  background-color: #3d4452;
+}
