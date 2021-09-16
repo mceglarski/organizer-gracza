@@ -19,7 +19,8 @@ import { RegistrationComponent } from './registration/registration.component';
 import {RouterModule} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
-import { NewsTeaserComponent } from './news/news-teaser/news-teaser.component';
+import {NewsTeaserComponent} from "./news/news-teaser/news-teaser.component";
+import {BsDropdownModule} from "ngx-bootstrap/dropdown";
 
 @NgModule({
   declarations: [
@@ -44,9 +45,10 @@ import { NewsTeaserComponent } from './news/news-teaser/news-teaser.component';
     AppRoutingModule,
     RouterModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    BsDropdownModule.forRoot()
   ],
-  providers: [],
+  providers: [LoginComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

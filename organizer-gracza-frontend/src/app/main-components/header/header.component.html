@@ -1,8 +1,8 @@
 <div class="header">
   <nav class="navbar navbar-expand-md navbar-dark fixed-top mt-4">
-    <a class="navbar-brand" href="#" (click)="consoling(login)">GAMERZZ</a>
+    <a class="navbar-brand" href="#">GAMERZZ</a>
     <div class="flex-menu-container">
-      <ul class="navbar-nav" *ngIf="login.loggedIn">
+      <ul class="navbar-nav" *ngIf="accountService.currentUser$ | async">
         <li class="nav-item">
           <a class="nav-link" href="#">TWÓJ PLAN</a>
         </li>
@@ -19,8 +19,18 @@
           <a class="nav-link" href="#">FORUM</a>
         </li>
       </ul>
-      <app-login></app-login>
-<!--      <button type="button" routerLink="/login" class="btn btn-outline-success">Zaloguj</button>-->
+      <div *ngIf="!(accountService.currentUser$ | async)">
+        <app-login></app-login>
+      </div>
+      <div class="dropdown" *ngIf="accountService.currentUser$ | async" dropdown>
+        <a class="dropdown-toggle text-light" dropdownToggle>Witaj użytkowniku</a>
+        <div class="dropdown-menu " *dropdownMenu>
+          <a class="dropdown-item">Edytuj profil</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" (click)="login.logout()"> Wyloguj</a>
+        </div>
+      </div>
     </div>
   </nav>
 </div>
+
