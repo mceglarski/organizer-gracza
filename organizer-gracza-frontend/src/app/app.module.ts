@@ -19,6 +19,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import {RouterModule} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import { NewsTeaserComponent } from './news/news-teaser/news-teaser.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
     EventsExtendedComponent,
     LoginComponent,
     RegistrationComponent,
+    NewsTeaserComponent
   ],
   imports: [
     BrowserModule,

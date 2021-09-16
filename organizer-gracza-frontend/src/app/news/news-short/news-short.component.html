@@ -1,6 +1,7 @@
 <div class="news-short" *ngFor="let news of newsArray">
-  <div class="news-short-content">
-    <h3>hello</h3>
-    <h4>news text</h4>
+  <div class="news-short-content" (click)="consoling(news)">
+    <h3>{{news.Title}}</h3>
+    <h4>{{news.Content}}</h4>
+    <h6>{{news.PublicationDate | date: 'short'}}</h6>
   </div>
 </div>
