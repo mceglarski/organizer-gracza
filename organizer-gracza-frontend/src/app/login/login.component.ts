@@ -1,6 +1,7 @@
 import {Component, Injectable, OnInit, EventEmitter, Output} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AccountService} from "../_services/account.service";
+import {ToastrService} from "ngx-toastr";
 
 
 @Component({
@@ -12,7 +13,8 @@ import {AccountService} from "../_services/account.service";
 export class LoginComponent implements OnInit {
   model: any = {};
 
-  constructor(private modalService: NgbModal, public accountService: AccountService) {}
+  constructor(private modalService: NgbModal, public accountService: AccountService,
+              private toastr: ToastrService ) {}
 
   ngOnInit(): void {
   }
@@ -25,6 +27,7 @@ export class LoginComponent implements OnInit {
     this.accountService.login(this.model).subscribe(response => {
     }, error => {
       console.log(error);
+      this.toastr.error(error.error)
     })
   }
 
