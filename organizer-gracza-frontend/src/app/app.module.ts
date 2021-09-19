@@ -21,6 +21,7 @@ import {FormsModule} from "@angular/forms";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {NewsTeaserComponent} from "./news/news-teaser/news-teaser.component";
 import {BsDropdownModule} from "ngx-bootstrap/dropdown";
+import {ToastrModule} from "ngx-toastr";
 
 @NgModule({
   declarations: [
@@ -46,7 +47,10 @@ import {BsDropdownModule} from "ngx-bootstrap/dropdown";
     RouterModule,
     FormsModule,
     NgbModule,
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right'
+    })
   ],
   providers: [LoginComponent],
   bootstrap: [AppComponent]

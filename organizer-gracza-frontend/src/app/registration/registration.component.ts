@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {AccountService} from "../_services/account.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-registration',
@@ -9,7 +11,8 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 export class RegistrationComponent implements OnInit {
   model: any = {};
 
-  constructor(private modalService: NgbModal) {
+  constructor(private modalService: NgbModal, private accountService: AccountService,
+              private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -21,6 +24,10 @@ export class RegistrationComponent implements OnInit {
   }
 
   register(){
-    console.log(this.model);
+    this.accountService.register(this.model).subscribe(response => {
+    }, error => {
+      console.log(error);
+      this.toastr.error(error.error)
+    })
   }
 }
