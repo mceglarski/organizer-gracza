@@ -6,7 +6,7 @@ namespace organizer_gracza_backend.Model
     public class Event
     {
         [Key]
-        public int IdEvent { get; set; }
+        public int EventId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime StartDate { get; set; }

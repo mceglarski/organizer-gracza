@@ -6,7 +6,7 @@ namespace organizer_gracza_backend.Model
     public class Team
     {
         [Key]
-        public int IdTeam { get; set; }
+        public int TeamId { get; set; }
         public string Name { get; set; }
         public ICollection<TeamUser> TeamUser { get; set; }
     }

@@ -6,7 +6,7 @@ namespace organizer_gracza_backend.Model
     public class ChatUsers
     {
         [Key]
-        public int IdChatUsers { get; set; }
+        public int ChatUsersId { get; set; }
         public ICollection<User> User { get; set; }
         public Chat Chat { get; set; }
     }
