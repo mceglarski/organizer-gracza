@@ -9,6 +9,7 @@ namespace organizer_gracza_backend.DTOs
         public string Nickname { get; set; }
         public string Email { get; set; }
         [Required]
+        [StringLength(24, MinimumLength = 8)]
         public string Password { get; set; }
     }
 }

@@ -2,7 +2,8 @@
   <nav class="navbar navbar-expand-md navbar-dark fixed-top mt-4">
     <a class="navbar-brand" href="#">GAMERZZ</a>
     <div class="flex-menu-container">
-      <ul class="navbar-nav" *ngIf="accountService.currentUser$ | async">
+      <ul class="navbar-nav">
+        <ng-container  *ngIf="accountService.currentUser$ | async">
         <li class="nav-item">
           <a class="nav-link" href="#">TWÓJ PLAN</a>
         </li>
@@ -17,6 +18,10 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">FORUM</a>
+        </li>
+        </ng-container>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/errors" routerLinkActive='active'>Errors</a>
         </li>
       </ul>
       <div *ngIf="!(accountService.currentUser$ | async)">
