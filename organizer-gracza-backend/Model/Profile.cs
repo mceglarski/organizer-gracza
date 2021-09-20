@@ -6,7 +6,7 @@ namespace organizer_gracza_backend.Model
     public class Profile
     {
         [Key]
-        public int IdProfile { get; set; }
+        public int ProfileId { get; set; }
         public string Description { get; set; }
         public string Url { get; set; }
         public ICollection<Achievements> Achievements { get; set; }

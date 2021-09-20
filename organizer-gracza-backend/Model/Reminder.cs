@@ -6,7 +6,7 @@ namespace organizer_gracza_backend.Model
     public class Reminder
     {
         [Key]
-        public int IdReminder { get; set; }
+        public int ReminderId { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
         public DateTime ReminderDate { get; set; }

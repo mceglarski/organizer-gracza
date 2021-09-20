@@ -6,7 +6,7 @@ namespace organizer_gracza_backend.Model
     public class ForumThread
     {
         [Key]
-        public int IdForumThread { get; set; }
+        public int ForumThreadId { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
         public DateTime ThreadDate { get; set; }

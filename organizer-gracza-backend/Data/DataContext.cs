@@ -35,12 +35,12 @@ namespace organizer_gracza_backend.Data
             modelBuilder.Entity<TeamUser>()
                 .HasOne(x => x.Team)
                 .WithMany(x => x.TeamUser)
-                .HasForeignKey(x => x.IdTeam);
+                .HasForeignKey(x => x.TeamId);
 
             modelBuilder.Entity<TeamUser>()
                 .HasOne(x => x.User)
                 .WithMany(x => x.TeamUser)
-                .HasForeignKey(x => x.IdUser);
+                .HasForeignKey(x => x.UserId);
         }
     }
 }

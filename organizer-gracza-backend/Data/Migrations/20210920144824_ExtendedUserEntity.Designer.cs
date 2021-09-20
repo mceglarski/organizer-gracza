@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using organizer_gracza_backend.Data;
 
 namespace organizer_gracza_backend.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210920144824_ExtendedUserEntity")]
+    partial class ExtendedUserEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -18,7 +20,7 @@ namespace organizer_gracza_backend.Data.Migrations
 
             modelBuilder.Entity("organizer_gracza_backend.Model.Achievements", b =>
                 {
-                    b.Property<int>("AchievementsId")
+                    b.Property<int>("IdAchievements")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -28,19 +30,19 @@ namespace organizer_gracza_backend.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("ProfileId")
+                    b.Property<int?>("ProfileIdProfile")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("AchievementsId");
+                    b.HasKey("IdAchievements");
 
-                    b.HasIndex("ProfileId");
+                    b.HasIndex("ProfileIdProfile");
 
                     b.ToTable("Achievements");
                 });
 
             modelBuilder.Entity("organizer_gracza_backend.Model.Articles", b =>
                 {
-                    b.Property<int>("ArticlesId")
+                    b.Property<int>("IdArticles")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -53,49 +55,49 @@ namespace organizer_gracza_backend.Data.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int?>("UserIdUser")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("ArticlesId");
+                    b.HasKey("IdArticles");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserIdUser");
 
                     b.ToTable("Articles");
                 });
 
             modelBuilder.Entity("organizer_gracza_backend.Model.Chat", b =>
                 {
-                    b.Property<int>("ChatId")
+                    b.Property<int>("IdChat")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("ChatId");
+                    b.HasKey("IdChat");
 
                     b.ToTable("Chats");
                 });
 
             modelBuilder.Entity("organizer_gracza_backend.Model.ChatUsers", b =>
                 {
-                    b.Property<int>("ChatUsersId")
+                    b.Property<int>("IdChatUsers")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("ChatId")
+                    b.Property<int?>("ChatIdChat")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("ChatUsersId");
+                    b.HasKey("IdChatUsers");
 
-                    b.HasIndex("ChatId");
+                    b.HasIndex("ChatIdChat");
 
                     b.ToTable("ChatUsers");
                 });
 
             modelBuilder.Entity("organizer_gracza_backend.Model.Event", b =>
                 {
-                    b.Property<int>("EventId")
+                    b.Property<int>("IdEvent")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -114,86 +116,86 @@ namespace organizer_gracza_backend.Data.Migrations
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("EventId");
+                    b.HasKey("IdEvent");
 
                     b.ToTable("Events");
                 });
 
             modelBuilder.Entity("organizer_gracza_backend.Model.EventRegistration", b =>
                 {
-                    b.Property<int>("EventRegistrationId")
+                    b.Property<int>("IdEventRegistration")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("EventId")
+                    b.Property<int?>("EventIdEvent")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("TeamId")
+                    b.Property<int?>("TeamIdTeam")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int?>("UserIdUser")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("EventRegistrationId");
+                    b.HasKey("IdEventRegistration");
 
-                    b.HasIndex("EventId");
+                    b.HasIndex("EventIdEvent");
 
-                    b.HasIndex("TeamId");
+                    b.HasIndex("TeamIdTeam");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserIdUser");
 
                     b.ToTable("EventRegistrations");
                 });
 
             modelBuilder.Entity("organizer_gracza_backend.Model.EventResult", b =>
                 {
-                    b.Property<int>("EventResultId")
+                    b.Property<int>("IdEventResult")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("EventId")
+                    b.Property<int?>("EventIdEvent")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("WinnerName")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("EventResultId");
+                    b.HasKey("IdEventResult");
 
-                    b.HasIndex("EventId");
+                    b.HasIndex("EventIdEvent");
 
                     b.ToTable("EventResults");
                 });
 
             modelBuilder.Entity("organizer_gracza_backend.Model.ForumPost", b =>
                 {
-                    b.Property<int>("ForumPostId")
+                    b.Property<int>("IdForumPost")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Content")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("ForumThreadId")
+                    b.Property<int?>("ForumThreadIdForumThread")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("PostDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int?>("UserIdUser")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("ForumPostId");
+                    b.HasKey("IdForumPost");
 
-                    b.HasIndex("ForumThreadId");
+                    b.HasIndex("ForumThreadIdForumThread");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserIdUser");
 
                     b.ToTable("ForumPost");
                 });
 
             modelBuilder.Entity("organizer_gracza_backend.Model.ForumThread", b =>
                 {
-                    b.Property<int>("ForumThreadId")
+                    b.Property<int>("IdForumThread")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -206,60 +208,60 @@ namespace organizer_gracza_backend.Data.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int?>("UserIdUser")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("ForumThreadId");
+                    b.HasKey("IdForumThread");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserIdUser");
 
                     b.ToTable("ForumThread");
                 });
 
             modelBuilder.Entity("organizer_gracza_backend.Model.Game", b =>
                 {
-                    b.Property<int>("GameId")
+                    b.Property<int>("IdGame")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Title")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("GameId");
+                    b.HasKey("IdGame");
 
                     b.ToTable("Games");
                 });
 
             modelBuilder.Entity("organizer_gracza_backend.Model.GameStatistics", b =>
                 {
-                    b.Property<int>("GameStatisticsId")
+                    b.Property<int>("IdGameStatistics")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("GameId")
+                    b.Property<int?>("GameIdGame")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("LostGames")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("ProfileId")
+                    b.Property<int?>("ProfileIdProfile")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("WonGames")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("GameStatisticsId");
+                    b.HasKey("IdGameStatistics");
 
-                    b.HasIndex("GameId");
+                    b.HasIndex("GameIdGame");
 
-                    b.HasIndex("ProfileId");
+                    b.HasIndex("ProfileIdProfile");
 
                     b.ToTable("GameStatistics");
                 });
 
             modelBuilder.Entity("organizer_gracza_backend.Model.GeneralStatistics", b =>
                 {
-                    b.Property<int>("GeneralStatisticsId")
+                    b.Property<int>("IdGeneralStatistics")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -272,23 +274,23 @@ namespace organizer_gracza_backend.Data.Migrations
                     b.Property<int>("PostWritten")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("ProfileId")
+                    b.Property<int?>("ProfileIdProfile")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("GeneralStatisticsId");
+                    b.HasKey("IdGeneralStatistics");
 
-                    b.HasIndex("ProfileId");
+                    b.HasIndex("ProfileIdProfile");
 
                     b.ToTable("GeneralStatistics");
                 });
 
             modelBuilder.Entity("organizer_gracza_backend.Model.Message", b =>
                 {
-                    b.Property<int>("MessageId")
+                    b.Property<int>("IdMessage")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("ChatId")
+                    b.Property<int?>("ChatIdChat")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Content")
@@ -297,46 +299,21 @@ namespace organizer_gracza_backend.Data.Migrations
                     b.Property<DateTime>("MessageDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int?>("UserIdUser")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("MessageId");
+                    b.HasKey("IdMessage");
 
-                    b.HasIndex("ChatId");
+                    b.HasIndex("ChatIdChat");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserIdUser");
 
                     b.ToTable("Messages");
                 });
 
-            modelBuilder.Entity("organizer_gracza_backend.Model.Photo", b =>
-                {
-                    b.Property<int>("PhotoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("PublicId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Url")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("isMain")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("PhotoId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Photos");
-                });
-
             modelBuilder.Entity("organizer_gracza_backend.Model.Profile", b =>
                 {
-                    b.Property<int>("ProfileId")
+                    b.Property<int>("IdProfile")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -346,14 +323,14 @@ namespace organizer_gracza_backend.Data.Migrations
                     b.Property<string>("Url")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("ProfileId");
+                    b.HasKey("IdProfile");
 
                     b.ToTable("Profile");
                 });
 
             modelBuilder.Entity("organizer_gracza_backend.Model.Reminder", b =>
                 {
-                    b.Property<int>("ReminderId")
+                    b.Property<int>("IdReminder")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -366,23 +343,23 @@ namespace organizer_gracza_backend.Data.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int?>("UserIdUser")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("ReminderId");
+                    b.HasKey("IdReminder");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserIdUser");
 
                     b.ToTable("Reminder");
                 });
 
             modelBuilder.Entity("organizer_gracza_backend.Model.Stream", b =>
                 {
-                    b.Property<int>("StreamId")
+                    b.Property<int>("IdStream")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("GameId")
+                    b.Property<int?>("GameIdGame")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
@@ -391,55 +368,55 @@ namespace organizer_gracza_backend.Data.Migrations
                     b.Property<string>("Url")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("StreamId");
+                    b.HasKey("IdStream");
 
-                    b.HasIndex("GameId");
+                    b.HasIndex("GameIdGame");
 
                     b.ToTable("Streams");
                 });
 
             modelBuilder.Entity("organizer_gracza_backend.Model.Team", b =>
                 {
-                    b.Property<int>("TeamId")
+                    b.Property<int>("IdTeam")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("TeamId");
+                    b.HasKey("IdTeam");
 
                     b.ToTable("Teams");
                 });
 
             modelBuilder.Entity("organizer_gracza_backend.Model.TeamUser", b =>
                 {
-                    b.Property<int>("TeamUserId")
+                    b.Property<int>("IdTeamUser")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("TeamId")
+                    b.Property<int>("IdTeam")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("UserId")
+                    b.Property<int>("IdUser")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("TeamUserId");
+                    b.HasKey("IdTeamUser");
 
-                    b.HasIndex("TeamId");
+                    b.HasIndex("IdTeam");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("IdUser");
 
                     b.ToTable("TeamUsers");
                 });
 
             modelBuilder.Entity("organizer_gracza_backend.Model.User", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<int>("IdUser")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("ChatUsersId")
+                    b.Property<int?>("ChatUsersIdChatUsers")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Created")
@@ -463,9 +440,9 @@ namespace organizer_gracza_backend.Data.Migrations
                     b.Property<string>("Username")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("UserId");
+                    b.HasKey("IdUser");
 
-                    b.HasIndex("ChatUsersId");
+                    b.HasIndex("ChatUsersIdChatUsers");
 
                     b.ToTable("Users");
                 });
@@ -474,14 +451,14 @@ namespace organizer_gracza_backend.Data.Migrations
                 {
                     b.HasOne("organizer_gracza_backend.Model.Profile", null)
                         .WithMany("Achievements")
-                        .HasForeignKey("ProfileId");
+                        .HasForeignKey("ProfileIdProfile");
                 });
 
             modelBuilder.Entity("organizer_gracza_backend.Model.Articles", b =>
                 {
                     b.HasOne("organizer_gracza_backend.Model.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserIdUser");
 
                     b.Navigation("User");
                 });
@@ -490,7 +467,7 @@ namespace organizer_gracza_backend.Data.Migrations
                 {
                     b.HasOne("organizer_gracza_backend.Model.Chat", "Chat")
                         .WithMany()
-                        .HasForeignKey("ChatId");
+                        .HasForeignKey("ChatIdChat");
 
                     b.Navigation("Chat");
                 });
@@ -499,15 +476,15 @@ namespace organizer_gracza_backend.Data.Migrations
                 {
                     b.HasOne("organizer_gracza_backend.Model.Event", "Event")
                         .WithMany()
-                        .HasForeignKey("EventId");
+                        .HasForeignKey("EventIdEvent");
 
                     b.HasOne("organizer_gracza_backend.Model.Team", "Team")
                         .WithMany()
-                        .HasForeignKey("TeamId");
+                        .HasForeignKey("TeamIdTeam");
 
                     b.HasOne("organizer_gracza_backend.Model.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserIdUser");
 
                     b.Navigation("Event");
 
@@ -520,7 +497,7 @@ namespace organizer_gracza_backend.Data.Migrations
                 {
                     b.HasOne("organizer_gracza_backend.Model.Event", "Event")
                         .WithMany()
-                        .HasForeignKey("EventId");
+                        .HasForeignKey("EventIdEvent");
 
                     b.Navigation("Event");
                 });
@@ -529,11 +506,11 @@ namespace organizer_gracza_backend.Data.Migrations
                 {
                     b.HasOne("organizer_gracza_backend.Model.ForumThread", "ForumThread")
                         .WithMany()
-                        .HasForeignKey("ForumThreadId");
+                        .HasForeignKey("ForumThreadIdForumThread");
 
                     b.HasOne("organizer_gracza_backend.Model.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserIdUser");
 
                     b.Navigation("ForumThread");
 
@@ -544,7 +521,7 @@ namespace organizer_gracza_backend.Data.Migrations
                 {
                     b.HasOne("organizer_gracza_backend.Model.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserIdUser");
 
                     b.Navigation("User");
                 });
@@ -553,11 +530,11 @@ namespace organizer_gracza_backend.Data.Migrations
                 {
                     b.HasOne("organizer_gracza_backend.Model.Game", "Game")
                         .WithMany()
-                        .HasForeignKey("GameId");
+                        .HasForeignKey("GameIdGame");
 
                     b.HasOne("organizer_gracza_backend.Model.Profile", null)
                         .WithMany("GameStatistics")
-                        .HasForeignKey("ProfileId");
+                        .HasForeignKey("ProfileIdProfile");
 
                     b.Navigation("Game");
                 });
@@ -566,31 +543,20 @@ namespace organizer_gracza_backend.Data.Migrations
                 {
                     b.HasOne("organizer_gracza_backend.Model.Profile", null)
                         .WithMany("GeneralStatistics")
-                        .HasForeignKey("ProfileId");
+                        .HasForeignKey("ProfileIdProfile");
                 });
 
             modelBuilder.Entity("organizer_gracza_backend.Model.Message", b =>
                 {
                     b.HasOne("organizer_gracza_backend.Model.Chat", "Chat")
                         .WithMany()
-                        .HasForeignKey("ChatId");
+                        .HasForeignKey("ChatIdChat");
 
                     b.HasOne("organizer_gracza_backend.Model.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserIdUser");
 
                     b.Navigation("Chat");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("organizer_gracza_backend.Model.Photo", b =>
-                {
-                    b.HasOne("organizer_gracza_backend.Model.User", "User")
-                        .WithMany("Photos")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -599,7 +565,7 @@ namespace organizer_gracza_backend.Data.Migrations
                 {
                     b.HasOne("organizer_gracza_backend.Model.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserIdUser");
 
                     b.Navigation("User");
                 });
@@ -608,7 +574,7 @@ namespace organizer_gracza_backend.Data.Migrations
                 {
                     b.HasOne("organizer_gracza_backend.Model.Game", "Game")
                         .WithMany()
-                        .HasForeignKey("GameId");
+                        .HasForeignKey("GameIdGame");
 
                     b.Navigation("Game");
                 });
@@ -617,13 +583,13 @@ namespace organizer_gracza_backend.Data.Migrations
                 {
                     b.HasOne("organizer_gracza_backend.Model.Team", "Team")
                         .WithMany("TeamUser")
-                        .HasForeignKey("TeamId")
+                        .HasForeignKey("IdTeam")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("organizer_gracza_backend.Model.User", "User")
                         .WithMany("TeamUser")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("IdUser")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -636,7 +602,7 @@ namespace organizer_gracza_backend.Data.Migrations
                 {
                     b.HasOne("organizer_gracza_backend.Model.ChatUsers", null)
                         .WithMany("User")
-                        .HasForeignKey("ChatUsersId");
+                        .HasForeignKey("ChatUsersIdChatUsers");
                 });
 
             modelBuilder.Entity("organizer_gracza_backend.Model.ChatUsers", b =>
@@ -660,8 +626,6 @@ namespace organizer_gracza_backend.Data.Migrations
 
             modelBuilder.Entity("organizer_gracza_backend.Model.User", b =>
                 {
-                    b.Navigation("Photos");
-
                     b.Navigation("TeamUser");
                 });
 #pragma warning restore 612, 618

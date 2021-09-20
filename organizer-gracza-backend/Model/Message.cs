@@ -6,7 +6,7 @@ namespace organizer_gracza_backend.Model
     public class Message
     {
         [Key]
-        public int IdMessage { get; set; }
+        public int MessageId { get; set; }
         public string Content { get; set; }
         public DateTime MessageDate { get; set; }
         public User User { get; set; }
