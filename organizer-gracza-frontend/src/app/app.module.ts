@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './main-components/header/header.component';
 import { FooterComponent } from './main-components/footer/footer.component';
@@ -22,6 +22,9 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {NewsTeaserComponent} from "./news/news-teaser/news-teaser.component";
 import {BsDropdownModule} from "ngx-bootstrap/dropdown";
 import {ToastrModule} from "ngx-toastr";
+import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
+import {ErrorInterceptor} from "./_interceptors/error.interceptor";
+import { NotFoundComponent } from './errors/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,9 @@ import {ToastrModule} from "ngx-toastr";
     EventsExtendedComponent,
     LoginComponent,
     RegistrationComponent,
-    NewsTeaserComponent
+    NewsTeaserComponent,
+    TestErrorsComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +57,9 @@ import {ToastrModule} from "ngx-toastr";
       positionClass: 'toast-bottom-right'
     })
   ],
-  providers: [LoginComponent],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    LoginComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
