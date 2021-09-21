@@ -1,0 +1,17 @@
+<div class="edit-page-content" *ngIf="member">
+  <div class="col-6">
+    <h1>Twój profil</h1>
+  </div>
+  <div>
+    <div class="alert alert-info" *ngIf="editForm.dirty">
+      <strong>Informacja: </strong> Wprowadziłeś/aś zmiany. Wszystkie niezapisane zmiany zostaną utracone!
+    </div>
+  </div>
+  <div>
+    <form #editForm="ngForm" (ngSubmit)="updateMember()" id="editForm">
+    <h4>Nickname</h4>
+    <textarea class="form-control" [(ngModel)]="member.nickname" name="nickname" rows="1"></textarea>
+    </form>
+  </div>
+  <button [disabled]="!editForm.dirty" form="editForm" type="submit" class="btn btn-success btn-block">Zapisz Zmiany</button>
+</div>

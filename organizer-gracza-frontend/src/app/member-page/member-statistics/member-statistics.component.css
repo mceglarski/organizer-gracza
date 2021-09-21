@@ -1,0 +1,38 @@
+.memberStatistics{
+  margin-left: 0.5%;
+  width: 99.5%;
+}
+.title{
+  display: flex;
+  flex-direction: row;
+}
+
+.separator {
+  margin-left: 5px;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.separator::after {
+  content: '';
+  flex: 1;
+  border-bottom: 0.3rem solid #2D2D2D;
+}
+.statisticRow{
+  display: flex;
+  font-weight: bold;
+  font-size: large;
+}
+.statistic{
+  display: flex;
+  flex-direction: column;
+  margin-left: 20%;
+  width: 100%;
+}
+.statisticValue{
+  color: #C3073F;
+  margin-left: 5%;
+}
