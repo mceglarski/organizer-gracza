@@ -25,6 +25,12 @@ import {ToastrModule} from "ngx-toastr";
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 import {ErrorInterceptor} from "./_interceptors/error.interceptor";
 import { NotFoundComponent } from './errors/not-found/not-found.component';
+import { MemberImageComponent } from './member-page/member-image/member-image.component';
+import { MemberContentComponent } from './member-page/member-content/member-content.component';
+import { MemberAchievementsComponent } from './member-page/member-achievements/member-achievements.component';
+import { MemberStatisticsComponent } from './member-page/member-statistics/member-statistics.component';
+import {JwtInterceptor} from "./_interceptors/jwt.interceptor";
+import { MemberEditComponent } from './member-page/member-edit/member-edit.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +47,12 @@ import { NotFoundComponent } from './errors/not-found/not-found.component';
     RegistrationComponent,
     NewsTeaserComponent,
     TestErrorsComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    MemberImageComponent,
+    MemberContentComponent,
+    MemberAchievementsComponent,
+    MemberStatisticsComponent,
+    MemberEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,11 +66,12 @@ import { NotFoundComponent } from './errors/not-found/not-found.component';
     BsDropdownModule.forRoot(),
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right'
-    })
+    }),
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
-    LoginComponent],
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    LoginComponent, MemberContentComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -10,8 +10,6 @@ namespace organizer_gracza_backend.DTOs
         public string Username { get; set; }
         public string Nickname { get; set; }
         public string Email { get; set; }
-        public byte[] PasswordHash { get; set; }
-        public byte[] PasswordSalt { get; set; }
         public DateTime Created { get; set; }
 
         public DateTime LastActive { get; set; }

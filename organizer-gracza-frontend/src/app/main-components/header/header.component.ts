@@ -1,6 +1,7 @@
 import {Component, OnChanges, OnInit} from '@angular/core';
 import {LoginComponent} from "../../login/login.component";
 import {AccountService} from "../../_services/account.service";
+import {MemberContentComponent} from "../../member-page/member-content/member-content.component";
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,7 @@ import {AccountService} from "../../_services/account.service";
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public login: LoginComponent, public accountService: AccountService) {}
+  constructor(public login: LoginComponent, public accountService: AccountService, public memberContent: MemberContentComponent) {}
 
   ngOnInit(): void {
 

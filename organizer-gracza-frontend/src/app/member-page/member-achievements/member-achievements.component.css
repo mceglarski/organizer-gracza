@@ -1,0 +1,38 @@
+.memberAchievements{
+  margin-left: 0.5%;
+  width: 99.5%;
+}
+.title{
+  display: flex;
+  flex-direction: row;
+}
+
+.separator {
+  margin-left: 5px;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.separator::after {
+  content: '';
+  flex: 1;
+  border-bottom: 0.3rem solid #2D2D2D;
+}
+.rectangleAchievements{
+  display: flex;
+
+}
+.achievement{
+  display: flex;
+  align-items :center; /* Centering x-axis */
+  width: 20%;
+  height: 150px;
+  background-color: #292E37;
+  margin-left: 20%;
+}
+.achievementImage{
+  height: 100%;
+}

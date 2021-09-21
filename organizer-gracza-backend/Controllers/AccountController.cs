@@ -46,6 +46,7 @@ namespace organizer_gracza_backend.Controllers
             return new UserDto()
             {
                 Username = user.Username,
+                Nickname = user.Nickname,
                 Token = _tokenService.CreateToken(user)
             };
         }
@@ -72,6 +73,7 @@ namespace organizer_gracza_backend.Controllers
             return new UserDto()
             {
                 Username = user.Username,
+                Nickname = user.Nickname,
                 Token = _tokenService.CreateToken(user)
             };
         }
