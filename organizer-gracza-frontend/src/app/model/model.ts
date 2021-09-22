@@ -2,6 +2,7 @@ export interface User{
   username: string;
   nickname: string;
   token: string;
+  photoUrl: string;
 }
 
 export interface News {

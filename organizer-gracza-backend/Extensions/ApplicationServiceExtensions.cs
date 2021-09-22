@@ -13,6 +13,8 @@ namespace organizer_gracza_backend.Extensions
         public static IServiceCollection AddApplicationServices
             (this IServiceCollection services, IConfiguration configuration)
         {
+            services.Configure<CloudinarySettings>(configuration.GetSection("CloudinarySettings"));
+            services.AddScoped<IPhotoService, PhotoService>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
