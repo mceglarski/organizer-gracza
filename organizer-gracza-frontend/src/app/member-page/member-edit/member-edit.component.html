@@ -1,6 +1,6 @@
 <div class="edit-page-content" *ngIf="member">
   <div class="col-6">
-    <h1>Twój profil</h1>
+    <h1>Edytuj swój profil</h1>
   </div>
   <div>
     <div class="alert alert-info" *ngIf="editForm.dirty">
@@ -13,5 +13,6 @@
     <textarea class="form-control" [(ngModel)]="member.nickname" name="nickname" rows="1"></textarea>
     </form>
   </div>
+  <app-member-photo-editor [member]="member"></app-member-photo-editor>
   <button [disabled]="!editForm.dirty" form="editForm" type="submit" class="btn btn-success btn-block">Zapisz Zmiany</button>
 </div>

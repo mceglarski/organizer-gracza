@@ -31,6 +31,10 @@ import { MemberAchievementsComponent } from './member-page/member-achievements/m
 import { MemberStatisticsComponent } from './member-page/member-statistics/member-statistics.component';
 import {JwtInterceptor} from "./_interceptors/jwt.interceptor";
 import { MemberEditComponent } from './member-page/member-edit/member-edit.component';
+import {NgxSpinnerModule} from "ngx-spinner";
+import {LoadingInterceptor} from "./_interceptors/loading.interceptor";
+import { MemberPhotoEditorComponent } from './member-page/member-photo-editor/member-photo-editor.component';
+import {FileUploadModule} from "ng2-file-upload";
 
 @NgModule({
   declarations: [
@@ -53,6 +57,7 @@ import { MemberEditComponent } from './member-page/member-edit/member-edit.compo
     MemberAchievementsComponent,
     MemberStatisticsComponent,
     MemberEditComponent,
+    MemberPhotoEditorComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,10 +72,13 @@ import { MemberEditComponent } from './member-page/member-edit/member-edit.compo
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right'
     }),
+    NgxSpinnerModule,
+    FileUploadModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true},
     LoginComponent, MemberContentComponent],
   bootstrap: [AppComponent]
 })
