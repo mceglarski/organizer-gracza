@@ -14,6 +14,7 @@ namespace organizer_gracza_backend.Helpers
                     opt.MapFrom(src => src.Photos.FirstOrDefault(x => x.IsMain).Url));
             CreateMap<Photo, PhotoDto>();
             CreateMap<MemberUpdateDto, User>();
+            CreateMap<RegisterDto, User>();
         }
     }
 }

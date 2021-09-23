@@ -17,7 +17,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import {RouterModule} from "@angular/router";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {NewsTeaserComponent} from "./news/news-teaser/news-teaser.component";
 import {BsDropdownModule} from "ngx-bootstrap/dropdown";
@@ -76,6 +76,7 @@ import { MemberCardComponent } from './member-page/member-card/member-card.compo
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right'
     }),
+    ReactiveFormsModule,
     NgxSpinnerModule,
     FileUploadModule
   ],

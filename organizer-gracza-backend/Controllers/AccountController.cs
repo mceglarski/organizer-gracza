@@ -2,6 +2,8 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using organizer_gracza_backend.Data;
@@ -15,10 +17,13 @@ namespace organizer_gracza_backend.Controllers
     {
         private readonly DataContext _context;
         private readonly ITokenService _tokenService;
-        public AccountController(DataContext context, ITokenService tokenService)
+        private readonly IMapper _mapper;
+
+        public AccountController(DataContext context, ITokenService tokenService, IMapper mapper)
         {
             _tokenService = tokenService;
             _context = context;
+            _mapper = mapper;
         }
 
         [HttpPost("register")]
@@ -26,21 +31,23 @@ namespace organizer_gracza_backend.Controllers
         {
             if (await UsernameExists(registerDto.Username))
                 return BadRequest("Username is taken");
-            
+
+            if (await EmailExists(registerDto.Nickname))
+                return BadRequest("Nickname is taken");
+
             if (await EmailExists(registerDto.Email))
                 return BadRequest("Email is taken");
-                
+
             using var hmac = new HMACSHA512();
 
-            var user = new User()
-            {
-                Username = registerDto.Username.ToLower(),
-                Nickname = registerDto.Nickname,
-                Email = registerDto.Email,
-                PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
-                PasswordSalt = hmac.Key
-            };
-
+            var user = _mapper.Map<User>(registerDto);
+            
+            user.Username = registerDto.Username.ToLower();
+            user.Nickname = registerDto.Nickname;
+            user.Email = registerDto.Email;
+            user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password));
+            user.PasswordSalt = hmac.Key;
+            
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
@@ -85,7 +92,7 @@ namespace organizer_gracza_backend.Controllers
         {
             return await _context.Users.AnyAsync(x => x.Username == nickname.ToLower());
         }
-        
+
         private async Task<bool> EmailExists(string email)
         {
             return await _context.Users.AnyAsync(x => x.Email == email.ToLower());

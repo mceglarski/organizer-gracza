@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {AccountService} from "../_services/account.service";
 import {ToastrService} from "ngx-toastr";
+import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-registration',
@@ -9,14 +11,39 @@ import {ToastrService} from "ngx-toastr";
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-  model: any = {};
+  // @ts-ignore
+  registerForm: FormGroup;
+  validationErrors: string[] = [];
 
   constructor(private modalService: NgbModal, private accountService: AccountService,
-              private toastr: ToastrService) {
+              private toastr: ToastrService, public router: Router) {
   }
 
   ngOnInit(): void {
+    this.initializeForm();
+  }
 
+  initializeForm(){
+    this.registerForm = new FormGroup({
+      username: new FormControl('', Validators.required),
+      nickname: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.required),
+      password: new FormControl('', [Validators.required, Validators.minLength(8),
+        Validators.maxLength(24)]),
+      confirmPassword: new FormControl('', [Validators.required,
+        this.matchValues('password')])
+    })
+    this.registerForm.controls.password.valueChanges.subscribe(() => {
+      this.registerForm.controls.confirmPassword.updateValueAndValidity();
+    })
+  }
+
+  matchValues(matchTo: string): ValidatorFn{
+    return (control: AbstractControl) => {
+      // @ts-ignore
+      return control?.value === control?.parent?.controls[matchTo].value
+        ? null : {isMatching: true}
+    }
   }
 
   open(content: any) {
@@ -24,7 +51,12 @@ export class RegistrationComponent implements OnInit {
   }
 
   register(){
-    this.accountService.register(this.model).subscribe(response => {
+    this.accountService.register(this.registerForm.value).subscribe(response => {
+      this.router.navigateByUrl('/');
+    }, error => {
+      this.validationErrors = error;
+      console.log(error);
+      this.toastr.error('Zarejestrowanie się nie powiodło');
     })
   }
 }
