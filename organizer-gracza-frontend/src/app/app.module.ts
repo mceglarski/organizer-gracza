@@ -35,6 +35,8 @@ import {NgxSpinnerModule} from "ngx-spinner";
 import {LoadingInterceptor} from "./_interceptors/loading.interceptor";
 import { MemberPhotoEditorComponent } from './member-page/member-photo-editor/member-photo-editor.component';
 import {FileUploadModule} from "ng2-file-upload";
+import { MemberListComponent } from './member-page/member-list/member-list.component';
+import { MemberCardComponent } from './member-page/member-card/member-card.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +60,8 @@ import {FileUploadModule} from "ng2-file-upload";
     MemberStatisticsComponent,
     MemberEditComponent,
     MemberPhotoEditorComponent,
+    MemberListComponent,
+    MemberCardComponent,
   ],
   imports: [
     BrowserModule,
