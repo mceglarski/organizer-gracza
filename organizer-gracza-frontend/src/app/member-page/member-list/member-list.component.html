@@ -1,0 +1,12 @@
+<div class="member-list-content">
+  <div class="input-group">
+    <input type="search" class="form-control rounded mt-3 ml-3" placeholder="Wyszukaj użytkownika" aria-label="Search"
+           aria-describedby="search-addon" />
+    <button type="button" class="btn btn-outline-primary mt-3">search</button>
+  </div>
+  <div class="flex-container">
+    <div *ngFor="let member of members" >
+      <app-member-card [member]="member"></app-member-card>
+    </div>
+  </div>
+</div>

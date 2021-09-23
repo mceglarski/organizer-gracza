@@ -1,0 +1,14 @@
+.member-list-content{
+  margin-left: 10%;
+  margin-top: 4%;
+  background-color: black;
+  height: 1160px;
+  width: 80%;
+}
+.flex-container{
+  display: flex;
+  flex-flow: row wrap;
+}
+.input-group{
+  max-width: 300px;
+}

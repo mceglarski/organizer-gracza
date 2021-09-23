@@ -35,7 +35,7 @@ namespace organizer_gracza_backend.Controllers
             var user = new User()
             {
                 Username = registerDto.Username.ToLower(),
-                Nickname = registerDto.Nickname.ToLower(),
+                Nickname = registerDto.Nickname,
                 Email = registerDto.Email,
                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
                 PasswordSalt = hmac.Key
