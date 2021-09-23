@@ -31,7 +31,7 @@
         <app-login></app-login>
       </div>
       <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
-        <img src="{{user.photoUrl}}" alt="brak">
+        <img src="{{user.photoUrl || './assets/user.png'}}" alt="brak">
         <a class="dropdown-toggle text-light ml-2" dropdownToggle>Witaj {{user.nickname | titlecase}}</a>
         <div class="dropdown-menu " *dropdownMenu>
           <a class="dropdown-item" routerLink='/member/edit'>Edytuj profil</a>
