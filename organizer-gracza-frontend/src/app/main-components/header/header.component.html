@@ -34,6 +34,8 @@
         <img src="{{user.photoUrl || './assets/user.png'}}" alt="brak">
         <a class="dropdown-toggle text-light ml-2" dropdownToggle>Witaj {{user.nickname | titlecase}}</a>
         <div class="dropdown-menu " *dropdownMenu>
+          <a class="dropdown-item" routerLink='members/{{user.username}}'>Mój profil</a>
+          <div class="dropdown-divider"></div>
           <a class="dropdown-item" routerLink='/member/edit'>Edytuj profil</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" (click)="login.logout()"> Wyloguj</a>

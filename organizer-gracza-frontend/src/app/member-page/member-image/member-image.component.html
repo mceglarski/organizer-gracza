@@ -1,4 +1,5 @@
 <div class="memberImage">
   <img src="{{memberContent.member.photoUrl || './assets/user.png'}}" alt="{{memberContent.member.nickname}}" class="centered">
   <h2>{{memberContent.member.nickname}}</h2>
+  <h6>Online: {{memberContent.member.lastActive | timeago}}</h6>
 </div>

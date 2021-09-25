@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using organizer_gracza_backend.DTOs;
 using organizer_gracza_backend.Extensions;
+using organizer_gracza_backend.Helpers;
 using organizer_gracza_backend.Interfaces;
 using organizer_gracza_backend.Model;
 
@@ -28,9 +29,12 @@ namespace organizer_gracza_backend.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery]UserParams userParams)
         {
-            var users = await _userRepository.GetMembersAsync();
+            var users = await _userRepository.GetMembersAsync(userParams);
+            
+            Response.AddPaginationHeader(users.CurrentPage, users.PageSize, 
+                users.TotalCount, users.TotalPages);
             
             return Ok(users);
         }
@@ -80,7 +84,8 @@ namespace organizer_gracza_backend.Controllers
 
             if (await _userRepository.SaveAllAsync())
             {
-                return CreatedAtRoute("GetUser", new {username = user.Username} ,_mapper.Map<PhotoDto>(photo));
+                return CreatedAtRoute("GetUser", new {username = user.Username},
+                    _mapper.Map<PhotoDto>(photo));
             }
             return BadRequest("Problem adding photo");
         }
