@@ -37,6 +37,8 @@ import { MemberPhotoEditorComponent } from './member-page/member-photo-editor/me
 import {FileUploadModule} from "ng2-file-upload";
 import { MemberListComponent } from './member-page/member-list/member-list.component';
 import { MemberCardComponent } from './member-page/member-card/member-card.component';
+import {PaginationModule} from "ngx-bootstrap/pagination";
+import {TimeagoModule} from "ngx-timeago";
 
 @NgModule({
   declarations: [
@@ -78,7 +80,9 @@ import { MemberCardComponent } from './member-page/member-card/member-card.compo
     }),
     ReactiveFormsModule,
     NgxSpinnerModule,
-    FileUploadModule
+    FileUploadModule,
+    PaginationModule.forRoot(),
+    TimeagoModule.forRoot()
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
