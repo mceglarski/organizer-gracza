@@ -44,9 +44,22 @@ export class PaginatedResult<T>{
   pagination: Pagination;
 }
 
-export class UserParams{
+export class PagintationParams {
   pageNumber = 1;
   pageSize = 5;
+}
+
+export interface Message {
+  messageId: number;
+  senderId: number;
+  senderUsername: string;
+  senderPhotoUrl: string;
+  recipientId: number;
+  recipientUsername: string;
+  recipientPhotoUrl: string;
+  content: string;
+  dateRead?: Date;
+  messageSent: Date;
 }
 
 export interface event {

@@ -1,0 +1,12 @@
+.messages-content{
+  margin-left: 10%;
+  width: 80%;
+  height: 1160px;
+  opacity: 0.9;
+  background-color: black;
+  margin-top: 4%;
+  color: white;
+}
+.img-circle{
+  max-height: 50px;
+}

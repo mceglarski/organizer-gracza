@@ -39,6 +39,9 @@ import { MemberListComponent } from './member-page/member-list/member-list.compo
 import { MemberCardComponent } from './member-page/member-card/member-card.component';
 import {PaginationModule} from "ngx-bootstrap/pagination";
 import {TimeagoModule} from "ngx-timeago";
+import { MessagesChatComponent } from './messages/messages-chat/messages-chat.component';
+import {ButtonsModule} from "ngx-bootstrap/buttons";
+import { MessagesMembersChatComponent } from './messages/messages-members-chat/messages-members-chat.component';
 
 @NgModule({
   declarations: [
@@ -64,26 +67,29 @@ import {TimeagoModule} from "ngx-timeago";
     MemberPhotoEditorComponent,
     MemberListComponent,
     MemberCardComponent,
+    MessagesChatComponent,
+    MessagesMembersChatComponent,
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    IvyCarouselModule,
-    AppRoutingModule,
-    RouterModule,
-    FormsModule,
-    NgbModule,
-    BsDropdownModule.forRoot(),
-    ToastrModule.forRoot({
-      positionClass: 'toast-bottom-right'
-    }),
-    ReactiveFormsModule,
-    NgxSpinnerModule,
-    FileUploadModule,
-    PaginationModule.forRoot(),
-    TimeagoModule.forRoot()
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        IvyCarouselModule,
+        AppRoutingModule,
+        RouterModule,
+        FormsModule,
+        NgbModule,
+        BsDropdownModule.forRoot(),
+        ToastrModule.forRoot({
+            positionClass: 'toast-bottom-right'
+        }),
+        ReactiveFormsModule,
+        NgxSpinnerModule,
+        FileUploadModule,
+        PaginationModule.forRoot(),
+        TimeagoModule.forRoot(),
+        ButtonsModule
+    ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

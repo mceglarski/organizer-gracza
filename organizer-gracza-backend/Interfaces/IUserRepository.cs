@@ -14,7 +14,7 @@ namespace organizer_gracza_backend.Interfaces
         Task<IEnumerable<User>> GetUsersAsync();
         Task<User> GetUserByIdAsync(int id);
         Task<User> GetUserByUsernameAsync(string username);
-        Task<PagedList<MemberDto>> GetMembersAsync(UserParams userParams);
+        Task<PagedList<MemberDto>> GetMembersAsync(PaginationParams paginationParams);
         Task<MemberDto> GetMemberAsync(string username);
 
     }

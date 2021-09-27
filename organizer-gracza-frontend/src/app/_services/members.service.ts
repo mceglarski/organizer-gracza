@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {environment} from "../../environments/environment";
-import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-import {Member, PaginatedResult, UserParams} from "../model/model";
-import {of, pipe} from "rxjs";
+import {HttpClient} from "@angular/common/http";
+import {Member, PagintationParams} from "../model/model";
+import {of,} from "rxjs";
 import {map} from "rxjs/operators";
+import {getPaginatedResult, getPaginationHeaders} from "./paginationHelper";
 
 @Injectable({
   providedIn: 'root'
@@ -34,15 +35,15 @@ export class MembersService {
   //   return this.http.get<Member>(this.baseUrl + 'users/' + username);
   // }
 
-  getMembers(userParams: UserParams) {
+  getMembers(userParams: PagintationParams) {
     var response = this.memberCache.get(Object.values(userParams).join('-'));
     if(response){
       return of(response);
     }
 
-    let params = this.getPaginationHeaders(userParams.pageNumber, userParams.pageSize);
+    let params = getPaginationHeaders(userParams.pageNumber, userParams.pageSize);
 
-    return this.getPaginatedResult<Member[]>(this.baseUrl + 'users', params)
+    return getPaginatedResult<Member[]>(this.baseUrl + 'users', params, this.http)
       .pipe(map(response => {
         this.memberCache.set(Object.values(userParams).join('-'), response);
         return response;
@@ -70,43 +71,12 @@ export class MembersService {
     )
   }
 
-
-
   setMainPhoto(photoId: number) {
     return this.http.put(this.baseUrl + 'users/set-main-photo/' + photoId, {})
   }
 
   deletePhoto(photoId: number) {
     return this.http.delete(this.baseUrl + 'users/delete-photo/' + photoId);
-  }
-
-  // @ts-ignore
-  private getPaginatedResult<T>(url, params) {
-    const paginatedResult: PaginatedResult<T> = new PaginatedResult<T>();
-    // @ts-ignore
-    return this.http.get<T>(url, {observe: 'response', params}).pipe(
-      map(response => {
-        // @ts-ignore
-        paginatedResult.result = response.body;
-        // @ts-ignore
-        if (response.headers.get('Pagination') !== null) {
-          // @ts-ignore
-          paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
-        }
-        return paginatedResult;
-      })
-    )
-  }
-
-  private getPaginationHeaders(pageNumber: number, pageSize: number) {
-    let params = new HttpParams();
-
-    // @ts-ignore
-    params = params.append('pageNumber', pageNumber.toString());
-    // @ts-ignore
-    params = params.append('pageSize', pageSize.toString());
-
-    return params;
   }
 
 }

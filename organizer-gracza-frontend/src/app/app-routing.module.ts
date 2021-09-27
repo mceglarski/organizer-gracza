@@ -8,6 +8,9 @@ import {MemberContentComponent} from "./member-page/member-content/member-conten
 import {MemberEditComponent} from "./member-page/member-edit/member-edit.component";
 import {PreventUnsavedChangesGuard} from "./_guards/prevent-unsaved-changes.guard";
 import {MemberListComponent} from "./member-page/member-list/member-list.component";
+import {MessagesChatComponent} from "./messages/messages-chat/messages-chat.component";
+import {MessagesMembersChatComponent} from "./messages/messages-members-chat/messages-members-chat.component";
+import {MemberDetailedResolver} from "./_resolvers/member-detailed-resolver";
 
 const routes: Routes = [
   {path: '', component: MainPageContentComponent},
@@ -18,7 +21,9 @@ const routes: Routes = [
     children: [
       {path: 'members', component: MemberListComponent},
       {path: 'members/:nickname', component: MemberContentComponent},
-      {path: 'member/edit', component: MemberEditComponent, canDeactivate: [PreventUnsavedChangesGuard]}
+      {path: 'member/edit', component: MemberEditComponent, canDeactivate: [PreventUnsavedChangesGuard]},
+      {path: 'messages', component: MessagesChatComponent},
+      {path: 'messages/thread/:username', component: MessagesMembersChatComponent, resolve: {member: MemberDetailedResolver}}
     ]
   },
   {path: 'errors', component: TestErrorsComponent},

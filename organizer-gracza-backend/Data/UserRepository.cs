@@ -51,13 +51,13 @@ namespace organizer_gracza_backend.Data
                 .SingleOrDefaultAsync(x => x.Username == username);
         }
 
-        public async Task<PagedList<MemberDto>> GetMembersAsync(UserParams userParams)
+        public async Task<PagedList<MemberDto>> GetMembersAsync(PaginationParams paginationParams)
         {
             var query = _context.Users
                 .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
                 .AsNoTracking();
 
-            return await PagedList<MemberDto>.CreateAsync(query, userParams.PageNumber, userParams.PageSize);
+            return await PagedList<MemberDto>.CreateAsync(query, paginationParams.PageNumber, paginationParams.PageSize);
         }
 
         public async Task<MemberDto> GetMemberAsync(string username)

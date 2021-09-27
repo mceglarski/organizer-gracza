@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Member, Pagination, User, UserParams} from "../../model/model";
+import {Member, Pagination, User, PagintationParams} from "../../model/model";
 import {MembersService} from "../../_services/members.service";
 import {AccountService} from "../../_services/account.service";
 import {take} from "rxjs/operators";
@@ -15,14 +15,14 @@ export class MemberListComponent implements OnInit {
   // @ts-ignore
   pagination: Pagination;
   // @ts-ignore
-  userParams: UserParams;
+  userParams: PagintationParams;
   // @ts-ignore
   user: User;
 
   constructor(private memberService: MembersService, private accountService: AccountService) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
       this.user = user;
-      this.userParams = new UserParams();
+      this.userParams = new PagintationParams();
     })
   }
 
