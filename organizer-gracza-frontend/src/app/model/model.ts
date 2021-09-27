@@ -3,6 +3,7 @@ export interface User{
   nickname: string;
   token: string;
   photoUrl: string;
+  roles: string[];
 }
 
 export interface News {
@@ -20,7 +21,7 @@ export interface Photo {
 }
 
 export interface Member {
-  userId: number;
+  Id: number;
   username: string;
   nickname: string;
   email: string;

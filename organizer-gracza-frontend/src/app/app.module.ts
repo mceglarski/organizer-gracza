@@ -42,6 +42,13 @@ import {TimeagoModule} from "ngx-timeago";
 import { MessagesChatComponent } from './messages/messages-chat/messages-chat.component';
 import {ButtonsModule} from "ngx-bootstrap/buttons";
 import { MessagesMembersChatComponent } from './messages/messages-members-chat/messages-members-chat.component';
+import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
+import { HasRoleDirective } from './_directives/has-role.directive';
+import { UserManagementComponent } from './admin/user-management/user-management.component';
+import { PhotoManagementComponent } from './admin/photo-management/photo-management.component';
+import {TabsModule} from "ngx-bootstrap/tabs";
+import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
+import {ModalModule} from "ngx-bootstrap/modal";
 
 @NgModule({
   declarations: [
@@ -69,6 +76,11 @@ import { MessagesMembersChatComponent } from './messages/messages-members-chat/m
     MemberCardComponent,
     MessagesChatComponent,
     MessagesMembersChatComponent,
+    AdminPanelComponent,
+    HasRoleDirective,
+    UserManagementComponent,
+    PhotoManagementComponent,
+    RolesModalComponent,
   ],
     imports: [
         BrowserModule,
@@ -88,7 +100,9 @@ import { MessagesMembersChatComponent } from './messages/messages-members-chat/m
         FileUploadModule,
         PaginationModule.forRoot(),
         TimeagoModule.forRoot(),
-        ButtonsModule
+        ButtonsModule,
+        TabsModule,
+        ModalModule.forRoot()
     ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

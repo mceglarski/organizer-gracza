@@ -4,6 +4,9 @@
     <div class="flex-menu-container">
       <ul class="navbar-nav">
         <ng-container *ngIf="accountService.currentUser$ | async">
+          <li *appHasRole='["Admin", "Moderator"]' class="nav-item">
+            <a class="nav-link" routerLink="/admin">ADMIN PANEL</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="#">TWÓJ PLAN</a>
           </li>
@@ -32,7 +35,7 @@
       </div>
       <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
         <img src="{{user.photoUrl || './assets/user.png'}}" alt="brak">
-        <a class="dropdown-toggle text-light ml-2" dropdownToggle>Witaj {{user.nickname | titlecase}}</a>
+        <a class="dropdown-toggle text-light ml-2" dropdownToggle>Witaj {{user.nickname || user.username | titlecase}}</a>
         <div class="dropdown-menu " *dropdownMenu>
           <a class="dropdown-item" routerLink='members/{{user.username}}'>Mój profil</a>
           <div class="dropdown-divider"></div>

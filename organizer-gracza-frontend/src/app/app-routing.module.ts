@@ -11,6 +11,8 @@ import {MemberListComponent} from "./member-page/member-list/member-list.compone
 import {MessagesChatComponent} from "./messages/messages-chat/messages-chat.component";
 import {MessagesMembersChatComponent} from "./messages/messages-members-chat/messages-members-chat.component";
 import {MemberDetailedResolver} from "./_resolvers/member-detailed-resolver";
+import {AdminPanelComponent} from "./admin/admin-panel/admin-panel.component";
+import {AdminGuard} from "./_guards/admin.guard";
 
 const routes: Routes = [
   {path: '', component: MainPageContentComponent},
@@ -23,7 +25,8 @@ const routes: Routes = [
       {path: 'members/:nickname', component: MemberContentComponent},
       {path: 'member/edit', component: MemberEditComponent, canDeactivate: [PreventUnsavedChangesGuard]},
       {path: 'messages', component: MessagesChatComponent},
-      {path: 'messages/thread/:username', component: MessagesMembersChatComponent, resolve: {member: MemberDetailedResolver}}
+      {path: 'messages/thread/:username', component: MessagesMembersChatComponent, resolve: {member: MemberDetailedResolver}},
+      {path: 'admin', component: AdminPanelComponent, canActivate: [AdminGuard]}
     ]
   },
   {path: 'errors', component: TestErrorsComponent},

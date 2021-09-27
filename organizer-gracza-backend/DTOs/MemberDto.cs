@@ -6,7 +6,7 @@ namespace organizer_gracza_backend.DTOs
 {
     public class MemberDto
     {
-        public int UserId { get; set; }
+        public int Id { get; set; }
         public string Username { get; set; }
         public string Nickname { get; set; }
         public string Email { get; set; }
