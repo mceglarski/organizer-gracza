@@ -48,7 +48,7 @@ namespace organizer_gracza_backend.Data
         {
             return await _context.Users
                 .Include(p => p.Photos)
-                .SingleOrDefaultAsync(x => x.Username == username);
+                .SingleOrDefaultAsync(x => x.UserName == username);
         }
 
         public async Task<PagedList<MemberDto>> GetMembersAsync(PaginationParams paginationParams)
@@ -63,7 +63,7 @@ namespace organizer_gracza_backend.Data
         public async Task<MemberDto> GetMemberAsync(string username)
         {
             return await _context.Users
-                .Where(x => x.Username == username)
+                .Where(x => x.UserName == username)
                 .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
                 .SingleOrDefaultAsync();
         }
