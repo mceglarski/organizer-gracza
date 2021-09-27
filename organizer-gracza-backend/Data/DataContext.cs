@@ -41,6 +41,16 @@ namespace organizer_gracza_backend.Data
                 .HasOne(x => x.User)
                 .WithMany(x => x.TeamUser)
                 .HasForeignKey(x => x.UserId);
+
+            modelBuilder.Entity<Message>()
+                .HasOne(u => u.Recipient)
+                .WithMany(m => m.MessagesReceived)
+                .OnDelete(DeleteBehavior.Restrict);
+            
+            modelBuilder.Entity<Message>()
+                .HasOne(u => u.Sender)
+                .WithMany(m => m.MessagesSent)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

@@ -1,0 +1,24 @@
+.chat-content{
+  margin-top: 4%;
+  margin-left: 10%;
+  background-color:black;
+  height: 1160px;
+  width: 80%;
+  color: white;
+}
+.card{
+  border: none;
+}
+.chat{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.chat li{
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px dotted #C3073F;
+}
+.rounded-circle{
+  max-height: 50px;
+}

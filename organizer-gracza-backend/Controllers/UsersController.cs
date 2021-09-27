@@ -29,9 +29,9 @@ namespace organizer_gracza_backend.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery]UserParams userParams)
+        public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery]PaginationParams paginationParams)
         {
-            var users = await _userRepository.GetMembersAsync(userParams);
+            var users = await _userRepository.GetMembersAsync(paginationParams);
             
             Response.AddPaginationHeader(users.CurrentPage, users.PageSize, 
                 users.TotalCount, users.TotalPages);

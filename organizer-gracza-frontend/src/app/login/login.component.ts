@@ -2,6 +2,7 @@ import {Component, Injectable, OnInit, EventEmitter, Output} from '@angular/core
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AccountService} from "../_services/account.service";
 import {ToastrService} from "ngx-toastr";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   model: any = {};
 
   constructor(private modalService: NgbModal, public accountService: AccountService,
-              private toastr: ToastrService ) {}
+              private toastr: ToastrService, private router: Router) {}
 
   ngOnInit(): void {
   }
@@ -30,5 +31,6 @@ export class LoginComponent implements OnInit {
 
   logout(){
     this.accountService.logout();
+    this.router.navigateByUrl('/');
   }
 }

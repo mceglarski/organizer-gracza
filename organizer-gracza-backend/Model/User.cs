@@ -15,10 +15,11 @@ namespace organizer_gracza_backend.Model
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
         public DateTime Created { get; set; } = DateTime.Now;
-
         public DateTime LastActive { get; set; } = DateTime.Now;
         public ICollection<TeamUser> TeamUser{ get; set; }
-        
         public ICollection<Photo> Photos { get; set; }
+
+        public ICollection<Message> MessagesSent { get; set; }
+        public ICollection<Message> MessagesReceived { get; set; }
     }
 }
