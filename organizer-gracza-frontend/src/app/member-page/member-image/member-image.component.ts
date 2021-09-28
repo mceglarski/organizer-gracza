@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MemberContentComponent} from "../member-content/member-content.component";
+import {PresenceService} from "../../_services/presence.service";
 
 @Component({
   selector: 'app-member-image',
@@ -8,7 +9,7 @@ import {MemberContentComponent} from "../member-content/member-content.component
 })
 export class MemberImageComponent implements OnInit {
 
-  constructor(public memberContent: MemberContentComponent) { }
+  constructor(public memberContent: MemberContentComponent, public presence: PresenceService) { }
 
   ngOnInit(): void {
   }

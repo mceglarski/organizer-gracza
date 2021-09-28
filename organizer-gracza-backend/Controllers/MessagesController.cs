@@ -45,7 +45,7 @@ namespace organizer_gracza_backend.Controllers
                 Recipient = recipient,
                 SenderUsername = sender.UserName,
                 RecipientUsername = recipient.UserName,
-                Content = createMessageDto.Content
+                Content = createMessageDto.Content,
             };
 
             _messageRepository.AddMessage(message);
