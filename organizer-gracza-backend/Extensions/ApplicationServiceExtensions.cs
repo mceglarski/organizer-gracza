@@ -5,6 +5,7 @@ using organizer_gracza_backend.Data;
 using organizer_gracza_backend.Helpers;
 using organizer_gracza_backend.Interfaces;
 using organizer_gracza_backend.Services;
+using organizer_gracza_backend.SignalR;
 
 namespace organizer_gracza_backend.Extensions
 {
@@ -13,6 +14,7 @@ namespace organizer_gracza_backend.Extensions
         public static IServiceCollection AddApplicationServices
             (this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddSingleton<PresenceTracker>();
             services.Configure<CloudinarySettings>(configuration.GetSection("CloudinarySettings"));
             services.AddScoped<LogUserActivity>();
             services.AddScoped<IPhotoService, PhotoService>();

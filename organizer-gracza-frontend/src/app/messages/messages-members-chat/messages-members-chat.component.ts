@@ -1,10 +1,10 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Member, Message, User} from "../../model/model";
 import {MessageService} from "../../_services/message.service";
 import {MembersService} from "../../_services/members.service";
 import {AccountService} from "../../_services/account.service";
 import {take} from "rxjs/operators";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {NgForm} from "@angular/forms";
 
 @Component({
@@ -12,7 +12,7 @@ import {NgForm} from "@angular/forms";
   templateUrl: './messages-members-chat.component.html',
   styleUrls: ['./messages-members-chat.component.css']
 })
-export class MessagesMembersChatComponent implements OnInit {
+export class MessagesMembersChatComponent implements OnInit, OnDestroy {
   // @ts-ignore
   @ViewChild('messageForm') messageForm: NgForm;
   // @ts-ignore
@@ -24,10 +24,11 @@ export class MessagesMembersChatComponent implements OnInit {
   // @ts-ignore
   messageContent: string;
 
-  constructor(private messageService: MessageService, private memberService: MembersService,
-              private accountService: AccountService, private route: ActivatedRoute) {
+  constructor(public messageService: MessageService, private memberService: MembersService,
+              private accountService: AccountService, private route: ActivatedRoute, private router: Router) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
       this.user = user;
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     })
   }
 
@@ -35,8 +36,15 @@ export class MessagesMembersChatComponent implements OnInit {
     this.route.data.subscribe(data => {
       this.member = data.member;
     })
-    this.loadMessages();
+      this.messageService.createHubConnection(this.user, this.member.username);
   }
+
+  // ngOnInit(): void {
+  //   this.route.data.subscribe(data => {
+  //     this.member = data.member;
+  //   })
+  //   this.loadMessages();
+  // }
 
   loadMessages() {
       this.messageService.getMessageThread(this.member.username).subscribe(messages => {
@@ -45,9 +53,12 @@ export class MessagesMembersChatComponent implements OnInit {
   }
 
   sendMessage(){
-    this.messageService.sendMessage(this.member.username, this.messageContent).subscribe(message => {
-      this.messages.push(message);
+    this.messageService.sendMessage(this.member.username, this.messageContent).then(() => {
       this.messageForm.reset();
     })
+  }
+
+  ngOnDestroy(): void {
+    this.messageService.stopHubConnection();
   }
 }

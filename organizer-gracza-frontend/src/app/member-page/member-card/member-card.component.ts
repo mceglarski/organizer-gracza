@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Member} from "../../model/model";
+import {PresenceService} from "../../_services/presence.service";
 
 @Component({
   selector: 'app-member-card',
@@ -10,7 +11,7 @@ export class MemberCardComponent implements OnInit {
   // @ts-ignore
   @Input() member: Member;
 
-  constructor() { }
+  constructor(public presenceService: PresenceService) { }
 
   ngOnInit(): void {
   }

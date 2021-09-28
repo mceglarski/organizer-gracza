@@ -1,5 +1,8 @@
 <div class="memberImage">
   <img src="{{memberContent.member.photoUrl || './assets/user.png'}}" alt="{{memberContent.member.nickname}}" class="centered">
   <h2>{{memberContent.member.nickname}}</h2>
-  <h6>Online: {{memberContent.member.lastActive | timeago}}</h6>
+  <h6 *ngIf="(presence.onlineUsers$ | async)?.includes(memberContent.member.username)">
+    <i class="fa fa-user-circle text-success"></i>Online now
+  </h6>
+  <h6>Last activity: {{memberContent.member.lastActive | timeago}}</h6>
 </div>

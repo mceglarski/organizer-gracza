@@ -1,10 +1,10 @@
 <div class="chat-content" *ngIf="member">
   <div class="card-body">
-    <div *ngIf="messages?.length === 0">
+    <div *ngIf="(messageService.messageThread$ | async)?.length === 0">
       Nie masz jeszcze żadnych wiaodmości z użytkownikiem {{member.username}} wyślij pierwszą wiadomość.
     </div>
-    <ul *ngIf="messages && messages.length > 0" class="chat">
-      <li *ngFor="let message of messages">
+    <ul *ngIf="(messageService.messageThread$ | async)!.length > 0" class="chat">
+      <li *ngFor="let message of (messageService.messageThread$ | async)">
         <div>
           <span class="chat-img float-right">
             <img class="rounded-circle" src="{{message.senderPhotoUrl || './assets/user.png'}}"

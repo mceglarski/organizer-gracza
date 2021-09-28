@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using organizer_gracza_backend.Data;
 
 namespace organizer_gracza_backend.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210928150921_GroupsAdded")]
+    partial class GroupsAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -442,9 +444,6 @@ namespace organizer_gracza_backend.Data.Migrations
                     b.Property<int>("RecipientId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("RecipientNickname")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("RecipientUsername")
                         .HasColumnType("TEXT");
 
@@ -453,9 +452,6 @@ namespace organizer_gracza_backend.Data.Migrations
 
                     b.Property<int>("SenderId")
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("SenderNickname")
-                        .HasColumnType("TEXT");
 
                     b.Property<string>("SenderUsername")
                         .HasColumnType("TEXT");
