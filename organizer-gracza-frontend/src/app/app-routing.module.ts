@@ -7,12 +7,17 @@ import {NotFoundComponent} from "./errors/not-found/not-found.component";
 import {MemberContentComponent} from "./member-page/member-content/member-content.component";
 import {MemberEditComponent} from "./member-page/member-edit/member-edit.component";
 import {PreventUnsavedChangesGuard} from "./_guards/prevent-unsaved-changes.guard";
-import {MemberListComponent} from "./member-page/member-list/member-list.component";
 import {MessagesChatComponent} from "./messages/messages-chat/messages-chat.component";
 import {MessagesMembersChatComponent} from "./messages/messages-members-chat/messages-members-chat.component";
 import {MemberDetailedResolver} from "./_resolvers/member-detailed-resolver";
 import {AdminPanelComponent} from "./admin/admin-panel/admin-panel.component";
 import {AdminGuard} from "./_guards/admin.guard";
+import {CommunityListComponent} from "./community/community-list/community-list.component";
+import {TeamsDetailsComponent} from "./teams/teams-details/teams-details.component";
+import {EventsListComponent} from "./events/events-list/events-list.component";
+import {EventsSoloListComponent} from "./events/events-solo-list/events-solo-list.component";
+import {EventsSoloDetailsComponent} from "./events/events-solo-details/events-solo-details.component";
+import {EventsTeamDetailsComponent} from "./events/events-team-details/events-team-details.component";
 
 const routes: Routes = [
   {path: '', component: MainPageContentComponent},
@@ -21,12 +26,16 @@ const routes: Routes = [
     runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
     children: [
-      {path: 'members', component: MemberListComponent},
+      {path: 'community', component: CommunityListComponent},
       {path: 'members/:nickname', component: MemberContentComponent},
+      {path: 'teams/details/:name', component: TeamsDetailsComponent},
       {path: 'member/edit', component: MemberEditComponent, canDeactivate: [PreventUnsavedChangesGuard]},
       {path: 'messages', component: MessagesChatComponent},
       {path: 'messages/thread/:username', component: MessagesMembersChatComponent, resolve: {member: MemberDetailedResolver}},
-      {path: 'admin', component: AdminPanelComponent, canActivate: [AdminGuard]}
+      {path: 'admin', component: AdminPanelComponent, canActivate: [AdminGuard]},
+      {path: 'events/eventsuser/:eventUserId', component: EventsSoloDetailsComponent},
+      {path: 'events/eventsteam/:eventTeamId', component: EventsTeamDetailsComponent},
+      {path: 'events', component: EventsListComponent}
     ]
   },
   {path: 'errors', component: TestErrorsComponent},

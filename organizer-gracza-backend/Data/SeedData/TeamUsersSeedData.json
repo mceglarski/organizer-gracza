@@ -1,0 +1,22 @@
+[
+  {
+    "UserId": 7,
+    "TeamId": 1
+  },
+  {
+    "UserId": 8,
+    "TeamId": 1
+  },
+  {
+    "UserId": 9,
+    "TeamId": 1
+  },
+  {
+    "UserId": 10,
+    "TeamId": 2
+  },
+  {
+    "UserId": 7,
+    "TeamId": 3
+  }
+]

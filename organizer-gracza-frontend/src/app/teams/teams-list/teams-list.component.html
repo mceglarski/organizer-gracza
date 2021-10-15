@@ -1,0 +1,41 @@
+<div class="teams-page-content">
+  <div class="input-group">
+    <input type="search" class="form-control rounded mt-3 ml-3" placeholder="Wyszukaj użytkownika" aria-label="Search"
+           aria-describedby="search-addon"/>
+    <button type="button" class="btn btn-outline-primary mt-3">search</button>
+  </div>
+
+  <div class="flex-container">
+    <div *ngFor="let team of teams">
+      <app-teams-card [team]="team"></app-teams-card>
+    </div>
+  </div>
+
+  <button class="btn btn-success" (click)="open(content)">Utwórz drużyne</button>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Utwórz drużyne</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]='newTeamForm' (ngSubmit)="newTeamForm.valid && createNewTeam()" autocomplete="off" id="newTeamForm">
+      <div class="form-group">
+        <input
+          [class.is-invalid]='newTeamForm.get("name")?.errors && newTeamForm.get("name")?.touched'
+          type="text"
+          class="form-control"
+          formControlName="name"
+          placeholder="Nazwa drużyny">
+        <div class="invalid-feedback">Nazwa drużyny jest wymagana</div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button [disabled]="!newTeamForm.valid" type="submit" class="btn btn-success" form="newTeamForm" (click)="modal.close()">Utwórz drużyne</button>
+    <button type="button" class="btn btn-danger" (click)="modal.close()">Anuluj</button>
+  </div>
+</ng-template>

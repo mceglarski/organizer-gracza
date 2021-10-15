@@ -39,6 +39,14 @@ namespace organizer_gracza_backend.Controllers
             return Ok(users);
         }
         
+        [HttpGet("user/{username}")]
+        public int GetUserId(string username)
+        {
+            var query = _userRepository.GetUserByUsernameAsync(username);
+
+            return query.Result.Id;
+        }
+        
         [HttpGet("{username}", Name = "GetUser")]
         public async Task<ActionResult<MemberDto>> GetUser(string username)
         {

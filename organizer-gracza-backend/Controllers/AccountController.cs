@@ -36,7 +36,7 @@ namespace organizer_gracza_backend.Controllers
             if (await UsernameExists(registerDto.Username))
                 return BadRequest("Username is taken");
 
-            if (await EmailExists(registerDto.Nickname))
+            if (await NicknameExists(registerDto.Nickname))
                 return BadRequest("Nickname is taken");
 
             if (await EmailExists(registerDto.Email))
@@ -60,6 +60,7 @@ namespace organizer_gracza_backend.Controllers
             
             return new UserDto()
             {
+                Id = user.Id,
                 Username = user.UserName,
                 Nickname = user.Nickname,
                 Token = await _tokenService.CreateToken(user)
@@ -84,6 +85,7 @@ namespace organizer_gracza_backend.Controllers
             
             return new UserDto()
             {
+                Id = user.Id,
                 Username = user.UserName,
                 Nickname = user.Nickname,
                 Token = await _tokenService.CreateToken(user),
@@ -91,9 +93,14 @@ namespace organizer_gracza_backend.Controllers
             };
         }
 
-        private async Task<bool> UsernameExists(string nickname)
+        private async Task<bool> UsernameExists(string username)
         {
-            return await _userManager.Users.AnyAsync(x => x.UserName == nickname.ToLower());
+            return await _userManager.Users.AnyAsync(x => x.UserName == username.ToLower());
+        }
+        
+        private async Task<bool> NicknameExists(string nickname)
+        {
+            return await _userManager.Users.AnyAsync(x => x.Nickname == nickname.ToLower());
         }
 
         private async Task<bool> EmailExists(string email)

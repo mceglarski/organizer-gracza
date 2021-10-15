@@ -1,0 +1,28 @@
+<div class="event-solo-details-page"  *ngIf="event">
+  <div class="title">
+    <h4 class="ml-2">SZCZEGÓŁY WYDARZENIA</h4>
+    <div class="separator"></div>
+  </div>
+  <h2 class="ml-2 mt-1 mb-3">{{event.name}}</h2>
+  <div class="details-content">
+    <div class="event-details ml-2">
+      <p>DATA: {{event.startDate | date}} - {{event.endDate | date}}</p>
+      <p>GRA: {{event.game.title}}</p>
+      <p>ORGANIZATOR: {{event.eventOrganiser}}</p>
+      <p>RODZAJ: {{event.eventType}}</p>
+      <p>PULA NAGRÓD: {{event.winnerPrize}}</p>
+      <p>OPIS: {{event.description}}</p>
+      <div>
+        <h3 class="ml-2">ZAKWALIFIKOWANE DRUŻYNY</h3>
+        <div class="qualified-teams" *ngFor="let event of event.eventUserRegistration">
+          {{event.userId}}
+        </div>
+        <button class="btn btn-success" (click)="joinEvent()">ZAPISZ SIĘ</button>
+      </div>
+    </div>
+    <div class="event-image ml-5 mr-5">
+      <img src="{{event.photoUrl}}" alt="{{event.name}}">
+    </div>
+  </div>
+
+</div>

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using organizer_gracza_backend.DTOs;
 using organizer_gracza_backend.Model;
 
 namespace organizer_gracza_backend.Data
@@ -15,8 +16,10 @@ namespace organizer_gracza_backend.Data
         
         public DbSet<Team> Teams { get; set; }
         public DbSet<TeamUser> TeamUsers { get; set; }
-        public DbSet<Event> Events { get; set; }
-        public DbSet<EventRegistration> EventRegistrations { get; set; }
+        public DbSet<EventTeam> EventTeam { get; set; }
+        public DbSet<EventUser> EventUser { get; set; }
+        public DbSet<EventTeamRegistration> EventTeamRegistration { get; set; }
+        public DbSet<EventUserRegistration> EventUserRegistration { get; set; }
         public DbSet<EventResult> EventResults { get; set; }
         public DbSet<Stream> Streams { get; set; }
         public DbSet<Game> Games { get; set; }
@@ -69,6 +72,7 @@ namespace organizer_gracza_backend.Data
                 .HasOne(u => u.Sender)
                 .WithMany(m => m.MessagesSent)
                 .OnDelete(DeleteBehavior.Restrict);
+            
         }
     }
 }

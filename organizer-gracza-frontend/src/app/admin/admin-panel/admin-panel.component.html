@@ -10,6 +10,10 @@
         <div class="container"></div>
         <app-photo-management></app-photo-management>
       </tab>
+      <tab heading="Event management" *appHasRole='["Admin"]'>
+        <div class="container"></div>
+        <app-event-management></app-event-management>
+      </tab>
     </tabset>
   </div>
 </div>

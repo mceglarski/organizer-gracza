@@ -7,6 +7,6 @@ namespace organizer_gracza_backend.Model
         [Key]
         public int EventResultId { get; set; }
         public string WinnerName { get; set; }
-        public Event Event { get; set; }
+        // public Event Event { get; set; }
     }
 }

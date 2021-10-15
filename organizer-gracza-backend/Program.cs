@@ -27,7 +27,15 @@ namespace organizer_gracza_backend
                var userManager = services.GetRequiredService<UserManager<User>>();
                var roleManager = services.GetRequiredService<RoleManager<AppRole>>();
                await context.Database.MigrateAsync();
+               await Seed.SeedGames(context);
+               await Seed.SeedEventsUser(context);
+               await Seed.SeedEventsTeam(context);
                await Seed.SeedUsers(userManager, roleManager);
+               await Seed.SeedEventsUserRegistrations(context);
+               await Seed.SeedTeams(context);
+               await Seed.SeedTeamUsers(context);
+               await Seed.SeedEventsTeamRegistrations(context);
+               await Seed.SeedAdmin(userManager);
            }
            catch(Exception exception)
            {

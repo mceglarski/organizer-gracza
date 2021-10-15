@@ -1,0 +1,18 @@
+[
+  {
+    "EventTeamId": 1,
+    "TeamId": 1
+  },
+  {
+    "EventTeamId": 1,
+    "TeamId": 2
+  },
+  {
+    "EventTeamId": 2,
+    "TeamId": 1
+  },
+  {
+    "EventTeamId": 2,
+    "TeamId": 3
+  }
+]
