@@ -49,6 +49,16 @@ import { PhotoManagementComponent } from './admin/photo-management/photo-managem
 import {TabsModule} from "ngx-bootstrap/tabs";
 import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
 import {ModalModule} from "ngx-bootstrap/modal";
+import { EventManagementComponent } from './admin/event-management/event-management.component';
+import { TeamsListComponent } from './teams/teams-list/teams-list.component';
+import { CommunityListComponent } from './community/community-list/community-list.component';
+import { TeamsCardComponent } from './teams/teams-card/teams-card.component';
+import { TeamsDetailsComponent } from './teams/teams-details/teams-details.component';
+import { EventsListComponent } from './events/events-list/events-list.component';
+import { EventsSoloListComponent } from './events/events-solo-list/events-solo-list.component';
+import { EventsTeamListComponent } from './events/events-team-list/events-team-list.component';
+import { EventsSoloDetailsComponent } from './events/events-solo-details/events-solo-details.component';
+import { EventsTeamDetailsComponent } from './events/events-team-details/events-team-details.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +91,16 @@ import {ModalModule} from "ngx-bootstrap/modal";
     UserManagementComponent,
     PhotoManagementComponent,
     RolesModalComponent,
+    EventManagementComponent,
+    TeamsListComponent,
+    CommunityListComponent,
+    TeamsCardComponent,
+    TeamsDetailsComponent,
+    EventsListComponent,
+    EventsSoloListComponent,
+    EventsTeamListComponent,
+    EventsSoloDetailsComponent,
+    EventsTeamDetailsComponent,
   ],
     imports: [
         BrowserModule,

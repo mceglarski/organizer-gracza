@@ -1,0 +1,17 @@
+<div class="card mb-4 mr-3 ml-3 mt-3">
+  <div class="card-img-wrapper">
+    <img src= './assets/user.png' alt="{{team.name}}" class="card-img-top">
+    <ul class="list-inline member-icons animate text-center">
+      <li class="list-inline-item">
+        <button routerLink="/teams/details/{{team.name}}" class="btn btn-primary">
+          <i class="fa fa-envelope"></i>
+        </button>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body p-1">
+    <h6 class="card-title text-center mb-1">
+      {{team.name}}
+    </h6>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+.separator {
+  margin-left: 5px;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+.separator::after {
+  content: '';
+  flex: 1;
+  border-bottom: 0.3rem solid #2D2D2D;
+}
+.title{
+  display: flex;
+  flex-direction: row;
+}
+.team-event{
+  background-color: #292E37;
+  color: white;
+  height: 175px;
+  width: 400px;
+  margin: 10px;
+  padding-left: 5px;
+}
+.flex-container{
+  display: flex;
+}
+.event-result{
+  background-color: #292E37;
+  height: 900px;
+  width: 35%;
+  margin-left: 30px;
+}

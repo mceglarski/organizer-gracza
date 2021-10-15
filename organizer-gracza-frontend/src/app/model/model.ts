@@ -1,4 +1,5 @@
 export interface User{
+  Id: number;
   username: string;
   nickname: string;
   token: string;
@@ -73,6 +74,68 @@ export interface Connection{
   username: string;
 }
 
-export interface event {
+export interface EventUser {
+  eventUserId: number;
+  name: string;
+  description: string;
+  startDate: Date;
+  endDate: Date;
+  eventType: string;
+  winnerPrize: number;
+  eventOrganiser: string;
+  game: Game;
+  gameId: number;
+  photoUrl: string;
+  eventUserRegistration: EventUserRegistration[];
+}
 
+export interface EventTeam {
+  eventTeamId: number;
+  name: string;
+  description: string;
+  startDate: Date;
+  endDate: Date;
+  eventType: string;
+  winnerPrize: number;
+  eventOrganiser: string;
+  game: Game;
+  gameId: number;
+  photoUrl: string;
+  eventTeamRegistration: EventTeamRegistration[];
+}
+
+export interface EventUserRegistration{
+  eventUserRegistrationId: number;
+  userId: number;
+  eventUserId: number;
+}
+
+export interface EventTeamRegistration{
+  eventTeamRegistrationId: number;
+  teamId: number;
+  eventTeamId: number;
+}
+
+export interface Participiant{
+  Id: number;
+  nickname: string;
+}
+
+export interface Team{
+  teamId: number;
+  name: string;
+  photoUrl: string;
+}
+
+export interface TeamUser{
+  teamUserId: number;
+  userId: number;
+  user: User;
+  teamId: number;
+  team: Team;
+}
+
+export interface Game{
+  gameId: number;
+  title: string;
 }

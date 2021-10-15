@@ -1,0 +1,210 @@
+<div class="event-management-content">
+  <div class="tab-panel">
+    <tabset class="tabset-content">
+      <tab heading="Event-Solo management" *ngIf="userEvents">
+        <div class="container"></div>
+        <div class="event-table">
+          <table style="color:#FFFFFF" class="table">
+            <tr>
+              <th style="width: 15%;">Name</th>
+              <th style="width: 15%;">Start Date</th>
+              <th style="width: 15%;">End Date</th>
+              <th style="width: 15%;">Event Organiser</th>
+              <th style="width: 15%;">Game Id</th>
+              <th style="width: 25%;"></th>
+            </tr>
+            <tr *ngFor="let event of userEvents">
+              <td>{{event!.name}}</td>
+              <td>{{event!.startDate | date}}</td>
+              <td>{{event!.endDate | date}}</td>
+              <td>{{event!.eventOrganiser}}</td>
+              <td>{{event!.game.gameId}}</td>
+              <td>
+                <button (click)="(event!)" class="btn btn-info">Edit Event</button>
+              </td>
+              <td>
+                <button (click)="eventService.deleteUserEvent(event.eventUserId)" class="btn btn-danger">Delete Event
+                </button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <td>
+          <button (click)="open(addUserEvent)" class="btn btn-success">Add Event</button>
+        </td>
+      </tab>
+      <tab heading="Event-Team management" *ngIf="teamEvents">
+        <div class="container"></div>
+        <table style="color:#FFFFFF" class="table">
+          <tr>
+            <th style="width: 15%;">Name</th>
+            <th style="width: 15%;">Start Date</th>
+            <th style="width: 15%;">End Date</th>
+            <th style="width: 15%;">Event Organiser</th>
+            <th style="width: 15%;">Game Id</th>
+            <th style="width: 25%;"></th>
+          </tr>
+          <tr *ngFor="let event of teamEvents">
+            <td>{{event!.name}}</td>
+            <td>{{event!.startDate | date}}</td>
+            <td>{{event!.endDate | date}}</td>
+            <td>{{event!.eventOrganiser}}</td>
+            <td>{{event!.game.gameId}}</td>
+            <td>
+              <button (click)="(event!)" class="btn btn-info">Edit Event</button>
+            </td>
+            <td>
+              <button (click)="eventService.deleteTeamEvent(event.eventTeamId)" class="btn btn-danger">Delete Event
+              </button>
+            </td>
+          </tr>
+        </table>
+        <td>
+          <button (click)="open(addUserEvent)" class="btn btn-success">Add Event</button>
+        </td>
+      </tab>
+    </tabset>
+  </div>
+
+</div>
+
+<ng-template #addUserEvent let-modal>
+
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Utwórz nowe wydarzenie dla użytkowników </h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]='newUserEventForm' (ngSubmit)="newUserEventForm.valid && newUserEvent()" autocomplete="off"
+          id="newUserEventForm">
+      <div class="form-group">
+        <input
+          [class.is-invalid]='newUserEventForm.get("name")?.errors && newUserEventForm.get("name")?.touched'
+          type="text"
+          class="form-control"
+          formControlName="name"
+          placeholder="Nazwa wydarzenia">
+        <div class="invalid-feedback">Nazwa wydarzenia jest wymagana</div>
+      </div>
+
+      <div class="form-group">
+        <input
+          [class.is-invalid]='newUserEventForm.get("description")?.errors && newUserEventForm.get("description")?.touched'
+          type="text"
+          class="form-control"
+          formControlName="description"
+          placeholder="Opis wydarzenia">
+        <div class="invalid-feedback">Opis wydarzenia jest wymagana</div>
+      </div>
+
+      <div class="form-group">
+        <input
+          [class.is-invalid]='newUserEventForm.get("startDate")?.errors && newUserEventForm.get("startDate")?.touched'
+          type="date"
+          class="form-control"
+          formControlName="startDate"
+          placeholder="Data rozpoczęcia wydarzenia">
+        <div class="invalid-feedback">Data rozpoczęcia wydarzenia jest wymagana</div>
+      </div>
+
+      <div class="form-group">
+        <input
+          [class.is-invalid]='newUserEventForm.get("endDate")?.errors && newUserEventForm.get("endDate")?.touched'
+          type="date"
+          class="form-control"
+          formControlName="endDate"
+          placeholder="Data zakończenia wydarzenia">
+        <div class="invalid-feedback">Data zakończenia wydarzenia jest wymagana</div>
+      </div>
+
+      <div class="form-group">
+        <input
+          [class.is-invalid]='newUserEventForm.get("eventType")?.errors && newUserEventForm.get("eventType")?.touched'
+          type="text"
+          class="form-control"
+          formControlName="eventType"
+          placeholder="Typ wydarzenia">
+        <div class="invalid-feedback">Typ wydarzenia jest wymagana</div>
+      </div>
+
+      <div class="form-group">
+        <input
+          [class.is-invalid]='newUserEventForm.get("winnerPrize")?.errors && newUserEventForm.get("winnerPrize")?.touched'
+          type="number"
+          class="form-control"
+          formControlName="winnerPrize"
+          placeholder="Nagroda za wydarzenie">
+        <div class="invalid-feedback">Nagroda za wydarzenie jest wymagana</div>
+      </div>
+
+      <div class="form-group">
+        <input
+          [class.is-invalid]='newUserEventForm.get("eventOrganiser")?.errors && newUserEventForm.get("eventOrganiser")?.touched'
+          type="text"
+          class="form-control"
+          formControlName="eventOrganiser"
+          placeholder="Organizator wydarzenia">
+        <div class="invalid-feedback">Organizator wydarzenia jest wymagany</div>
+      </div>
+
+      <div class="form-group">
+        <select
+          class="form-control"
+          formControlName="gameId">
+          <option [ngValue]="game.gameId" *ngFor="let game of games">{{game.title}}</option>
+        </select>
+      </div>
+
+      <!--      <div class="form-group">-->
+      <!--        <input-->
+      <!--          [class.is-invalid]='newEventForm.get("photoUrl")?.errors && newEventForm.get("photoUrl")?.touched'-->
+      <!--          type="text"-->
+      <!--          class="form-control"-->
+      <!--          formControlName="photoUrl"-->
+      <!--          placeholder="Zdjęcie do wydarzenia">-->
+      <!--        <div class="invalid-feedback">Zdjęcie wydarzenia jest wymagane</div>-->
+      <!--      </div>-->
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <button [disabled]="!newUserEventForm.valid" type="submit" class="btn btn-success" form="newUserEventForm"
+            (click)="modal.close" (click)="open(addPhotoUserEvent)">Przejdź do wyboru zdjęcia
+    </button>
+    <button type="button" class="btn btn-danger" (click)="modal.close()">Anuluj</button>
+  </div>
+</ng-template>
+
+  <ng-template #addPhotoUserEvent let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Dodaj zdjęcie do swojego wydarzenia </h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="col-md-3">
+
+        <h3>Add Photos</h3>
+
+        <div ng2FileDrop
+             [ngClass]="{'nv-file-over': hasBaseDropzoneOver}"
+             (fileOver)="fileOverBase($event)"
+             [uploader]="uploader"
+             class="card bg-faded p-3 text-center mb-3 my-drop-zone">
+          <i class="fa fa-upload fa-3x"></i>
+          Drop photo here
+        </div>
+
+        Single
+        <input type="file" ng2FileSelect [uploader]="uploader"/>
+      </div>
+      <button type="button" class="btn btn-success btn-s"
+              (click)="uploader.uploadAll()">
+        <span class="fa fa-upload"></span> Upload all
+      </button>
+
+    </div>
+</ng-template>

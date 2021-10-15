@@ -1,0 +1,137 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using organizer_gracza_backend.Data;
+using organizer_gracza_backend.DTOs;
+using organizer_gracza_backend.Extensions;
+using organizer_gracza_backend.Interfaces;
+using organizer_gracza_backend.Model;
+
+namespace organizer_gracza_backend.Controllers
+{
+    [Authorize]
+    public class TeamsController : BaseApiController
+    {
+        private readonly DataContext _context;
+        private readonly ITeamsRepository _teamsRepository;
+        private readonly IMapper _mapper;
+        private readonly IPhotoService _photoService;
+
+        public TeamsController(DataContext context, ITeamsRepository teamsRepository, IMapper mapper,
+            IPhotoService photoService)
+        {
+            _context = context;
+            _teamsRepository = teamsRepository;
+            _mapper = mapper;
+            _photoService = photoService;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<TeamDto>>> GetTeamsAsync()
+        {
+            var teams = await _teamsRepository.GetTeamsAsync();
+
+            var teamsToReturn = _mapper.Map<IEnumerable<TeamDto>>(teams);
+
+            return Ok(teamsToReturn);
+        }
+        
+        [HttpGet("{id}", Name = "GetTeam")]
+        public async Task<ActionResult<TeamDto>> GetTeamAsync(int id)
+        {
+            var team = await _teamsRepository.GetTeamAsync(id);
+
+            return _mapper.Map<TeamDto>(team);
+        }
+        
+        [HttpGet("details/{name}")]
+        public async Task<ActionResult<TeamDto>> GetTeamByNameAsync(string name)
+        {
+            var team = await _teamsRepository.GetTeamByNameAsync(name);
+
+            return _mapper.Map<TeamDto>(team);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<TeamDto>> CreateTeam(TeamDto teamDto)
+        {
+            if (await NameExists(teamDto.Name))
+                return BadRequest("Name is taken");
+            
+            var newTeam = new Team()
+            {
+                Name = teamDto.Name,
+                PhotoUrl = teamDto.PhotoUrl
+            };
+
+            _teamsRepository.AddTeam(newTeam);
+
+            if (await _teamsRepository.SaveAllAsync())
+                return Ok(_mapper.Map<TeamDto>(newTeam));
+            return BadRequest("Failed to add team");
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteTeam(int id)
+        {
+            var team = await _teamsRepository.GetTeamAsync(id);
+
+            _teamsRepository.DeleteTeam(team);
+
+            if (await _teamsRepository.SaveAllAsync())
+                return Ok();
+
+            return BadRequest("An error occurred while deleting team");
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult> UpdateTeam(Team team, int id)
+        {
+            var teamAsync = await _teamsRepository.GetTeamAsync(id);
+
+            teamAsync.TeamId = teamAsync.TeamId;
+            if (team.Name != null)
+                teamAsync.Name = team.Name;
+
+            if (await _teamsRepository.SaveAllAsync())
+                return NoContent();
+            return BadRequest("Failed to update team");
+        }
+        
+        [HttpPost("add-photo/{id}")]
+        public async Task<ActionResult<PhotoDto>> AddPhoto(IFormFile file, int id)
+        {
+            var team = await _teamsRepository.GetTeamAsync(id);
+
+            var result = await _photoService.AddPhotoAsync(file);
+
+            if (result.Error != null)
+                return BadRequest(result.Error.Message);
+
+            var photo = new Photo()
+            {
+                Url = result.SecureUrl.AbsoluteUri,
+                PublicId = result.PublicId
+            };
+
+            team.PhotoUrl = photo.Url;
+
+            if (await _teamsRepository.SaveAllAsync())
+            {
+                return CreatedAtRoute("GetTeam", new {id = team.TeamId},
+                    _mapper.Map<PhotoDto>(photo));
+            }
+            return BadRequest("Problem adding photo");
+        }
+        
+        private async Task<bool> NameExists(string name)
+        {
+            return await _context.Teams.AnyAsync(x => x.Name == name.ToLower());
+        }
+    }
+}

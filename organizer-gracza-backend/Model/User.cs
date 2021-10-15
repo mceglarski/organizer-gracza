@@ -11,6 +11,8 @@ namespace organizer_gracza_backend.Model
 
         public DateTime Created { get; set; } = DateTime.Now;
         public DateTime LastActive { get; set; } = DateTime.Now;
+
+        public ICollection<EventUserRegistration> EventUserRegistration { get; set; }
         public ICollection<TeamUser> TeamUser{ get; set; }
         public ICollection<Photo> Photos { get; set; }
 
@@ -19,5 +21,6 @@ namespace organizer_gracza_backend.Model
         
         public ICollection<UserRole> UserRoles { get; set; }
 
+        
     }
 }

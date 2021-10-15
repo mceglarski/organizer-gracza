@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace organizer_gracza_backend.Model
 {
@@ -7,5 +9,7 @@ namespace organizer_gracza_backend.Model
         [Key]
         public int GameId { get; set; }
         public string Title { get; set; }
+        public ICollection<EventTeam> EventTeam { get; set; }
+        public ICollection<EventUser> EventUser { get; set; }
     }
 }

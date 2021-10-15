@@ -40,6 +40,8 @@ namespace organizer_gracza_backend.Services
 
             return uploadResult;
         }
+        
+        
 
         public async Task<DeletionResult> DeletePhotoAsync(string publicId)
         {

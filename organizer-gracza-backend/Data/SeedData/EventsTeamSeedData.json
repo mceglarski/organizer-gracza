@@ -1,0 +1,24 @@
+[
+  {
+    "Name": "Fortnite Gaming Edition",
+    "Description": "The Fortnite Gaming Edition to coroczne zawody esportowe oparte na grze wideo Fortnite, z inauguracyjnymi wydarzeniami finałowymi odbywającymi się w dniach 26-28 lipca 2019 roku na Arthur Ashe Stadium w Flushing w Nowym Jorku. W różnych zawodach dostępna była pula nagród o łącznej wartości 30 milionów dolarów.\nFortnite Gaming Edition zostało podzielone na dwa różne wydarzenia, jedno dla graczy solo, a drugie dla drużyn dwuosobowych, czyli duetów.",
+    "StartDate": "2022-04-06",
+    "EndDate": "2022-06-10",
+    "WinnerPrize": 300,
+    "EventType": "Drużyny 5v5",
+    "EventOrganiser": "CdProjekt",
+    "PhotoUrl": "https://images6.alphacoders.com/514/514762.jpg",
+    "GameId": 4
+  },
+  {
+    "Name": "WARZONE Duo Challange",
+    "Description": "The Fortnite Gaming Edition to coroczne zawody esportowe oparte na grze wideo Fortnite, z inauguracyjnymi wydarzeniami finałowymi odbywającymi się w dniach 26-28 lipca 2019 roku na Arthur Ashe Stadium w Flushing w Nowym Jorku. W różnych zawodach dostępna była pula nagród o łącznej wartości 30 milionów dolarów.\nFortnite Gaming Edition zostało podzielone na dwa różne wydarzenia, jedno dla graczy solo, a drugie dla drużyn dwuosobowych, czyli duetów.",
+    "StartDate": "2022-04-06",
+    "EndDate": "2022-06-10",
+    "WinnerPrize": 250,
+    "EventType": "Drużyny 5v5",
+    "EventOrganiser": "Enigma",
+    "PhotoUrl": "https://images6.alphacoders.com/514/514762.jpg",
+    "GameId": 5
+  }
+]

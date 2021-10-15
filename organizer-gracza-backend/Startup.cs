@@ -21,8 +21,9 @@ namespace organizer_gracza_backend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddApplicationServices(_configuration);   
-            services.AddControllers();
-            services.AddCors();
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            // services.AddCors();
             services.AddIdentityServices(_configuration);
             services.AddSignalR();
         }
@@ -35,7 +36,7 @@ namespace organizer_gracza_backend
             app.UseHttpsRedirection();
             
             app.UseRouting();
-
+            
             app.UseCors(x => x.AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowCredentials()

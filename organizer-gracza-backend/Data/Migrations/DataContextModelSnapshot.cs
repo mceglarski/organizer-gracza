@@ -222,65 +222,10 @@ namespace organizer_gracza_backend.Data.Migrations
                     b.ToTable("Connections");
                 });
 
-            modelBuilder.Entity("organizer_gracza_backend.Model.Event", b =>
-                {
-                    b.Property<int>("EventId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("EventType")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("EventId");
-
-                    b.ToTable("Events");
-                });
-
-            modelBuilder.Entity("organizer_gracza_backend.Model.EventRegistration", b =>
-                {
-                    b.Property<int>("EventRegistrationId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("EventId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("TeamId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("UserId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("EventRegistrationId");
-
-                    b.HasIndex("EventId");
-
-                    b.HasIndex("TeamId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("EventRegistrations");
-                });
-
             modelBuilder.Entity("organizer_gracza_backend.Model.EventResult", b =>
                 {
                     b.Property<int>("EventResultId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("EventId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("WinnerName")
@@ -288,9 +233,129 @@ namespace organizer_gracza_backend.Data.Migrations
 
                     b.HasKey("EventResultId");
 
-                    b.HasIndex("EventId");
-
                     b.ToTable("EventResults");
+                });
+
+            modelBuilder.Entity("organizer_gracza_backend.Model.EventTeam", b =>
+                {
+                    b.Property<int>("EventTeamId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("EventOrganiser")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("EventType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("GameId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PhotoUrl")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("StartDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double?>("WinnerPrize")
+                        .HasColumnType("REAL");
+
+                    b.HasKey("EventTeamId");
+
+                    b.HasIndex("GameId");
+
+                    b.ToTable("EventTeam");
+                });
+
+            modelBuilder.Entity("organizer_gracza_backend.Model.EventTeamRegistration", b =>
+                {
+                    b.Property<int>("EventTeamRegistrationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("EventTeamId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("TeamId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("EventTeamRegistrationId");
+
+                    b.HasIndex("EventTeamId");
+
+                    b.HasIndex("TeamId");
+
+                    b.ToTable("EventTeamRegistration");
+                });
+
+            modelBuilder.Entity("organizer_gracza_backend.Model.EventUser", b =>
+                {
+                    b.Property<int>("EventUserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("EventOrganiser")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("EventType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("GameId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PhotoUrl")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("StartDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double?>("WinnerPrize")
+                        .HasColumnType("REAL");
+
+                    b.HasKey("EventUserId");
+
+                    b.HasIndex("GameId");
+
+                    b.ToTable("EventUser");
+                });
+
+            modelBuilder.Entity("organizer_gracza_backend.Model.EventUserRegistration", b =>
+                {
+                    b.Property<int>("EventUserRegistrationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("EventUserId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("EventUserRegistrationId");
+
+                    b.HasIndex("EventUserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("EventUserRegistration");
                 });
 
             modelBuilder.Entity("organizer_gracza_backend.Model.ForumPost", b =>
@@ -442,9 +507,6 @@ namespace organizer_gracza_backend.Data.Migrations
                     b.Property<int>("RecipientId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("RecipientNickname")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("RecipientUsername")
                         .HasColumnType("TEXT");
 
@@ -453,9 +515,6 @@ namespace organizer_gracza_backend.Data.Migrations
 
                     b.Property<int>("SenderId")
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("SenderNickname")
-                        .HasColumnType("TEXT");
 
                     b.Property<string>("SenderUsername")
                         .HasColumnType("TEXT");
@@ -565,6 +624,9 @@ namespace organizer_gracza_backend.Data.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PhotoUrl")
                         .HasColumnType("TEXT");
 
                     b.HasKey("TeamId");
@@ -755,34 +817,60 @@ namespace organizer_gracza_backend.Data.Migrations
                         .HasForeignKey("GroupName");
                 });
 
-            modelBuilder.Entity("organizer_gracza_backend.Model.EventRegistration", b =>
+            modelBuilder.Entity("organizer_gracza_backend.Model.EventTeam", b =>
                 {
-                    b.HasOne("organizer_gracza_backend.Model.Event", "Event")
-                        .WithMany()
-                        .HasForeignKey("EventId");
+                    b.HasOne("organizer_gracza_backend.Model.Game", "Game")
+                        .WithMany("EventTeam")
+                        .HasForeignKey("GameId");
 
-                    b.HasOne("organizer_gracza_backend.Model.Team", "Team")
-                        .WithMany()
-                        .HasForeignKey("TeamId");
-
-                    b.HasOne("organizer_gracza_backend.Model.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("Event");
-
-                    b.Navigation("Team");
-
-                    b.Navigation("User");
+                    b.Navigation("Game");
                 });
 
-            modelBuilder.Entity("organizer_gracza_backend.Model.EventResult", b =>
+            modelBuilder.Entity("organizer_gracza_backend.Model.EventTeamRegistration", b =>
                 {
-                    b.HasOne("organizer_gracza_backend.Model.Event", "Event")
-                        .WithMany()
-                        .HasForeignKey("EventId");
+                    b.HasOne("organizer_gracza_backend.Model.EventTeam", "EventTeam")
+                        .WithMany("EventTeamRegistration")
+                        .HasForeignKey("EventTeamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Event");
+                    b.HasOne("organizer_gracza_backend.Model.Team", "Team")
+                        .WithMany("EventTeamRegistration")
+                        .HasForeignKey("TeamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("EventTeam");
+
+                    b.Navigation("Team");
+                });
+
+            modelBuilder.Entity("organizer_gracza_backend.Model.EventUser", b =>
+                {
+                    b.HasOne("organizer_gracza_backend.Model.Game", "Game")
+                        .WithMany("EventUser")
+                        .HasForeignKey("GameId");
+
+                    b.Navigation("Game");
+                });
+
+            modelBuilder.Entity("organizer_gracza_backend.Model.EventUserRegistration", b =>
+                {
+                    b.HasOne("organizer_gracza_backend.Model.EventUser", "EventUser")
+                        .WithMany("EventUserRegistration")
+                        .HasForeignKey("EventUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("organizer_gracza_backend.Model.User", "User")
+                        .WithMany("EventUserRegistration")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("EventUser");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("organizer_gracza_backend.Model.ForumPost", b =>
@@ -932,6 +1020,23 @@ namespace organizer_gracza_backend.Data.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("organizer_gracza_backend.Model.EventTeam", b =>
+                {
+                    b.Navigation("EventTeamRegistration");
+                });
+
+            modelBuilder.Entity("organizer_gracza_backend.Model.EventUser", b =>
+                {
+                    b.Navigation("EventUserRegistration");
+                });
+
+            modelBuilder.Entity("organizer_gracza_backend.Model.Game", b =>
+                {
+                    b.Navigation("EventTeam");
+
+                    b.Navigation("EventUser");
+                });
+
             modelBuilder.Entity("organizer_gracza_backend.Model.Group", b =>
                 {
                     b.Navigation("Connections");
@@ -948,11 +1053,15 @@ namespace organizer_gracza_backend.Data.Migrations
 
             modelBuilder.Entity("organizer_gracza_backend.Model.Team", b =>
                 {
+                    b.Navigation("EventTeamRegistration");
+
                     b.Navigation("TeamUser");
                 });
 
             modelBuilder.Entity("organizer_gracza_backend.Model.User", b =>
                 {
+                    b.Navigation("EventUserRegistration");
+
                     b.Navigation("MessagesReceived");
 
                     b.Navigation("MessagesSent");
