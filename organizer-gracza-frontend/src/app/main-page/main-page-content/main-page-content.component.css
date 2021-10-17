@@ -3,13 +3,22 @@
   margin-left: 10%;
   margin-top: 1%;
   width: 80%;
-  height: 826px;
-  position: relative;
   color: #fff;
 }
+
 .main-page-content-news{
+  display: flex;
+  margin-right: 5%;
   padding-top: 20px;
   padding-bottom: 30px;
+}
+
+.main-page-news-short{
+  padding-right: 0px;
+}
+
+.main-page-news-extended{
+  padding-left: 0px;
 }
 
 .main-page-content-event {

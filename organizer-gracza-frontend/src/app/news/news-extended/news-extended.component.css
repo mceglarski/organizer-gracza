@@ -1,22 +1,36 @@
 .news-extended{
-  background-color: aqua;
+  background-color: #292E37;
+  border: 1px solid black;
   display: flex;
   flex-direction: column;
-  width: 975px;
-  height: 400px;
-  margin-right: 10%;
+  padding: 10px;
+  height: 99%;
 }
 .news-extended-image{
-  background-color: aquamarine;
-  height: 55%;
-  width: 100%;
-  border: 1px solid black;
-
+  background-color: #292E37;
 }
+
+.news-extended-thumbnail {
+  max-height: 300px;
+  width: 100%;
+  object-fit: none;
+}
+
 .news-extended-description{
   background-color: #292E37;
-  height: 45%;
-  width: 100%;
-  border: 1px solid black;
+}
 
+.news-extended-read-more-btn {
+  background-color: #1a1b21;
+  border-color: #2c2c31;
+  color: white;
+  width: 200px;
+  height: 50px;
+}
+.news-extended-read-more-btn:hover {
+  background-color: #C3073F;
+}
+
+.news-extended-read-more-btn:active {
+  background-color: #9a042f;
 }

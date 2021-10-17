@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {News} from "../../model/model";
 
 @Component({
   selector: 'app-main-page-content',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPageContentComponent implements OnInit {
 
+  public news?: News;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  public getExtendedNews(news: News): void {
+    this.news = news;
   }
 
 }

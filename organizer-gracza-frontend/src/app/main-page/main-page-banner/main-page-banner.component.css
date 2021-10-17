@@ -5,3 +5,10 @@
   height: 300px;
   width: 80%;
 }
+
+.banner-image {
+  height: 300px;
+  width: 100%;
+  object-fit: none;
+  object-position: 50% 17%;
+}
