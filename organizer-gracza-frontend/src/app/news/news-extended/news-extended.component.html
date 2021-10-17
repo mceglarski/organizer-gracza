@@ -1,8 +1,11 @@
 <div class="news-extended">
   <div class="news-extended-image">
-
+    <img src="../assets/video-games.jpg" class="news-extended-thumbnail">
   </div>
   <div class="news-extended-description">
-
+    <h1>{{newsInput?.Title}}</h1>
+    <h3>{{newsInput?.Content}}</h3>
+    <h6>{{newsInput?.PublicationDate | date: 'short'}}</h6>
+    <button class="btn news-extended-read-more-btn">Czytaj dalej</button>
   </div>
 </div>
