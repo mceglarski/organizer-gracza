@@ -52,6 +52,12 @@ namespace organizer_gracza_backend.Controllers
         {
             return await _userRepository.GetMemberAsync(username);
         }
+        
+        [HttpGet("member/{id}")]
+        public async Task<ActionResult<MemberDto>> GetUserById(int id)
+        {
+            return await _userRepository.GetUserByIdAsync(id);
+        }
 
         [HttpPut]
         public async Task<ActionResult> UpdateUser(MemberUpdateDto memberUpdateDto)

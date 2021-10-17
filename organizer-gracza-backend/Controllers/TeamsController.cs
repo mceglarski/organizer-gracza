@@ -41,7 +41,7 @@ namespace organizer_gracza_backend.Controllers
             return Ok(teamsToReturn);
         }
         
-        [HttpGet("{id}", Name = "GetTeam")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<TeamDto>> GetTeamAsync(int id)
         {
             var team = await _teamsRepository.GetTeamAsync(id);
@@ -49,7 +49,7 @@ namespace organizer_gracza_backend.Controllers
             return _mapper.Map<TeamDto>(team);
         }
         
-        [HttpGet("details/{name}")]
+        [HttpGet("details/{name}", Name = "GetTeam")]
         public async Task<ActionResult<TeamDto>> GetTeamByNameAsync(string name)
         {
             var team = await _teamsRepository.GetTeamByNameAsync(name);
@@ -103,10 +103,10 @@ namespace organizer_gracza_backend.Controllers
             return BadRequest("Failed to update team");
         }
         
-        [HttpPost("add-photo/{id}")]
-        public async Task<ActionResult<PhotoDto>> AddPhoto(IFormFile file, int id)
+        [HttpPost("add-photo/{name}")]
+        public async Task<ActionResult<PhotoDto>> AddPhoto(IFormFile file, string name)
         {
-            var team = await _teamsRepository.GetTeamAsync(id);
+            var team = await _teamsRepository.GetTeamByNameAsync(name);
 
             var result = await _photoService.AddPhotoAsync(file);
 
@@ -123,7 +123,7 @@ namespace organizer_gracza_backend.Controllers
 
             if (await _teamsRepository.SaveAllAsync())
             {
-                return CreatedAtRoute("GetTeam", new {id = team.TeamId},
+                return CreatedAtRoute("GetTeam", new {name = team.Name},
                     _mapper.Map<PhotoDto>(photo));
             }
             return BadRequest("Problem adding photo");

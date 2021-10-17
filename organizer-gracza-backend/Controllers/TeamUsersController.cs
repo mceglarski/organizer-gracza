@@ -51,6 +51,16 @@ namespace organizer_gracza_backend.Controllers
 
             return Ok(teamsUsersToReturn);
         }
+        
+        [HttpGet("teams/users/{teamId}")]
+        public async Task<ActionResult<IEnumerable<UsersTeamsDto>>> GetUsersInTeams(int teamId)
+        {
+            var userTeams = await _teamUsersRepository.GetUsersInTeam(teamId);
+
+            var teamsUsersToReturn = _mapper.Map<IEnumerable<UsersTeamsDto>>(userTeams);
+
+            return Ok(teamsUsersToReturn);
+        }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<TeamUsersDto>> GetTeamUsersAsync(int id)

@@ -4,7 +4,7 @@ import {TeamsService} from "../../_services/teams.service";
 import {MembersService} from "../../_services/members.service";
 import {AccountService} from "../../_services/account.service";
 import {take} from "rxjs/operators";
-import {Member, PagintationParams, Participiant, User} from "../../model/model";
+import {Member, PagintationParams, Participiant, Team, TeamUser, User} from "../../model/model";
 import {ToastrService} from "ngx-toastr";
 
 @Component({
@@ -20,9 +20,11 @@ export class TeamsDetailsComponent implements OnInit {
   // @ts-ignore
   model = {};
   // @ts-ignore
-  members: Member[];
-  // @ts-ignore
   memberId: number;
+  // @ts-ignore
+  teamUsers: TeamUser[];
+
+
   constructor(private teamService: TeamsService, public route: ActivatedRoute, private memberService: MembersService,
               private accountService: AccountService, private toastr: ToastrService)
   {
@@ -34,7 +36,6 @@ export class TeamsDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.loadTeam();
     this.loadMember();
-    this.loadTeamMembers();
   }
 
   loadTeam() {
@@ -42,21 +43,23 @@ export class TeamsDetailsComponent implements OnInit {
     this.teamService.getTeamByName(this.route.snapshot.paramMap.get('name')).subscribe(specifiedTeam => {
       // @ts-ignore
       this.team = specifiedTeam;
+      this.loadUsersInTeam();
     })
   }
 
   loadMember(){
-    this.memberService.getMemberById(this.user.username).subscribe(memberId =>{
+    this.memberService.getMemberIdByUsername(this.user.username).subscribe(memberId =>{
       this.memberId = memberId;
     })
   }
 
-  loadTeamMembers(){
-    this.teamService.getTeamUser(1).subscribe(response => {
+  loadUsersInTeam(){
+    this.teamService.getUsersInTeam(this.team.teamId).subscribe(teamUsers => {
       // @ts-ignore
-      this.members = response.result;
-    });
+      this.teamUsers = teamUsers;
+    })
   }
+
 
   joinTeam(){
     this.model = {

@@ -21,6 +21,14 @@ namespace organizer_gracza_backend.Data
                 .FirstOrDefaultAsync(x => x.EventTeamId == eventId);
         }
 
+        public async Task<EventTeam> GetEventTeamByNameAsync(string name)
+        {
+            return await _context.EventTeam
+                .Include(e => e.EventTeamRegistration)
+                .Include(g => g.Game)
+                .FirstOrDefaultAsync(x => x.Name == name);        
+        }
+
         public async Task<IEnumerable<EventTeam>> GetEventsTeamAsync()
         {
             return await _context.EventTeam

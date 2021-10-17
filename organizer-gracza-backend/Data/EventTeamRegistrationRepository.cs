@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using organizer_gracza_backend.Interfaces;
@@ -21,6 +22,15 @@ namespace organizer_gracza_backend.Data
                 .Include(e => e.EventTeam)
                 .Include(t => t.Team)
                 .FirstOrDefaultAsync(x => x.EventTeamRegistrationId == eventTeamRegistrationId);
+        }
+
+        public async Task<IEnumerable<EventTeamRegistration>> GetEventRegistrationAsync(int eventTeamId)
+        {
+            return await _context.EventTeamRegistration
+                .Include(e => e.EventTeam)
+                .Include(t => t.Team)
+                .Where(x => x.EventTeamId == eventTeamId)
+                .ToListAsync();
         }
 
         public async Task<IEnumerable<EventTeamRegistration>> GetEventsTeamRegistrationAsync()

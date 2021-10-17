@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import {Member, Pagination, PagintationParams, Team, User} from "../../model/model";
-import {MembersService} from "../../_services/members.service";
-import {AccountService} from "../../_services/account.service";
-import {take} from "rxjs/operators";
+import {Component, OnInit} from '@angular/core';
+import {Member, Pagination, PagintationParams, Photo, Team, User} from "../../model/model";
 import {TeamsService} from "../../_services/teams.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {ToastrService} from "ngx-toastr";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {FileUploader} from "ng2-file-upload";
+import {environment} from "../../../environments/environment";
+import {take} from "rxjs/operators";
+import {AccountService} from "../../_services/account.service";
+
 
 @Component({
   selector: 'app-teams-list',
@@ -25,21 +27,31 @@ export class TeamsListComponent implements OnInit {
   userParams: PagintationParams;
   // @ts-ignore
   user: User;
+  // @ts-ignore
+  uploader: FileUploader;
+  hasBaseDropzoneOver = false;
+  baseUrl = environment.apiUrl;
+  // @ts-ignore
+  team: Team;
+
 
   constructor(private teamService: TeamsService, private modalService: NgbModal, private toastr: ToastrService,
-              private router: Router) {}
+              private router: Router, private accountService: AccountService) {
+    this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
+  }
 
   ngOnInit(): void {
     this.loadTeams();
     this.initializeForm();
   }
 
-  initializeForm(){
+  initializeForm() {
     this.newTeamForm = new FormGroup({
       name: new FormControl('', Validators.required)
-    })}
+    })
+  }
 
-  loadTeams(){
+  loadTeams() {
     // @ts-ignore
     this.teamService.getTeams().subscribe(teams => {
       // @ts-ignore
@@ -47,17 +59,50 @@ export class TeamsListComponent implements OnInit {
     })
   }
 
+  loadTeam() {
+    this.teamService.getTeamByName(this.newTeamForm.value.name).subscribe(team => {
+      // @ts-ignore
+      this.team = team;
+    })
+  }
+
   open(content: any) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
   }
 
-  createNewTeam(){
+  createNewTeam() {
     this.teamService.addTeam(this.newTeamForm.value).subscribe(response => {
-      this.router.navigateByUrl('teams');
       this.toastr.success("Utworzono nową drużyne")
     }, error => {
       console.log(error);
       this.toastr.error('Zarejestrowanie się nie powiodło');
     })
+    this.initializeUploader();
+  }
+
+  initializeUploader() {
+    this.uploader = new FileUploader({
+      url: this.baseUrl + 'teams/add-photo/' + this.newTeamForm.value.name,
+      authToken: 'Bearer ' + this.user.token,
+      isHTML5: true,
+      allowedFileType: ['image'],
+      removeAfterUpload: true,
+      autoUpload: false,
+      maxFileSize: 10 * 1024 * 1024
+    });
+
+    this.uploader.onSuccessItem = (item, response, status, headers) => {
+      if (response) {
+        this.loadTeam();
+        console.log(this.team)
+        const photo: Photo = JSON.parse(response);
+        console.log(photo)
+        this.team.photoUrl = photo.url;
+      }
+    }
+  }
+
+  fileOverBase(e: any) {
+    this.hasBaseDropzoneOver = e;
   }
 }

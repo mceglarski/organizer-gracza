@@ -59,6 +59,8 @@ import { EventsSoloListComponent } from './events/events-solo-list/events-solo-l
 import { EventsTeamListComponent } from './events/events-team-list/events-team-list.component';
 import { EventsSoloDetailsComponent } from './events/events-solo-details/events-solo-details.component';
 import { EventsTeamDetailsComponent } from './events/events-team-details/events-team-details.component';
+import { EventsSoloEditComponent } from './events/events-solo-edit/events-solo-edit.component';
+import { EventsTeamEditComponent } from './events/events-team-edit/events-team-edit.component';
 
 @NgModule({
   declarations: [
@@ -101,6 +103,8 @@ import { EventsTeamDetailsComponent } from './events/events-team-details/events-
     EventsTeamListComponent,
     EventsSoloDetailsComponent,
     EventsTeamDetailsComponent,
+    EventsSoloEditComponent,
+    EventsTeamEditComponent,
   ],
     imports: [
         BrowserModule,

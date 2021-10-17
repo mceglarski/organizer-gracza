@@ -21,18 +21,21 @@ namespace organizer_gracza_backend.Data
         public async Task<Team> GetTeamAsync(int teamId)
         {
             return await _context.Teams
+                .Include(t => t.TeamUser)
                 .FirstOrDefaultAsync(x => x.TeamId == teamId);
         }
 
         public async Task<Team> GetTeamByNameAsync(string name)
         {
             return await _context.Teams
+                .Include(t => t.TeamUser)
                 .FirstOrDefaultAsync(x => x.Name == name);
         }
 
         public async Task<IEnumerable<Team>> GetTeamsAsync()
         {
             return await _context.Teams
+                .Include(t => t.TeamUser)
                 .ToListAsync();
         }
         

@@ -9,6 +9,7 @@ namespace organizer_gracza_backend.Interfaces
         Task<TeamUser> GetTeamUsersAsync(int teamId);
         Task<IEnumerable<TeamUser>> GetTeamsUsersAsync();
         Task<IEnumerable<TeamUser>> GetTeamForUsersAsync(string userId);
+        Task<IEnumerable<TeamUser>> GetUsersInTeam(int teamId);
         void AddTeamUser(TeamUser teamUser);
         void DeleteTeamUser(TeamUser teamUser);
         Task<bool> SaveAllAsync();

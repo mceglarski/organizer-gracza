@@ -26,13 +26,16 @@ namespace organizer_gracza_backend.Data
                 .Include(e => e.EventUserRegistration)
                 .Include(g => g.Game)
                 .SingleOrDefaultAsync(x => x.EventUserId == eventId);
-            
-            // return await _context.EventUser
-            //     .Where(x => x.EventId == eventId)
-            //     .ProjectTo<EventUserDto>(_mapper.ConfigurationProvider)
-            //     .SingleOrDefaultAsync();
         }
-        
+
+        public async Task<EventUser> GetEventUserByNameAsync(string name)
+        {
+            return await _context.EventUser
+                .Include(e => e.EventUserRegistration)
+                .Include(g => g.Game)
+                .SingleOrDefaultAsync(x => x.Name == name);
+        }
+
         public async Task<IEnumerable<EventUser>> GetEventsUserAsync()
         {
             return await _context.EventUser

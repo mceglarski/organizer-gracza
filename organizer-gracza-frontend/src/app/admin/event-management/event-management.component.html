@@ -23,7 +23,7 @@
                 <button (click)="(event!)" class="btn btn-info">Edit Event</button>
               </td>
               <td>
-                <button (click)="eventService.deleteUserEvent(event.eventUserId)" class="btn btn-danger">Delete Event
+                <button (click)="deleteUserEvent(event.eventUserId)" class="btn btn-danger">Delete Event
                 </button>
               </td>
             </tr>
@@ -54,19 +54,21 @@
               <button (click)="(event!)" class="btn btn-info">Edit Event</button>
             </td>
             <td>
-              <button (click)="eventService.deleteTeamEvent(event.eventTeamId)" class="btn btn-danger">Delete Event
+              <button (click)="deleteTeamEvent(event.eventTeamId)" class="btn btn-danger">Delete Event
               </button>
             </td>
           </tr>
         </table>
         <td>
-          <button (click)="open(addUserEvent)" class="btn btn-success">Add Event</button>
+          <button (click)="open(addTeamEvent)" class="btn btn-success">Add Event</button>
         </td>
       </tab>
     </tabset>
   </div>
 
 </div>
+
+<!--UserEvents-->
 
 <ng-template #addUserEvent let-modal>
 
@@ -156,22 +158,12 @@
           <option [ngValue]="game.gameId" *ngFor="let game of games">{{game.title}}</option>
         </select>
       </div>
-
-      <!--      <div class="form-group">-->
-      <!--        <input-->
-      <!--          [class.is-invalid]='newEventForm.get("photoUrl")?.errors && newEventForm.get("photoUrl")?.touched'-->
-      <!--          type="text"-->
-      <!--          class="form-control"-->
-      <!--          formControlName="photoUrl"-->
-      <!--          placeholder="Zdjęcie do wydarzenia">-->
-      <!--        <div class="invalid-feedback">Zdjęcie wydarzenia jest wymagane</div>-->
-      <!--      </div>-->
     </form>
   </div>
 
   <div class="modal-footer">
     <button [disabled]="!newUserEventForm.valid" type="submit" class="btn btn-success" form="newUserEventForm"
-            (click)="modal.close" (click)="open(addPhotoUserEvent)">Przejdź do wyboru zdjęcia
+            (click)="open(addPhotoUserEvent)" (click)="modal.close">Przejdź do wyboru zdjęcia
     </button>
     <button type="button" class="btn btn-danger" (click)="modal.close()">Anuluj</button>
   </div>
@@ -202,9 +194,141 @@
         <input type="file" ng2FileSelect [uploader]="uploader"/>
       </div>
       <button type="button" class="btn btn-success btn-s"
-              (click)="uploader.uploadAll()">
+              (click)="uploader.uploadAll()" (click)="modal.close()">
         <span class="fa fa-upload"></span> Upload all
       </button>
 
     </div>
+</ng-template>
+
+<!--TeamEvents-->
+
+<ng-template #addTeamEvent let-modal>
+
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Utwórz nowe wydarzenie drużynowe </h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]='newTeamEventForm' (ngSubmit)="newTeamEventForm.valid && newTeamEvent()" autocomplete="off"
+          id="newTeamEventForm">
+      <div class="form-group">
+        <input
+          [class.is-invalid]='newTeamEventForm.get("name")?.errors && newTeamEventForm.get("name")?.touched'
+          type="text"
+          class="form-control"
+          formControlName="name"
+          placeholder="Nazwa wydarzenia">
+        <div class="invalid-feedback">Nazwa wydarzenia jest wymagana</div>
+      </div>
+
+      <div class="form-group">
+        <input
+          [class.is-invalid]='newTeamEventForm.get("description")?.errors && newTeamEventForm.get("description")?.touched'
+          type="text"
+          class="form-control"
+          formControlName="description"
+          placeholder="Opis wydarzenia">
+        <div class="invalid-feedback">Opis wydarzenia jest wymagana</div>
+      </div>
+
+      <div class="form-group">
+        <input
+          [class.is-invalid]='newTeamEventForm.get("startDate")?.errors && newTeamEventForm.get("startDate")?.touched'
+          type="date"
+          class="form-control"
+          formControlName="startDate"
+          placeholder="Data rozpoczęcia wydarzenia">
+        <div class="invalid-feedback">Data rozpoczęcia wydarzenia jest wymagana</div>
+      </div>
+
+      <div class="form-group">
+        <input
+          [class.is-invalid]='newTeamEventForm.get("endDate")?.errors && newTeamEventForm.get("endDate")?.touched'
+          type="date"
+          class="form-control"
+          formControlName="endDate"
+          placeholder="Data zakończenia wydarzenia">
+        <div class="invalid-feedback">Data zakończenia wydarzenia jest wymagana</div>
+      </div>
+
+      <div class="form-group">
+        <input
+          [class.is-invalid]='newTeamEventForm.get("eventType")?.errors && newTeamEventForm.get("eventType")?.touched'
+          type="text"
+          class="form-control"
+          formControlName="eventType"
+          placeholder="Typ wydarzenia">
+        <div class="invalid-feedback">Typ wydarzenia jest wymagana</div>
+      </div>
+
+      <div class="form-group">
+        <input
+          [class.is-invalid]='newTeamEventForm.get("winnerPrize")?.errors && newTeamEventForm.get("winnerPrize")?.touched'
+          type="number"
+          class="form-control"
+          formControlName="winnerPrize"
+          placeholder="Nagroda za wydarzenie">
+        <div class="invalid-feedback">Nagroda za wydarzenie jest wymagana</div>
+      </div>
+
+      <div class="form-group">
+        <input
+          [class.is-invalid]='newTeamEventForm.get("eventOrganiser")?.errors && newTeamEventForm.get("eventOrganiser")?.touched'
+          type="text"
+          class="form-control"
+          formControlName="eventOrganiser"
+          placeholder="Organizator wydarzenia">
+        <div class="invalid-feedback">Organizator wydarzenia jest wymagany</div>
+      </div>
+
+      <div class="form-group">
+        <select
+          class="form-control"
+          formControlName="gameId">
+          <option [ngValue]="game.gameId" *ngFor="let game of games">{{game.title}}</option>
+        </select>
+      </div>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <button [disabled]="!newTeamEventForm.valid" type="submit" class="btn btn-success" form="newTeamEventForm"
+            (click)="open(addPhotoTeamEvent)" (click)="modal.close">Przejdź do wyboru zdjęcia
+    </button>
+    <button type="button" class="btn btn-danger" (click)="modal.close()">Anuluj</button>
+  </div>
+</ng-template>
+
+<ng-template #addPhotoTeamEvent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Dodaj zdjęcie do swojego wydarzenia </h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="col-md-3">
+
+      <h3>Add Photos</h3>
+
+      <div ng2FileDrop
+           [ngClass]="{'nv-file-over': hasBaseDropzoneOver}"
+           (fileOver)="fileOverBase($event)"
+           [uploader]="uploader"
+           class="card bg-faded p-3 text-center mb-3 my-drop-zone">
+        <i class="fa fa-upload fa-3x"></i>
+        Drop photo here
+      </div>
+
+      Single
+      <input type="file" ng2FileSelect [uploader]="uploader"/>
+    </div>
+    <button type="button" class="btn btn-success btn-s"
+            (click)="uploader.uploadAll()" (click)="modal.close()">
+      <span class="fa fa-upload"></span> Upload all
+    </button>
+  </div>
 </ng-template>

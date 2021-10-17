@@ -7,3 +7,18 @@
   margin-left: 10%;
   color: white;
 }
+img{
+  max-height: 500px;
+  max-width: 500px;
+  min-height: 500px;
+  max-height: 500px;
+}
+.flex-content{
+  display: flex;
+}
+.team-photo{
+  margin-left: 300px;
+}
+.btn{
+
+}

@@ -51,6 +51,17 @@ namespace organizer_gracza_backend.Controllers
 
             return _mapper.Map<EventTeamRegistrationDto>(specifiedEvent);
         }
+        
+        [HttpGet("event/{id}")]
+        public async Task<ActionResult<IEnumerable<EventTeamRegistrationDto>>> GetEventRegistration(int id)
+        {
+            var specifiedEvent = await 
+                _eventTeamRegistrationRepository.GetEventRegistrationAsync(id);
+
+            var eventsToReturn = _mapper.Map<IEnumerable<EventTeamRegistrationDto>>(specifiedEvent);
+
+            return Ok(eventsToReturn);
+        }
 
         [HttpPost]
         public async Task<ActionResult<EventTeamRegistrationDto>> CreateEventTeamRegistration

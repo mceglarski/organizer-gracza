@@ -62,7 +62,19 @@ export class MembersService {
     return this.http.get<Member>(this.baseUrl + 'users/' + username);
   }
 
-  getMemberById(username: string) {
+  getMemberById(userId: number){
+    const member = [...this.memberCache.values()]
+      .reduce((arr, elem) => arr.concat(elem.result), [])
+      .find((member: Member) => member.Id === userId);
+
+    if(member){
+      return of(member);
+    }
+
+    return this.http.get<Member>(this.baseUrl + 'users/member/' + userId);
+  }
+
+  getMemberIdByUsername(username: string) {
     const member = [...this.memberCache.values()]
       .reduce((arr, elem) => arr.concat(elem.result), [])
       .find((member: Member) => member.username === username);

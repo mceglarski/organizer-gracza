@@ -114,6 +114,7 @@ export interface EventTeamRegistration{
   eventTeamRegistrationId: number;
   teamId: number;
   eventTeamId: number;
+  team: Team;
 }
 
 export interface Participiant{
@@ -125,6 +126,7 @@ export interface Team{
   teamId: number;
   name: string;
   photoUrl: string;
+  teamUser: TeamUser[]
 }
 
 export interface TeamUser{

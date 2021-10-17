@@ -1,15 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {EventsService} from "../../_services/events.service";
-import {EventTeam, EventUser, Game, User} from "../../model/model";
+import {EventTeam, EventUser, Game, Photo, User} from "../../model/model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import { Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {GameService} from "../../_services/game.service";
-import {environment} from "../../../environments/environment";
 import {FileUploader} from "ng2-file-upload";
 import {AccountService} from "../../_services/account.service";
 import {take} from "rxjs/operators";
+import {environment} from "../../../environments/environment";
 
 
 @Component({
@@ -23,14 +23,17 @@ export class EventManagementComponent implements OnInit {
   // @ts-ignore
   userEvents: EventUser[];
   // @ts-ignore
-  event: Event;
+  event: EventUser;
+  // @ts-ignore
+  eventTeam: EventTeam;
   // @ts-ignore
   newUserEventForm: FormGroup;
+  // @ts-ignore
+  newTeamEventForm: FormGroup;
   validationErrors: string[] = [];
   // @ts-ignore
   games: Game[];
-  // @ts-ignore
-  baseUrl: environment.apiUrl;
+  baseUrl = environment.apiUrl;
   // @ts-ignore
   uploader: FileUploader;
   hasBaseDropzoneOver = false;
@@ -47,6 +50,7 @@ export class EventManagementComponent implements OnInit {
     this.loadTeamEvents();
     this.loadGames();
     this.initializeAddEventForm();
+    this.initializeTeamEventForm();
   }
 
   fileOverBase(e: any){
@@ -58,10 +62,7 @@ export class EventManagementComponent implements OnInit {
       // @ts-ignore
       this.teamEvents = teamEvents;
     })
-  }
 
-  loadUserEvent(){
-    this.eventService.getUserEvent(this.userEvents.findIndex(x => x.eventUserId))
   }
 
   loadUserEvents() {
@@ -78,9 +79,23 @@ export class EventManagementComponent implements OnInit {
     })
   }
 
+  loadEvent(){
+    this.eventService.getUserEventByName(this.newUserEventForm.value.name).subscribe(specifiedEvent => {
+      // @ts-ignore
+      this.event = specifiedEvent;
+    })
+  }
+
+  loadTeamEvent(){
+    this.eventService.getTeamEventByName(this.newTeamEventForm.value.name).subscribe(specifiedEvent => {
+      // @ts-ignore
+      this.event = specifiedEvent;
+    })
+  }
+
   initializeUserUploader(){
     this.uploader = new FileUploader({
-      url: this.baseUrl + 'eventsuser/add-photo/' + this.newUserEventForm.controls['eventUserId'].value,
+      url: this.baseUrl + 'eventsuser/add-photo/' + this.newUserEventForm.value.name,
       authToken: 'Bearer ' + this.user.token,
       isHTML5: true,
       allowedFileType: ['image'],
@@ -91,8 +106,31 @@ export class EventManagementComponent implements OnInit {
 
     this.uploader.onSuccessItem = (item, response, status, headers) => {
       if(response){
-        const photo = JSON.parse(response);
-        this.newUserEventForm.value.photoUrl = photo.photoUrl;
+        this.loadEvent();
+        const photo: Photo = JSON.parse(response);
+        console.log(photo);
+        this.event.photoUrl = photo.url;
+      }
+    }
+  }
+
+  initializeTeamUploader(){
+    this.uploader = new FileUploader({
+      url: this.baseUrl + 'eventsteam/add-photo/' + this.newTeamEventForm.value.name,
+      authToken: 'Bearer ' + this.user.token,
+      isHTML5: true,
+      allowedFileType: ['image'],
+      removeAfterUpload: true,
+      autoUpload: false,
+      maxFileSize: 10 * 1024 * 1024
+    });
+
+    this.uploader.onSuccessItem = (item, response, status, headers) => {
+      if(response){
+        this.loadTeamEvent();
+        const photo: Photo = JSON.parse(response);
+        console.log(photo);
+        this.eventTeam.photoUrl = photo.url;
       }
     }
   }
@@ -107,9 +145,20 @@ export class EventManagementComponent implements OnInit {
       winnerPrize: new FormControl('', Validators.required),
       eventOrganiser: new FormControl('', Validators.required),
       gameId: new FormControl('', Validators.required),
-      // photoUrl: new FormControl('', Validators.required)
     })
-    console.log(this.newUserEventForm);
+  }
+
+  initializeTeamEventForm(){
+    this.newTeamEventForm = new FormGroup({
+      name: new FormControl('', Validators.required),
+      description: new FormControl('', Validators.required),
+      startDate: new FormControl('', Validators.required),
+      endDate: new FormControl('', Validators.required),
+      eventType: new FormControl('', Validators.required),
+      winnerPrize: new FormControl('', Validators.required),
+      eventOrganiser: new FormControl('', Validators.required),
+      gameId: new FormControl('', Validators.required),
+    })
   }
 
   open(content: any) {
@@ -124,18 +173,30 @@ export class EventManagementComponent implements OnInit {
       console.log(error);
       this.validationErrors = error;
     })
-    console.log(this.newUserEventForm)
     this.initializeUserUploader();
   }
 
 
-  // newTeamEvent() {
-  //   this.eventService.addTeamEvent(this.newUserEventForm.value).subscribe(response => {
-  //     this.toastr.info("Wydarzenie zostało dodane");
-  //   }, error => {
-  //     this.toastr.error("Nie udało się dodać nowego wydarzenia");
-  //     console.log(error);
-  //     this.validationErrors = error;
-  //   })
-  // }
+  newTeamEvent() {
+    this.eventService.addTeamEvent(this.newTeamEventForm.value).subscribe(response => {
+      this.toastr.info("Wydarzenie zostało dodane");
+    }, error => {
+      this.toastr.error("Nie udało się dodać nowego wydarzenia");
+      console.log(error);
+      this.validationErrors = error;
+    })
+    this.initializeTeamUploader();
+  }
+
+  deleteUserEvent(eventUserId: number){
+    this.eventService.deleteUserEvent(eventUserId).subscribe(() => {
+      this.userEvents.splice(this.userEvents.findIndex(x => x.eventUserId === eventUserId), 1);
+    })
+  }
+
+  deleteTeamEvent(eventTeamId: number){
+    this.eventService.deleteTeamEvent(eventTeamId).subscribe(() => {
+      this.teamEvents.splice(this.teamEvents.findIndex(x => x.eventTeamId === eventTeamId), 1);
+    })
+  }
 }

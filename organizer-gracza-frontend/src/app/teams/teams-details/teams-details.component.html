@@ -3,14 +3,19 @@
     <h4 class="ml-2">SZCZEGÓŁY DRUŻYNY</h4>
     <div class="separator"></div>
   </div>
-  <h2 class="ml-2 mt-1 mb-3">{{team.name}}</h2>
-  <div class="details-content">
-    <div class="event-details ml-2">
-      <h2>Zdjęcie drużyny</h2>
-      <div *ngFor="let member of members">{{member.nickname}}</div>
-      <div>
-        <button class="btn btn-success" (click)="joinTeam()">Dołącz do drużyny</button>
-      </div>
+  <div class="flex-content">
+    <div class="team-details">
+      <h2 class="ml-2 mt-1 mb-3">Nazwa drużyny: {{team.name}}</h2>
+      <h2 class="ml-2 mt-1 mb-3">Skład drużyny:
+        <div *ngFor="let user of teamUsers">{{user.user.nickname}}</div>
+      </h2>
     </div>
+    <div class="team-photo">
+      <h2>Logo drużyny</h2>
+      <img src="{{team.photoUrl}}" alt="{{team}}">
+    </div>
+  </div>
+  <div>
+    <button class="btn btn-success btn-lg" (click)="joinTeam()">Dołącz do drużyny</button>
   </div>
 </div>
