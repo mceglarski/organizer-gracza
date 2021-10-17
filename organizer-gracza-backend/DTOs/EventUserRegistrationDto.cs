@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using organizer_gracza_backend.Model;
 
 namespace organizer_gracza_backend.DTOs
@@ -6,6 +7,8 @@ namespace organizer_gracza_backend.DTOs
     {
         public int EventUserRegistrationId { get; set; }
         public int UserId { get; set; }
+        public UserDto User { get; set; }
         public int EventUserId { get; set; }
+
     }
 }

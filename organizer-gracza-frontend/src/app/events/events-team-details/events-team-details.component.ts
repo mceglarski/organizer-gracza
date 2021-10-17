@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {EventTeam, EventUser, Team, User} from "../../model/model";
+import {EventTeam, EventTeamRegistration, Team, User} from "../../model/model";
 import {EventsService} from "../../_services/events.service";
 import {ActivatedRoute} from "@angular/router";
 import {TeamsService} from "../../_services/teams.service";
@@ -27,6 +27,8 @@ export class EventsTeamDetailsComponent implements OnInit {
   newTeamRegistrationForm: FormGroup;
   // @ts-ignore
   model: { eventTeamId: number; teamId: number };
+  // @ts-ignore
+  teamRegistrations: EventTeamRegistration[];
 
 
   constructor(private eventsService: EventsService, public route: ActivatedRoute, private teamService: TeamsService,
@@ -52,6 +54,14 @@ export class EventsTeamDetailsComponent implements OnInit {
     this.eventsService.getTeamEvent(this.route.snapshot.paramMap.get('eventTeamId')).subscribe(specifiedEvent => {
       // @ts-ignore
       this.event = specifiedEvent;
+      this.loadTeamRegistrations();
+    })
+  }
+
+  loadTeamRegistrations(){
+    this.eventsService.getTeamEventRegistration(this.event.eventTeamId).subscribe(teamRegistrations => {
+      // @ts-ignore
+      this.teamRegistrations = teamRegistrations;
     })
   }
 
@@ -60,6 +70,7 @@ export class EventsTeamDetailsComponent implements OnInit {
     this.teamService.getTeamsForUser(this.user.username).subscribe(teams => {
       // @ts-ignore
       this.teams = teams;
+      console.log(this.teams)
     })
   }
 
@@ -73,7 +84,6 @@ export class EventsTeamDetailsComponent implements OnInit {
     }, error => {
       this.toastr.error("Nie udało się dołączyć do wydarzenia")
     })
-    console.log(this.teams);
   }
 
   initializeAddTeamForEvent(){

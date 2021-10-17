@@ -42,4 +42,8 @@ export class TeamsService {
   getTeamsForUser(username: string){
     return this.http.get(this.baseUrl + 'teamusers/teams/' + username);
   }
+
+  getUsersInTeam(teamId: number){
+    return this.http.get(this.baseUrl + 'teamusers/teams/users/' + teamId)
+  }
 }

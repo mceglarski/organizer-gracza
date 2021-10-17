@@ -22,6 +22,12 @@ export class EventsSoloDetailsComponent implements OnInit {
   user: User
   // @ts-ignore
   memberId: number;
+  // @ts-ignore
+  userRegistrations: EventUserRegistration[];
+  // @ts-ignore
+  Members: Member[] = [];
+  // @ts-ignore
+  UsersId: number[] = [];
 
   constructor(private eventsService: EventsService, public route: ActivatedRoute, private teamService: TeamsService,
               private memberService: MembersService, private accountService: AccountService,
@@ -42,7 +48,7 @@ export class EventsSoloDetailsComponent implements OnInit {
     this.eventsService.getUserEvent(this.route.snapshot.paramMap.get('eventUserId')).subscribe(specifiedEvent => {
       // @ts-ignore
       this.event = specifiedEvent;
-      console.log(this.event.eventUserId);
+      this.loadUserRegistrations()
     })
   }
 
@@ -59,11 +65,35 @@ export class EventsSoloDetailsComponent implements OnInit {
   }
 
   loadMemberId(){
-    this.memberService.getMemberById(this.user.username).subscribe(memberId =>{
+    this.memberService.getMemberIdByUsername(this.user.username).subscribe(memberId =>{
       this.memberId = memberId;
     })
   }
 
+  loadUserRegistrations(){
+    this.eventsService.getUserEventRegistration(this.event.eventUserId).subscribe(userRegistration => {
+      // @ts-ignore
+      this.userRegistrations = userRegistration;
+      this.loadUsersIds();
+    })
+  }
+
+  loadUsersIds(){
+    for(let user of this.userRegistrations)
+    {
+      this.UsersId.push(user.userId);
+    }
+    this.loadMembers();
+  }
+
+  loadMembers(){
+    this.UsersId.forEach((value,index) =>{
+      this.memberService.getMemberById(value).subscribe(member =>{
+        // this.Members = member;
+        this.Members.push(member);
+      })
+    })
+  }
 
   // loadMember(){
   //   this.memberService.getMemberById(this.event.eventUserId).subscribe(memberId =>{

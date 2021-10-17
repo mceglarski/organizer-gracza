@@ -12,7 +12,7 @@ namespace organizer_gracza_backend.Interfaces
         void Update(User user);
         Task<bool> SaveAllAsync();
         Task<IEnumerable<User>> GetUsersAsync();
-        Task<User> GetUserByIdAsync(int id);
+        Task<MemberDto> GetUserByIdAsync(int id);
         Task<User> GetUserByUsernameAsync(string username);
         Task<PagedList<MemberDto>> GetMembersAsync(PaginationParams paginationParams);
         Task<MemberDto> GetMemberAsync(string username);

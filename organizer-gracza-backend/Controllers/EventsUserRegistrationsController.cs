@@ -38,6 +38,17 @@ namespace organizer_gracza_backend.Controllers
 
             return Ok(eventsToReturn);
         }
+        
+        [HttpGet("event/{id}")]
+        public async Task<ActionResult<IEnumerable<EventUserRegistrationDto>>> GetEventRegistrations(int id)
+        {
+            var events = await _eventUserRegistrationRepository
+                .GetEventRegistrationAsync(id);
+
+            var eventsToReturn = _mapper.Map<IEnumerable<EventUserRegistrationDto>>(events);
+
+            return Ok(eventsToReturn);
+        }
 
         [HttpGet("{id}", Name = "GetEventUserRegistration")]
         public async Task<ActionResult<EventUserRegistrationDto>> GetEventUserRegistrationAsync(int id)

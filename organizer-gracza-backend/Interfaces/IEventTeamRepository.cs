@@ -7,10 +7,11 @@ namespace organizer_gracza_backend.Interfaces
     public interface IEventTeamRepository
     {
         Task<EventTeam> GetEventTeamAsync(int eventId);
+        Task<EventTeam> GetEventTeamByNameAsync(string name);
         Task<IEnumerable<EventTeam>> GetEventsTeamAsync();
         void AddEventTeam(EventTeam specifiedEvent);
         void DeleteEventTeam(EventTeam specifiedEvent);
-        Task<bool> SaveAllAsync();       
+        Task<bool> SaveAllAsync();
         void UpdateEventTeam(EventTeam specifiedEvent);
     }
 }

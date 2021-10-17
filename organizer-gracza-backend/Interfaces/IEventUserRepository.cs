@@ -8,6 +8,7 @@ namespace organizer_gracza_backend.Interfaces
     public interface IEventUserRepository
     {
         Task<EventUser> GetEventUserAsync(int eventId);
+        Task<EventUser> GetEventUserByNameAsync(string name);
         Task<IEnumerable<EventUser>> GetEventsUserAsync();
         void AddEventUser(EventUser specifiedEvent);
         void DeleteEventUser(EventUser specifiedEvent);

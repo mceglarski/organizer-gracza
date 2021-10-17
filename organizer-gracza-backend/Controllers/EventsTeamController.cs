@@ -5,6 +5,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using organizer_gracza_backend.Data;
 using organizer_gracza_backend.DTOs;
 using organizer_gracza_backend.Interfaces;
@@ -39,17 +40,27 @@ namespace organizer_gracza_backend.Controllers
             return Ok(eventsToReturn);
         }
 
-        [HttpGet("{id}", Name = "GetEventTeam")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<EventTeamDto>> GetEventTeamAsync(int id)
         {
             var specifiedEvent = await _eventTeamRepository.GetEventTeamAsync(id);
 
             return _mapper.Map<EventTeamDto>(specifiedEvent);
         }
+        [HttpGet("specified/{name}", Name = "GetEventTeam")]
+        public async Task<ActionResult<EventTeamDto>> GetEventTeamByNameAsync(string name)
+        {
+            var specifiedEvent = await _eventTeamRepository.GetEventTeamByNameAsync(name);
+            
+            return _mapper.Map<EventTeamDto>(specifiedEvent);
+        }
 
         [HttpPost]
         public async Task<ActionResult<EventTeamDto>> CreateEventTeam(EventTeamDto eventTeamDto)
         {
+            if (await TeamEventExists(eventTeamDto.Name))
+                return BadRequest("Event name is taken");
+            
             var newEventUser = new EventTeam()
             {
                 Name = eventTeamDto.Name,
@@ -94,6 +105,9 @@ namespace organizer_gracza_backend.Controllers
         {
             var eventAsync = await _eventTeamRepository.GetEventTeamAsync(id);
 
+            if (await TeamEventExists(specifiedEvent.Name))
+                return BadRequest("Event name is taken");
+            
             eventAsync.EventTeamId = eventAsync.EventTeamId;
             if (specifiedEvent.Name != null)
                 eventAsync.Name = specifiedEvent.Name;
@@ -119,10 +133,10 @@ namespace organizer_gracza_backend.Controllers
             return BadRequest("Failed to update event");
         }
 
-        [HttpPost("add-photo/{id}")]
-        public async Task<ActionResult<PhotoDto>> AddPhoto(IFormFile file, int id)
+        [HttpPost("add-photo/{name}")]
+        public async Task<ActionResult<PhotoDto>> AddPhoto(IFormFile file, string name)
         {
-            var specifiedEvent = await _eventTeamRepository.GetEventTeamAsync(id);
+            var specifiedEvent = await _eventTeamRepository.GetEventTeamByNameAsync(name);
 
             var result = await _photoEventService.AddPhotoAsync(file);
 
@@ -139,11 +153,16 @@ namespace organizer_gracza_backend.Controllers
 
             if (await _eventTeamRepository.SaveAllAsync())
             {
-                return CreatedAtRoute("GetEventTeam", new {id = specifiedEvent.EventTeamId}, _mapper.Map<PhotoDto>(photo));
+                return CreatedAtRoute("GetEventTeam", new {name = specifiedEvent.Name} ,_mapper.Map<PhotoDto>(photo));
                 // return _mapper.Map<PhotoDto>(photo);
-            }
 
+            }
             return BadRequest("Problem occured when adding photo");
+        }
+        
+        private async Task<bool> TeamEventExists(string name)
+        {
+            return await _context.EventTeam.AnyAsync(x => x.Name == name);
         }
     }
 }

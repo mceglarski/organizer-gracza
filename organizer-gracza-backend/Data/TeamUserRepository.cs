@@ -23,6 +23,15 @@ namespace organizer_gracza_backend.Data
                 .Include(t => t.Team)
                 .FirstOrDefaultAsync(x => x.TeamId == teamId);
         }
+        
+        public async Task<IEnumerable<TeamUser>> GetUsersInTeam(int teamId)
+        {
+            return await _context.TeamUsers
+                .Include(t => t.Team)
+                .Include(u => u.User)
+                .Where(x => x.TeamId == teamId)
+                .ToListAsync();
+        }
         public async Task<IEnumerable<TeamUser>> GetTeamsUsersAsync()
         {
             return await _context.TeamUsers
@@ -39,6 +48,7 @@ namespace organizer_gracza_backend.Data
                 .Where(x => x.User.UserName == username)
                 .ToListAsync();
         }
+        
 
         public void AddTeamUser(TeamUser teamUser)
         {

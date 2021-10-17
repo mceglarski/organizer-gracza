@@ -2,12 +2,19 @@ import { Injectable } from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {mod} from "ngx-bootstrap/chronos/utils";
+import {EventTeam, EventUser, Member} from "../model/model";
+import {map} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventsService {
   baseUrl = environment.apiUrl;
+  eventUsers: EventUser[] = [];
+  eventTeams: EventTeam[] = [];
+  eventUserCache = new Map();
+  eventTeamCache = new Map();
+
 
   constructor(private http: HttpClient) { }
 
@@ -25,6 +32,14 @@ export class EventsService {
 
   getTeamEvent(teamEventId: number){
     return this.http.get(this.baseUrl + 'eventsteam/' + teamEventId);
+  }
+
+  getUserEventByName(name: string){
+    return this.http.get(this.baseUrl + 'eventsuser/specified/' + name);
+  }
+
+  getTeamEventByName(name: string){
+    return this.http.get(this.baseUrl + 'eventsteam/specified/' + name);
   }
 
   deleteUserEvent(userEventId: number){
@@ -49,5 +64,22 @@ export class EventsService {
 
   addTeamEventRegistration(model: any){
     return this.http.post(this.baseUrl + 'eventsteamregistrations', model);
+  }
+
+  getTeamEventRegistration(eventId: number){
+    return this.http.get(this.baseUrl + 'eventsteamregistrations/event/' + eventId)
+  }
+
+  getUserEventRegistration(eventId: number){
+    return this.http.get(this.baseUrl + 'eventsuserregistrations/event/' + eventId)
+  }
+
+  updateUserEvent(userEvent: EventUser, eventId: number) {
+    return this.http.put(this.baseUrl + 'eventuser' + eventId, userEvent).pipe(
+      map(() => {
+        const index = this.eventUsers.indexOf(userEvent);
+        this.eventUsers[index] = userEvent;
+      })
+    )
   }
 }

@@ -14,8 +14,10 @@
       <p>OPIS: {{event.description}}</p>
       <div>
         <h3 class="ml-2">ZAKWALIFIKOWANE DRUŻYNY</h3>
-        <div class="qualified-teams" *ngFor="let event of event.eventTeamRegistration">
-          {{event.teamId}}
+        <div class="flex-teams">
+        <div class="qualified-teams" *ngFor="let registration of teamRegistrations">
+          <img src="{{registration.team.photoUrl}}" alt="{{registration.team.name}}">
+        </div>
         </div>
         <button class="btn btn-success" (click)="open(addTeamRegistration)">ZAPISZ SIĘ</button>
       </div>

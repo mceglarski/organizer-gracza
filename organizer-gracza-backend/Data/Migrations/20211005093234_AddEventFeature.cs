@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace organizer_gracza_backend.Data.Migrations
 {
-    public partial class IdentityRoleAdded : Migration
+    public partial class AddEventFeature : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -36,23 +36,6 @@ namespace organizer_gracza_backend.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Events",
-                columns: table => new
-                {
-                    EventId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: true),
-                    Description = table.Column<string>(type: "TEXT", nullable: true),
-                    StartDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    EventType = table.Column<string>(type: "TEXT", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Events", x => x.EventId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Games",
                 columns: table => new
                 {
@@ -63,6 +46,17 @@ namespace organizer_gracza_backend.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Games", x => x.GameId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Groups",
+                columns: table => new
+                {
+                    Name = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Groups", x => x.Name);
                 });
 
             migrationBuilder.CreateTable(
@@ -77,19 +71,6 @@ namespace organizer_gracza_backend.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Profile", x => x.ProfileId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Teams",
-                columns: table => new
-                {
-                    TeamId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Teams", x => x.TeamId);
                 });
 
             migrationBuilder.CreateTable(
@@ -133,22 +114,29 @@ namespace organizer_gracza_backend.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EventResults",
+                name: "Events",
                 columns: table => new
                 {
-                    EventResultId = table.Column<int>(type: "INTEGER", nullable: false)
+                    EventId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    WinnerName = table.Column<string>(type: "TEXT", nullable: true),
-                    EventId = table.Column<int>(type: "INTEGER", nullable: true)
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    StartDate = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    EndDate = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    EventType = table.Column<string>(type: "TEXT", nullable: true),
+                    WinnerPrize = table.Column<double>(type: "REAL", nullable: true),
+                    EventOrganiser = table.Column<string>(type: "TEXT", nullable: true),
+                    PhotoUrl = table.Column<string>(type: "TEXT", nullable: true),
+                    GameId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EventResults", x => x.EventResultId);
+                    table.PrimaryKey("PK_Events", x => x.EventId);
                     table.ForeignKey(
-                        name: "FK_EventResults_Events_EventId",
-                        column: x => x.EventId,
-                        principalTable: "Events",
-                        principalColumn: "EventId",
+                        name: "FK_Events_Games_GameId",
+                        column: x => x.GameId,
+                        principalTable: "Games",
+                        principalColumn: "GameId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -170,6 +158,25 @@ namespace organizer_gracza_backend.Data.Migrations
                         column: x => x.GameId,
                         principalTable: "Games",
                         principalColumn: "GameId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Connections",
+                columns: table => new
+                {
+                    ConnectionId = table.Column<string>(type: "TEXT", nullable: false),
+                    Username = table.Column<string>(type: "TEXT", nullable: true),
+                    GroupName = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Connections", x => x.ConnectionId);
+                    table.ForeignKey(
+                        name: "FK_Connections_Groups_GroupName",
+                        column: x => x.GroupName,
+                        principalTable: "Groups",
+                        principalColumn: "Name",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -245,6 +252,45 @@ namespace organizer_gracza_backend.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "EventRegistrations",
+                columns: table => new
+                {
+                    EventRegistrationId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    EventId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EventRegistrations", x => x.EventRegistrationId);
+                    table.ForeignKey(
+                        name: "FK_EventRegistrations_Events_EventId",
+                        column: x => x.EventId,
+                        principalTable: "Events",
+                        principalColumn: "EventId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EventResults",
+                columns: table => new
+                {
+                    EventResultId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    WinnerName = table.Column<string>(type: "TEXT", nullable: true),
+                    EventId = table.Column<int>(type: "INTEGER", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EventResults", x => x.EventResultId);
+                    table.ForeignKey(
+                        name: "FK_EventResults_Events_EventId",
+                        column: x => x.EventId,
+                        principalTable: "Events",
+                        principalColumn: "EventId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetUsers",
                 columns: table => new
                 {
@@ -253,6 +299,7 @@ namespace organizer_gracza_backend.Data.Migrations
                     Nickname = table.Column<string>(type: "TEXT", nullable: true),
                     Created = table.Column<DateTime>(type: "TEXT", nullable: false),
                     LastActive = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    EventRegistrationId = table.Column<int>(type: "INTEGER", nullable: true),
                     ChatUsersId = table.Column<int>(type: "INTEGER", nullable: true),
                     UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
@@ -277,6 +324,33 @@ namespace organizer_gracza_backend.Data.Migrations
                         column: x => x.ChatUsersId,
                         principalTable: "ChatUsers",
                         principalColumn: "ChatUsersId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_AspNetUsers_EventRegistrations_EventRegistrationId",
+                        column: x => x.EventRegistrationId,
+                        principalTable: "EventRegistrations",
+                        principalColumn: "EventRegistrationId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Teams",
+                columns: table => new
+                {
+                    TeamId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    EventRegistrationId = table.Column<string>(type: "TEXT", nullable: true),
+                    EventRegistrationId1 = table.Column<int>(type: "INTEGER", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Teams", x => x.TeamId);
+                    table.ForeignKey(
+                        name: "FK_Teams_EventRegistrations_EventRegistrationId1",
+                        column: x => x.EventRegistrationId1,
+                        principalTable: "EventRegistrations",
+                        principalColumn: "EventRegistrationId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -385,39 +459,6 @@ namespace organizer_gracza_backend.Data.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "EventRegistrations",
-                columns: table => new
-                {
-                    EventRegistrationId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    UserId = table.Column<int>(type: "INTEGER", nullable: true),
-                    TeamId = table.Column<int>(type: "INTEGER", nullable: true),
-                    EventId = table.Column<int>(type: "INTEGER", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_EventRegistrations", x => x.EventRegistrationId);
-                    table.ForeignKey(
-                        name: "FK_EventRegistrations_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_EventRegistrations_Events_EventId",
-                        column: x => x.EventId,
-                        principalTable: "Events",
-                        principalColumn: "EventId",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_EventRegistrations_Teams_TeamId",
-                        column: x => x.TeamId,
-                        principalTable: "Teams",
-                        principalColumn: "TeamId",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -620,6 +661,11 @@ namespace organizer_gracza_backend.Data.Migrations
                 column: "ChatUsersId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AspNetUsers_EventRegistrationId",
+                table: "AspNetUsers",
+                column: "EventRegistrationId");
+
+            migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
@@ -631,24 +677,24 @@ namespace organizer_gracza_backend.Data.Migrations
                 column: "ChatId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Connections_GroupName",
+                table: "Connections",
+                column: "GroupName");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_EventRegistrations_EventId",
                 table: "EventRegistrations",
                 column: "EventId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EventRegistrations_TeamId",
-                table: "EventRegistrations",
-                column: "TeamId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EventRegistrations_UserId",
-                table: "EventRegistrations",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_EventResults_EventId",
                 table: "EventResults",
                 column: "EventId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Events_GameId",
+                table: "Events",
+                column: "GameId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ForumPost_ForumThreadId",
@@ -706,6 +752,11 @@ namespace organizer_gracza_backend.Data.Migrations
                 column: "GameId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Teams_EventRegistrationId1",
+                table: "Teams",
+                column: "EventRegistrationId1");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_TeamUsers_TeamId",
                 table: "TeamUsers",
                 column: "TeamId");
@@ -740,7 +791,7 @@ namespace organizer_gracza_backend.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "EventRegistrations");
+                name: "Connections");
 
             migrationBuilder.DropTable(
                 name: "EventResults");
@@ -773,16 +824,13 @@ namespace organizer_gracza_backend.Data.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Events");
+                name: "Groups");
 
             migrationBuilder.DropTable(
                 name: "ForumThread");
 
             migrationBuilder.DropTable(
                 name: "Profile");
-
-            migrationBuilder.DropTable(
-                name: "Games");
 
             migrationBuilder.DropTable(
                 name: "Teams");
@@ -794,7 +842,16 @@ namespace organizer_gracza_backend.Data.Migrations
                 name: "ChatUsers");
 
             migrationBuilder.DropTable(
+                name: "EventRegistrations");
+
+            migrationBuilder.DropTable(
                 name: "Chats");
+
+            migrationBuilder.DropTable(
+                name: "Events");
+
+            migrationBuilder.DropTable(
+                name: "Games");
         }
     }
 }

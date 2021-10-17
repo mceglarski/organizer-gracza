@@ -1,14 +1,16 @@
-<div class="event-solo-page-content">
+<div class="event-solo-page-content" *ngIf="events">
   <div class="title mt-2">
     <h4 class="ml-2">WYDARZENIA</h4>
     <div class="separator"></div>
   </div>
-  <div class="flex-container">
-    <div class="solo-event" *ngFor="let event of events" routerLink="eventsuser/{{event.eventUserId}}">
-      <p><h4>{{event.name}}</h4>
-      <p>DATA: {{event.startDate | date}} - {{event.endDate | date}}</p>
-      <p>GRA: {{event.game.title}}</p>
-      <p>PULA NAGRÓD: {{event.winnerPrize}}</p>
+  <div class="flex-page-content">
+    <div class="flex-container">
+      <div class="solo-event" *ngFor="let event of events" routerLink="eventsuser/{{event.eventUserId}}">
+        <p><h4>{{event.name}}</h4>
+        <p>DATA: {{event.startDate | date}} - {{event.endDate | date}}</p>
+        <p>GRA: {{event.game.title}}</p>
+        <p>PULA NAGRÓD: {{event.winnerPrize}}</p>
+      </div>
     </div>
     <div class="event-result mt-2">
 

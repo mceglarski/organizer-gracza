@@ -7,6 +7,7 @@ namespace organizer_gracza_backend.Interfaces
     public interface IEventTeamRegistrationRepository
     {
         Task<EventTeamRegistration> GetEventTeamRegistrationAsync(int eventTeamRegistrationId);
+        Task<IEnumerable<EventTeamRegistration>> GetEventRegistrationAsync(int eventTeamId);
         Task<IEnumerable<EventTeamRegistration>> GetEventsTeamRegistrationAsync();
         void AddEventTeamRegistration(EventTeamRegistration eventTeamRegistration);
         void DeleteEventTeamRegistration(EventTeamRegistration eventTeamRegistration);

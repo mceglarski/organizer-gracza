@@ -36,18 +36,23 @@ namespace organizer_gracza_backend.Data
         {
             return await _context.Users
                 .Include(p => p.Photos)
+                .Include(t => t.TeamUser)
                 .ToListAsync();
         }
 
-        public async Task<User> GetUserByIdAsync(int id)
+        public async Task<MemberDto> GetUserByIdAsync(int id)
         {
-            return await _context.Users.FindAsync(id);
+            return await _context.Users
+                .Where(x => x.Id == id)
+                .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
+                .SingleOrDefaultAsync();
         }
 
         public async Task<User> GetUserByUsernameAsync(string username)
         {
             return await _context.Users
                 .Include(p => p.Photos)
+                .Include(t => t.TeamUser)
                 .SingleOrDefaultAsync(x => x.UserName == username);
         }
 
