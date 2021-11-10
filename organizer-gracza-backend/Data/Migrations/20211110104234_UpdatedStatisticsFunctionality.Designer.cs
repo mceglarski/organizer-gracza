@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using organizer_gracza_backend.Data;
 
 namespace organizer_gracza_backend.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20211110104234_UpdatedStatisticsFunctionality")]
+    partial class UpdatedStatisticsFunctionality
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -439,7 +441,8 @@ namespace organizer_gracza_backend.Data.Migrations
 
                     b.HasKey("GameStatisticsId");
 
-                    b.HasIndex("GameId");
+                    b.HasIndex("GameId")
+                        .IsUnique();
 
                     b.HasIndex("UserId");
 
@@ -872,8 +875,8 @@ namespace organizer_gracza_backend.Data.Migrations
             modelBuilder.Entity("organizer_gracza_backend.Model.GameStatistics", b =>
                 {
                     b.HasOne("organizer_gracza_backend.Model.Game", "Game")
-                        .WithMany("GameStatistics")
-                        .HasForeignKey("GameId");
+                        .WithOne("GameStatistics")
+                        .HasForeignKey("organizer_gracza_backend.Model.GameStatistics", "GameId");
 
                     b.HasOne("organizer_gracza_backend.Model.User", "User")
                         .WithMany("GameStatistics")
