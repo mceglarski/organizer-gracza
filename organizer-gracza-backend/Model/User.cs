@@ -21,6 +21,8 @@ namespace organizer_gracza_backend.Model
         
         public ICollection<UserRole> UserRoles { get; set; }
 
+        public ICollection<GameStatistics> GameStatistics { get; set; }
+        public GeneralStatistics GeneralStatistics { get; set; }
         
     }
 }

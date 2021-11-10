@@ -33,7 +33,6 @@ namespace organizer_gracza_backend.Data
         public DbSet<ChatUsers> ChatUsers { get; set; }
         public DbSet<Articles> Articles { get; set; }
         public DbSet<Reminder> Reminder { get; set; }
-        public DbSet<Profile> Profile { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<Connection> Connections { get; set; }
 

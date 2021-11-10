@@ -11,5 +11,7 @@ namespace organizer_gracza_backend.Model
         public string Title { get; set; }
         public ICollection<EventTeam> EventTeam { get; set; }
         public ICollection<EventUser> EventUser { get; set; }
+        
+        public ICollection<GameStatistics> GameStatistics { get; set; }
     }
 }
