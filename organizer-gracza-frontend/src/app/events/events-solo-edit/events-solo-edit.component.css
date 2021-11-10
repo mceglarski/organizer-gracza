@@ -1,0 +1,24 @@
+.event-edit-page-content{
+  background-color: black;
+  height: 1160px;
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 4%;
+  color: white;
+}
+.flex-content{
+  display: flex;
+}
+.edit-form{
+  width: 30%;
+}
+.card{
+  color: black;
+}
+.img-thumbnail{
+  min-width: 250px;
+  min-height: 250px;
+}
+.event-photo{
+  margin-left: 400px;
+}

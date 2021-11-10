@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PhotoManagementComponent } from './photo-management.component';
+import { EventsSoloUpdateComponent } from './events-solo-update.component';
 
-describe('PhotoManagementComponent', () => {
-  let component: PhotoManagementComponent;
-  let fixture: ComponentFixture<PhotoManagementComponent>;
+describe('EventsSoloUpdateComponent', () => {
+  let component: EventsSoloUpdateComponent;
+  let fixture: ComponentFixture<EventsSoloUpdateComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PhotoManagementComponent ]
+      declarations: [ EventsSoloUpdateComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PhotoManagementComponent);
+    fixture = TestBed.createComponent(EventsSoloUpdateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

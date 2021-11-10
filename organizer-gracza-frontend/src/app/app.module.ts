@@ -45,7 +45,6 @@ import { MessagesMembersChatComponent } from './messages/messages-members-chat/m
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { HasRoleDirective } from './_directives/has-role.directive';
 import { UserManagementComponent } from './admin/user-management/user-management.component';
-import { PhotoManagementComponent } from './admin/photo-management/photo-management.component';
 import {TabsModule} from "ngx-bootstrap/tabs";
 import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
 import {ModalModule} from "ngx-bootstrap/modal";
@@ -61,6 +60,12 @@ import { EventsSoloDetailsComponent } from './events/events-solo-details/events-
 import { EventsTeamDetailsComponent } from './events/events-team-details/events-team-details.component';
 import { EventsSoloEditComponent } from './events/events-solo-edit/events-solo-edit.component';
 import { EventsTeamEditComponent } from './events/events-team-edit/events-team-edit.component';
+import {BsDatepickerModule} from "ngx-bootstrap/datepicker";
+import { EventsSoloUpdateComponent } from './events/events-solo-update/events-solo-update.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatButtonModule} from "@angular/material/button";
+import {MatInputModule} from "@angular/material/input";
+
 
 @NgModule({
   declarations: [
@@ -91,7 +96,6 @@ import { EventsTeamEditComponent } from './events/events-team-edit/events-team-e
     AdminPanelComponent,
     HasRoleDirective,
     UserManagementComponent,
-    PhotoManagementComponent,
     RolesModalComponent,
     EventManagementComponent,
     TeamsListComponent,
@@ -105,29 +109,34 @@ import { EventsTeamEditComponent } from './events/events-team-edit/events-team-e
     EventsTeamDetailsComponent,
     EventsSoloEditComponent,
     EventsTeamEditComponent,
+    EventsSoloUpdateComponent
   ],
-    imports: [
-        BrowserModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        IvyCarouselModule,
-        AppRoutingModule,
-        RouterModule,
-        FormsModule,
-        NgbModule,
-        BsDropdownModule.forRoot(),
-        ToastrModule.forRoot({
-            positionClass: 'toast-bottom-right'
-        }),
-        ReactiveFormsModule,
-        NgxSpinnerModule,
-        FileUploadModule,
-        PaginationModule.forRoot(),
-        TimeagoModule.forRoot(),
-        ButtonsModule,
-        TabsModule,
-        ModalModule.forRoot()
-    ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    IvyCarouselModule,
+    AppRoutingModule,
+    RouterModule,
+    FormsModule,
+    NgbModule,
+    BsDropdownModule.forRoot(),
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right'
+    }),
+    ReactiveFormsModule,
+    NgxSpinnerModule,
+    FileUploadModule,
+    PaginationModule.forRoot(),
+    TimeagoModule.forRoot(),
+    ButtonsModule,
+    TabsModule,
+    ModalModule.forRoot(),
+    BsDatepickerModule.forRoot(),
+    MatDialogModule,
+    MatButtonModule,
+    MatInputModule
+  ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

@@ -20,7 +20,8 @@
               <td>{{event!.eventOrganiser}}</td>
               <td>{{event!.game.gameId}}</td>
               <td>
-                <button (click)="(event!)" class="btn btn-info">Edit Event</button>
+<!--                <button routerLink="events/eventsuser/{{event.eventUserId}}" class="btn btn-info">Edit Event</button>-->
+                <button mat-button (click)="openEditEventUserModal(event.eventUserId)" class="btn btn-info">Edit Event</button>
               </td>
               <td>
                 <button (click)="deleteUserEvent(event.eventUserId)" class="btn btn-danger">Delete Event
@@ -51,7 +52,7 @@
             <td>{{event!.eventOrganiser}}</td>
             <td>{{event!.game.gameId}}</td>
             <td>
-              <button (click)="(event!)" class="btn btn-info">Edit Event</button>
+              <button routerLink="events/eventsuser/{{event}}" class="btn btn-info">Edit Event</button>
             </td>
             <td>
               <button (click)="deleteTeamEvent(event.eventTeamId)" class="btn btn-danger">Delete Event
