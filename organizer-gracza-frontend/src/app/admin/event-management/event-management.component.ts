@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {EventsService} from "../../_services/events.service";
 import {EventTeam, EventUser, Game, Photo, User} from "../../model/model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import { Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {GameService} from "../../_services/game.service";
@@ -10,6 +10,9 @@ import {FileUploader} from "ng2-file-upload";
 import {AccountService} from "../../_services/account.service";
 import {take} from "rxjs/operators";
 import {environment} from "../../../environments/environment";
+import {MatDialog, MatDialogRef, MatDialogModule} from "@angular/material/dialog";
+import {EventsSoloUpdateComponent} from "../../events/events-solo-update/events-solo-update.component";
+
 
 
 @Component({
@@ -24,6 +27,8 @@ export class EventManagementComponent implements OnInit {
   userEvents: EventUser[];
   // @ts-ignore
   event: EventUser;
+  // @ts-ignore
+  eventUser: EventUser;
   // @ts-ignore
   eventTeam: EventTeam;
   // @ts-ignore
@@ -41,7 +46,8 @@ export class EventManagementComponent implements OnInit {
   user: User;
 
   constructor(public eventService: EventsService, private modalService: NgbModal, private toastr: ToastrService,
-              public gameService: GameService, private route: Router, private accountService: AccountService) {
+              public gameService: GameService, private route: Router, private accountService: AccountService,
+              private dialog: MatDialog) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
   }
 
@@ -89,7 +95,7 @@ export class EventManagementComponent implements OnInit {
   loadTeamEvent(){
     this.eventService.getTeamEventByName(this.newTeamEventForm.value.name).subscribe(specifiedEvent => {
       // @ts-ignore
-      this.event = specifiedEvent;
+      this.eventTeam = specifiedEvent;
     })
   }
 
@@ -165,6 +171,16 @@ export class EventManagementComponent implements OnInit {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
   }
 
+  openEditEventUserModal(eventUserId: number): void{
+    const dialogRef = this.dialog.open(EventsSoloUpdateComponent, {
+      width: '500px',
+      data:{
+        eventUserId: eventUserId
+      }
+    });
+    dialogRef.afterClosed().subscribe();
+  }
+
   newUserEvent() {
     this.eventService.addUserEvent(this.newUserEventForm.value).subscribe(response => {
       this.toastr.info("Wydarzenie zostało dodane");
@@ -175,7 +191,6 @@ export class EventManagementComponent implements OnInit {
     })
     this.initializeUserUploader();
   }
-
 
   newTeamEvent() {
     this.eventService.addTeamEvent(this.newTeamEventForm.value).subscribe(response => {
@@ -199,4 +214,5 @@ export class EventManagementComponent implements OnInit {
       this.teamEvents.splice(this.teamEvents.findIndex(x => x.eventTeamId === eventTeamId), 1);
     })
   }
+
 }

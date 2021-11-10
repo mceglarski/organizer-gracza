@@ -15,7 +15,8 @@ import {AdminGuard} from "./_guards/admin.guard";
 import {CommunityListComponent} from "./community/community-list/community-list.component";
 import {TeamsDetailsComponent} from "./teams/teams-details/teams-details.component";
 import {EventsListComponent} from "./events/events-list/events-list.component";
-import {EventsSoloListComponent} from "./events/events-solo-list/events-solo-list.component";
+import {EventsSoloEditComponent} from "./events/events-solo-edit/events-solo-edit.component";
+import {EventsTeamEditComponent} from "./events/events-team-edit/events-team-edit.component";
 import {EventsSoloDetailsComponent} from "./events/events-solo-details/events-solo-details.component";
 import {EventsTeamDetailsComponent} from "./events/events-team-details/events-team-details.component";
 
@@ -33,6 +34,8 @@ const routes: Routes = [
       {path: 'messages', component: MessagesChatComponent},
       {path: 'messages/thread/:username', component: MessagesMembersChatComponent, resolve: {member: MemberDetailedResolver}},
       {path: 'admin', component: AdminPanelComponent, canActivate: [AdminGuard]},
+      {path: 'admin/events/eventsuser/:eventUserId', component: EventsSoloEditComponent},
+      {path: 'admin/events/eventsteam/:eventTeamId', component: EventsTeamEditComponent},
       {path: 'events/eventsuser/:eventUserId', component: EventsSoloDetailsComponent},
       {path: 'events/eventsteam/:eventTeamId', component: EventsTeamDetailsComponent},
       {path: 'events', component: EventsListComponent}

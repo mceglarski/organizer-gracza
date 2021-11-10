@@ -1,1 +1,69 @@
-<p>events-solo-edit works!</p>
+<div class="event-edit-page-content" *ngIf="eventUser" xmlns="http://www.w3.org/1999/html">
+  <h2>Edytuj wydarzenie</h2>
+  <div class="flex-content">
+    <div class="edit-form">
+      <form #editForm="ngForm" (ngSubmit)="updateEventUser()" id="editForm">
+        <h4>Nazwa:</h4>
+        <textarea class="form-control" [(ngModel)]="eventUser.name" name="name" rows="1"></textarea>
+        <h4>Opis:</h4>
+        <textarea class="form-control" [(ngModel)]="eventUser.description" name="description" rows="1"></textarea>
+        <h4>Typ wydarzenia:</h4>
+        <textarea class="form-control" [(ngModel)]="eventUser.eventType" name="eventType" rows="1"></textarea>
+        <h4>Organizator:</h4>
+        <textarea class="form-control" [(ngModel)]="eventUser.eventOrganiser" name="eventOrganiser" rows="1"></textarea>
+        <h4>Nagroda:</h4>
+        <div class="form-group">
+          <input type="number" class="form-control" id="winnerPrize"
+                 [(ngModel)]="eventUser.winnerPrize" name="winnerPrize" required>
+        </div>
+        <h4>Data rozpoczęcia:</h4>
+        <div class="form-group">
+          <input type="date" class="form-control" id="startDate"
+                 [(ngModel)]="eventUser.startDate" name="startDate" required>
+        </div>
+        <h4>Data zakończenia:</h4>
+        <div class="form-group">
+          <input type="date" class="form-control" id="endDate"
+                 [(ngModel)]="eventUser.endDate" name="endDate" required="required">
+        </div>
+        <h4>Gra:</h4>
+        <div class="form-group">
+          <select class="form-control" id="gameId" required>
+            <option [ngValue]="game.gameId" *ngFor="let game of games">{{game.title}}</option>
+          </select>
+        </div>
+      </form>
+    </div>
+    <div class="event-photo">
+      <h4>Zmień zdjęcie wydarzenia</h4>
+      <div class="row">
+        <div class="col-2">
+          <img src="{{eventUser.photoUrl}}" alt="{{eventUser.photoUrl}}" class="img-thumbnail p-1">
+        </div>
+      </div>
+      <div class="row mt-3">
+
+        <div class="col-md-3">
+
+          <h3>Dodaj zdjęcie</h3>
+
+          <div ng2FileDrop
+               [ngClass]="{'nv-file-over': hasBaseDropzoneOver}"
+               (fileOver)="fileOverBase($event)"
+               [uploader]="uploader"
+               class="card bg-faded p-3 text-center mb-3 my-drop-zone">
+            <i class="fa fa-upload fa-3x"></i>
+            Drop photo here
+          </div>
+
+          Single
+          <input type="file" ng2FileSelect [uploader]="uploader"/>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button [disabled]="editForm.invalid" form="editForm" type="submit" (click)="uploader.uploadAll()"
+          class="btn-lg btn-success btn-block mt-5">
+    Zapisz zmiany
+  </button>
+</div>

@@ -75,11 +75,6 @@ export class EventsService {
   }
 
   updateUserEvent(userEvent: EventUser, eventId: number) {
-    return this.http.put(this.baseUrl + 'eventuser' + eventId, userEvent).pipe(
-      map(() => {
-        const index = this.eventUsers.indexOf(userEvent);
-        this.eventUsers[index] = userEvent;
-      })
-    )
+    return this.http.put(this.baseUrl + 'eventsuser/' + eventId, userEvent);
   }
 }
