@@ -21,32 +21,29 @@ import {EventsSoloUpdateComponent} from "../../events/events-solo-update/events-
   styleUrls: ['./event-management.component.css']
 })
 export class EventManagementComponent implements OnInit {
-  // @ts-ignore
-  teamEvents: EventTeam[];
-  // @ts-ignore
-  userEvents: EventUser[];
-  // @ts-ignore
-  event: EventUser;
-  // @ts-ignore
-  eventUser: EventUser;
-  // @ts-ignore
-  eventTeam: EventTeam;
-  // @ts-ignore
-  newUserEventForm: FormGroup;
-  // @ts-ignore
-  newTeamEventForm: FormGroup;
-  validationErrors: string[] = [];
-  // @ts-ignore
-  games: Game[];
-  baseUrl = environment.apiUrl;
-  // @ts-ignore
-  uploader: FileUploader;
-  hasBaseDropzoneOver = false;
-  // @ts-ignore
-  user: User;
 
-  constructor(public eventService: EventsService, private modalService: NgbModal, private toastr: ToastrService,
-              public gameService: GameService, private route: Router, private accountService: AccountService,
+  public teamEvents: EventTeam[] = [];
+  public userEvents: EventUser[] = [];
+  public event: EventUser;
+  public eventUser: EventUser;
+  public eventTeam: EventTeam;
+  public newUserEventForm: FormGroup;
+  public newTeamEventForm: FormGroup;
+  public validationErrors: string[] = [];
+  public games: Game[] = [];
+  public uploader: FileUploader;
+  public hasBaseDropzoneOver = false;
+  public user: User;
+
+  private baseUrl = environment.apiUrl;
+
+
+  constructor(public eventService: EventsService,
+              public gameService: GameService,
+              private modalService: NgbModal,
+              private toastr: ToastrService,
+              private route: Router,
+              private accountService: AccountService,
               private dialog: MatDialog) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
   }
@@ -59,11 +56,11 @@ export class EventManagementComponent implements OnInit {
     this.initializeTeamEventForm();
   }
 
-  fileOverBase(e: any){
+  public fileOverBase(e: any){
     this.hasBaseDropzoneOver = e;
   }
 
-  loadTeamEvents() {
+  public loadTeamEvents() {
     this.eventService.getTeamEvents().subscribe(teamEvents => {
       // @ts-ignore
       this.teamEvents = teamEvents;
@@ -71,35 +68,35 @@ export class EventManagementComponent implements OnInit {
 
   }
 
-  loadUserEvents() {
+  public loadUserEvents() {
     this.eventService.getUserEvents().subscribe(userEvents => {
       // @ts-ignore
       this.userEvents = userEvents;
     })
   }
 
-  loadGames() {
+  public loadGames() {
     this.gameService.getGames().subscribe(games => {
       // @ts-ignore
       this.games = games;
     })
   }
 
-  loadEvent(){
+  public loadEvent(){
     this.eventService.getUserEventByName(this.newUserEventForm.value.name).subscribe(specifiedEvent => {
       // @ts-ignore
       this.event = specifiedEvent;
     })
   }
 
-  loadTeamEvent(){
+  public loadTeamEvent(){
     this.eventService.getTeamEventByName(this.newTeamEventForm.value.name).subscribe(specifiedEvent => {
       // @ts-ignore
       this.eventTeam = specifiedEvent;
     })
   }
 
-  initializeUserUploader(){
+  public initializeUserUploader(){
     this.uploader = new FileUploader({
       url: this.baseUrl + 'eventsuser/add-photo/' + this.newUserEventForm.value.name,
       authToken: 'Bearer ' + this.user.token,
@@ -120,7 +117,7 @@ export class EventManagementComponent implements OnInit {
     }
   }
 
-  initializeTeamUploader(){
+  public initializeTeamUploader(){
     this.uploader = new FileUploader({
       url: this.baseUrl + 'eventsteam/add-photo/' + this.newTeamEventForm.value.name,
       authToken: 'Bearer ' + this.user.token,
@@ -141,7 +138,7 @@ export class EventManagementComponent implements OnInit {
     }
   }
 
-  initializeAddEventForm(){
+  public initializeAddEventForm(){
     this.newUserEventForm = new FormGroup({
       name: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
@@ -154,7 +151,7 @@ export class EventManagementComponent implements OnInit {
     })
   }
 
-  initializeTeamEventForm(){
+  public initializeTeamEventForm(){
     this.newTeamEventForm = new FormGroup({
       name: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
@@ -167,11 +164,11 @@ export class EventManagementComponent implements OnInit {
     })
   }
 
-  open(content: any) {
+  public open(content: any) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
   }
 
-  openEditEventUserModal(eventUserId: number): void{
+  public openEditEventUserModal(eventUserId: number): void{
     const dialogRef = this.dialog.open(EventsSoloUpdateComponent, {
       width: '500px',
       data:{
@@ -181,7 +178,7 @@ export class EventManagementComponent implements OnInit {
     dialogRef.afterClosed().subscribe();
   }
 
-  newUserEvent() {
+  public newUserEvent() {
     this.eventService.addUserEvent(this.newUserEventForm.value).subscribe(response => {
       this.toastr.info("Wydarzenie zostało dodane");
     }, error => {
@@ -192,7 +189,7 @@ export class EventManagementComponent implements OnInit {
     this.initializeUserUploader();
   }
 
-  newTeamEvent() {
+  public newTeamEvent() {
     this.eventService.addTeamEvent(this.newTeamEventForm.value).subscribe(response => {
       this.toastr.info("Wydarzenie zostało dodane");
     }, error => {
@@ -203,13 +200,13 @@ export class EventManagementComponent implements OnInit {
     this.initializeTeamUploader();
   }
 
-  deleteUserEvent(eventUserId: number){
+  public deleteUserEvent(eventUserId: number){
     this.eventService.deleteUserEvent(eventUserId).subscribe(() => {
       this.userEvents.splice(this.userEvents.findIndex(x => x.eventUserId === eventUserId), 1);
     })
   }
 
-  deleteTeamEvent(eventTeamId: number){
+  public deleteTeamEvent(eventTeamId: number){
     this.eventService.deleteTeamEvent(eventTeamId).subscribe(() => {
       this.teamEvents.splice(this.teamEvents.findIndex(x => x.eventTeamId === eventTeamId), 1);
     })
