@@ -3,15 +3,18 @@
   color: wheat;
   margin-bottom: 100px;
 }
+
 .navbar {
   background-color: black;
 }
+
 .flex-menu-container{
   display: flex;
   width: 100%;
   justify-content: flex-end;
   margin-right: 20px;
 }
+
 .navbar-brand{
   margin-left: 10%;
   font-weight: bold;
@@ -30,6 +33,7 @@
 .hide{
   display: none;
 }
+
 img{
   max-height: 50px;
   max-width: 50px;
