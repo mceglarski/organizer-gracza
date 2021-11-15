@@ -65,6 +65,8 @@ import { EventsSoloUpdateComponent } from './events/events-solo-update/events-so
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
+import { GameStatisticsComponent } from './statistics/game-statistics/game-statistics.component';
+import {MatSelectModule} from "@angular/material/select";
 
 
 @NgModule({
@@ -109,34 +111,36 @@ import {MatInputModule} from "@angular/material/input";
     EventsTeamDetailsComponent,
     EventsSoloEditComponent,
     EventsTeamEditComponent,
-    EventsSoloUpdateComponent
+    EventsSoloUpdateComponent,
+    GameStatisticsComponent
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    IvyCarouselModule,
-    AppRoutingModule,
-    RouterModule,
-    FormsModule,
-    NgbModule,
-    BsDropdownModule.forRoot(),
-    ToastrModule.forRoot({
-      positionClass: 'toast-bottom-right'
-    }),
-    ReactiveFormsModule,
-    NgxSpinnerModule,
-    FileUploadModule,
-    PaginationModule.forRoot(),
-    TimeagoModule.forRoot(),
-    ButtonsModule,
-    TabsModule,
-    ModalModule.forRoot(),
-    BsDatepickerModule.forRoot(),
-    MatDialogModule,
-    MatButtonModule,
-    MatInputModule
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        IvyCarouselModule,
+        AppRoutingModule,
+        RouterModule,
+        FormsModule,
+        NgbModule,
+        BsDropdownModule.forRoot(),
+        ToastrModule.forRoot({
+            positionClass: 'toast-bottom-right'
+        }),
+        ReactiveFormsModule,
+        NgxSpinnerModule,
+        FileUploadModule,
+        PaginationModule.forRoot(),
+        TimeagoModule.forRoot(),
+        ButtonsModule,
+        TabsModule,
+        ModalModule.forRoot(),
+        BsDatepickerModule.forRoot(),
+        MatDialogModule,
+        MatButtonModule,
+        MatInputModule,
+        MatSelectModule
+    ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

@@ -1,0 +1,32 @@
+[
+  {
+    "GameId": 1,
+    "LostGames": 5,
+    "UserId": 1,
+    "WonGames": 5
+  },
+  {
+    "GameId": 1,
+    "LostGames": 12,
+    "UserId": 2,
+    "WonGames": 15
+  },
+  {
+    "GameId": 2,
+    "LostGames": 15,
+    "UserId": 1,
+    "WonGames": 10
+  },
+  {
+    "GameId": 3,
+    "LostGames": 4,
+    "UserId": 3,
+    "WonGames": 125
+  },
+  {
+    "GameId": 2,
+    "LostGames": 155,
+    "UserId": 4,
+    "WonGames": 5
+  }
+]

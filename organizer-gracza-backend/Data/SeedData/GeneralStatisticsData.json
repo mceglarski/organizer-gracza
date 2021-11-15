@@ -1,0 +1,62 @@
+[
+  {
+    "EventsParticipated": 10,
+    "EventsWon": 10,
+    "PostWritten": 5,
+    "UserId": 1
+  },
+  {
+    "EventsParticipated": 1,
+    "EventsWon": 5,
+    "PostWritten": 13,
+    "UserId": 2
+  },
+  {
+    "EventsParticipated": 1,
+    "EventsWon": 5,
+    "PostWritten": 16,
+    "UserId": 3
+  },
+  {
+    "EventsParticipated": 1,
+    "EventsWon": 5,
+    "PostWritten": 12,
+    "UserId": 4
+  },
+  {
+    "EventsParticipated": 1,
+    "EventsWon": 5,
+    "PostWritten": 45,
+    "UserId": 5
+  },
+  {
+    "EventsParticipated": 10,
+    "EventsWon": 10,
+    "PostWritten": 24,
+    "UserId": 6
+  },
+  {
+    "EventsParticipated": 1,
+    "EventsWon": 5,
+    "PostWritten": 12,
+    "UserId": 7
+  },
+  {
+    "EventsParticipated": 1,
+    "EventsWon": 5,
+    "PostWritten": 33,
+    "UserId": 8
+  },
+  {
+    "EventsParticipated": 1,
+    "EventsWon": 5,
+    "PostWritten": 22,
+    "UserId": 9
+  },
+  {
+    "EventsParticipated": 1,
+    "EventsWon": 5,
+    "PostWritten": 7,
+    "UserId": 10
+  }
+]

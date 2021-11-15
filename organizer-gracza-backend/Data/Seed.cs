@@ -1,7 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
@@ -186,6 +183,44 @@ namespace organizer_gracza_backend.Data
            await userManager.CreateAsync(admin, "Pa$$w0rd");
            await userManager.AddToRolesAsync(admin, new[] {"Admin", "Moderator", "Redaktor"});
             
+        }
+        
+        public static async Task SeedGameStatistics(DataContext context)
+        {
+            if (await context.GameStatistics.AnyAsync())
+                return;
+        
+            var gameStatistics =
+                await System.IO.File.ReadAllTextAsync("Data/SeedData/GameStatisticsData.json");
+            var gameStatisticsData = JsonSerializer.Deserialize<List<GameStatistics>>(gameStatistics);
+            if (gameStatisticsData == null)
+                return;
+        
+            foreach (var gamesStatistics in gameStatisticsData)
+            {
+                await context.AddAsync(gamesStatistics);
+            }
+        
+            await context.SaveChangesAsync();
+        }
+        
+        public static async Task SeedGeneralStatistics(DataContext context)
+        {
+            if (await context.GeneralStatistics.AnyAsync())
+                return;
+        
+            var generalStatistics =
+                await System.IO.File.ReadAllTextAsync("Data/SeedData/GeneralStatisticsData.json");
+            var generalStatisticsData = JsonSerializer.Deserialize<List<GeneralStatistics>>(generalStatistics);
+            if (generalStatisticsData == null)
+                return;
+        
+            foreach (var generalStatistic in generalStatisticsData)
+            {
+                await context.AddAsync(generalStatistic);
+            }
+        
+            await context.SaveChangesAsync();
         }
     }
 }
