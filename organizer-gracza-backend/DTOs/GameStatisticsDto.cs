@@ -7,9 +7,6 @@
         public int? LostGames { get; set; }
         
         public int? GameId { get; set; }
-        public GameDto Game { get; set; }
-        
         public int? UserId { get; set; }
-        public UserDto User { get; set; }
     }
 }

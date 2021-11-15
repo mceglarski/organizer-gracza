@@ -13,7 +13,7 @@
   display: flex;
   align-items: center;
   text-align: center;
-  width: 100%;
+  width: 85%;
 }
 
 .separator::after {
@@ -35,4 +35,22 @@
 .statisticValue{
   color: #C3073F;
   margin-left: 5%;
+}
+.game-select{
+  color: white;
+}
+/deep/ .mat-select-panel {
+  background-color: white;
+}
+/deep/ .mat-form-field-infix{
+  background-color: white;
+}
+/deep/ .mat-select{
+  background-color: white;
+}
+/deep/ .mat-form-field-type-mat-select, .mat-select-value {
+  color: white;
+}
+/deep/ .mat-form-field-label{
+  color: blue;
 }

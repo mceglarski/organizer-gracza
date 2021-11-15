@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using organizer_gracza_backend.Interfaces;
@@ -20,6 +21,24 @@ namespace organizer_gracza_backend.Data
                 .Include(u => u.User)
                 .Include(g => g.Game)
                 .SingleOrDefaultAsync(x => x.GameStatisticsId == gameStatisticsId);
+        }
+
+        public async Task<GameStatistics> GetGameStatisticsForUser(int userId, int gameId)
+        {
+            return await _context.GameStatistics
+                .Include(u => u.User)
+                .Include(g => g.Game)
+                .Where(u => u.UserId == userId)
+                .SingleOrDefaultAsync(g => g.GameId == gameId);
+        }
+
+        public async Task<IEnumerable<GameStatistics>> GetGameStatisticsByUserId(int userId)
+        {
+            return await _context.GameStatistics
+                .Include(u => u.User)
+                .Include(g => g.Game)
+                .Where(x => x.UserId == userId)
+                .ToListAsync();
         }
 
         public async Task<IEnumerable<GameStatistics>> GetGameStatisticsAsync()

@@ -1,4 +1,4 @@
-export interface User{
+export interface User {
   Id: number;
   username: string;
   nickname: string;
@@ -32,14 +32,14 @@ export interface Member {
   photos: Photo[];
 }
 
-export interface Pagination{
+export interface Pagination {
   currentPage: number;
   itemsPerPage: number;
   totalItems: number;
   totalPages: number;
 }
 
-export class PaginatedResult<T>{
+export class PaginatedResult<T> {
   // @ts-ignore
   result: T;
   // @ts-ignore
@@ -64,12 +64,12 @@ export interface Message {
   messageSent: Date;
 }
 
-export interface Group{
-  name:string;
+export interface Group {
+  name: string;
   connections: Connection[];
 }
 
-export interface Connection{
+export interface Connection {
   connectionId: string;
   username: string;
 }
@@ -104,32 +104,32 @@ export interface EventTeam {
   eventTeamRegistration: EventTeamRegistration[];
 }
 
-export interface EventUserRegistration{
+export interface EventUserRegistration {
   eventUserRegistrationId: number;
   userId: number;
   eventUserId: number;
 }
 
-export interface EventTeamRegistration{
+export interface EventTeamRegistration {
   eventTeamRegistrationId: number;
   teamId: number;
   eventTeamId: number;
   team: Team;
 }
 
-export interface Participiant{
+export interface Participiant {
   Id: number;
   nickname: string;
 }
 
-export interface Team{
+export interface Team {
   teamId: number;
   name: string;
   photoUrl: string;
   teamUser: TeamUser[]
 }
 
-export interface TeamUser{
+export interface TeamUser {
   teamUserId: number;
   userId: number;
   user: User;
@@ -137,7 +137,24 @@ export interface TeamUser{
   team: Team;
 }
 
-export interface Game{
+export interface Game {
   gameId: number;
   title: string;
+}
+
+export interface GameStatistics {
+  gameStatisticsId: number;
+  wonGames: number;
+  lostGames: number;
+  gameId: number;
+  userId: number;
+}
+
+export interface GeneralStatistics {
+  generalStatisticsId: number;
+  eventsParticipated: number;
+  eventsWon: number;
+  postWritten: number;
+  userId: number;
+  user: User;
 }

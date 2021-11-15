@@ -37,6 +37,14 @@ namespace organizer_gracza_backend.Controllers
 
             return _mapper.Map<GeneralStatisticsDto>(generalStatistics);
         }
+        
+        [HttpGet("userId/{id}")]
+        public async Task<ActionResult<GeneralStatisticsDto>> GetGeneralStatisticsByUserIdAsync(int id)
+        {
+            var generalStatistics = await _generalStatisticsRepository.GetGeneralStatisticsByUserIdAsync(id);
+
+            return _mapper.Map<GeneralStatisticsDto>(generalStatistics);
+        }
 
         [HttpPost]
         public async Task<ActionResult<GeneralStatisticsDto>> CreateGeneralStatistics(GeneralStatisticsDto generalStatisticsDto)

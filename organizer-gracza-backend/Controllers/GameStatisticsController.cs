@@ -39,6 +39,25 @@ namespace organizer_gracza_backend.Controllers
             
         }
         
+        [HttpGet("userId/{id}")]
+        public async Task<ActionResult<IEnumerable<GameStatisticsDto>>> GetGameStatisticsByUserIdAsync(int id)
+        {
+            var gameStatistics = await _gameStatisticsRepository.GetGameStatisticsByUserId(id);
+
+            var gameStatisticsToReturn = _mapper.Map<IEnumerable<GameStatisticsDto>>(gameStatistics);
+
+            return Ok(gameStatisticsToReturn);
+            
+        }
+        
+        [HttpGet("specifiedgame/{userId}/{gameId}")]
+        public async Task<ActionResult<GameStatisticsDto>> GetGameStatisticForUser(int userId, int gameId)
+        {
+            var gameStatistics = await _gameStatisticsRepository.GetGameStatisticsForUser(userId, gameId);
+
+            return _mapper.Map<GameStatisticsDto>(gameStatistics);
+        }
+        
         [HttpPost]
         public async Task<ActionResult<GameStatisticsDto>> CreateGameStatistics(GameStatisticsDto gameStatisticsDto)
         {
