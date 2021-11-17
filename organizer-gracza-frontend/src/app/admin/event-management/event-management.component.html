@@ -20,8 +20,7 @@
               <td>{{event!.eventOrganiser}}</td>
               <td>{{event!.game.gameId}}</td>
               <td>
-<!--                <button routerLink="events/eventsuser/{{event.eventUserId}}" class="btn btn-info">Edit Event</button>-->
-                <button mat-button (click)="openEditEventUserModal(event.eventUserId)" class="btn btn-info">Edit Event</button>
+                <button mat-button (click)="openEditEventUserModal(event)" class="btn btn-info">Edit Event</button>
               </td>
               <td>
                 <button (click)="deleteUserEvent(event.eventUserId)" class="btn btn-danger">Delete Event
@@ -163,8 +162,11 @@
   </div>
 
   <div class="modal-footer">
-    <button [disabled]="!newUserEventForm.valid" type="submit" class="btn btn-success" form="newUserEventForm"
-            (click)="open(addPhotoUserEvent)" (click)="modal.close">Przejdź do wyboru zdjęcia
+    <button type="submit" class="btn btn-success" form="newUserEventForm"
+            [disabled]="!newUserEventForm.valid"
+            (click)="modal.close()"
+            (click)="open(addPhotoUserEvent)">
+      Przejdź do wyboru zdjęcia
     </button>
     <button type="button" class="btn btn-danger" (click)="modal.close()">Anuluj</button>
   </div>

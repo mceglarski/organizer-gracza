@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {EventsService} from "../../_services/events.service";
 import {EventTeam, EventUser, Game, Photo, User} from "../../model/model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
@@ -10,7 +10,7 @@ import {FileUploader} from "ng2-file-upload";
 import {AccountService} from "../../_services/account.service";
 import {take} from "rxjs/operators";
 import {environment} from "../../../environments/environment";
-import {MatDialog, MatDialogRef, MatDialogModule} from "@angular/material/dialog";
+import {MatDialog} from "@angular/material/dialog";
 import {EventsSoloUpdateComponent} from "../../events/events-solo-update/events-solo-update.component";
 
 
@@ -44,11 +44,16 @@ export class EventManagementComponent implements OnInit {
               private toastr: ToastrService,
               private route: Router,
               private accountService: AccountService,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private cd: ChangeDetectorRef) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
   }
 
   ngOnInit(): void {
+    this.init();
+  }
+
+  init(): void {
     this.loadUserEvents();
     this.loadTeamEvents();
     this.loadGames();
@@ -72,6 +77,7 @@ export class EventManagementComponent implements OnInit {
     this.eventService.getUserEvents().subscribe(userEvents => {
       // @ts-ignore
       this.userEvents = userEvents;
+      this.cd.detectChanges();
     })
   }
 
@@ -96,7 +102,7 @@ export class EventManagementComponent implements OnInit {
     })
   }
 
-  public initializeUserUploader(){
+  public initializeUserUploader() {
     this.uploader = new FileUploader({
       url: this.baseUrl + 'eventsuser/add-photo/' + this.newUserEventForm.value.name,
       authToken: 'Bearer ' + this.user.token,
@@ -108,10 +114,9 @@ export class EventManagementComponent implements OnInit {
     });
 
     this.uploader.onSuccessItem = (item, response, status, headers) => {
-      if(response){
+      if(response) {
         this.loadEvent();
         const photo: Photo = JSON.parse(response);
-        console.log(photo);
         this.event.photoUrl = photo.url;
       }
     }
@@ -168,14 +173,19 @@ export class EventManagementComponent implements OnInit {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
   }
 
-  public openEditEventUserModal(eventUserId: number): void{
+  public openEditEventUserModal(event: EventUser): void{
     const dialogRef = this.dialog.open(EventsSoloUpdateComponent, {
-      width: '500px',
-      data:{
-        eventUserId: eventUserId
+      width: '530px',
+      disableClose: true,
+      data: {
+        event: event,
+        user: this.user
       }
     });
-    dialogRef.afterClosed().subscribe();
+    dialogRef.afterClosed().subscribe(() => {
+      this.init();
+      return;
+    });
   }
 
   public newUserEvent() {

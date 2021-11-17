@@ -10,7 +10,8 @@ import {MemberContentComponent} from "../../member-page/member-content/member-co
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public login: LoginComponent, public accountService: AccountService, public memberContent: MemberContentComponent) {}
+  constructor(public login: LoginComponent,
+              public accountService: AccountService) {}
 
   ngOnInit(): void {
 
