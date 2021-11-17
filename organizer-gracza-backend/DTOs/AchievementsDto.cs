@@ -1,16 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using organizer_gracza_backend.Model;
 
-namespace organizer_gracza_backend.Model
+namespace organizer_gracza_backend.DTOs
 {
-    public class Achievements
+    public class AchievementsDto
     {
-        [Key]
         public int AchievementsId { get; set; }
         public string Name { get; set; }
         public string Details { get; set; }
         public string PhotoUrl { get; set; }
         
         public int? UserId { get; set; }
-        public User User { get; set; }
     }
 }

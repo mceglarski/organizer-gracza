@@ -222,5 +222,44 @@ namespace organizer_gracza_backend.Data
         
             await context.SaveChangesAsync();
         }
+        
+        public static async Task SeedAchievements(DataContext context)
+        {
+            if (await context.Achievements.AnyAsync())
+                return;
+        
+            var achievements =
+                await System.IO.File.ReadAllTextAsync("Data/SeedData/AchievementsSeedData.json");
+            var achievementsData = JsonSerializer.Deserialize<List<Achievements>>(achievements);
+            if (achievementsData == null)
+                return;
+        
+            foreach (var achievement in achievementsData)
+            {
+                await context.AddAsync(achievement);
+            }
+        
+            await context.SaveChangesAsync();
+        }
+        
+        public static async Task SeedUserAchievementCounter(DataContext context)
+        {
+            if (await context.UserAchievementCounters.AnyAsync())
+                return;
+        
+            var userAchievementsCounter =
+                await System.IO.File.ReadAllTextAsync("Data/SeedData/UserAchievementCounterSeedData.json");
+            var userAchievementCounterData = JsonSerializer.Deserialize<List<UserAchievementCounter>>
+                (userAchievementsCounter);
+            if (userAchievementCounterData == null)
+                return;
+        
+            foreach (var userAchievementCounter in userAchievementCounterData)
+            {
+                await context.AddAsync(userAchievementCounter);
+            }
+        
+            await context.SaveChangesAsync();
+        }
     }
 }
