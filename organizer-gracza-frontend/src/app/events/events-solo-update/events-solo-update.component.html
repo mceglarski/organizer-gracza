@@ -1,111 +1,146 @@
 <h1 mat-dialog-title>Edytuj Wydarzenie</h1>
+
 <div mat-dialog-content>
-  <mat-form-field appearance="fill">
-    <mat-label>Nazwa wydarzenia</mat-label>
-    <input matInput [(ngModel)]="data.eventUserId">
-  </mat-form-field>
+
+  <div class="modal-body">
+    <form [formGroup]='updateUserEventForm' (ngSubmit)="updateUserEventForm.valid"
+          id="updateUserEventForm">
+      <div class="form-group">
+        <mat-label>Nazwa wydarzenia</mat-label>
+        <input
+          [class.is-invalid]='updateUserEventForm.get("name")?.errors && updateUserEventForm.get("name")?.touched'
+          type="text"
+          class="form-control"
+          formControlName="name"
+          [ngModel]="data.event.name"
+          placeholder="Nazwa wydarzenia">
+        <div class="invalid-feedback">Nazwa wydarzenia jest wymagana</div>
+      </div>
+
+      <div class="form-group">
+        <mat-label>Opis wydarzenia</mat-label>
+        <input
+          [class.is-invalid]='updateUserEventForm.get("description")?.errors && updateUserEventForm.get("description")?.touched'
+          type="text"
+          class="form-control"
+          formControlName="description"
+          [ngModel]="data.event.description"
+          placeholder="Opis wydarzenia">
+        <div class="invalid-feedback">Opis wydarzenia jest wymagana</div>
+      </div>
+
+      <div class="form-group">
+        <mat-label>Data rozpoczęcia wydarzenia</mat-label>
+        <input
+          [class.is-invalid]='updateUserEventForm.get("startDate")?.errors && updateUserEventForm.get("startDate")?.touched'
+          type="date"
+          class="form-control"
+          formControlName="startDate"
+          [ngModel]="data.event.startDate | date: 'yyyy-MM-dd'"
+          placeholder="Data rozpoczęcia wydarzenia">
+        <div class="invalid-feedback">Data rozpoczęcia wydarzenia jest wymagana</div>
+      </div>
+
+      <div class="form-group">
+        <mat-label>Data zakończenia wydarzenia</mat-label>
+        <input
+          [class.is-invalid]='updateUserEventForm.get("endDate")?.errors && updateUserEventForm.get("endDate")?.touched'
+          type="date"
+          class="form-control"
+          formControlName="endDate"
+          [ngModel]="data.event.endDate | date: 'yyyy-MM-dd'"
+          placeholder="Data zakończenia wydarzenia">
+        <div class="invalid-feedback">Data zakończenia wydarzenia jest wymagana</div>
+      </div>
+
+      <div class="form-group">
+        <mat-label>Typ wydarzenia</mat-label>
+        <input
+          [class.is-invalid]='updateUserEventForm.get("eventType")?.errors && updateUserEventForm.get("eventType")?.touched'
+          type="text"
+          class="form-control"
+          formControlName="eventType"
+          [ngModel]="data.event.eventType"
+          placeholder="Typ wydarzenia">
+        <div class="invalid-feedback">Typ wydarzenia jest wymagana</div>
+      </div>
+
+      <div class="form-group">
+        <mat-label>Nagroda za wydarzenie</mat-label>
+        <input
+          [class.is-invalid]='updateUserEventForm.get("winnerPrize")?.errors && updateUserEventForm.get("winnerPrize")?.touched'
+          type="number"
+          class="form-control"
+          formControlName="winnerPrize"
+          [ngModel]="data.event.winnerPrize"
+          placeholder="Nagroda za wydarzenie">
+        <div class="invalid-feedback">Nagroda za wydarzenie jest wymagana</div>
+      </div>
+
+      <div class="form-group">
+        <mat-label>Organizator wydarzenia</mat-label>
+        <input
+          [class.is-invalid]='updateUserEventForm.get("eventOrganiser")?.errors && updateUserEventForm.get("eventOrganiser")?.touched'
+          type="text"
+          class="form-control"
+          formControlName="eventOrganiser"
+          [ngModel]="data.event.eventOrganiser"
+          placeholder="Organizator wydarzenia">
+        <div class="invalid-feedback">Organizator wydarzenia jest wymagany</div>
+      </div>
+
+      <div class="form-group">
+        <mat-label>Gra</mat-label>
+        <select
+          class="form-control"
+          formControlName="gameId"
+          [ngModel]="data.event.game.gameId">
+          <option [ngValue]="game.gameId" *ngFor="let game of games">{{game.title}}</option>
+        </select>
+      </div>
+    </form>
+  </div>
+
 </div>
-<div mat-dialog-actions>
-  <button mat-button >No Thanks</button>
-  <button mat-button >Ok</button>
+
+<div mat-dialog-actions class="events-update-buttons">
+  <button mat-button class="btn btn-success" (click)="updateEventUser(data.event.eventUserId)">Zapisz</button>
+  <button mat-button class="btn btn-success"
+          (click)="updateEventUser(data.event.eventUserId)"
+          (click)="open(addPhotoUserEvent)">
+    Przejdź do wyboru zdjęcia
+  </button>
+  <button mat-button class="btn btn-danger" (click)="closeEventUserUpdateModal()">Anuluj</button>
 </div>
-<!--<div mat-dialog-content>-->
-<!--&lt;!&ndash;  <ng-template #EditUserEvent let-modal>&ndash;&gt;-->
-<!--    <div class="modal-header">-->
-<!--      <h4 class="modal-title" id="modal-basic-title">Utwórz nowe wydarzenie dla użytkowników </h4>-->
-<!--&lt;!&ndash;      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">&ndash;&gt;-->
-<!--        <span aria-hidden="true">&times;</span>-->
-<!--&lt;!&ndash;      </button>&ndash;&gt;-->
-<!--    </div>-->
-<!--    <div class="modal-body">-->
-<!--      <form [formGroup]='updateUserEventForm'-->
-<!--            (ngSubmit)="updateUserEventForm.valid && updateEventUser(data.eventUserId)" autocomplete="off"-->
-<!--            id="updateUserEventForm">-->
-<!--        <div class="form-group">-->
-<!--          <input-->
-<!--            [class.is-invalid]='updateUserEventForm.get("name")?.errors && updateUserEventForm.get("name")?.touched'-->
-<!--            type="text"-->
-<!--            class="form-control"-->
-<!--            formControlName="name"-->
-<!--            placeholder="Nazwa wydarzenia">-->
-<!--          <div class="invalid-feedback">Nazwa wydarzenia jest wymagana</div>-->
-<!--        </div>-->
 
-<!--        <div class="form-group">-->
-<!--          <input-->
-<!--            [class.is-invalid]='updateUserEventForm.get("description")?.errors && updateUserEventForm.get("description")?.touched'-->
-<!--            type="text"-->
-<!--            class="form-control"-->
-<!--            formControlName="description"-->
-<!--            placeholder="Opis wydarzenia">-->
-<!--          <div class="invalid-feedback">Opis wydarzenia jest wymagana</div>-->
-<!--        </div>-->
+<ng-template #addPhotoUserEvent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Dodaj zdjęcie do swojego wydarzenia </h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="col-md-3">
 
-<!--        <div class="form-group">-->
-<!--          <input-->
-<!--            [class.is-invalid]='updateUserEventForm.get("startDate")?.errors && updateUserEventForm.get("startDate")?.touched'-->
-<!--            type="date"-->
-<!--            class="form-control"-->
-<!--            formControlName="startDate"-->
-<!--            placeholder="Data rozpoczęcia wydarzenia">-->
-<!--          <div class="invalid-feedback">Data rozpoczęcia wydarzenia jest wymagana</div>-->
-<!--        </div>-->
+      <h3>Add Photos</h3>
 
-<!--        <div class="form-group">-->
-<!--          <input-->
-<!--            [class.is-invalid]='updateUserEventForm.get("endDate")?.errors && updateUserEventForm.get("endDate")?.touched'-->
-<!--            type="date"-->
-<!--            class="form-control"-->
-<!--            formControlName="endDate"-->
-<!--            placeholder="Data zakończenia wydarzenia">-->
-<!--          <div class="invalid-feedback">Data zakończenia wydarzenia jest wymagana</div>-->
-<!--        </div>-->
+      <div ng2FileDrop
+           [ngClass]="{'nv-file-over': hasBaseDropzoneOver}"
+           (fileOver)="fileOverBase($event)"
+           [uploader]="uploader"
+           class="card bg-faded p-3 text-center mb-3 my-drop-zone">
+        <i class="fa fa-upload fa-3x"></i>
+        Drop photo here
+      </div>
 
-<!--        <div class="form-group">-->
-<!--          <input-->
-<!--            [class.is-invalid]='updateUserEventForm.get("eventType")?.errors && updateUserEventForm.get("eventType")?.touched'-->
-<!--            type="text"-->
-<!--            class="form-control"-->
-<!--            formControlName="eventType"-->
-<!--            placeholder="Typ wydarzenia">-->
-<!--          <div class="invalid-feedback">Typ wydarzenia jest wymagana</div>-->
-<!--        </div>-->
+      Single
+      <input type="file" ng2FileSelect [uploader]="uploader"/>
+    </div>
+    <button type="button" class="btn btn-success btn-s"
+            (click)="uploader.uploadAll()" (click)="modal.close()">
+      <span class="fa fa-upload"></span> Upload all
+    </button>
 
-<!--        <div class="form-group">-->
-<!--          <input-->
-<!--            [class.is-invalid]='updateUserEventForm.get("winnerPrize")?.errors && updateUserEventForm.get("winnerPrize")?.touched'-->
-<!--            type="number"-->
-<!--            class="form-control"-->
-<!--            formControlName="winnerPrize"-->
-<!--            placeholder="Nagroda za wydarzenie">-->
-<!--          <div class="invalid-feedback">Nagroda za wydarzenie jest wymagana</div>-->
-<!--        </div>-->
-
-<!--        <div class="form-group">-->
-<!--          <input-->
-<!--            [class.is-invalid]='updateUserEventForm.get("eventOrganiser")?.errors && updateUserEventForm.get("eventOrganiser")?.touched'-->
-<!--            type="text"-->
-<!--            class="form-control"-->
-<!--            formControlName="eventOrganiser"-->
-<!--            placeholder="Organizator wydarzenia">-->
-<!--          <div class="invalid-feedback">Organizator wydarzenia jest wymagany</div>-->
-<!--        </div>-->
-
-<!--        <div class="form-group">-->
-<!--          <select-->
-<!--            class="form-control"-->
-<!--            formControlName="gameId">-->
-<!--            <option [ngValue]="game.gameId" *ngFor="let game of games">{{game.title}}</option>-->
-<!--          </select>-->
-<!--        </div>-->
-<!--      </form>-->
-<!--    </div>-->
-
-<!--    <div class="modal-footer">-->
-<!--&lt;!&ndash;      <button [disabled]="!updateUserEventForm.valid" type="submit" class="btn btn-success" form="updateUserEventForm"&ndash;&gt;-->
-<!--&lt;!&ndash;              (click)="modal.close">Przejdź do wyboru zdjęcia&ndash;&gt;-->
-<!--&lt;!&ndash;      </button>&ndash;&gt;-->
-<!--&lt;!&ndash;      <button type="button" class="btn btn-danger" (click)="modal.close()">Anuluj</button>&ndash;&gt;-->
-<!--    </div>-->
-<!--&lt;!&ndash;  </ng-template>&ndash;&gt;-->
-<!--</div>-->
+  </div>
+</ng-template>

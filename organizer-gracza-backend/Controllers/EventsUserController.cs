@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -110,9 +111,14 @@ namespace organizer_gracza_backend.Controllers
         public async Task<ActionResult> UpdateEventUser(EventUser specifiedEvent, int id)
         {
             var eventAsync = await _eventUserRepository.GetEventUserAsync(id);
-            
-            if (await UserEventExists(specifiedEvent.Name))
-                return BadRequest("Event name is taken");
+
+            if (CompareEventUser(eventAsync, specifiedEvent))
+            {
+                return NoContent();
+            }
+
+            if (await UserEventExists(specifiedEvent.Name) && !eventAsync.Name.Equals(specifiedEvent.Name))
+                return NoContent();
 
             eventAsync.EventUserId = eventAsync.EventUserId;
             if (specifiedEvent.Name != null)
@@ -169,6 +175,17 @@ namespace organizer_gracza_backend.Controllers
         private async Task<bool> UserEventExists(string name)
         {
             return await _context.EventUser.AnyAsync(x => x.Name == name);
+        }
+
+        private bool CompareEventUser(EventUser firstEvent, EventUser secondEvent)
+        {
+            return ((firstEvent.EventOrganiser == secondEvent.EventOrganiser) &&
+                    (firstEvent.Name == secondEvent.Name) &&
+                    (firstEvent.StartDate == secondEvent.StartDate) &&
+                    (firstEvent.EndDate == secondEvent.EndDate) &&
+                    (firstEvent.GameId == secondEvent.GameId) &&
+                    (firstEvent.EventType == secondEvent.EventType) &&
+                    (firstEvent.WinnerPrize.Equals(secondEvent.WinnerPrize)));
         }
     }
 }
