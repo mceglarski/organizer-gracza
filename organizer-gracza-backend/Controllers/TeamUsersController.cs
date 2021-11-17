@@ -21,15 +21,18 @@ namespace organizer_gracza_backend.Controllers
         private readonly IMapper _mapper;
         private readonly IUserRepository _userRepository;
         private readonly ITeamsRepository _teamsRepository;
+        private readonly IUserAchievementCounterRepository _userAchievementCounterRepository;
 
         public TeamUsersController(DataContext context, ITeamUsersRepository teamUsersRepository, IMapper mapper,
-            IUserRepository userRepository, ITeamsRepository teamsRepository)
+            IUserRepository userRepository, ITeamsRepository teamsRepository,
+            IUserAchievementCounterRepository userAchievementCounterRepository)
         {
             _context = context;
             _teamUsersRepository = teamUsersRepository;
             _mapper = mapper;
             _userRepository = userRepository;
             _teamsRepository = teamsRepository;
+            _userAchievementCounterRepository = userAchievementCounterRepository;
         }
 
         [HttpGet]
@@ -41,7 +44,7 @@ namespace organizer_gracza_backend.Controllers
 
             return Ok(teamsUsersToReturn);
         }
-        
+
         [HttpGet("teams/{username}")]
         public async Task<ActionResult<IEnumerable<TeamUsersDto>>> GetTeamsForUsers(string username)
         {
@@ -51,7 +54,7 @@ namespace organizer_gracza_backend.Controllers
 
             return Ok(teamsUsersToReturn);
         }
-        
+
         [HttpGet("teams/users/{teamId}")]
         public async Task<ActionResult<IEnumerable<UsersTeamsDto>>> GetUsersInTeams(int teamId)
         {
@@ -80,17 +83,22 @@ namespace organizer_gracza_backend.Controllers
             };
 
             var userTeams = await _teamUsersRepository.GetTeamsUsersAsync();
-            
-            if (userTeams.Any(teamUser => teamUsersDto.TeamId == teamUser.TeamId && teamUsersDto.UserId == teamUser.UserId))
+
+            if (userTeams.Any(teamUser =>
+                teamUsersDto.TeamId == teamUser.TeamId && teamUsersDto.UserId == teamUser.UserId))
             {
                 return BadRequest("Nie można dołączyć do drużyny, której jest się już członkiem");
             }
-            
+
             _teamUsersRepository.AddTeamUser(newTeamUsers);
 
-            if (await _teamUsersRepository.SaveAllAsync())
-                return Ok(_mapper.Map<TeamUsersDto>(newTeamUsers));
-            return BadRequest("Failed to add user for team");
+            if (!await _teamUsersRepository.SaveAllAsync()) 
+                return BadRequest("Failed to add user for team");
+            var userAchievement = await _userAchievementCounterRepository
+                .GetUserAchievementCounterByIdAsync(teamUsersDto.UserId);
+            userAchievement.NumberOfTeamsJoined++;
+
+            return Ok(_mapper.Map<TeamUsersDto>(newTeamUsers));
         }
 
         [HttpDelete("{id}")]

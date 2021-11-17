@@ -39,6 +39,8 @@ namespace organizer_gracza_backend.Helpers
             CreateMap<TeamUser, UsersTeamsDto>();
             CreateMap<GameStatistics, GameStatisticsDto>();
             CreateMap<GeneralStatistics, GeneralStatisticsDto>();
+            CreateMap<Achievements, AchievementsDto>();
+            CreateMap<UserAchievementCounter, UserAchievementCounterDto>();
             CreateMap<Message, MessageDto>()
                 .ForMember(dest => dest.SenderPhotoUrl,
                     opt => opt.MapFrom(

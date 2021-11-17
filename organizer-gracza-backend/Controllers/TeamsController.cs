@@ -21,14 +21,17 @@ namespace organizer_gracza_backend.Controllers
         private readonly ITeamsRepository _teamsRepository;
         private readonly IMapper _mapper;
         private readonly IPhotoService _photoService;
+        private readonly IUserAchievementCounterRepository _userAchievementCounterRepository;
+
 
         public TeamsController(DataContext context, ITeamsRepository teamsRepository, IMapper mapper,
-            IPhotoService photoService)
+            IPhotoService photoService, IUserAchievementCounterRepository userAchievementCounterRepository)
         {
             _context = context;
             _teamsRepository = teamsRepository;
             _mapper = mapper;
             _photoService = photoService;
+            _userAchievementCounterRepository = userAchievementCounterRepository;
         }
 
         [HttpGet]
@@ -71,9 +74,15 @@ namespace organizer_gracza_backend.Controllers
 
             _teamsRepository.AddTeam(newTeam);
 
-            if (await _teamsRepository.SaveAllAsync())
-                return Ok(_mapper.Map<TeamDto>(newTeam));
-            return BadRequest("Failed to add team");
+            if (!await _teamsRepository.SaveAllAsync()) 
+                return BadRequest("Failed to add team");
+            var userAchievement =
+                _userAchievementCounterRepository.GetUserAchievementCounterByUsernameAsync(User.GetUsername());
+
+            userAchievement.Result.NumberOfTeamsCreated++;
+                
+            return Ok(_mapper.Map<TeamDto>(newTeam));
+
         }
 
         [HttpDelete("{id}")]

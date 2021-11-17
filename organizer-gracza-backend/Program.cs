@@ -38,6 +38,8 @@ namespace organizer_gracza_backend
                await Seed.SeedAdmin(userManager);
                await Seed.SeedGameStatistics(context);
                await Seed.SeedGeneralStatistics(context);
+               await Seed.SeedAchievements(context);
+               await Seed.SeedUserAchievementCounter(context);
            }
            catch(Exception exception)
            {
