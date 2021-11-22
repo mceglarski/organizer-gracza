@@ -158,3 +158,11 @@ export interface GeneralStatistics {
   userId: number;
   user: User;
 }
+
+export interface Achievements{
+  achievementsId: number;
+  name: string;
+  details: string;
+  photoUrl: string
+  userId: number;
+}
