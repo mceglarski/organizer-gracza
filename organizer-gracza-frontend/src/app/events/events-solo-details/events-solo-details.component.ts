@@ -14,28 +14,25 @@ import {ToastrService} from "ngx-toastr";
   styleUrls: ['./events-solo-details.component.css']
 })
 export class EventsSoloDetailsComponent implements OnInit {
-  // @ts-ignore
-  event: EventUser;
-  // @ts-ignore
-  model: { eventUserId: number; userId: number };
-  // @ts-ignore
-  user: User
-  // @ts-ignore
-  memberId: number;
-  // @ts-ignore
-  userRegistrations: EventUserRegistration[];
-  // @ts-ignore
-  Members: Member[] = [];
-  // @ts-ignore
-  UsersId: number[] = [];
 
-  constructor(private eventsService: EventsService, public route: ActivatedRoute, private teamService: TeamsService,
-              private memberService: MembersService, private accountService: AccountService,
+  public event: EventUser;
+  public model: { eventUserId: number; userId: number };
+  public user: User
+  public memberId: number;
+  public userRegistrations: EventUserRegistration[];
+  public Members: Member[] = [];
+  public UsersId: number[] = [];
+
+  constructor(public route: ActivatedRoute,
+              private eventsService: EventsService,
+              private teamService: TeamsService,
+              private memberService: MembersService,
+              private accountService: AccountService,
               private toastr: ToastrService)
   {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
       this.user = user;
-    })
+    });
   }
 
   ngOnInit(): void {

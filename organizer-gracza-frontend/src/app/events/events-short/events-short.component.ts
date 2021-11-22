@@ -1,19 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {EventsService} from "../../_services/events.service";
 
 @Component({
   selector: 'app-events-short',
   templateUrl: './events-short.component.html',
-  styleUrls: ['./events-short.component.css',
-    '../../../../node_modules/primeng/resources/themes/arya-green/theme.css',
-    '../../../../node_modules/primeng/resources/primeng.min.css',
-    '../../../../node_modules/primeicons/primeicons.css',]
+  styleUrls: ['./events-short.component.css']
 })
 export class EventsShortComponent implements OnInit {
 
-  public events: string[] = [];
+  public events: any = [];
   public responsiveOptions: any;
 
-  constructor() {
+  constructor(private eventsService: EventsService) {
     this.responsiveOptions = [
       {
         breakpoint: '1024px',
@@ -34,7 +32,18 @@ export class EventsShortComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.events = ['event1', 'event2', 'event3','event4', 'event5', 'event6'];
+    this.eventsService.getUserEvents().subscribe(event => {
+      this.events = this.events.concat(event);
+    });
+    this.eventsService.getTeamEvents().subscribe(event => {
+      this.events = this.events.concat(event);
+    });
+
   }
+
+  consoling(any: any){
+    console.log(any);
+  }
+
 
 }
