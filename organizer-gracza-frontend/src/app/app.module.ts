@@ -12,7 +12,6 @@ import { NewsShortComponent } from './news/news-short/news-short.component';
 import { NewsExtendedComponent } from './news/news-extended/news-extended.component';
 import { EventsShortComponent } from './events/events-short/events-short.component';
 import { EventsExtendedComponent } from './events/events-extended/events-extended.component';
-import {IvyCarouselModule} from "angular-responsive-carousel";
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -67,6 +66,9 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
 import { AchievementsComponent } from './achievements/achievements.component';
+import {CarouselModule} from "primeng/carousel";
+import {ButtonModule} from 'primeng/button';
+import {ToastModule} from "primeng/toast";
 
 
 @NgModule({
@@ -118,7 +120,6 @@ import { AchievementsComponent } from './achievements/achievements.component';
         BrowserModule,
         HttpClientModule,
         BrowserAnimationsModule,
-        IvyCarouselModule,
         AppRoutingModule,
         RouterModule,
         FormsModule,
@@ -139,7 +140,10 @@ import { AchievementsComponent } from './achievements/achievements.component';
         MatDialogModule,
         MatButtonModule,
         MatInputModule,
-        MatSelectModule
+        MatSelectModule,
+        CarouselModule,
+        ButtonModule,
+        ToastModule
     ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
