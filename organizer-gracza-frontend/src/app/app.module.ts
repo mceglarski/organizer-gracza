@@ -64,8 +64,8 @@ import { EventsSoloUpdateComponent } from './events/events-solo-update/events-so
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
-import { GameStatisticsComponent } from './statistics/game-statistics/game-statistics.component';
 import {MatSelectModule} from "@angular/material/select";
+import { AchievementsComponent } from './achievements/achievements.component';
 import {CarouselModule} from "primeng/carousel";
 import {ButtonModule} from 'primeng/button';
 import {ToastModule} from "primeng/toast";
@@ -114,7 +114,7 @@ import {ToastModule} from "primeng/toast";
     EventsSoloEditComponent,
     EventsTeamEditComponent,
     EventsSoloUpdateComponent,
-    GameStatisticsComponent
+    AchievementsComponent
   ],
     imports: [
         BrowserModule,
