@@ -1,11 +1,13 @@
 <ngx-spinner>
-  <h3>Loading...</h3>
+  <h3>Ładowanie...</h3>
 </ngx-spinner>
 
-<app-header class="main-header navbar navbar-expand-md navbar-dark fixed-top"></app-header>
+<app-header></app-header>
 
-<div class="main-page">
-  <router-outlet></router-outlet>
+<div class="row justify-content-md-center app-page-container">
+  <div class="col-md-11">
+    <router-outlet></router-outlet>
+  </div>
 </div>
 
 <app-footer></app-footer>

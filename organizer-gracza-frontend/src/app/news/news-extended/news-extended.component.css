@@ -1,12 +1,11 @@
-.news-extended{
+.news-extended {
   background-color: #292E37;
   border: 1px solid black;
   display: flex;
   flex-direction: column;
   padding: 10px;
-  height: 99%;
 }
-.news-extended-image{
+.news-extended-image {
   background-color: #292E37;
 }
 
@@ -16,8 +15,7 @@
   object-fit: none;
 }
 
-.news-extended-description{
-  background-color: #292E37;
+.news-extended-description {
 }
 
 .news-extended-read-more-btn {

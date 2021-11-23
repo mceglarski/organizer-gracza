@@ -5,11 +5,10 @@
   width: 100%;
   background-color: black;
   color: wheat;
-  height: 75px;
-  display: flex;
-  justify-content: left;
-  align-items: center;
+  height: 55px;
 }
-p{
+
+.footer p {
   margin-left: 10%;
+  padding-top: 15px;
 }

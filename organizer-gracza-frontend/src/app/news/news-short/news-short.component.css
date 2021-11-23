@@ -6,21 +6,17 @@ h6 {
   font-size: 0.85rem;
 }
 
-.news-short{
+.news-short {
   background-color: black;
-  display: flex;
-  margin-left: 15%;
-  height: 33%;
 }
 .news-short-content:hover {
   background-color: #d52b58;
 }
 
-.news-short-content{
+.news-short-content {
   display: flex;
   flex-direction: row;
   background-color: #292E37;
-  width: 100%;
   border: 1px solid black;
   padding: 10px;
 }

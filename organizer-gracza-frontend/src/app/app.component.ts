@@ -11,17 +11,17 @@ import {PresenceService} from "./_services/presence.service";
 })
 export class AppComponent implements OnInit{
   title = 'organizer-gracza-frontend';
-  users: any;
 
-  constructor(private http: HttpClient, private accountService: AccountService, private presence: PresenceService) {
+  constructor(private http: HttpClient,
+              private accountService: AccountService,
+              private presence: PresenceService) {
   }
 
   ngOnInit() {
-    // this.getUsers();
     this.setCurrentUser();
   }
 
-  setCurrentUser(){
+  private setCurrentUser(): void {
     // @ts-ignore
     const user: User = JSON.parse(localStorage.getItem('user'));
     if(user){
@@ -30,11 +30,4 @@ export class AppComponent implements OnInit{
     }
   }
 
-  // getUsers(){
-  //   this.http.get("https://localhost:44347/api/users").subscribe(response => {
-  //     this.users = response;
-  //   }, error => {
-  //     console.log(error);
-  //   })
-  // }
 }
