@@ -69,7 +69,11 @@ import { AchievementsComponent } from './achievements/achievements.component';
 import {CarouselModule} from "primeng/carousel";
 import {ButtonModule} from 'primeng/button';
 import {ToastModule} from "primeng/toast";
+import { LOCALE_ID } from '@angular/core';
+import {registerLocaleData} from '@angular/common';
+import localePl from '@angular/common/locales/pl';
 
+registerLocaleData(localePl, 'pl');
 
 @NgModule({
   declarations: [
@@ -149,6 +153,7 @@ import {ToastModule} from "primeng/toast";
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true},
+    { provide: LOCALE_ID, useValue: "pl" },
     LoginComponent, MemberContentComponent],
   bootstrap: [AppComponent]
 })

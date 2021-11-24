@@ -33,17 +33,32 @@ export class EventsShortComponent implements OnInit {
 
   ngOnInit(): void {
     this.eventsService.getUserEvents().subscribe(event => {
+      this.addUrlToUserEventArray(event);
       this.events = this.events.concat(event);
     });
     this.eventsService.getTeamEvents().subscribe(event => {
+      this.addUrlToTeamEventArray(event);
       this.events = this.events.concat(event);
     });
 
   }
 
-  consoling(any: any){
-    console.log(any);
+  private addUrlToUserEventArray(event: any): void {
+    event.forEach((e: any, index: number) => {
+      e = {...e,
+      eventUrl: '/events/eventsuser/'+e.eventUserId};
+      event[index] = e;
+      return;
+    });
   }
 
+  private addUrlToTeamEventArray(event: any): void {
+    event.forEach((e: any, index: number) => {
+      e = {...e,
+        eventUrl: '/events/eventsteam/'+e.eventTeamId};
+      event[index] = e;
+      return;
+    });
+  }
 
 }
