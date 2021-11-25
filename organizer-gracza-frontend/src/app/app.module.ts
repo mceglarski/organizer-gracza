@@ -72,6 +72,7 @@ import {ToastModule} from "primeng/toast";
 import { LOCALE_ID } from '@angular/core';
 import {registerLocaleData} from '@angular/common';
 import localePl from '@angular/common/locales/pl';
+import { EventsTeamUpdateComponent } from './events/events-team-update/events-team-update.component';
 
 registerLocaleData(localePl, 'pl');
 
@@ -118,7 +119,8 @@ registerLocaleData(localePl, 'pl');
     EventsSoloEditComponent,
     EventsTeamEditComponent,
     EventsSoloUpdateComponent,
-    AchievementsComponent
+    AchievementsComponent,
+    EventsTeamUpdateComponent
   ],
     imports: [
         BrowserModule,

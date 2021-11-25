@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using organizer_gracza_backend.Data;
 using organizer_gracza_backend.DTOs;
 using organizer_gracza_backend.Interfaces;
@@ -104,8 +106,14 @@ namespace organizer_gracza_backend.Controllers
         public async Task<ActionResult> UpdateEventTeam(EventTeam specifiedEvent, int id)
         {
             var eventAsync = await _eventTeamRepository.GetEventTeamAsync(id);
+            specifiedEvent.Name = Strings.Trim(specifiedEvent.Name);
 
-            if (await TeamEventExists(specifiedEvent.Name))
+            if (CompareEventTeam(eventAsync, specifiedEvent))
+            {
+                return NoContent();
+            }
+
+            if (await TeamEventExists(specifiedEvent.Name) && !eventAsync.Name.Equals(specifiedEvent.Name))
                 return BadRequest("Event name is taken");
             
             eventAsync.EventTeamId = eventAsync.EventTeamId;
@@ -163,6 +171,17 @@ namespace organizer_gracza_backend.Controllers
         private async Task<bool> TeamEventExists(string name)
         {
             return await _context.EventTeam.AnyAsync(x => x.Name == name);
+        }
+        
+        private bool CompareEventTeam(EventTeam firstEvent, EventTeam secondEvent)
+        {
+            return ((firstEvent.EventOrganiser == secondEvent.EventOrganiser) &&
+                    (firstEvent.Name == secondEvent.Name) &&
+                    (firstEvent.StartDate == secondEvent.StartDate) &&
+                    (firstEvent.EndDate == secondEvent.EndDate) &&
+                    (firstEvent.GameId == secondEvent.GameId) &&
+                    (firstEvent.EventType == secondEvent.EventType) &&
+                    (firstEvent.WinnerPrize.Equals(secondEvent.WinnerPrize)));
         }
     }
 }
