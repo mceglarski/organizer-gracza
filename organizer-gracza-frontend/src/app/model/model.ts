@@ -48,7 +48,7 @@ export class PaginatedResult<T> {
 
 export class PagintationParams {
   pageNumber = 1;
-  pageSize = 5;
+  pageSize = 6;
 }
 
 export interface Message {

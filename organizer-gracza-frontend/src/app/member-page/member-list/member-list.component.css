@@ -1,7 +1,43 @@
-.flex-container{
+.flex-container {
   display: flex;
   flex-flow: row wrap;
 }
-.input-group{
+
+.input-group {
   max-width: 300px;
+}
+
+.member-list-search-container {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.member-list-search-btn {
+  color: white;
+  margin-left: 0.3rem;
+}
+
+.member-list-search {
+  background-color: #454d55;
+  color: white;
+}
+
+.member-list-search::placeholder {
+  color: #acacac;
+}
+
+::ng-deep.page-link {
+  background-color: #000000 !important;
+}
+
+::ng-deep.page-item a {
+  color: #ffffff !important;
+}
+
+::ng-deep.page-item > a {
+  border-color: #499aff !important;
+}
+
+::ng-deep.page-item.active > a {
+  border-color: #ffffff !important;
 }

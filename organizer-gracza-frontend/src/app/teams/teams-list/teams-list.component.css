@@ -1,7 +1,31 @@
-.flex-container{
+.flex-container {
   display: flex;
   flex-flow: row wrap;
 }
-.input-group{
+
+.input-group {
   max-width: 300px;
+}
+
+.teams-list-search-container {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.teams-list-search-btn {
+  color: white;
+  margin-left: 0.3rem;
+}
+
+.teams-list-search {
+  background-color: #454d55;
+  color: white;
+}
+
+.teams-list-search::placeholder {
+  color: #acacac;
+}
+
+.teams-list-create-team-btn {
+  margin: 0.8rem;
 }

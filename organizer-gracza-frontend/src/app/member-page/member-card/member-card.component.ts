@@ -8,7 +8,7 @@ import {PresenceService} from "../../_services/presence.service";
   styleUrls: ['./member-card.component.css']
 })
 export class MemberCardComponent implements OnInit {
-  // @ts-ignore
+
   @Input() member: Member;
 
   constructor(public presenceService: PresenceService) { }

@@ -73,6 +73,7 @@ import { LOCALE_ID } from '@angular/core';
 import {registerLocaleData} from '@angular/common';
 import localePl from '@angular/common/locales/pl';
 import { EventsTeamUpdateComponent } from './events/events-team-update/events-team-update.component';
+import { UploadImageModalComponent } from './modals/upload-image-modal/upload-image-modal.component';
 
 registerLocaleData(localePl, 'pl');
 
@@ -120,7 +121,8 @@ registerLocaleData(localePl, 'pl');
     EventsTeamEditComponent,
     EventsSoloUpdateComponent,
     AchievementsComponent,
-    EventsTeamUpdateComponent
+    EventsTeamUpdateComponent,
+    UploadImageModalComponent
   ],
     imports: [
         BrowserModule,

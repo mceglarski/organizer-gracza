@@ -10,16 +10,15 @@ import {take} from "rxjs/operators";
   styleUrls: ['./member-list.component.css']
 })
 export class MemberListComponent implements OnInit {
-  // @ts-ignore
-  members: Member[];
-  // @ts-ignore
-  pagination: Pagination;
-  // @ts-ignore
-  userParams: PagintationParams;
-  // @ts-ignore
-  user: User;
 
-  constructor(private memberService: MembersService, private accountService: AccountService) {
+  public members: Member[];
+  public pagination: Pagination;
+
+  private userParams: PagintationParams;
+  private user: User;
+
+  constructor(private memberService: MembersService,
+              private accountService: AccountService) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
       this.user = user;
       this.userParams = new PagintationParams();
@@ -30,16 +29,15 @@ export class MemberListComponent implements OnInit {
     this.loadMembers();
   }
 
-  loadMembers(){
-    // @ts-ignore
+  public pageChanged(event: any){
+    this.userParams.pageNumber = event.page;
+    this.loadMembers();
+  }
+
+  private loadMembers(){
     this.memberService.getMembers(this.userParams).subscribe(response => {
       this.members = response.result;
       this.pagination = response.pagination;
     })
-  }
-
-  pageChanged(event: any){
-    this.userParams.pageNumber = event.page;
-    this.loadMembers();
   }
 }

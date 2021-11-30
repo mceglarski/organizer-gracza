@@ -1,7 +1,22 @@
 .community-page-content{
-  margin-left: 10%;
-  margin-top: 4%;
   background-color: black;
   height: 1160px;
-  width: 80%;
+}
+
+::ng-deep.tab-container .nav-link {
+  color: white !important;
+}
+
+::ng-deep.nav-link.active {
+  color: white !important;
+  background-color: #454d55 !important;
+}
+
+::ng-deep.nav-link {
+  border-top-left-radius: 0.1rem !important;
+  border-top-right-radius: 0.1rem !important;
+}
+
+::ng-deep.nav-tabs {
+  border: none !important;
 }

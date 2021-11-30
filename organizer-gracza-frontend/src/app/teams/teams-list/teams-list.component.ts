@@ -9,6 +9,8 @@ import {FileUploader} from "ng2-file-upload";
 import {environment} from "../../../environments/environment";
 import {take} from "rxjs/operators";
 import {AccountService} from "../../_services/account.service";
+import {MatDialog} from "@angular/material/dialog";
+import {UploadImageModalComponent} from "../../modals/upload-image-modal/upload-image-modal.component";
 
 
 @Component({
@@ -17,26 +19,25 @@ import {AccountService} from "../../_services/account.service";
   styleUrls: ['./teams-list.component.css']
 })
 export class TeamsListComponent implements OnInit {
-  // @ts-ignore
-  newTeamForm: FormGroup;
-  // @ts-ignore
-  teams: Team[];
-  // @ts-ignore
-  pagination: Pagination;
-  // @ts-ignore
-  userParams: PagintationParams;
-  // @ts-ignore
-  user: User;
-  // @ts-ignore
-  uploader: FileUploader;
-  hasBaseDropzoneOver = false;
-  baseUrl = environment.apiUrl;
-  // @ts-ignore
-  team: Team;
 
+  public newTeamForm: FormGroup;
+  public teams: Team[];
+  public uploader: FileUploader;
+  public hasBaseDropzoneOver = false;
+  public pagination: Pagination;
+  public hasCreatedTeam: Boolean = true;
 
-  constructor(private teamService: TeamsService, private modalService: NgbModal, private toastr: ToastrService,
-              private router: Router, private accountService: AccountService) {
+  private userParams: PagintationParams;
+  private user: User;
+  private baseUrl = environment.apiUrl;
+  private team: Team;
+
+  constructor(private teamService: TeamsService,
+              private modalService: NgbModal,
+              private toastr: ToastrService,
+              private router: Router,
+              private accountService: AccountService,
+              private dialog: MatDialog) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
   }
 
@@ -52,7 +53,6 @@ export class TeamsListComponent implements OnInit {
   }
 
   loadTeams() {
-    // @ts-ignore
     this.teamService.getTeams().subscribe(teams => {
       // @ts-ignore
       this.teams = teams;
@@ -67,16 +67,33 @@ export class TeamsListComponent implements OnInit {
   }
 
   open(content: any) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
+     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
   }
 
-  createNewTeam() {
+  public openUploadImageModal(): void {
+    const dialogRef = this.dialog.open(UploadImageModalComponent, {
+      width: '530px',
+      disableClose: true,
+      data: {
+        path: 'teams/add-photo/' + this.newTeamForm.value.name,
+        user: this.user
+      }
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      return;
+    });
+  }
+
+  createNewTeam(content: any) {
     this.teamService.addTeam(this.newTeamForm.value).subscribe(response => {
-      this.toastr.success("Utworzono nową drużyne")
+      this.hasCreatedTeam = true;
+      this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
+      this.toastr.success("Utworzono nową drużynę");
     }, error => {
       console.log(error);
-      this.toastr.error('Zarejestrowanie się nie powiodło');
-    })
+      this.toastr.error('Zarejestrowanie drużyny nie powiodło się');
+      this.hasCreatedTeam = false;
+    });
     this.initializeUploader();
   }
 
