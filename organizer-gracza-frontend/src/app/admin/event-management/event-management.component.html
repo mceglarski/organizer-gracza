@@ -1,18 +1,23 @@
 <div class="event-management-content">
   <div class="tab-panel">
+    <br>
     <tabset class="tabset-content">
       <tab heading="Event-Solo management" *ngIf="userEvents">
-        <div class="container"></div>
+
         <div class="event-table">
           <table style="color:#FFFFFF" class="table">
-            <tr>
-              <th style="width: 15%;">Name</th>
-              <th style="width: 15%;">Start Date</th>
-              <th style="width: 15%;">End Date</th>
-              <th style="width: 15%;">Event Organiser</th>
-              <th style="width: 15%;">Game Id</th>
-              <th style="width: 25%;"></th>
-            </tr>
+
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+                <th scope="col">Event Organiser</th>
+                <th scope="col">Game Id</th>
+                <th scope="col">Options</th>
+              </tr>
+            </thead>
+
             <tr *ngFor="let event of userEvents">
               <td>{{event!.name}}</td>
               <td>{{event!.startDate | date}}</td>
@@ -20,30 +25,32 @@
               <td>{{event!.eventOrganiser}}</td>
               <td>{{event!.game.gameId}}</td>
               <td>
-                <button mat-button (click)="openEditEventUserModal(event)" class="btn btn-info">Edit Event</button>
-              </td>
-              <td>
-                <button (click)="deleteUserEvent(event.eventUserId)" class="btn btn-danger">Delete Event
-                </button>
+                <button (click)="openEditEventUserModal(event)" class="btn btn-info admin-panel-option-btn">Edit Event</button>
+                <button (click)="deleteUserEvent(event.eventUserId)" class="btn btn-danger admin-panel-option-btn">Delete Event</button>
               </td>
             </tr>
+
           </table>
         </div>
-        <td>
-          <button (click)="open(addUserEvent)" class="btn btn-success">Add Event</button>
-        </td>
+
+        <button (click)="open(addUserEvent)" class="btn btn-success admin-panel-add-event-btn">Add Solo Event</button>
+
       </tab>
+
       <tab heading="Event-Team management" *ngIf="teamEvents">
-        <div class="container"></div>
         <table style="color:#FFFFFF" class="table">
-          <tr>
-            <th style="width: 15%;">Name</th>
-            <th style="width: 15%;">Start Date</th>
-            <th style="width: 15%;">End Date</th>
-            <th style="width: 15%;">Event Organiser</th>
-            <th style="width: 15%;">Game Id</th>
-            <th style="width: 25%;"></th>
-          </tr>
+
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Start Date</th>
+              <th scope="col">End Date</th>
+              <th scope="col">Event Organiser</th>
+              <th scope="col">Game Id</th>
+              <th scope="col">Options</th>
+            </tr>
+          </thead>
+
           <tr *ngFor="let event of teamEvents">
             <td>{{event!.name}}</td>
             <td>{{event!.startDate | date}}</td>
@@ -51,17 +58,15 @@
             <td>{{event!.eventOrganiser}}</td>
             <td>{{event!.game.gameId}}</td>
             <td>
-              <button routerLink="events/eventsuser/{{event}}" class="btn btn-info">Edit Event</button>
-            </td>
-            <td>
-              <button (click)="deleteTeamEvent(event.eventTeamId)" class="btn btn-danger">Delete Event
-              </button>
+              <button (click)="openEditEventTeamModal(event)" class="btn btn-info admin-panel-option-btn">Edit Event</button>
+              <button (click)="deleteTeamEvent(event.eventTeamId)" class="btn btn-danger admin-panel-option-btn">Delete Event</button>
             </td>
           </tr>
+
         </table>
-        <td>
-          <button (click)="open(addTeamEvent)" class="btn btn-success">Add Event</button>
-        </td>
+
+        <button (click)="open(addTeamEvent)" class="btn btn-success admin-panel-add-event-btn">Add Team Event</button>
+
       </tab>
     </tabset>
   </div>

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using organizer_gracza_backend.Data;
 using organizer_gracza_backend.DTOs;
 using organizer_gracza_backend.Extensions;
@@ -63,6 +64,8 @@ namespace organizer_gracza_backend.Controllers
         [HttpPost]
         public async Task<ActionResult<TeamDto>> CreateTeam(TeamDto teamDto)
         {
+            teamDto.Name = Strings.Trim(teamDto.Name);
+            
             if (await NameExists(teamDto.Name))
                 return BadRequest("Name is taken");
             
@@ -76,10 +79,11 @@ namespace organizer_gracza_backend.Controllers
 
             if (!await _teamsRepository.SaveAllAsync()) 
                 return BadRequest("Failed to add team");
+            
             var userAchievement =
                 _userAchievementCounterRepository.GetUserAchievementCounterByUsernameAsync(User.GetUsername());
 
-            userAchievement.Result.NumberOfTeamsCreated++;
+            // userAchievement.Result.NumberOfTeamsCreated++;
                 
             return Ok(_mapper.Map<TeamDto>(newTeam));
 
@@ -140,7 +144,7 @@ namespace organizer_gracza_backend.Controllers
         
         private async Task<bool> NameExists(string name)
         {
-            return await _context.Teams.AnyAsync(x => x.Name == name.ToLower());
+            return await _context.Teams.AnyAsync(x => x.Name.ToLower() == name.ToLower());
         }
     }
 }

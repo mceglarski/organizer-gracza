@@ -1,10 +1,12 @@
 <div class="member-list-content">
-  <div class="input-group">
-    <input type="search" class="form-control rounded mt-3 ml-3" placeholder="Wyszukaj użytkownika" aria-label="Search"
+
+  <div class="input-group member-list-search-container">
+    <input type="search" class="form-control member-list-search rounded mt-3 ml-3" placeholder="Wyszukaj użytkownika" aria-label="Search"
            aria-describedby="search-addon" />
-    <button type="button" class="btn btn-outline-primary mt-3">search</button>
+    <button type="button" class="btn btn-outline-secondary mt-3 member-list-search-btn">Szukaj</button>
   </div>
-  <div class="flex-container">
+
+  <div class="flex-container justify-content-center">
     <div *ngFor="let member of members" >
       <app-member-card [member]="member"></app-member-card>
     </div>
@@ -20,8 +22,9 @@
       previousText="&lsaquo;"
       nextText="&rsaquo;"
       firstText="&laquo;"
-      lastText="&raquo;">
-
+      lastText="&raquo;"
+      class="member-list-pagination">
     </pagination>
+
   </div>
 </div>

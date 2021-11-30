@@ -7,7 +7,7 @@ import {Member, Team} from "../../model/model";
   styleUrls: ['./teams-card.component.css']
 })
 export class TeamsCardComponent implements OnInit {
-  // @ts-ignore
+
   @Input() team: Team;
 
   constructor() { }

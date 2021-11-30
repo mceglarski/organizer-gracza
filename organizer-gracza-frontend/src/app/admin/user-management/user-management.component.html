@@ -1,12 +1,13 @@
 <div class="user-management-content">
-  <div class="row">
     <table style="color:#FFFFFF" class="table">
-      <tr>
-        <th style="width: 15%;">Username</th>
-        <th style="width: 15%;">Nickname</th>
-        <th style="width: 40%;">Active Roles</th>
-        <th style="width: 30%;"></th>
-      </tr>
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Username</th>
+          <th scope="col">Nickname</th>
+          <th scope="col">Active Roles</th>
+          <th scope="col">Options</th>
+        </tr>
+      </thead>
       <tr *ngFor="let user of users">
         <td>{{user!.username}}</td>
         <td>{{user!.nickname}}</td>
@@ -14,5 +15,4 @@
         <td><button (click)="openRolesModal(user!)" class="btn btn-info">Edit Roles</button></td>
       </tr>
     </table>
-  </div>
 </div>

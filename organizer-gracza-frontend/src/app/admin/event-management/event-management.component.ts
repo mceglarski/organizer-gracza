@@ -12,6 +12,7 @@ import {take} from "rxjs/operators";
 import {environment} from "../../../environments/environment";
 import {MatDialog} from "@angular/material/dialog";
 import {EventsSoloUpdateComponent} from "../../events/events-solo-update/events-solo-update.component";
+import {EventsTeamUpdateComponent} from "../../events/events-team-update/events-team-update.component";
 
 
 
@@ -175,6 +176,21 @@ export class EventManagementComponent implements OnInit {
 
   public openEditEventUserModal(event: EventUser): void{
     const dialogRef = this.dialog.open(EventsSoloUpdateComponent, {
+      width: '530px',
+      disableClose: true,
+      data: {
+        event: event,
+        user: this.user
+      }
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.init();
+      return;
+    });
+  }
+
+  public openEditEventTeamModal(event: EventTeam): void{
+    const dialogRef = this.dialog.open(EventsTeamUpdateComponent, {
       width: '530px',
       disableClose: true,
       data: {

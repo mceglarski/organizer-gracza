@@ -1,28 +1,30 @@
 <div class="teams-page-content">
-  <div class="input-group">
-    <input type="search" class="form-control rounded mt-3 ml-3" placeholder="Wyszukaj użytkownika" aria-label="Search"
+
+  <div class="input-group teams-list-search-container">
+    <input type="search" class="form-control teams-list-search rounded mt-3 ml-3" placeholder="Wyszukaj drużynę" aria-label="Search"
            aria-describedby="search-addon"/>
-    <button type="button" class="btn btn-outline-primary mt-3">search</button>
+    <button type="button" class="btn btn-outline-secondary teams-list-search-btn mt-3">Szukaj</button>
   </div>
 
-  <div class="flex-container">
+  <div class="flex-container justify-content-center">
     <div *ngFor="let team of teams">
       <app-teams-card [team]="team"></app-teams-card>
     </div>
   </div>
 
-  <button class="btn btn-success" (click)="open(content)">Utwórz drużyne</button>
+  <button class="btn btn-success teams-list-create-team-btn" (click)="open(content)">Utwórz drużyne</button>
+
 </div>
 
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Utwórz drużyne</h4>
+    <h4 class="modal-title" id="modal-basic-title">Utwórz drużynę</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <form [formGroup]='newTeamForm' (ngSubmit)="newTeamForm.valid && createNewTeam()" autocomplete="off" id="newTeamForm">
+    <form [formGroup]='newTeamForm' (ngSubmit)="newTeamForm.valid && createNewTeam(addPhotoForTeam)" autocomplete="off" id="newTeamForm">
       <div class="form-group">
         <input
           [class.is-invalid]='newTeamForm.get("name")?.errors && newTeamForm.get("name")?.touched'
@@ -36,7 +38,7 @@
   </div>
   <div class="modal-footer">
     <button [disabled]="!newTeamForm.valid" type="submit" class="btn btn-success" form="newTeamForm"
-            (click)="modal.close()" (click)="open(addPhotoForTeam)">Przejdź do wyboru zdjęcia</button>
+            (click)="modal.close()">Przejdź do wyboru zdjęcia</button>
     <button type="button" class="btn btn-danger" (click)="modal.close()">Anuluj</button>
   </div>
 </ng-template>

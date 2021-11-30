@@ -77,4 +77,8 @@ export class EventsService {
   updateUserEvent(userEvent: EventUser, eventId: number) {
     return this.http.put(this.baseUrl + 'eventsuser/' + eventId, userEvent);
   }
+
+  updateTeamEvent(teamEvent: EventTeam, eventId: number) {
+    return this.http.put(this.baseUrl + 'eventsteam/' + eventId, teamEvent);
+  }
 }

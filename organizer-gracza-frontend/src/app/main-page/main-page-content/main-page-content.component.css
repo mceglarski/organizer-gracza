@@ -1,35 +1,29 @@
-.main-page-content{
+.main-page-content {
   background-color: black;
-  margin-left: 10%;
   margin-top: 1%;
-  width: 80%;
   color: #fff;
+  padding: 0.5rem;
 }
 
-.main-page-content-news{
-  display: flex;
-  margin-right: 5%;
-  padding-top: 20px;
-  padding-bottom: 30px;
+.main-page-content-news {
 }
 
-.main-page-news-short{
-  padding-right: 0px;
+.main-page-news-short {
+  height: 100%;
 }
 
-.main-page-news-extended{
-  padding-left: 0px;
+.main-page-news-extended {
 }
 
 .main-page-content-event {
   margin-bottom: 25px;
 }
 
-.main-page-content-title{
+.main-page-content-title {
   color: #C3073F;
 }
 
-.title{
+.title {
   display: flex;
   flex-direction: row;
 }
@@ -43,7 +37,7 @@
   width: 5%;
 }
 
-.separator::before{
+.separator::before {
   content: '';
   flex: 1;
   border-bottom: 0.3rem solid #2D2D2D;

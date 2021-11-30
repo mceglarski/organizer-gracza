@@ -1,22 +1,8 @@
 <div class="events-short">
-  <p (click)="consoling(events)">aaa</p>
-<!--  <carousel [loop]="true" [arrowsTheme]="'dark'"-->
-<!--  [arrowsOutside]="true" [height]="350">-->
 
-<!--    <div class="events-short-content carousel-cell" *ngFor="let event of events">-->
-<!--        <div class="events-short-image">-->
-<!--          Obrazek wydarzenia-->
-<!--        </div>-->
-<!--        <div class="events-short-description">-->
-<!--          Opis wydarzenia-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--  </carousel>-->
-
-  <p-carousel class="events-short-carousel"
+  <p-carousel class="events-short-carousel col-xl-12"
               [value]="events"
-              [numVisible]="3"
+              [numVisible]="4"
               [numScroll]="3"
               [circular]="true"
               [responsiveOptions]="responsiveOptions">
@@ -24,11 +10,20 @@
       <div class="product-item">
         <div class="product-item-content">
           <div class="p-mb-3">
+            <a [href]="event.eventUrl" class="events-short-link">
+              <img src="{{event.photoUrl}}" [alt]="event.name" class="product-image" />
+            </a>
           </div>
           <div>
-            <h4 class="p-mb-1" (click)="consoling(events)">Nazwa</h4>
-            <h6 class="p-mt-0 p-mb-3">Opis</h6>
-            <span [class]="'product-badge status-'">coś</span>
+            <h4 class="p-mb-1">
+              <a [href]="event.eventUrl" class="events-short-link">{{event.name}}</a>
+            </h4>
+            <h5 class="p-mt-0 p-mb-3 events-short-date"><br>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar3" viewBox="0 0 16 16">
+                <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+              </svg>
+              {{event.startDate | date:'d MMMM, y'}}</h5>
           </div>
         </div>
       </div>

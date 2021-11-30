@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using organizer_gracza_backend.Data;
 using organizer_gracza_backend.DTOs;
 using organizer_gracza_backend.Interfaces;
@@ -111,6 +113,7 @@ namespace organizer_gracza_backend.Controllers
         public async Task<ActionResult> UpdateEventUser(EventUser specifiedEvent, int id)
         {
             var eventAsync = await _eventUserRepository.GetEventUserAsync(id);
+            specifiedEvent.Name = Strings.Trim(specifiedEvent.Name);
 
             if (CompareEventUser(eventAsync, specifiedEvent))
             {
@@ -118,7 +121,7 @@ namespace organizer_gracza_backend.Controllers
             }
 
             if (await UserEventExists(specifiedEvent.Name) && !eventAsync.Name.Equals(specifiedEvent.Name))
-                return NoContent();
+                return BadRequest("Event name is taken");
 
             eventAsync.EventUserId = eventAsync.EventUserId;
             if (specifiedEvent.Name != null)

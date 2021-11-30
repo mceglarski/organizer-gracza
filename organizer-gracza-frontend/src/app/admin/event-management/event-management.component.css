@@ -1,6 +1,15 @@
 .event-management-content{
-  width: 80%;
-  height: 1160px;
   background-color: black;
   color: white;
+}
+::ng-deep.nav-tabs {
+  border: none !important;
+}
+
+.admin-panel-option-btn {
+  margin-right: 0.2rem;
+}
+
+.admin-panel-add-event-btn {
+  margin-bottom: 1rem;
 }

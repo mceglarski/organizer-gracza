@@ -10,10 +10,12 @@ import {MemberContentComponent} from "../../member-page/member-content/member-co
 })
 export class HeaderComponent implements OnInit {
 
+  public isLogged = false;
+
   constructor(public login: LoginComponent,
               public accountService: AccountService) {}
 
   ngOnInit(): void {
-
+    this.isLogged = !!this.accountService.currentUser$;
   }
 }
