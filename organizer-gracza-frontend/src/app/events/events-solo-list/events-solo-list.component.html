@@ -1,19 +1,52 @@
 <div class="event-solo-page-content" *ngIf="events">
+
   <div class="title mt-2">
     <h4 class="ml-2">WYDARZENIA</h4>
     <div class="separator"></div>
   </div>
-  <div class="flex-page-content">
-    <div class="flex-container">
+
+  <div class="flex-page-content container-fluid">
+    <div class="flex-container col-xl-8">
       <div class="solo-event" *ngFor="let event of events" routerLink="eventsuser/{{event.eventUserId}}">
         <p><h4>{{event.name}}</h4>
         <p>DATA: {{event.startDate | date}} - {{event.endDate | date}}</p>
         <p>GRA: {{event.game.title}}</p>
         <p>PULA NAGRÓD: {{event.winnerPrize}}</p>
       </div>
-    </div>
-    <div class="event-result mt-2">
+
+                    <div class="solo-event" *ngFor="let event of events" routerLink="eventsuser/{{event.eventUserId}}">
+                      <p><h4>{{event.name}}</h4>
+                      <p>DATA: {{event.startDate | date}} - {{event.endDate | date}}</p>
+                      <p>GRA: {{event.game.title}}</p>
+                      <p>PULA NAGRÓD: {{event.winnerPrize}}</p>
+                    </div>      <div class="solo-event" *ngFor="let event of events" routerLink="eventsuser/{{event.eventUserId}}">
+                    <p><h4>{{event.name}}</h4>
+                    <p>DATA: {{event.startDate | date}} - {{event.endDate | date}}</p>
+                    <p>GRA: {{event.game.title}}</p>
+                    <p>PULA NAGRÓD: {{event.winnerPrize}}</p>
+                  </div>      <div class="solo-event" *ngFor="let event of events" routerLink="eventsuser/{{event.eventUserId}}">
+                    <p><h4>{{event.name}}</h4>
+                    <p>DATA: {{event.startDate | date}} - {{event.endDate | date}}</p>
+                    <p>GRA: {{event.game.title}}</p>
+                    <p>PULA NAGRÓD: {{event.winnerPrize}}</p>
+                  </div>      <div class="solo-event" *ngFor="let event of events" routerLink="eventsuser/{{event.eventUserId}}">
+                    <p><h4>{{event.name}}</h4>
+                    <p>DATA: {{event.startDate | date}} - {{event.endDate | date}}</p>
+                    <p>GRA: {{event.game.title}}</p>
+                    <p>PULA NAGRÓD: {{event.winnerPrize}}</p>
+                  </div>
 
     </div>
+
+    <div class="event-result col-xl-4">
+      WynikiWynikiWynikiWynikiWy
+      nikiWyniki
+      Wyniki WynikiWynikiWynikiWyniki
+      WynikiWynikiWynikiWynikiWyniki
+      WynikiWyniki
+      WynikiWynikiWyniki WynikiWynikiWynikiWynikiWynikiW
+      ynikiWyniki
+    </div>
   </div>
+
 </div>
