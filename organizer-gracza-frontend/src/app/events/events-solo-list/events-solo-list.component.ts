@@ -8,8 +8,8 @@ import {EventUser} from "../../model/model";
   styleUrls: ['./events-solo-list.component.css']
 })
 export class EventsSoloListComponent implements OnInit {
-  // @ts-ignore
-  events: EventUser[];
+
+  public events: EventUser[];
 
   constructor(private eventService: EventsService) { }
 
@@ -17,7 +17,7 @@ export class EventsSoloListComponent implements OnInit {
     this.loadSoloEvents();
   }
 
-  loadSoloEvents(){
+  private loadSoloEvents(): void {
     this.eventService.getUserEvents().subscribe(events => {
       // @ts-ignore
       this.events = events;
