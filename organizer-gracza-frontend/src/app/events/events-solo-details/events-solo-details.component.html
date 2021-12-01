@@ -1,30 +1,37 @@
-<div class="event-solo-details-page" *ngIf="event">
+<div class="event-solo-details-page container-fluid" *ngIf="event">
+
   <div class="title">
     <h4 class="ml-2">SZCZEGÓŁY WYDARZENIA</h4>
     <div class="separator"></div>
   </div>
+
   <h2 class="ml-2 mt-1 mb-3">{{event.name}}</h2>
-  <div class="details-content">
-    <div class="event-details ml-2">
-      <p>DATA: {{event.startDate | date}} - {{event.endDate | date}}</p>
-      <p>GRA: {{event.game.title}}</p>
-      <p>ORGANIZATOR: {{event.eventOrganiser}}</p>
-      <p>RODZAJ: {{event.eventType}}</p>
-      <p>PULA NAGRÓD: {{event.winnerPrize}}</p>
-      <p>OPIS: {{event.description}}</p>
-      <div>
-        <h3 class="ml-2">ZAKWALIFIKOWANI GRACZE</h3>
-        <div class="flex-users">
-          <div class="qualified-teams" *ngFor="let member of Members">
-            <img src="{{this.member.photoUrl}}" alt="./assets/user.png">
-          </div>
-        </div>
-        <button class="btn btn-success" (click)="joinEvent()">ZAPISZ SIĘ</button>
+
+  <div class="details-content row">
+
+    <div class="col-xl-6">
+      <div class="event-details">
+        <p>DATA: {{event.startDate | date}} - {{event.endDate | date}}</p>
+        <p>GRA: {{event.game.title}}</p>
+        <p>ORGANIZATOR: {{event.eventOrganiser}}</p>
+        <p>RODZAJ: {{event.eventType}}</p>
+        <p>PULA NAGRÓD: {{event.winnerPrize}}</p>
+        <p>OPIS: {{event.description}}</p>
       </div>
+      <h3 class="">ZAKWALIFIKOWANI GRACZE</h3>
+      <div class="row">
+        <div class="qualified-teams" *ngFor="let member of Members">
+          <img class="qualified-users-image" src="{{this.member.photoUrl}}" alt="./assets/user.png">
+        </div>
+      </div>
+      <button class="btn btn-success" (click)="joinEvent()">ZAPISZ SIĘ</button>
+
     </div>
-    <div class="event-image ml-5 mr-5">
+
+    <div class="event-image col-xl-6">
       <img src="{{event.photoUrl}}" alt="{{event.name}}">
     </div>
-  </div>
 
+
+  </div>
 </div>

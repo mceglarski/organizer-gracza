@@ -17,23 +17,21 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 })
 export class EventsTeamDetailsComponent implements OnInit {
 
-  // @ts-ignore
-  teams: Team[];
-  // @ts-ignore
-  event: EventTeam;
-  // @ts-ignore
-  user: User
-  // @ts-ignore
-  newTeamRegistrationForm: FormGroup;
-  // @ts-ignore
-  model: { eventTeamId: number; teamId: number };
-  // @ts-ignore
-  teamRegistrations: EventTeamRegistration[];
+  public teams: Team[];
+  public event: EventTeam;
+  public user: User
+  public newTeamRegistrationForm: FormGroup;
+  public model: { eventTeamId: number; teamId: number };
+  public teamRegistrations: EventTeamRegistration[];
 
 
-  constructor(private eventsService: EventsService, public route: ActivatedRoute, private teamService: TeamsService,
-              private accountService: AccountService, private memberService: MembersService,
-              private toastr: ToastrService,  private modalService: NgbModal) {
+  constructor(public route: ActivatedRoute,
+              private eventsService: EventsService,
+              private teamService: TeamsService,
+              private accountService: AccountService,
+              private memberService: MembersService,
+              private toastr: ToastrService,
+              private modalService: NgbModal) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
       this.user = user;
     })
@@ -45,36 +43,7 @@ export class EventsTeamDetailsComponent implements OnInit {
     this.initializeAddTeamForEvent();
   }
 
-  open(content: any) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
-  }
-
-  loadEvent(){
-    // @ts-ignore
-    this.eventsService.getTeamEvent(this.route.snapshot.paramMap.get('eventTeamId')).subscribe(specifiedEvent => {
-      // @ts-ignore
-      this.event = specifiedEvent;
-      this.loadTeamRegistrations();
-    })
-  }
-
-  loadTeamRegistrations(){
-    this.eventsService.getTeamEventRegistration(this.event.eventTeamId).subscribe(teamRegistrations => {
-      // @ts-ignore
-      this.teamRegistrations = teamRegistrations;
-    })
-  }
-
-  loadTeamsForUser(){
-    // @ts-ignore
-    this.teamService.getTeamsForUser(this.user.username).subscribe(teams => {
-      // @ts-ignore
-      this.teams = teams;
-      console.log(this.teams)
-    })
-  }
-
-  joinEvent(){
+  public joinEvent(): void {
     this.model = {
       teamId: this.newTeamRegistrationForm.value.teamId,
       eventTeamId: this.event.eventTeamId
@@ -86,7 +55,36 @@ export class EventsTeamDetailsComponent implements OnInit {
     })
   }
 
-  initializeAddTeamForEvent(){
+  public open(content: any): void {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
+  }
+
+  private loadEvent(): void {
+    // @ts-ignore
+    this.eventsService.getTeamEvent(this.route.snapshot.paramMap.get('eventTeamId')).subscribe(specifiedEvent => {
+      // @ts-ignore
+      this.event = specifiedEvent;
+      this.loadTeamRegistrations();
+    })
+  }
+
+  private loadTeamRegistrations(): void {
+    this.eventsService.getTeamEventRegistration(this.event.eventTeamId).subscribe(teamRegistrations => {
+      // @ts-ignore
+      this.teamRegistrations = teamRegistrations;
+    })
+  }
+
+  private loadTeamsForUser(): void {
+    // @ts-ignore
+    this.teamService.getTeamsForUser(this.user.username).subscribe(teams => {
+      // @ts-ignore
+      this.teams = teams;
+      console.log(this.teams)
+    })
+  }
+
+  private initializeAddTeamForEvent(): void {
     this.newTeamRegistrationForm = new FormGroup({
       teamId: new FormControl('', Validators.required),
     })
