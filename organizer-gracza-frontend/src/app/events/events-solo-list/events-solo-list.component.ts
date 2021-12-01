@@ -17,7 +17,7 @@ export class EventsSoloListComponent implements OnInit {
     this.loadSoloEvents();
   }
 
-  loadSoloEvents(){
+  private loadSoloEvents(): void {
     this.eventService.getUserEvents().subscribe(events => {
       // @ts-ignore
       this.events = events;

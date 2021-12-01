@@ -8,8 +8,7 @@ import {EventsService} from "../../_services/events.service";
   styleUrls: ['./events-team-list.component.css']
 })
 export class EventsTeamListComponent implements OnInit {
-  // @ts-ignore
-  events: EventTeam[];
+  public events: EventTeam[];
 
   constructor(private eventService: EventsService) { }
 
@@ -17,7 +16,7 @@ export class EventsTeamListComponent implements OnInit {
     this.loadTeamEvents();
   }
 
-  loadTeamEvents(){
+  private loadTeamEvents(): void {
     this.eventService.getTeamEvents().subscribe(events => {
       // @ts-ignore
       this.events = events;
