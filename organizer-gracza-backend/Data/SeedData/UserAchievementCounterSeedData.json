@@ -48,5 +48,10 @@
     "NumberOfTeamsCreated": 0,
     "NumberOfTeamsJoined": 0,
     "UserId": 10
+  },
+  {
+    "NumberOfTeamsCreated": 0,
+    "NumberOfTeamsJoined": 0,
+    "UserId": 11
   }
 ]

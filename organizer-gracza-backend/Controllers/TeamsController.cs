@@ -83,7 +83,7 @@ namespace organizer_gracza_backend.Controllers
             var userAchievement =
                 _userAchievementCounterRepository.GetUserAchievementCounterByUsernameAsync(User.GetUsername());
 
-            // userAchievement.Result.NumberOfTeamsCreated++;
+            userAchievement.Result.NumberOfTeamsCreated++;
                 
             return Ok(_mapper.Map<TeamDto>(newTeam));
 
