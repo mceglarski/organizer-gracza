@@ -76,6 +76,15 @@ namespace organizer_gracza_backend.Controllers
 
             return Ok(await _messageRepository.GetMessageThread(currentUsername, username));
         }
+        
+        [HttpGet("allThread")]
+        public async Task<ActionResult<IEnumerable<MemberDto>>> GetAllUserMessageThread(string username)
+        {
+            var currentUsername = User.GetUsername();
+
+            return Ok(await _messageRepository.GetAllUserMessageThread(currentUsername));
+        }
+
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteMessage(int id)

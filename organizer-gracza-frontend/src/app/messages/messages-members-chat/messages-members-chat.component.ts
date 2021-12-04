@@ -13,18 +13,14 @@ import {NgForm} from "@angular/forms";
   styleUrls: ['./messages-members-chat.component.css']
 })
 export class MessagesMembersChatComponent implements OnInit, OnDestroy {
-  // @ts-ignore
   @ViewChild('messageForm') messageForm: NgForm;
-  // @ts-ignore
-  messages: Message[];
-  // @ts-ignore
-  user: User;
-  // @ts-ignore
-  member: Member;
-  // @ts-ignore
-  messageContent: string;
+  public messages: Message[];
+  public user: User;
+  public member: Member;
+  public messageContent: string;
 
-  constructor(public messageService: MessageService, private memberService: MembersService,
+  constructor(public messageService: MessageService,
+              private memberService: MembersService,
               private accountService: AccountService, private route: ActivatedRoute, private router: Router) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
       this.user = user;
@@ -39,26 +35,20 @@ export class MessagesMembersChatComponent implements OnInit, OnDestroy {
       this.messageService.createHubConnection(this.user, this.member.username);
   }
 
-  // ngOnInit(): void {
-  //   this.route.data.subscribe(data => {
-  //     this.member = data.member;
-  //   })
-  //   this.loadMessages();
-  // }
+  ngOnDestroy(): void {
+    this.messageService.stopHubConnection();
+  }
 
-  loadMessages() {
+  private loadMessages() {
       this.messageService.getMessageThread(this.member.username).subscribe(messages => {
         this.messages = messages;
       })
   }
 
-  sendMessage(){
+  public sendMessage(){
     this.messageService.sendMessage(this.member.username, this.messageContent).then(() => {
       this.messageForm.reset();
     })
   }
 
-  ngOnDestroy(): void {
-    this.messageService.stopHubConnection();
-  }
 }
