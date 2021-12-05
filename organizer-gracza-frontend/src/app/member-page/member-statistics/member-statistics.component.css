@@ -1,8 +1,9 @@
-.memberStatistics{
+.member-statistics {
   margin-left: 0.5%;
   width: 99.5%;
 }
-.title{
+
+.title {
   display: flex;
   flex-direction: row;
 }
@@ -21,36 +22,45 @@
   flex: 1;
   border-bottom: 0.3rem solid #2D2D2D;
 }
-.statisticRow{
+
+.statistic-row {
   display: flex;
   font-weight: bold;
   font-size: large;
 }
-.statistic{
+
+.statistic {
   display: flex;
   flex-direction: column;
   margin-left: 20%;
   width: 100%;
 }
-.statisticValue{
+
+.statistic-value {
   color: #C3073F;
   margin-left: 5%;
 }
-.game-select{
+
+.game-select {
   color: white;
 }
+
 /deep/ .mat-select-panel {
   background-color: white;
 }
-/deep/ .mat-form-field-infix{
+
+/deep/ .mat-form-field-infix {
   background-color: white;
 }
-/deep/ .mat-select{
+
+/deep/ .mat-select {
   background-color: white;
 }
+
 /deep/ .mat-form-field-type-mat-select, .mat-select-value {
   color: white;
 }
-/deep/ .mat-form-field-label{
+
+/deep/ .mat-form-field-label {
   color: blue;
 }

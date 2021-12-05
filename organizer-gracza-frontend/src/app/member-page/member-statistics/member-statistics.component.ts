@@ -68,7 +68,7 @@ export class MemberStatisticsComponent implements OnInit {
 
   loadMember() {
     // @ts-ignore
-    this.memberService.getMember(this.route.snapshot.paramMap.get('nickname')).subscribe(member => {
+    this.memberService.getMember(this.route.snapshot.paramMap.get('username')).subscribe(member => {
       this.member = member;
       this.loadMemberId();
     })

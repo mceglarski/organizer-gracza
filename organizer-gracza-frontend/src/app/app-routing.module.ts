@@ -28,7 +28,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {path: 'community', component: CommunityListComponent},
-      {path: 'members/:nickname', component: MemberContentComponent},
+      {path: 'members/:username', component: MemberContentComponent, resolve: {member: MemberDetailedResolver}},
       {path: 'teams/details/:name', component: TeamsDetailsComponent},
       {path: 'member/edit', component: MemberEditComponent, canDeactivate: [PreventUnsavedChangesGuard]},
       {path: 'messages', component: MessagesChatComponent},

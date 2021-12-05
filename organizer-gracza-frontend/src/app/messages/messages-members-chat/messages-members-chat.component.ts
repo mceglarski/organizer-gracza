@@ -21,7 +21,9 @@ export class MessagesMembersChatComponent implements OnInit, OnDestroy {
 
   constructor(public messageService: MessageService,
               private memberService: MembersService,
-              private accountService: AccountService, private route: ActivatedRoute, private router: Router) {
+              private accountService: AccountService,
+              private route: ActivatedRoute,
+              private router: Router) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
       this.user = user;
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -31,7 +33,7 @@ export class MessagesMembersChatComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.data.subscribe(data => {
       this.member = data.member;
-    })
+    });
       this.messageService.createHubConnection(this.user, this.member.username);
   }
 

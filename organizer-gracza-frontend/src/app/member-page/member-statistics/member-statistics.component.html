@@ -1,11 +1,15 @@
-<div class="memberStatistics">
+<div class="member-statistics">
 
-  <div class="title mb-3" *ngIf="generalStatistics">
+  <div class="title">
     <h4>GENERALNE STATYSTYKI</h4>
     <div class="separator"></div>
-      Liczba uczestnictwa w wydarzeniach:  {{generalStatistics.eventsParticipated}}
-      Liczba wygranych wydarzeń:  {{generalStatistics.eventsWon}}
-      Liczba napisanych postów:  {{generalStatistics.postWritten}}
+
+  </div>
+
+  <div class="row" *ngIf="generalStatistics">
+    Liczba uczestnictwa w wydarzeniach:  {{generalStatistics.eventsParticipated}}
+    Liczba wygranych wydarzeń:  {{generalStatistics.eventsWon}}
+    Liczba napisanych postów:  {{generalStatistics.postWritten}}
   </div>
 
   <h4>STATYSTYKI Z GRY</h4>
@@ -13,7 +17,7 @@
   <div class="game-select">
     <mat-form-field appearance="fill">
       <mat-label>Wybierz gre:</mat-label>
-      <mat-select [(ngModel)]="gameId" name="gameName">
+      <mat-select [(ngModel)]="gameId" name="game-name">
         <mat-option [value]="game.gameId" *ngFor="let game of games" (click)="loadGame()">{{game.title}}</mat-option>
       </mat-select>
     </mat-form-field>
