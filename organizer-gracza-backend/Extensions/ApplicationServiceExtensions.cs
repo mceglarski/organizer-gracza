@@ -35,6 +35,7 @@ namespace organizer_gracza_backend.Extensions
             services.AddScoped<IGeneralStatisticsRepository, GeneralStatisticsRepository>();
             services.AddScoped<IAchievementsRepository, AchievementsRepository>();
             services.AddScoped<IUserAchievementCounterRepository, UserAchievementCounterRepository>();
+            services.AddScoped<IReminderRepository, ReminderRepository>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddDbContext<DataContext>(options =>
             {

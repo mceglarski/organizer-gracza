@@ -166,3 +166,11 @@ export interface Achievements{
   photoUrl: string
   userId: number;
 }
+
+export interface Reminder{
+  ReminderId: number;
+  title: string;
+  startDate: Date;
+  user: User;
+  userId: number;
+}
