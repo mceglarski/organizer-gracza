@@ -1,6 +1,5 @@
 .member-statistics {
-  margin-left: 0.5%;
-  width: 99.5%;
+/*background-color: wheat*/
 }
 
 .title {
@@ -23,6 +22,10 @@
   border-bottom: 0.3rem solid #2D2D2D;
 }
 
+hr {
+  border-color: #2D2D2D;
+}
+
 .statistic-row {
   display: flex;
   font-weight: bold;
@@ -43,6 +46,11 @@
 
 .game-select {
   color: white;
+}
+
+.member-statistics-event-icon {
+  height: 100px;
+  width: 100px;
 }
 
 /deep/ .mat-select-panel {

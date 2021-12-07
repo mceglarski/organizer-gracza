@@ -11,7 +11,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class MemberAchievementsComponent implements OnInit {
 
-  public memberAchievement: Achievements[] = [];
+  public memberAchievements: Achievements[] = [];
   public member: Member;
 
 
@@ -27,11 +27,9 @@ export class MemberAchievementsComponent implements OnInit {
   }
 
   private loadMemberAchievement(): void {
-    console.log(this.member.Id)
-    this.achievementService.getAchievementsByUserId(this.member.Id).subscribe(a => {
+    this.achievementService.getAchievementsByUserId(this.member.id).subscribe(a => {
       // @ts-ignore
-      this.memberAchievement = a;
-      console.log(a);
+      this.memberAchievements = a;
     })
   }
 

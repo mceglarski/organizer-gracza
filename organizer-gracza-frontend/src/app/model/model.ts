@@ -22,7 +22,7 @@ export interface Photo {
 }
 
 export interface Member {
-  Id: number;
+  id: number;
   username: string;
   nickname: string;
   email: string;
