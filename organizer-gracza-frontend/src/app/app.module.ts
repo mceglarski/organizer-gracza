@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,7 +17,6 @@ import { RegistrationComponent } from './registration/registration.component';
 import {RouterModule} from "@angular/router";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
-import {NewsTeaserComponent} from "./news/news-teaser/news-teaser.component";
 import {BsDropdownModule} from "ngx-bootstrap/dropdown";
 import {ToastrModule} from "ngx-toastr";
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
@@ -74,6 +72,7 @@ import {registerLocaleData} from '@angular/common';
 import localePl from '@angular/common/locales/pl';
 import { EventsTeamUpdateComponent } from './events/events-team-update/events-team-update.component';
 import { UploadImageModalComponent } from './modals/upload-image-modal/upload-image-modal.component';
+import { NewsFullArticleComponent } from './news/news-full-article/news-full-article.component';
 
 registerLocaleData(localePl, 'pl');
 
@@ -90,7 +89,6 @@ registerLocaleData(localePl, 'pl');
     EventsExtendedComponent,
     LoginComponent,
     RegistrationComponent,
-    NewsTeaserComponent,
     TestErrorsComponent,
     NotFoundComponent,
     MemberImageComponent,
@@ -122,7 +120,8 @@ registerLocaleData(localePl, 'pl');
     EventsSoloUpdateComponent,
     AchievementsComponent,
     EventsTeamUpdateComponent,
-    UploadImageModalComponent
+    UploadImageModalComponent,
+    NewsFullArticleComponent
   ],
     imports: [
         BrowserModule,

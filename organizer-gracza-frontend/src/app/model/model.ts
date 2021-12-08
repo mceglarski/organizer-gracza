@@ -8,7 +8,7 @@ export interface User {
 }
 
 export interface News {
-  IdArticles: number;
+  ArticlesId: number;
   Title: string;
   Content: string;
   PublicationDate: Date;

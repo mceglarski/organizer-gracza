@@ -10,6 +10,11 @@ h6 {
   background-color: black;
 }
 .news-short-content:hover {
+  transition: 0.2s;
+  background-color: #d52b58;
+}
+
+.news-short-content-clicked {
   background-color: #d52b58;
 }
 
