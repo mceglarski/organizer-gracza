@@ -1,16 +1,15 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
+using organizer_gracza_backend.Model;
 
-namespace organizer_gracza_backend.Model
+namespace organizer_gracza_backend.DTOs
 {
-    public class Reminder
+    public class ReminderDto
     {
-        [Key]
         public int ReminderId { get; set; }
         public string Title { get; set; }
         public DateTime? StartDate { get; set; }
         
-        public User User { get; set; }
+        public UserDto User { get; set; }
         public int? UserId { get; set; }
     }
 }
