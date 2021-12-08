@@ -53,22 +53,22 @@ hr {
   width: 100px;
 }
 
-/deep/ .mat-select-panel {
-  background-color: white;
+::ng-deep.mat-select-panel {
+  background-color: #b4b4b4;
 }
 
-/deep/ .mat-form-field-infix {
-  background-color: white;
+::ng-deep.mat-form-field-infix {
+  background-color: #b4b4b4;
 }
 
-/deep/ .mat-select {
-  background-color: white;
+::ng-deep.mat-select {
+  background-color: #b4b4b4;
 }
 
-/deep/ .mat-form-field-type-mat-select, .mat-select-value {
-  color: white;
+::ng-deep.mat-form-field-type-mat-select, ::ng-deep.mat-select-value {
+  color: #b4b4b4;
 }
 
-/deep/ .mat-form-field-label {
-  color: blue;
+::ng-deep.mat-form-field-label {
+  color: black;
 }

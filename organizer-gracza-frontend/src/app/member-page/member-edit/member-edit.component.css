@@ -1,21 +1,23 @@
-.edit-page-content{
+.edit-page-content {
   background-color: black;
-  margin-left: 10%;
-  margin-top: 4%;
-  width: 80%;
   height: 1160px;
   color: #C3073F;
 }
-img.img-thumbnail{
+
+.edit-member-nickname {
+  margin-bottom: 1rem;
+}
+
+img.img-thumbnail {
   height: 100px;
   min-width: 100px !important;
   margin-bottom: 2px;
 }
 
-.nv-file-over{
+.nv-file-over {
   border: dotted 3px red;
 }
 
-input[type=file]{
+input[type=file] {
   color:transparent;
 }

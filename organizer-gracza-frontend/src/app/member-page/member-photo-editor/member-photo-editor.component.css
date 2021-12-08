@@ -1,7 +1,16 @@
-.photoContent{
+.photo-content{
 
 }
 .img-thumbnail{
   max-height: 100px;
   max-width: 100px;
+}
+
+.edit-member-add-photo {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.edit-member-upload-queue {
+  margin-top: 0.3rem;
 }
