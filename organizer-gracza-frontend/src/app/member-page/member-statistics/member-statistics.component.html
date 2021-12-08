@@ -1,19 +1,25 @@
-<div class="memberStatistics">
+<div class="member-statistics">
 
-  <div class="title mb-3" *ngIf="generalStatistics">
+  <div class="title">
     <h4>GENERALNE STATYSTYKI</h4>
     <div class="separator"></div>
-      Liczba uczestnictwa w wydarzeniach:  {{generalStatistics.eventsParticipated}}
-      Liczba wygranych wydarzeń:  {{generalStatistics.eventsWon}}
-      Liczba napisanych postów:  {{generalStatistics.postWritten}}
   </div>
+<hr>
+  <h5>STATYSTYKI z wydarzeń</h5>
 
-  <h4>STATYSTYKI Z GRY</h4>
+  <div class="row" *ngIf="generalStatistics">
+    <p class="col-xl-12">
+      <img class="member-statistics-event-icon" src="../../../assets/event-participated-icon.png">
+      Użytkownik do tej pory wziął udział w:  {{generalStatistics.eventsParticipated}}
+      {{generalStatistics.eventsParticipated === 1 ? 'wydarzeniu' : 'wydarzeniach'}}</p>
+  </div>
+  <hr>
+  <h5>STATYSTYKI Z GRY</h5>
 
-  <div class="game-select">
+  <div class="game-select row">
     <mat-form-field appearance="fill">
-      <mat-label>Wybierz gre:</mat-label>
-      <mat-select [(ngModel)]="gameId" name="gameName">
+      <mat-label>Wybierz grę:</mat-label>
+      <mat-select [(ngModel)]="gameId" name="game-name">
         <mat-option [value]="game.gameId" *ngFor="let game of games" (click)="loadGame()">{{game.title}}</mat-option>
       </mat-select>
     </mat-form-field>

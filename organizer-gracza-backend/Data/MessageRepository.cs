@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
+using MoreLinq.Extensions;
 using organizer_gracza_backend.DTOs;
 using organizer_gracza_backend.Helpers;
 using organizer_gracza_backend.Interfaces;
@@ -99,10 +100,12 @@ namespace organizer_gracza_backend.Data
             var messages = await _context.Messages
                 .Include(u => u.Sender).ThenInclude(p => p.Photos)
                 .Include(u => u.Recipient).ThenInclude(p => p.Photos)
-                .Where(m => m.Recipient.UserName == currentUsername && m.RecipientDeleted == false
-                                                                    && m.Sender.UserName == recipientUsername
-                            || m.Recipient.UserName == recipientUsername
-                            && m.Sender.UserName == currentUsername && m.SenderDeleted == false
+                .Where(m => 
+                    (m.Recipient.UserName == currentUsername 
+                    && m.RecipientDeleted == false
+                    && m.Sender.UserName == recipientUsername) || 
+                    (m.Recipient.UserName == recipientUsername
+                     && m.Sender.UserName == currentUsername && m.SenderDeleted == false)
                 )
                 .OrderBy(m => m.MessageSent)
                 .ToListAsync();
@@ -121,6 +124,40 @@ namespace organizer_gracza_backend.Data
             }
 
             return _mapper.Map<IEnumerable<MessageDto>>(messages);
+        }
+        
+        public async Task<IEnumerable<MessageDto>> GetAllUserMessageThread(string currentUsername)
+        {
+            var messages = await _context.Messages
+                .Include(u => u.Sender).ThenInclude(p => p.Photos)
+                .Include(u => u.Recipient).ThenInclude(p => p.Photos)
+                .Where(m =>
+                    (m.Recipient.UserName == currentUsername
+                     && m.RecipientDeleted == false) ||
+                    (m.Sender.UserName == currentUsername && m.SenderDeleted == false)
+                )
+                .OrderByDescending(m => m.MessageSent)
+                .ToListAsync();
+
+            var unreadMessages = messages.Where(m => m.DateRead == null
+                                                     && m.Recipient.UserName == currentUsername).ToList();
+
+            List<Message> finalMessages = new List<Message>(messages.DistinctBy(x =>
+                x.SenderId > x.RecipientId
+                    ? "" + x.SenderId + " " + x.RecipientId
+                    : "" + x.RecipientId + " " + x.SenderId));
+
+            if (unreadMessages.Any())
+            {
+                foreach (var message in unreadMessages)
+                {
+                    message.DateRead = DateTime.UtcNow;
+                }
+
+                await _context.SaveChangesAsync();
+            }
+
+            return _mapper.Map<IEnumerable<MessageDto>>(finalMessages);
         }
 
         public async Task<bool> SaveAllAsync()

@@ -1,9 +1,5 @@
-.content{
+.member-profile-content {
   background-color: black;
-  width: 80%;
-  /*height: 100%;*/
-  height: 1160px;
-  margin-top: 4%;
-  margin-left: 10%;
+  min-height: 1160px;
   color: white;
 }

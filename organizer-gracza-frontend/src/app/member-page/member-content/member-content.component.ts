@@ -9,27 +9,19 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./member-content.component.css']
 })
 export class MemberContentComponent implements OnInit {
-  // @ts-ignore
-  member: Member;
-  // @ts-ignore
-  // members: Member[];
 
-  constructor(private memberService: MembersService, private route: ActivatedRoute) { }
+  public member: Member;
+
+  constructor(private memberService: MembersService,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    // this.loadMembers();
     this.loadMember();
   }
 
-  // loadMembers(){
-  //   this.memberService.getMembers().subscribe(members => {
-  //     this.members = members;
-  //   })
-  // }
-
-  loadMember(){
+  public loadMember(): void {
     // @ts-ignore
-    this.memberService.getMember(this.route.snapshot.paramMap.get('nickname')).subscribe(member => {
+    this.memberService.getMember(this.route.snapshot.paramMap.get('username')).subscribe(member => {
       this.member = member;
     })
   }

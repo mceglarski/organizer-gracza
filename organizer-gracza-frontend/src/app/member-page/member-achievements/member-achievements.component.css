@@ -1,8 +1,9 @@
-.memberAchievements{
-  margin-left: 0.5%;
-  width: 99.5%;
+.member-achievements {
+  /*margin-left: 0.5%;*/
+  /*width: 99.5%;*/
 }
-.title{
+
+.title {
   display: flex;
   flex-direction: row;
 }
@@ -21,18 +22,23 @@
   flex: 1;
   border-bottom: 0.3rem solid #2D2D2D;
 }
-.rectangleAchievements{
-  display: flex;
 
+.rectangle-achievements {
 }
-.achievement{
-  display: flex;
-  align-items :center; /* Centering x-axis */
-  width: 20%;
+
+.achievement {
+  border-radius: 5%;
+  align-items: center;
   height: 150px;
-  background-color: #292E37;
-  margin-left: 20%;
+  min-width: 350px;
+  background-color: goldenrod;
+  margin: 0.5rem;
 }
-.achievementImage{
-  height: 100%;
+
+.achievement-image {
+  height: 100px;
+}
+
+.achievement-name {
+  color: #2D2D2D;
 }

@@ -12,14 +12,11 @@ import {MembersService} from "../../_services/members.service";
   styleUrls: ['./member-photo-editor.component.css']
 })
 export class MemberPhotoEditorComponent implements OnInit {
-  // @ts-ignore
-  @Input() member: Member;
-  // @ts-ignore
-  uploader: FileUploader;
-  hasBaseDropzoneOver = false;
-  baseUrl = environment.apiUrl;
-  // @ts-ignore
-  user: User;
+  @Input() public member: Member;
+  public uploader: FileUploader;
+  public hasBaseDropzoneOver = false;
+  public baseUrl = environment.apiUrl;
+  public user: User;
 
 
   constructor(private accountService: AccountService, private memberService: MembersService) {
@@ -30,12 +27,12 @@ export class MemberPhotoEditorComponent implements OnInit {
     this.initializeUploader();
   }
 
-  fileOverBase(event: any){
+  public fileOverBase(event: any){
     this.hasBaseDropzoneOver = event;
   }
 
   // @ts-ignore
-  setMainPhoto(photo: Photo){
+  public setMainPhoto(photo: Photo){
     this.memberService.setMainPhoto(photo.photoId).subscribe(() => {
       this.user.photoUrl = photo.url;
       this.accountService.setCurrentUser(this.user);
@@ -49,7 +46,7 @@ export class MemberPhotoEditorComponent implements OnInit {
     })
   }
 
-  deletePhoto(photoId: number){
+  public deletePhoto(photoId: number){
     this.memberService.deletePhoto(photoId).subscribe(() => {
       this.member.photos = this.member.photos.filter(x => x.photoId !== photoId);
     })

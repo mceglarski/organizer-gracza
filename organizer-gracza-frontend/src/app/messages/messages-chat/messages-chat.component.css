@@ -1,11 +1,10 @@
-.messages-content{
-  margin-left: 10%;
-  width: 80%;
-  height: 1160px;
+.messages-content {
+  min-height: 1100px;
+  height: 100%;
   opacity: 0.9;
   background-color: black;
-  margin-top: 4%;
   color: white;
+  padding: 0.5rem;
 }
 .img-circle{
   max-height: 50px;
@@ -13,4 +12,36 @@
 
 .messages-text {
   color: white
+}
+
+.messages-chat-list-row {
+  border: 1px solid lightsteelblue;
+  border-radius: 10px;
+  margin: 0.5rem;
+  transition: 0.2s;
+}
+
+.messages-chat-list-row:hover {
+  background-color: #5a5a5a;
+}
+
+.messages-chat-list-picture {
+  margin: 5px;
+  max-height: 100px;
+  max-width: 100px;
+  border-radius: 50%;
+}
+
+.messages-chat-image-container {
+  border-right: 5px dotted #d52b58;
+  margin-right: 0.5rem;
+}
+
+.messages-chat-list-name {
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+.messages-chat-list-content {
+  max-width: 100%;
 }

@@ -1,17 +1,21 @@
-<div class="memberAchievements">
+<div class="member-achievements container-fluid">
+
   <div class="title mb-3">
     <h4>OSIĄGNIĘCIA</h4>
     <div class="separator"></div>
   </div>
-  <div class="rectangleAchievements">
-    <div class="achievement">
-      <div><img src="{{memberContent.member.photoUrl}}" alt="Achievement" class="achievementImage"></div>
-      <div><p>Weź udział w 10 różnych wydarzeniach</p></div>
+
+  <div class="rectangle-achievements row justify-content-center">
+
+    <div class="row col-xl-12" *ngIf="memberAchievements.length === 0">
+      <div class="col-sm-12">Użytkownik nie zdobył jeszcze osiągnięć</div>
     </div>
-    <div class="achievement">
-      <div><img src="{{memberContent.member.photoUrl}}" alt="Achievement" class="achievementImage"></div>
-      <div><p>Zajmij podium na turnieju</p></div>
+
+    <div class="achievement row col-xl-3" *ngFor="let achievement of memberAchievements">
+      <div class="col-sm-4"><img class="achievement-image" src="../../../assets/achievment-icon.png" alt="Achievement"></div>
+      <div class="col-sm-8 achievement-name"><b>{{achievement.name}}</b><br>{{achievement.details}}</div>
     </div>
+
   </div>
-  <button class="btn btn-info">Pokaż wszystkie</button>
+
 </div>

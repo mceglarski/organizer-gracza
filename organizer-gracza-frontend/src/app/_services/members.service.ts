@@ -65,7 +65,7 @@ export class MembersService {
   getMemberById(userId: number){
     const member = [...this.memberCache.values()]
       .reduce((arr, elem) => arr.concat(elem.result), [])
-      .find((member: Member) => member.Id === userId);
+      .find((member: Member) => member.id === userId);
 
     if(member){
       return of(member);

@@ -7,6 +7,6 @@
     <h3>{{newsInput?.Content}}</h3>
     <h6>{{newsInput?.PublicationDate | date: 'short'}}</h6>
     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled </p>
-    <button class="btn news-extended-read-more-btn">Czytaj dalej</button>
+    <button class="btn news-extended-read-more-btn" routerLink="/news/{{newsInput?.ArticlesId}}">Czytaj dalej</button>
   </div>
 </div>

@@ -9,7 +9,8 @@ import {PresenceService} from "../../_services/presence.service";
 })
 export class MemberImageComponent implements OnInit {
 
-  constructor(public memberContent: MemberContentComponent, public presence: PresenceService) { }
+  constructor(public memberContent: MemberContentComponent,
+              public presence: PresenceService) { }
 
   ngOnInit(): void {
   }

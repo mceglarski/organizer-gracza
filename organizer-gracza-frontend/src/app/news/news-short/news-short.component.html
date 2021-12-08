@@ -1,5 +1,7 @@
-<div class="news-short" *ngFor="let news of newsArray">
-  <div class="news-short-content" (click)="sendExtendedNews(news)">
+<div class="news-short" *ngFor="let news of newsArray; let i = index">
+  <div class="news-short-content"
+       [style.background]="selectedNews == i ? '#d52b58' : ''"
+       (click)="sendExtendedNews(news); selectedNews = i">
     <div class="news-short-image">
       <img src="../assets/short-news-icon.jpg" class="news-thumbnail">
     </div>

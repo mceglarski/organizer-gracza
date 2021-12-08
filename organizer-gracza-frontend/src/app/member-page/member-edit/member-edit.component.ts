@@ -12,12 +12,10 @@ import {NgForm} from "@angular/forms";
   styleUrls: ['./member-edit.component.css']
 })
 export class MemberEditComponent implements OnInit {
-  // @ts-ignore
-  @ViewChild('editForm') editForm: NgForm;
-  // @ts-ignore
-  member: Member;
-  // @ts-ignore
-  user: User;
+
+  @ViewChild('editForm') public editForm: NgForm;
+  public member: Member;
+  public user: User;
 
   @HostListener('window:beforeunload', ['$event']) unloadNotification($event: any) {
       if (this.editForm.dirty) {
@@ -25,7 +23,8 @@ export class MemberEditComponent implements OnInit {
       }
   }
 
-  constructor(private accountService: AccountService, private memberService: MembersService,
+  constructor(private accountService: AccountService,
+              private memberService: MembersService,
               private toastr: ToastrService) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
   }
@@ -34,13 +33,13 @@ export class MemberEditComponent implements OnInit {
     this.loadMember()
   }
 
-  loadMember(){
+  public loadMember(){
     this.memberService.getMember(this.user.username).subscribe(member => {
       this.member = member;
     })
   }
 
-  updateMember(){
+  public updateMember(){
     this.memberService.updateMember(this.member).subscribe(() => {
       this.toastr.success('Profil został zaktualizowany!');
       this.editForm.reset(this.member);

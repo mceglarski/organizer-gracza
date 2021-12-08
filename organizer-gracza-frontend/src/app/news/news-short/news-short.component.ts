@@ -9,26 +9,26 @@ export class NewsShortComponent implements OnInit {
 
   @Output()
   public newsExtended = new EventEmitter<News>();
-
+  public selectedNews: number = -1;
   public newsArray: News[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
     this.newsArray = [{
-      IdArticles: 1,
+      ArticlesId: 1,
       Title: 'Podsumowanie 2021 roku',
       Content: 'Opisujemy najciekawsze momenty e-sportowe 2021 roku',
       PublicationDate: new Date()
     },
     {
-      IdArticles: 2,
+      ArticlesId: 2,
       Title: 'Zmiany w zasadach rozgrywek CS:GO',
       Content: 'Czekają nas niedługo zmiany w oficjalnych rozgrywkach CS:GO',
       PublicationDate: new Date()
     },
     {
-      IdArticles: 3,
+      ArticlesId: 3,
       Title: 'DreamHack: znamy miejsce wydarzenia!',
       Content: 'Nareszcie wiemy, że to Warszawa będzie hostem dla DreamHack Event.',
       PublicationDate: new Date()

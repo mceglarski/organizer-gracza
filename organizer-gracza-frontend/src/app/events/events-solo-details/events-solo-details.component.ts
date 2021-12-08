@@ -40,16 +40,8 @@ export class EventsSoloDetailsComponent implements OnInit {
     this.loadMemberId();
   }
 
-  loadEvent(){
-    // @ts-ignore
-    this.eventsService.getUserEvent(this.route.snapshot.paramMap.get('eventUserId')).subscribe(specifiedEvent => {
-      // @ts-ignore
-      this.event = specifiedEvent;
-      this.loadUserRegistrations()
-    })
-  }
 
-  joinEvent(){
+  public joinEvent(): void {
     this.model = {
       userId: this.memberId,
       eventUserId: this.event.eventUserId
@@ -61,13 +53,22 @@ export class EventsSoloDetailsComponent implements OnInit {
     })
   }
 
-  loadMemberId(){
+  private loadEvent(): void {
+    // @ts-ignore
+    this.eventsService.getUserEvent(this.route.snapshot.paramMap.get('eventUserId')).subscribe(specifiedEvent => {
+      // @ts-ignore
+      this.event = specifiedEvent;
+      this.loadUserRegistrations()
+    })
+  }
+
+  private loadMemberId(): void {
     this.memberService.getMemberIdByUsername(this.user.username).subscribe(memberId =>{
       this.memberId = memberId;
     })
   }
 
-  loadUserRegistrations(){
+  private loadUserRegistrations(): void {
     this.eventsService.getUserEventRegistration(this.event.eventUserId).subscribe(userRegistration => {
       // @ts-ignore
       this.userRegistrations = userRegistration;
@@ -75,7 +76,7 @@ export class EventsSoloDetailsComponent implements OnInit {
     })
   }
 
-  loadUsersIds(){
+  private loadUsersIds(): void {
     for(let user of this.userRegistrations)
     {
       this.UsersId.push(user.userId);
@@ -83,7 +84,7 @@ export class EventsSoloDetailsComponent implements OnInit {
     this.loadMembers();
   }
 
-  loadMembers(){
+  private loadMembers(): void {
     this.UsersId.forEach((value,index) =>{
       this.memberService.getMemberById(value).subscribe(member =>{
         // this.Members = member;

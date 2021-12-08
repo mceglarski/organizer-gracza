@@ -13,19 +13,17 @@ import {NgForm} from "@angular/forms";
   styleUrls: ['./messages-members-chat.component.css']
 })
 export class MessagesMembersChatComponent implements OnInit, OnDestroy {
-  // @ts-ignore
   @ViewChild('messageForm') messageForm: NgForm;
-  // @ts-ignore
-  messages: Message[];
-  // @ts-ignore
-  user: User;
-  // @ts-ignore
-  member: Member;
-  // @ts-ignore
-  messageContent: string;
+  public messages: Message[];
+  public user: User;
+  public member: Member;
+  public messageContent: string;
 
-  constructor(public messageService: MessageService, private memberService: MembersService,
-              private accountService: AccountService, private route: ActivatedRoute, private router: Router) {
+  constructor(public messageService: MessageService,
+              private memberService: MembersService,
+              private accountService: AccountService,
+              private route: ActivatedRoute,
+              private router: Router) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
       this.user = user;
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -35,30 +33,24 @@ export class MessagesMembersChatComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.data.subscribe(data => {
       this.member = data.member;
-    })
+    });
       this.messageService.createHubConnection(this.user, this.member.username);
-  }
-
-  // ngOnInit(): void {
-  //   this.route.data.subscribe(data => {
-  //     this.member = data.member;
-  //   })
-  //   this.loadMessages();
-  // }
-
-  loadMessages() {
-      this.messageService.getMessageThread(this.member.username).subscribe(messages => {
-        this.messages = messages;
-      })
-  }
-
-  sendMessage(){
-    this.messageService.sendMessage(this.member.username, this.messageContent).then(() => {
-      this.messageForm.reset();
-    })
   }
 
   ngOnDestroy(): void {
     this.messageService.stopHubConnection();
   }
+
+  private loadMessages() {
+      this.messageService.getMessageThread(this.member.username).subscribe(messages => {
+        this.messages = messages;
+      })
+  }
+
+  public sendMessage(){
+    this.messageService.sendMessage(this.member.username, this.messageContent).then(() => {
+      this.messageForm.reset();
+    })
+  }
+
 }

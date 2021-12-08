@@ -8,7 +8,7 @@ export interface User {
 }
 
 export interface News {
-  IdArticles: number;
+  ArticlesId: number;
   Title: string;
   Content: string;
   PublicationDate: Date;
@@ -22,7 +22,7 @@ export interface Photo {
 }
 
 export interface Member {
-  Id: number;
+  id: number;
   username: string;
   nickname: string;
   email: string;

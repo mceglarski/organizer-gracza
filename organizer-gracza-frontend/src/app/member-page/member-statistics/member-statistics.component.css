@@ -1,8 +1,8 @@
-.memberStatistics{
-  margin-left: 0.5%;
-  width: 99.5%;
+.member-statistics {
+/*background-color: wheat*/
 }
-.title{
+
+.title {
   display: flex;
   flex-direction: row;
 }
@@ -21,36 +21,54 @@
   flex: 1;
   border-bottom: 0.3rem solid #2D2D2D;
 }
-.statisticRow{
+
+hr {
+  border-color: #2D2D2D;
+}
+
+.statistic-row {
   display: flex;
   font-weight: bold;
   font-size: large;
 }
-.statistic{
+
+.statistic {
   display: flex;
   flex-direction: column;
   margin-left: 20%;
   width: 100%;
 }
-.statisticValue{
+
+.statistic-value {
   color: #C3073F;
   margin-left: 5%;
 }
-.game-select{
+
+.game-select {
   color: white;
 }
-/deep/ .mat-select-panel {
-  background-color: white;
+
+.member-statistics-event-icon {
+  height: 100px;
+  width: 100px;
 }
-/deep/ .mat-form-field-infix{
-  background-color: white;
+
+::ng-deep.mat-select-panel {
+  background-color: #b4b4b4;
 }
-/deep/ .mat-select{
-  background-color: white;
+
+::ng-deep.mat-form-field-infix {
+  background-color: #b4b4b4;
 }
-/deep/ .mat-form-field-type-mat-select, .mat-select-value {
-  color: white;
+
+::ng-deep.mat-select {
+  background-color: #b4b4b4;
 }
-/deep/ .mat-form-field-label{
-  color: blue;
+
+::ng-deep.mat-form-field-type-mat-select, ::ng-deep.mat-select-value {
+  color: #b4b4b4;
+}
+
+::ng-deep.mat-form-field-label {
+  color: black;
 }

@@ -19,6 +19,7 @@ import {EventsSoloEditComponent} from "./events/events-solo-edit/events-solo-edi
 import {EventsTeamEditComponent} from "./events/events-team-edit/events-team-edit.component";
 import {EventsSoloDetailsComponent} from "./events/events-solo-details/events-solo-details.component";
 import {EventsTeamDetailsComponent} from "./events/events-team-details/events-team-details.component";
+import {NewsFullArticleComponent} from "./news/news-full-article/news-full-article.component";
 
 const routes: Routes = [
   {path: '', component: MainPageContentComponent},
@@ -28,11 +29,12 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {path: 'community', component: CommunityListComponent},
-      {path: 'members/:nickname', component: MemberContentComponent},
+      {path: 'members/:username', component: MemberContentComponent, resolve: {member: MemberDetailedResolver}},
       {path: 'teams/details/:name', component: TeamsDetailsComponent},
       {path: 'member/edit', component: MemberEditComponent, canDeactivate: [PreventUnsavedChangesGuard]},
       {path: 'messages', component: MessagesChatComponent},
       {path: 'messages/thread/:username', component: MessagesMembersChatComponent, resolve: {member: MemberDetailedResolver}},
+      {path: 'news/:newsId', component: NewsFullArticleComponent},
       {path: 'admin', component: AdminPanelComponent, canActivate: [AdminGuard]},
       {path: 'admin/events/eventsuser/:eventUserId', component: EventsSoloEditComponent},
       {path: 'admin/events/eventsteam/:eventTeamId', component: EventsTeamEditComponent},
