@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
+import {ArticlesService} from "../../_services/articles.service";
+import {News} from "../../model/model";
 
 @Component({
   selector: 'app-news-full-article',
@@ -8,12 +10,20 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class NewsFullArticleComponent implements OnInit {
 
-  public newsId: string | null;
+  public newsId: number;
+  public news: News;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute,
+              private articlesService: ArticlesService) { }
 
   ngOnInit(): void {
-    this.newsId = this.route.snapshot.paramMap.get('newsId');
+    this.newsId = <number><unknown>this.route.snapshot.paramMap.get('newsId');
+    this.articlesService.getArticle(this.newsId).subscribe(a => {
+      // @ts-ignore
+      this.news = a;
+      console.log(a);
+      return;
+    })
   }
 
 }

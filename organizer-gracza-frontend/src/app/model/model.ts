@@ -8,12 +8,12 @@ export interface User {
 }
 
 export interface News {
-  ArticlesId: number;
-  Title: string;
-  Content: string;
-  PublicationDate: Date;
-  PhotoUrl: string;
-  User?: User;
+  articlesId: number;
+  title: string;
+  content: string;
+  publicationDate: Date;
+  photoUrl: string;
+  user?: User;
   userId: number
 }
 
