@@ -1,11 +1,10 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
+using organizer_gracza_backend.Model;
 
-namespace organizer_gracza_backend.Model
+namespace organizer_gracza_backend.DTOs
 {
-    public class Articles
+    public class ArticlesDto
     {
-        [Key]
         public int ArticlesId { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
@@ -13,6 +12,6 @@ namespace organizer_gracza_backend.Model
         public string PhotoUrl { get; set; }
         
         public int? UserId { get; set; }
-        public User User { get; set; }
+        public UserDto User { get; set; }
     }
 }

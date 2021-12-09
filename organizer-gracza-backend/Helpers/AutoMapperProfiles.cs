@@ -42,6 +42,7 @@ namespace organizer_gracza_backend.Helpers
             CreateMap<Achievements, AchievementsDto>();
             CreateMap<UserAchievementCounter, UserAchievementCounterDto>();
             CreateMap<Reminder, ReminderDto>();
+            CreateMap<Articles, ArticlesDto>();
             CreateMap<Message, MessageDto>()
                 .ForMember(dest => dest.SenderPhotoUrl,
                     opt => opt.MapFrom(

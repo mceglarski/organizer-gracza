@@ -29,5 +29,8 @@ namespace organizer_gracza_backend.Model
         
         public ICollection<Reminder> Reminders { get; set; }
         
+        public ICollection<Articles> Articles { get; set; }
+
+        
     }
 }
