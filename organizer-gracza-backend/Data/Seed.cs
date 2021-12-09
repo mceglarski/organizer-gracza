@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 using Microsoft.AspNetCore.Identity;
+using organizer_gracza_backend.DTOs;
 using organizer_gracza_backend.Model;
 
 namespace organizer_gracza_backend.Data
@@ -257,6 +258,46 @@ namespace organizer_gracza_backend.Data
             foreach (var userAchievementCounter in userAchievementCounterData)
             {
                 await context.AddAsync(userAchievementCounter);
+            }
+        
+            await context.SaveChangesAsync();
+        }
+        
+        public static async Task SeedReminders(DataContext context)
+        {
+            if (await context.Reminder.AnyAsync())
+                return;
+        
+            var reminders =
+                await System.IO.File.ReadAllTextAsync("Data/SeedData/ReminderSeedData.json");
+            var remindersData = JsonSerializer.Deserialize<List<Reminder>>
+                (reminders);
+            if (remindersData == null)
+                return;
+        
+            foreach (var reminder in remindersData)
+            {
+                await context.AddAsync(reminder);
+            }
+        
+            await context.SaveChangesAsync();
+        }
+        
+        public static async Task SeedArticles(DataContext context)
+        {
+            if (await context.Articles.AnyAsync())
+                return;
+        
+            var articles =
+                await System.IO.File.ReadAllTextAsync("Data/SeedData/ArticlesSeedData.json");
+            var articlesData = JsonSerializer.Deserialize<List<Articles>>
+                (articles);
+            if (articlesData == null)
+                return;
+        
+            foreach (var article in articlesData)
+            {
+                await context.AddAsync(article);
             }
         
             await context.SaveChangesAsync();

@@ -12,7 +12,9 @@ export interface News {
   Title: string;
   Content: string;
   PublicationDate: Date;
+  PhotoUrl: string;
   User?: User;
+  userId: number
 }
 
 export interface Photo {
