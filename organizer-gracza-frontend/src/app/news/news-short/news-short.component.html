@@ -1,14 +1,14 @@
-<div class="news-short" *ngFor="let news of newsArray; let i = index">
+<div class="news-short" *ngFor="let news of articleArray; let i = index">
   <div class="news-short-content"
-       [style.background]="selectedNews == i ? '#d52b58' : ''"
-       (click)="sendExtendedNews(news); selectedNews = i">
+       [style.background]="selectedArticle == i ? '#d52b58' : ''"
+       (click)="sendExtendedNews(news); selectedArticle = i">
     <div class="news-short-image">
       <img src="../assets/short-news-icon.jpg" class="news-thumbnail">
     </div>
     <div class="text col-md-8">
-      <h4>{{news.Title}}</h4>
-      <h5>{{news.Content}}</h5>
-      <h6>{{news.PublicationDate | date: 'short'}}</h6>
+      <h4>{{news.title}}</h4>
+      <h5>{{(news.content.length > 100) ? (news.content | slice:0:100)+'...' : news.content}}</h5>
+      <h6>{{news.publicationDate | date: 'short'}}</h6>
     </div>
   </div>
 </div>

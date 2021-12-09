@@ -1,12 +1,11 @@
 <div class="news-extended">
   <div class="news-extended-image">
-    <img src="../assets/video-games.jpg" class="news-extended-thumbnail">
+    <img src="{{newsInput?.photoUrl}}" class="news-extended-thumbnail">
   </div>
   <div class="news-extended-description">
-    <h1>{{newsInput?.Title}}</h1>
-    <h3>{{newsInput?.Content}}</h3>
-    <h6>{{newsInput?.PublicationDate | date: 'short'}}</h6>
-    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled </p>
-    <button class="btn news-extended-read-more-btn" routerLink="/news/{{newsInput?.ArticlesId}}">Czytaj dalej</button>
+    <h1>{{newsInput?.title}}</h1>
+    <p>{{(newsInput?.content | slice:0:400)+'...'}}</p>
+    <h6>{{newsInput?.publicationDate | date: 'short'}}</h6>
+    <button class="btn news-extended-read-more-btn" routerLink="/news/{{newsInput?.articlesId}}">Czytaj dalej</button>
   </div>
 </div>
