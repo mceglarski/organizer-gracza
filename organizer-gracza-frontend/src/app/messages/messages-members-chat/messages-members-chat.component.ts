@@ -18,6 +18,7 @@ export class MessagesMembersChatComponent implements OnInit, OnDestroy {
   public user: User;
   public member: Member;
   public messageContent: string;
+  public loading = false;
 
   constructor(public messageService: MessageService,
               private memberService: MembersService,
@@ -34,22 +35,42 @@ export class MessagesMembersChatComponent implements OnInit, OnDestroy {
     this.route.data.subscribe(data => {
       this.member = data.member;
     });
-      this.messageService.createHubConnection(this.user, this.member.username);
+    this.messageService.createHubConnection(this.user, this.member.username);
   }
 
   ngOnDestroy(): void {
     this.messageService.stopHubConnection();
   }
 
-  private loadMessages() {
-      this.messageService.getMessageThread(this.member.username).subscribe(messages => {
-        this.messages = messages;
-      })
-  }
-
-  public sendMessage(){
+  public sendMessage() {
+    this.loading = true;
     this.messageService.sendMessage(this.member.username, this.messageContent).then(() => {
       this.messageForm.reset();
+    }).finally(() => this.loading = false);
+  }
+
+  public triggerFunction(event: any) {
+    console.log(event);
+    if (event.ctrlKey && event.key === 'Enter') {
+      /*
+        cannot make textarea produce a next line.
+      */
+      let text = document.getElementById("messagesMemberChatInput");
+      // @ts-ignore
+      text.value += '\n';
+      console.log(text);
+      //  text = text.
+
+      console.log("next line!");
+    } else if (event.key === 'Enter') {
+      event.preventDefault();
+      console.log("submit!");
+    }
+  }
+
+  private loadMessages() {
+    this.messageService.getMessageThread(this.member.username).subscribe(messages => {
+      this.messages = messages;
     })
   }
 
