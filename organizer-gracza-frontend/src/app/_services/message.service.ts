@@ -6,6 +6,7 @@ import {Group, Message, User} from "../model/model";
 import {HubConnection, HubConnectionBuilder} from "@microsoft/signalr";
 import {BehaviorSubject} from "rxjs";
 import {take} from "rxjs/operators";
+import {BusyService} from "./busy.service";
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +19,11 @@ export class MessageService {
   private messageThreadSource = new BehaviorSubject<Message[]>([]);
   messageThread$ = this.messageThreadSource.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private busyService: BusyService) { }
 
-  createHubConnection(user: User, otherUsername: string){
+  createHubConnection(user: User, otherUsername: string) {
+    this.busyService.busy();
     this.hubConnection = new HubConnectionBuilder()
       .withUrl(this.hubUrl + 'message?user=' + otherUsername, {
         accessTokenFactory: () => user.token
@@ -28,7 +31,9 @@ export class MessageService {
       .withAutomaticReconnect()
       .build()
 
-    this.hubConnection.start().catch(error => console.log(error));
+    this.hubConnection.start()
+      .catch(error => console.log(error))
+      .finally(() => this.busyService.idle());
 
     this.hubConnection.on('ReceiveMessageThread', messages => {
       this.messageThreadSource.next(messages);
@@ -54,33 +59,33 @@ export class MessageService {
     })
   }
 
-  stopHubConnection(){
-    if(this.hubConnection){
+  stopHubConnection() {
+    if(this.hubConnection) {
+      this.messageThreadSource.next([]);
       this.hubConnection.stop();
     }
   }
 
-  // @ts-ignore
-  getMessages(pageNumber, pageSize, container){
+  getMessages(pageNumber: number, pageSize: number, container: string) {
     let params = getPaginationHeaders(pageNumber, pageSize);
     params = params.append('Container', container);
     return getPaginatedResult<Message[]>(this.baseUrl + 'messages', params, this.http);
   }
 
-  getMessageThread(username: string){
+  getMessageThread(username: string) {
     return this.http.get<Message[]>(this.baseUrl + 'messages/thread/' + username);
   }
 
-  getAllUserMessageThread(){
+  getAllUserMessageThread() {
     return this.http.get<Message[]>(this.baseUrl + 'messages/allThread');
   }
 
-  async sendMessage(username: string, content: string){
+  async sendMessage(username: string, content: string) {
     return this.hubConnection.invoke('SendMessage', {recipientUsername: username, content})
       .catch(error => console.log(error));
   }
 
-  deleteMessage(id: number){
+  deleteMessage(id: number) {
     return this.http.delete(this.baseUrl + 'messages/' + id);
   }
 }

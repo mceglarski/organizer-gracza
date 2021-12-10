@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {EventsService} from "../../_services/events.service";
 import {ActivatedRoute} from "@angular/router";
 import {EventUser, EventUserRegistration, Member, User} from "../../model/model";
@@ -28,7 +28,8 @@ export class EventsSoloDetailsComponent implements OnInit {
               private teamService: TeamsService,
               private memberService: MembersService,
               private accountService: AccountService,
-              private toastr: ToastrService)
+              private toastr: ToastrService,
+              private changeDetRef: ChangeDetectorRef)
   {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
       this.user = user;
@@ -37,7 +38,9 @@ export class EventsSoloDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadEvent();
-    this.loadMemberId();
+    if (this.user) {
+      this.loadMemberId();
+    }
   }
 
 
@@ -58,7 +61,9 @@ export class EventsSoloDetailsComponent implements OnInit {
     this.eventsService.getUserEvent(this.route.snapshot.paramMap.get('eventUserId')).subscribe(specifiedEvent => {
       // @ts-ignore
       this.event = specifiedEvent;
-      this.loadUserRegistrations()
+      if (this.user) {
+        this.loadUserRegistrations();
+      }
     })
   }
 
