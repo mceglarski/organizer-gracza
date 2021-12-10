@@ -32,7 +32,8 @@ namespace organizer_gracza_backend.Controllers
             _mapper = mapper;
             _photoEventService = photoEventService;
         }
-
+        
+        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<EventUserDto>>> GetEventsUserAsync()
         {
@@ -43,6 +44,7 @@ namespace organizer_gracza_backend.Controllers
             return Ok(eventsToReturn);
         }
 
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<ActionResult<EventUserDto>> GetEventUserAsync(int id)
         {
@@ -56,6 +58,7 @@ namespace organizer_gracza_backend.Controllers
 
         }
         
+        [AllowAnonymous]
         [HttpGet("specified/{name}", Name = "GetEventUser")]
         public async Task<ActionResult<EventUserDto>> GetEventUserByNameAsync(string name)
         {
