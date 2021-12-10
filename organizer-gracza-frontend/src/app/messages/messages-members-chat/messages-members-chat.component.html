@@ -1,8 +1,12 @@
-<div class="chat-content" *ngIf="member">
-  <div class="card-body">
+<div class="chat-content container" *ngIf="member">
+  <div class="card-body"
+       #scrollMe
+       style="overflow: auto; height: 535px;"
+       [scrollTop]="scrollMe.scrollHeight">
     <div *ngIf="(messageService.messageThread$ | async)?.length === 0">
       Nie masz jeszcze żadnych wiaodmości z użytkownikiem {{member.username}} wyślij pierwszą wiadomość.
     </div>
+
     <ul *ngIf="(messageService.messageThread$ | async)!.length > 0" class="chat">
       <li *ngFor="let message of (messageService.messageThread$ | async)">
         <div>
@@ -22,7 +26,7 @@
                 </span>
               </small>
             </div>
-            <p>{{message.content}}</p>
+            <p style="white-space: pre-line">{{message.content}}</p>
           </div>
         </div>
       </li>
@@ -31,15 +35,18 @@
   <div class="card-footer">
     <form #messageForm="ngForm" (ngSubmit)="sendMessage()" autocomplete="off">
       <div class="input-group">
-        <input
+        <textarea
           name="messageContent"
+          id="messagesMemberChatInput"
           required
           [(ngModel)]="messageContent"
+          (keydown)="triggerFunction($event)"
           type="text"
-          class="form-control input-sm"
-          placeholder="Wyślij wiadomość prywatną">
+          class="form-control input-sm messages-member-chat-input"
+          placeholder="Wyślij wiadomość prywatną"></textarea>
         <div class="input-group-append">
-          <button [disabled]="!messageForm.valid" class="btn btn-primary" type="submit">Wyślij</button>
+          <button [disabled]="!messageForm.valid || loading" class="btn btn-primary" type="submit">Wyślij
+            <i *ngIf="loading" class="fa fa-spinner fa-spin"></i></button>
         </div>
       </div>
     </form>

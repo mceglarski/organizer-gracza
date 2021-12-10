@@ -18,6 +18,8 @@
         <p>PULA NAGRÓD: {{event.winnerPrize}}</p>
         <p>OPIS: {{event.description}}</p>
       </div>
+
+      <div *ngIf="user">
         <h3 class="">ZAKWALIFIKOWANE DRUŻYNY</h3>
         <div class="row">
           <div class="qualified-teams" *ngFor="let registration of teamRegistrations">
@@ -27,6 +29,7 @@
         <button class="btn btn-success" (click)="open(addTeamRegistration)">ZAPISZ SIĘ</button>
 
       </div>
+    </div>
 
     <div class="event-image col-xl-6">
       <img src="{{event.photoUrl}}" alt="{{event.name}}">
@@ -36,7 +39,7 @@
 </div>
 
 <ng-template #addTeamRegistration let-modal>
-
+ <div *ngIf="user">
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Zapisz drużyne do wydarzenia </h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -66,5 +69,5 @@
     </button>
     <button type="button" class="btn btn-danger" (click)="modal.close()">Anuluj</button>
   </div>
-
+ </div>
 </ng-template>

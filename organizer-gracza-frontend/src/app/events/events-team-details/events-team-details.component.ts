@@ -39,8 +39,10 @@ export class EventsTeamDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadEvent();
-    this.loadTeamsForUser();
-    this.initializeAddTeamForEvent();
+    if (this.user) {
+      this.loadTeamsForUser();
+      this.initializeAddTeamForEvent();
+    }
   }
 
   public joinEvent(): void {
@@ -64,7 +66,9 @@ export class EventsTeamDetailsComponent implements OnInit {
     this.eventsService.getTeamEvent(this.route.snapshot.paramMap.get('eventTeamId')).subscribe(specifiedEvent => {
       // @ts-ignore
       this.event = specifiedEvent;
-      this.loadTeamRegistrations();
+      if (this.user) {
+        this.loadTeamRegistrations();
+      }
     })
   }
 

@@ -23,6 +23,10 @@ import {NewsFullArticleComponent} from "./news/news-full-article/news-full-artic
 
 const routes: Routes = [
   {path: '', component: MainPageContentComponent},
+  {path: 'events/eventsuser/:eventUserId', component: EventsSoloDetailsComponent},
+  {path: 'events/eventsteam/:eventTeamId', component: EventsTeamDetailsComponent},
+  {path: 'events', component: EventsListComponent},
+  {path: 'news/:newsId', component: NewsFullArticleComponent},
   {
     path: '',
     runGuardsAndResolvers: 'always',
@@ -34,13 +38,9 @@ const routes: Routes = [
       {path: 'member/edit', component: MemberEditComponent, canDeactivate: [PreventUnsavedChangesGuard]},
       {path: 'messages', component: MessagesChatComponent},
       {path: 'messages/thread/:username', component: MessagesMembersChatComponent, resolve: {member: MemberDetailedResolver}},
-      {path: 'news/:newsId', component: NewsFullArticleComponent},
       {path: 'admin', component: AdminPanelComponent, canActivate: [AdminGuard]},
       {path: 'admin/events/eventsuser/:eventUserId', component: EventsSoloEditComponent},
       {path: 'admin/events/eventsteam/:eventTeamId', component: EventsTeamEditComponent},
-      {path: 'events/eventsuser/:eventUserId', component: EventsSoloDetailsComponent},
-      {path: 'events/eventsteam/:eventTeamId', component: EventsTeamDetailsComponent},
-      {path: 'events', component: EventsListComponent}
     ]
   },
   {path: 'errors', component: TestErrorsComponent},
