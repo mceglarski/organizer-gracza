@@ -170,9 +170,9 @@ export interface Achievements{
 }
 
 export interface Reminder{
-  ReminderId: number;
+  reminderId?: number;
   title: string;
   startDate: Date;
-  user: User;
+  user?: User;
   userId: number;
 }

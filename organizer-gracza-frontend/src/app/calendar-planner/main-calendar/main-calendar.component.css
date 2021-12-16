@@ -1,0 +1,31 @@
+.main-calendar-container {
+  background: black;
+  color: white;
+  padding: 1rem;
+}
+
+.main-calendar {
+
+}
+
+::ng-deep.fc, .fc *, .fc:after, .fc:before {
+  padding: 1rem;
+  background-color: #3d4452;
+  border-top-left-radius: 1%;
+  border-top-right-radius: 1%;
+}
+
+.add-new-event-background {
+  padding: 1rem;
+  background-color: #3d4452;
+  border-radius: 1%;
+}
+
+.add-event-button {
+  color: #ffffff;
+  background: #6366F1;
+  border: 1px solid #6366F1;
+  font-size: 1rem;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  border-radius: 6px;
+}

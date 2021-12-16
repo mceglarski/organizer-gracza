@@ -1,0 +1,37 @@
+<h1 mat-dialog-title>Dodaj wydarzenie do kalendarza</h1>
+
+<div mat-dialog-content>
+
+  <div class="modal-body">
+    <form [formGroup]="addNewEventForm"
+          id="addNewEventForm">
+      <div class="form-group">
+        <mat-label>Tytuł wydarzenia</mat-label>
+        <input type="text"
+               class="form-control"
+               formControlName="eventName"
+               placeholder="Tytuł wydarzenia">
+        <div class="invalid-feedback">Tytuł wydarzenia jest wymagany</div>
+      </div>
+
+      <mat-label>Data wydarzenia</mat-label><br>
+      <mat-form-field>
+        <input matInput [ngxMatDatetimePicker]="picker"
+               placeholder="Data wydarzenia"
+               formControlName="eventDatePick">
+
+        <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+
+        <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
+      </mat-form-field>
+
+    </form>
+  </div>
+
+</div>
+
+<div mat-dialog-actions class="">
+  <button mat-button class="btn btn-success" (click)="addNewEvent()">Zapisz</button>
+  <button mat-button class="btn btn-danger" (click)="closeModal()">Anuluj</button>
+</div>
+
