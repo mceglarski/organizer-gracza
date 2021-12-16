@@ -5,8 +5,15 @@
   padding: 1rem;
 }
 
+.full-article-content-container {
+  background-color: #3d4452;
+  margin: 1rem;
+  border-radius: 0.5%;
+}
+
 .full-article-title {
   margin-top: 1rem;
+  color: #d52b58;
 }
 
 .full-article-date {

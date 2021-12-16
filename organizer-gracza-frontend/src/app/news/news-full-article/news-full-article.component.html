@@ -4,9 +4,9 @@
     <img class="col-xl-6 img-fluid" src="{{news?.photoUrl}}">
   </div>
 
-  <div class="row">
-    <h1 class="full-article-title col-xl-12">{{news?.title}}</h1>
-    <p class="full-article-date col-xl-4">Data publikacji: {{news?.publicationDate | date: 'short'}}</p>
+  <div class="row full-article-content-container justify-content-center">
+    <h1 class="full-article-title col-xl-9">{{news?.title}}</h1>
+    <p class="full-article-date col-xl-9">Data publikacji: {{news?.publicationDate | date: 'short'}}</p>
     <p class="full-article-content col-xl-9">{{news?.content}}</p>
   </div>
 
