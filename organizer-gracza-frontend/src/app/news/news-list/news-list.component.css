@@ -1,0 +1,36 @@
+.news-list-container {
+  background-color: black;
+  margin-top: 1%;
+  color: #fff;
+  padding: 1rem;
+}
+
+.news-list-article-row {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.news-list-article {
+  background-color: #3d4452;
+  padding: 1rem;
+}
+
+.news-list-article-content {
+  padding: 1rem;
+}
+
+.news-list-article-read-more-btn {
+  background-color: #1a1b21;
+  border-color: #2c2c31;
+  color: white;
+  width: 200px;
+  height: 50px;
+}
+
+.news-list-article-read-more-btn:hover {
+  background-color: #C3073F;
+}
+
+.news-list-article-read-more-btn:active {
+  background-color: #9a042f;
+}

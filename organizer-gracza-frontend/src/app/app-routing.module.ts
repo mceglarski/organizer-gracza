@@ -20,12 +20,15 @@ import {EventsTeamEditComponent} from "./events/events-team-edit/events-team-edi
 import {EventsSoloDetailsComponent} from "./events/events-solo-details/events-solo-details.component";
 import {EventsTeamDetailsComponent} from "./events/events-team-details/events-team-details.component";
 import {NewsFullArticleComponent} from "./news/news-full-article/news-full-article.component";
+import {MainCalendarComponent} from "./calendar-planner/main-calendar/main-calendar.component";
+import {NewsListComponent} from "./news/news-list/news-list.component";
 
 const routes: Routes = [
   {path: '', component: MainPageContentComponent},
   {path: 'events/eventsuser/:eventUserId', component: EventsSoloDetailsComponent},
   {path: 'events/eventsteam/:eventTeamId', component: EventsTeamDetailsComponent},
   {path: 'events', component: EventsListComponent},
+  {path: 'news', component: NewsListComponent},
   {path: 'news/:newsId', component: NewsFullArticleComponent},
   {
     path: '',
@@ -33,6 +36,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {path: 'community', component: CommunityListComponent},
+      {path: 'planner', component: MainCalendarComponent},
       {path: 'members/:username', component: MemberContentComponent, resolve: {member: MemberDetailedResolver}},
       {path: 'teams/details/:name', component: TeamsDetailsComponent},
       {path: 'member/edit', component: MemberEditComponent, canDeactivate: [PreventUnsavedChangesGuard]},
