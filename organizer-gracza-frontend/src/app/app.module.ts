@@ -86,6 +86,7 @@ import {
   NgxMatTimepickerModule
 } from "@angular-material-components/datetime-picker";
 import { NewsListComponent } from './news/news-list/news-list.component';
+import { BroadcastsComponent } from './broadcasts/broadcasts.component';
 
 registerLocaleData(localePl, 'pl');
 
@@ -143,7 +144,8 @@ FullCalendarModule.registerPlugins([
     NewsFullArticleComponent,
     MainCalendarComponent,
     AddNewEventModalComponent,
-    NewsListComponent
+    NewsListComponent,
+    BroadcastsComponent
   ],
   imports: [
     BrowserModule,
