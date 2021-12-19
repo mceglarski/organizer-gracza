@@ -22,6 +22,7 @@ import {EventsTeamDetailsComponent} from "./events/events-team-details/events-te
 import {NewsFullArticleComponent} from "./news/news-full-article/news-full-article.component";
 import {MainCalendarComponent} from "./calendar-planner/main-calendar/main-calendar.component";
 import {NewsListComponent} from "./news/news-list/news-list.component";
+import {BroadcastsComponent} from "./broadcasts/broadcasts.component";
 
 const routes: Routes = [
   {path: '', component: MainPageContentComponent},
@@ -30,6 +31,7 @@ const routes: Routes = [
   {path: 'events', component: EventsListComponent},
   {path: 'news', component: NewsListComponent},
   {path: 'news/:newsId', component: NewsFullArticleComponent},
+  {path: 'broadcasts', component: BroadcastsComponent},
   {
     path: '',
     runGuardsAndResolvers: 'always',
