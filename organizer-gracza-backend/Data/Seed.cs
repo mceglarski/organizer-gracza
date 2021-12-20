@@ -302,5 +302,45 @@ namespace organizer_gracza_backend.Data
         
             await context.SaveChangesAsync();
         }
+        
+        public static async Task SeedForumThreads(DataContext context)
+        {
+            if (await context.ForumThread.AnyAsync())
+                return;
+        
+            var forumThreads =
+                await System.IO.File.ReadAllTextAsync("Data/SeedData/ForumThreadSeedData.json");
+            var forumThreadsData = JsonSerializer.Deserialize<List<ForumThread>>
+                (forumThreads);
+            if (forumThreadsData == null)
+                return;
+        
+            foreach (var forumThread in forumThreadsData)
+            {
+                await context.AddAsync(forumThread);
+            }
+        
+            await context.SaveChangesAsync();
+        }
+        
+        public static async Task SeedForumPosts(DataContext context)
+        {
+            if (await context.ForumPost.AnyAsync())
+                return;
+        
+            var forumPosts =
+                await System.IO.File.ReadAllTextAsync("Data/SeedData/ForumPostSeedData.json");
+            var forumPostsData = JsonSerializer.Deserialize<List<ForumPost>>
+                (forumPosts);
+            if (forumPostsData == null)
+                return;
+        
+            foreach (var forumPost in forumPostsData)
+            {
+                await context.AddAsync(forumPost);
+            }
+        
+            await context.SaveChangesAsync();
+        }
     }
 }

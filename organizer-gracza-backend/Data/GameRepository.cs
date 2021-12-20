@@ -34,7 +34,7 @@ namespace organizer_gracza_backend.Data
 
         public void DeleteGame(Game game)
         {
-            _context.Games.Add(game);
+            _context.Games.Remove(game);
         }
 
         public async Task<bool> SaveAllAsync()

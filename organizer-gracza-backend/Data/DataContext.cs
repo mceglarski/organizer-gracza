@@ -72,7 +72,6 @@ namespace organizer_gracza_backend.Data
                 .HasOne(u => u.Sender)
                 .WithMany(m => m.MessagesSent)
                 .OnDelete(DeleteBehavior.Restrict);
-            
         }
     }
 }

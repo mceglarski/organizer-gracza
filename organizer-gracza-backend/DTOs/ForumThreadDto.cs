@@ -1,25 +1,22 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using organizer_gracza_backend.Model;
 
-namespace organizer_gracza_backend.Model
+namespace organizer_gracza_backend.DTOs
 {
-    public class ForumThread
+    public class ForumThreadDto
     {
-        [Key]
         public int ForumThreadId { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
         public DateTime? ThreadDate { get; set; }
         
-        public ICollection<ForumPost> ForumPosts{get; set; }
+        public ICollection<ForumPostDto> ForumPosts{get; set; }
         
         public int? UserId { get; set; }
-        public User User { get; set; }
+        public UserDto User { get; set; }
         
         public int? GameId { get; set; }
-        public Game Game { get; set; }
+        public GameDto Game { get; set; }
     }
 }
