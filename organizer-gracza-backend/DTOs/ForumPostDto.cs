@@ -1,19 +1,16 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
+using organizer_gracza_backend.Model;
 
-namespace organizer_gracza_backend.Model
+namespace organizer_gracza_backend.DTOs
 {
-    public class ForumPost
+    public class ForumPostDto
     {
-        [Key]
         public int ForumPostId { get; set; }
         public string Content { get; set; }
         public DateTime? PostDate { get; set; }
         
         public int? UserId { get; set; }
-        public User User { get; set; }
         
         public int? ForumThreadId { get; set; }
-        public ForumThread ForumThread { get; set; }
     }
 }

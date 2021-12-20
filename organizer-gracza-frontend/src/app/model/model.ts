@@ -142,6 +142,7 @@ export interface TeamUser {
 export interface Game {
   gameId: number;
   title: string;
+  photoUrl: string;
 }
 
 export interface GameStatistics {
@@ -175,4 +176,24 @@ export interface Reminder{
   startDate: Date;
   user?: User;
   userId: number;
+}
+
+export interface ForumThread{
+  forumThreadId: number;
+  title: string;
+  content: string;
+  threadDate: Date;
+  forumPosts: ForumPost[];
+  userId: number;
+  user: User;
+  gameId: number;
+  game: Game;
+}
+
+export interface ForumPost{
+  forumPostId: number;
+  content: string;
+  postDate: Date;
+  userId: number;
+  forumThreadId: number;
 }

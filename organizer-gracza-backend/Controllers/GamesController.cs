@@ -41,7 +41,8 @@ namespace organizer_gracza_backend.Controllers
             var newGame = new Game()
             {
                 GameId = gameDto.GameId,
-                Title = gameDto.Title
+                Title = gameDto.Title,
+                PhotoUrl = gameDto.PhotoUrl
             };
 
             _gameRepository.AddGame(newGame);
