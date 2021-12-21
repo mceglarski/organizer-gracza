@@ -82,6 +82,9 @@ namespace organizer_gracza_backend.Controllers
             {
                 NumberOfTeamsCreated = userAchievementCounterDto.NumberOfTeamsCreated,
                 NumberOfTeamsJoined = userAchievementCounterDto.NumberOfTeamsJoined,
+                NumberOfPostsCreated = userAchievementCounterDto.NumberOfPostsCreated,
+                NumberOfThreadsCreated = userAchievementCounterDto.NumberOfThreadsCreated,
+                NumberOfEventUserJoined = userAchievementCounterDto.NumberOfEventUserJoined,
                 UserId = userAchievementCounterDto.UserId
             };
 
@@ -117,6 +120,12 @@ namespace organizer_gracza_backend.Controllers
                 userAchievementCounterAsync.NumberOfTeamsCreated = userAchievementCounter.NumberOfTeamsCreated;
             if (userAchievementCounter.NumberOfTeamsJoined != null)
                 userAchievementCounterAsync.NumberOfTeamsJoined = userAchievementCounter.NumberOfTeamsJoined;
+            if (userAchievementCounter.NumberOfPostsCreated != null)
+                userAchievementCounterAsync.NumberOfPostsCreated = userAchievementCounter.NumberOfPostsCreated;
+            if (userAchievementCounter.NumberOfThreadsCreated != null)
+                userAchievementCounterAsync.NumberOfThreadsCreated = userAchievementCounter.NumberOfThreadsCreated;
+            if (userAchievementCounter.NumberOfEventUserJoined != null)
+                userAchievementCounterAsync.NumberOfEventUserJoined = userAchievementCounter.NumberOfEventUserJoined;
 
             if (await _userAchievementCounterRepository.SaveAllAsync())
                 return NoContent();

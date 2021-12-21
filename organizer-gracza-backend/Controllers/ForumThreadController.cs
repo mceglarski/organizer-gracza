@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using organizer_gracza_backend.DTOs;
+using organizer_gracza_backend.Extensions;
 using organizer_gracza_backend.Interfaces;
 using organizer_gracza_backend.Model;
 
@@ -12,12 +13,14 @@ namespace organizer_gracza_backend.Controllers
     {
         private readonly IForumThread _forumThread;
         private readonly IMapper _mapper;
+        private readonly IUserAchievementCounterRepository _userAchievementCounterRepository;
 
         public ForumThreadController(IForumThread forumThread,
-            IMapper mapper)
+            IMapper mapper, IUserAchievementCounterRepository userAchievementCounterRepository)
         {
             _forumThread = forumThread;
             _mapper = mapper;
+            _userAchievementCounterRepository = userAchievementCounterRepository;
         }
 
         [HttpGet]
@@ -47,7 +50,7 @@ namespace organizer_gracza_backend.Controllers
 
             return Ok(forumThreadsToReturn);
         }
-        
+
         [HttpPost]
         public async Task<ActionResult<GameStatisticsDto>> CreateForumThread(ForumThreadDto forumThreadDto)
         {
@@ -62,9 +65,19 @@ namespace organizer_gracza_backend.Controllers
 
             _forumThread.AddForumThread(newForumThread);
 
-            if (await _forumThread.SaveAllAsync())
-                return Ok(_mapper.Map<ForumThreadDto>(newForumThread));
-            return BadRequest("Failed to add forum thread");
+            if (!await _forumThread.SaveAllAsync())
+                return BadRequest("Failed to add forum thread");
+            
+            var userAchievement = await _userAchievementCounterRepository
+                .GetUserAchievementCounterByUserId(forumThreadDto.UserId);
+            
+            userAchievement.NumberOfThreadsCreated++;
+            
+            if (!await _userAchievementCounterRepository.SaveAllAsync())
+                return BadRequest("Failed to add increase counter");
+                
+            return Ok(_mapper.Map<ForumThreadDto>(newForumThread));
+
         }
 
         [HttpDelete("{id}")]
@@ -90,8 +103,7 @@ namespace organizer_gracza_backend.Controllers
                 forumThreadAsync.Title = forumThread.Title;
             if (forumThread.Content != null)
                 forumThreadAsync.Content = forumThread.Content;
-            if (forumThread.ThreadDate != null)
-                forumThreadAsync.ThreadDate = forumThread.ThreadDate;
+            forumThreadAsync.ThreadDate = forumThread.ThreadDate;
 
             if (await _forumThread.SaveAllAsync())
                 return NoContent();
