@@ -13,4 +13,12 @@ export class TwitchService {
   getData(){
     return this.http.get(this.baseUrl + 'twitch');
   }
+
+  getDataForGameAndLanguage(gameId: string, languageId: string){
+    return this.http.get(this.baseUrl + 'twitch/game/' + gameId + '/language/' + languageId);
+  }
+
+  getDataForLanguage(id: string){
+    return this.http.get(this.baseUrl + 'twitch/language/' + id);
+  }
 }
