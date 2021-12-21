@@ -23,7 +23,9 @@ import {NewsFullArticleComponent} from "./news/news-full-article/news-full-artic
 import {MainCalendarComponent} from "./calendar-planner/main-calendar/main-calendar.component";
 import {NewsListComponent} from "./news/news-list/news-list.component";
 import {BroadcastsComponent} from "./broadcasts/broadcasts.component";
+import {ForumThreadListComponent} from "./forum/forum-thread-list/forum-thread-list.component";
 import {BroadcastEmbeddedComponent} from "./broadcasts/broadcast-embedded/broadcast-embedded.component";
+import {ForumPostsComponent} from "./forum/forum-posts/forum-posts.component";
 
 const routes: Routes = [
   {path: '', component: MainPageContentComponent},
@@ -31,10 +33,11 @@ const routes: Routes = [
   {path: 'events/eventsteam/:eventTeamId', component: EventsTeamDetailsComponent},
   {path: 'events', component: EventsListComponent},
   {path: 'news', component: NewsListComponent},
-  {path: 'news', component: NewsListComponent},
   {path: 'news/:newsId', component: NewsFullArticleComponent},
   {path: 'broadcasts', component: BroadcastsComponent},
   {path: 'broadcast/:userName', component: BroadcastEmbeddedComponent},
+  {path: 'forum', component: ForumThreadListComponent},
+  {path: 'forum/:threadId', component: ForumPostsComponent},
   {
     path: '',
     runGuardsAndResolvers: 'always',

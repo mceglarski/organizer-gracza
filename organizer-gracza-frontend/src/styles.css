@@ -16,8 +16,7 @@ html, body {
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue",
-  sans-serif;
+  font-family: 'Spartan', Roboto, "Helvetica Neue", sans-serif;
 }
 
 .section-title {
