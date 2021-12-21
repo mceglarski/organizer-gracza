@@ -22,7 +22,7 @@ namespace organizer_gracza_backend.Data
                 .Include(p => p.ForumPosts)
                 .SingleOrDefaultAsync(x => x.ForumThreadId == forumThreadId);
         }
-
+        
         public async Task<IEnumerable<ForumThread>> GetForumThreadsAsync()
         {
             return await _context.ForumThread

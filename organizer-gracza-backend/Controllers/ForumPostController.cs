@@ -11,13 +11,15 @@ namespace organizer_gracza_backend.Controllers
     public class ForumPostController : BaseApiController
     {
         private readonly IForumPost _forumPost;
+        private readonly IForumThread _forumThread;
         private readonly IMapper _mapper;
 
         public ForumPostController(IForumPost forumPost,
-            IMapper mapper)
+            IMapper mapper, IForumThread forumThread)
         {
             _forumPost = forumPost;
             _mapper = mapper;
+            _forumThread = forumThread;
         }
 
         [HttpGet]
@@ -58,7 +60,7 @@ namespace organizer_gracza_backend.Controllers
                 UserId = forumPostDto.UserId,
                 ForumThreadId = forumPostDto.ForumThreadId
             };
-
+            
             _forumPost.AddForumPost(newForumPost);
 
             if (await _forumPost.SaveAllAsync())
