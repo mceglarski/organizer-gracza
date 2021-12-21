@@ -87,6 +87,7 @@ import {
 } from "@angular-material-components/datetime-picker";
 import { NewsListComponent } from './news/news-list/news-list.component';
 import { BroadcastsComponent } from './broadcasts/broadcasts.component';
+import { BroadcastEmbeddedComponent } from './broadcasts/broadcast-embedded/broadcast-embedded.component';
 
 registerLocaleData(localePl, 'pl');
 
@@ -145,7 +146,8 @@ FullCalendarModule.registerPlugins([
     MainCalendarComponent,
     AddNewEventModalComponent,
     NewsListComponent,
-    BroadcastsComponent
+    BroadcastsComponent,
+    BroadcastEmbeddedComponent
   ],
   imports: [
     BrowserModule,
