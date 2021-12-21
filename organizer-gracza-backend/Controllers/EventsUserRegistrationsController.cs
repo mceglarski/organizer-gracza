@@ -5,6 +5,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using organizer_gracza_backend.DTOs;
+using organizer_gracza_backend.Extensions;
 using organizer_gracza_backend.Interfaces;
 using organizer_gracza_backend.Model;
 
@@ -12,17 +13,20 @@ namespace organizer_gracza_backend.Controllers
 {
     [Authorize]
     public class EventsUserRegistrationsController : BaseApiController
-        {
+    {
         private readonly IEventUserRegistrationRepository _eventUserRegistrationRepository;
         private readonly IMapper _mapper;
+        private readonly IUserAchievementCounterRepository _userAchievementCounterRepository;
 
         public EventsUserRegistrationsController(
-            IEventUserRegistrationRepository eventUserRegistrationRepository, IMapper mapper)
+            IEventUserRegistrationRepository eventUserRegistrationRepository, IMapper mapper,
+            IUserAchievementCounterRepository userAchievementCounterRepository)
         {
             _eventUserRegistrationRepository = eventUserRegistrationRepository;
             _mapper = mapper;
+            _userAchievementCounterRepository = userAchievementCounterRepository;
         }
-        
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<EventUserRegistrationDto>>> GetEventsUserRegistrationsAsync()
         {
@@ -33,7 +37,7 @@ namespace organizer_gracza_backend.Controllers
 
             return Ok(eventsToReturn);
         }
-        
+
         [HttpGet("event/{id}")]
         public async Task<ActionResult<IEnumerable<EventUserRegistrationDto>>> GetEventRegistrations(int id)
         {
@@ -62,23 +66,32 @@ namespace organizer_gracza_backend.Controllers
                 EventUserId = eventUserRegistrationDto.EventUserId,
                 UserId = eventUserRegistrationDto.UserId,
                 EventResultId = eventUserRegistrationDto.EventResultId
-
             };
-            
+
             var userRegistrations = await _eventUserRegistrationRepository.GetEventsUserRegistrationAsync();
 
-            if (userRegistrations.Any(teamUser => newEventUserRegistration.EventUserId == 
-                teamUser.EventUserId && newEventUserRegistration.UserId == teamUser.UserId))
+            if (userRegistrations.Any(teamUser => newEventUserRegistration.EventUserId ==
+                    teamUser.EventUserId && newEventUserRegistration.UserId == teamUser.UserId))
             {
                 return BadRequest("Nie można dołączyć do wydarzenia, której jest się już członkiem");
             }
-            
+
 
             _eventUserRegistrationRepository.AddEventUserRegistration(newEventUserRegistration);
 
-            if (await _eventUserRegistrationRepository.SaveAllAsync())
-                return Ok(_mapper.Map<EventUserRegistrationDto>(newEventUserRegistration));
-            return BadRequest("Failed to add registration for users event");
+            if (!await _eventUserRegistrationRepository.SaveAllAsync())
+                return BadRequest("Failed to add registration for users event");
+            
+            var userAchievement = await _userAchievementCounterRepository
+                .GetUserAchievementCounterByUserId(newEventUserRegistration.UserId);
+            
+            userAchievement.NumberOfEventUserJoined++;
+            
+            if (!await _userAchievementCounterRepository.SaveAllAsync())
+                return BadRequest("Failed to add increase counter");
+                
+            return Ok(_mapper.Map<EventUserRegistrationDto>(newEventUserRegistration));
+
         }
 
         [HttpDelete("{id}")]

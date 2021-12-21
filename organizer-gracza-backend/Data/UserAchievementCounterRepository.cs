@@ -30,12 +30,19 @@ namespace organizer_gracza_backend.Data
                 .FirstOrDefaultAsync(u => u.User.UserName == username);
         }
 
-        public async Task<IEnumerable<UserAchievementCounter>> GetUserAchievementCounterByUserId(int userId)
+        public async Task<IEnumerable<UserAchievementCounter>> GetUserAchievementsCountersByUserId(int userId)
         {
             return await _context.UserAchievementCounters
                 .Include(u => u.User)
                 .Where(u => u.UserId == userId)
                 .ToListAsync();
+        }
+
+        public async Task<UserAchievementCounter> GetUserAchievementCounterByUserId(int userId)
+        {
+            return await _context.UserAchievementCounters
+                .Include(u => u.User)
+                .SingleOrDefaultAsync(u => u.UserId == userId);
         }
 
         public async Task<UserAchievementCounter> GetUserAchievementCounterByIds(int userAchievementCounterId, int userId)

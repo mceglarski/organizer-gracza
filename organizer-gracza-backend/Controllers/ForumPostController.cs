@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using organizer_gracza_backend.DTOs;
+using organizer_gracza_backend.Extensions;
 using organizer_gracza_backend.Interfaces;
 using organizer_gracza_backend.Model;
 
@@ -11,15 +12,15 @@ namespace organizer_gracza_backend.Controllers
     public class ForumPostController : BaseApiController
     {
         private readonly IForumPost _forumPost;
-        private readonly IForumThread _forumThread;
         private readonly IMapper _mapper;
+        private readonly IUserAchievementCounterRepository _userAchievementCounterRepository;
 
         public ForumPostController(IForumPost forumPost,
-            IMapper mapper, IForumThread forumThread)
+            IMapper mapper, IUserAchievementCounterRepository userAchievementCounterRepository)
         {
             _forumPost = forumPost;
             _mapper = mapper;
-            _forumThread = forumThread;
+            _userAchievementCounterRepository = userAchievementCounterRepository;
         }
 
         [HttpGet]
@@ -49,10 +50,11 @@ namespace organizer_gracza_backend.Controllers
 
             return Ok(forumPostToReturn);
         }
-        
+
         [HttpPost]
         public async Task<ActionResult<ForumPostDto>> CreateForumPost(ForumPostDto forumPostDto)
         {
+
             var newForumPost = new ForumPost()
             {
                 Content = forumPostDto.Content,
@@ -60,12 +62,21 @@ namespace organizer_gracza_backend.Controllers
                 UserId = forumPostDto.UserId,
                 ForumThreadId = forumPostDto.ForumThreadId
             };
-            
+
             _forumPost.AddForumPost(newForumPost);
 
-            if (await _forumPost.SaveAllAsync())
-                return Ok(_mapper.Map<ForumPostDto>(newForumPost));
-            return BadRequest("Failed to add forum post");
+            if (!await _forumPost.SaveAllAsync())
+                return BadRequest("Failed to add forum post");
+
+            var userAchievement = await _userAchievementCounterRepository
+                .GetUserAchievementCounterByUserId(forumPostDto.UserId);
+            
+            userAchievement.NumberOfPostsCreated++;
+            
+            if (!await _userAchievementCounterRepository.SaveAllAsync())
+                return BadRequest("Failed to add increase counter");
+
+            return Ok(_mapper.Map<ForumPostDto>(newForumPost));
         }
 
         [HttpDelete("{id}")]
@@ -90,8 +101,7 @@ namespace organizer_gracza_backend.Controllers
 
             if (forumPost.Content != null)
                 forumPostAsync.Content = forumPost.Content;
-            if (forumPost.PostDate != null)
-                forumPostAsync.PostDate = forumPost.PostDate;
+            forumPostAsync.PostDate = forumPost.PostDate;
 
             if (await _forumPost.SaveAllAsync())
                 return NoContent();
