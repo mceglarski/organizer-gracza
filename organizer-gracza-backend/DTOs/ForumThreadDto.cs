@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using organizer_gracza_backend.Model;
 
 namespace organizer_gracza_backend.DTOs
 {

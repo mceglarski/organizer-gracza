@@ -21,16 +21,13 @@ namespace organizer_gracza_backend.Data
         public DbSet<EventTeamRegistration> EventTeamRegistration { get; set; }
         public DbSet<EventUserRegistration> EventUserRegistration { get; set; }
         public DbSet<EventResult> EventResults { get; set; }
-        public DbSet<Stream> Streams { get; set; }
         public DbSet<Game> Games { get; set; }
         public DbSet<Achievements> Achievements { get; set; }
         public DbSet<GeneralStatistics> GeneralStatistics { get; set; }
         public DbSet<GameStatistics> GameStatistics { get; set; }
         public DbSet<ForumThread> ForumThread { get; set; }
         public DbSet<ForumPost> ForumPost { get; set; }
-        public DbSet<Chat> Chats { get; set; }
         public DbSet<Message> Messages { get; set; }
-        public DbSet<ChatUsers> ChatUsers { get; set; }
         public DbSet<Articles> Articles { get; set; }
         public DbSet<Reminder> Reminder { get; set; }
         public DbSet<Group> Groups { get; set; }
@@ -72,6 +69,16 @@ namespace organizer_gracza_backend.Data
                 .HasOne(u => u.Sender)
                 .WithMany(m => m.MessagesSent)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<EventTeamRegistration>()
+                .HasOne(a => a.EventResult)
+                .WithOne(a => a.EventTeamRegistration)
+                .HasForeignKey<EventResult>(c => c.EventTeamRegistrationId);
+            
+            modelBuilder.Entity<EventUserRegistration>()
+                .HasOne(a => a.EventResult)
+                .WithOne(a => a.EventUserRegistration)
+                .HasForeignKey<EventResult>(c => c.EventUserRegistrationId);
         }
     }
 }

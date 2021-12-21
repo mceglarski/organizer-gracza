@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using organizer_gracza_backend.Interfaces;
@@ -10,11 +9,9 @@ namespace organizer_gracza_backend.Data
     public class TeamRepository : ITeamsRepository
     {
         private readonly DataContext _context;
-        private readonly ITeamUsersRepository _teamUsersRepository;
 
-        public TeamRepository(DataContext context, ITeamUsersRepository teamUserRepository)
+        public TeamRepository(DataContext context)
         {
-            _teamUsersRepository = teamUserRepository;
             _context = context;
         }
 

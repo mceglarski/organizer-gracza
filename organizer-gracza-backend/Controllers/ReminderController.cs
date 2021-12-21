@@ -2,8 +2,6 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using organizer_gracza_backend.Data;
 using organizer_gracza_backend.DTOs;
 using organizer_gracza_backend.Interfaces;
 using organizer_gracza_backend.Model;
@@ -12,13 +10,11 @@ namespace organizer_gracza_backend.Controllers
 {
     public class ReminderController : BaseApiController
     {
-        private readonly DataContext _context;
         private readonly IReminderRepository _reminderRepository;
         private readonly IMapper _mapper;
 
-        public ReminderController(DataContext context, IReminderRepository reminderRepository, IMapper mapper)
+        public ReminderController(IReminderRepository reminderRepository, IMapper mapper)
         {
-            _context = context;
             _reminderRepository = reminderRepository;
             _mapper = mapper;
         }

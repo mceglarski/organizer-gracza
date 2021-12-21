@@ -1,14 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using organizer_gracza_backend.Data;
 using organizer_gracza_backend.DTOs;
-using organizer_gracza_backend.Extensions;
 using organizer_gracza_backend.Interfaces;
 using organizer_gracza_backend.Model;
 
@@ -17,20 +13,15 @@ namespace organizer_gracza_backend.Controllers
     [Authorize]
     public class EventsTeamRegistrationsController : BaseApiController
     {
-        private readonly DataContext _context;
         private readonly IEventTeamRegistrationRepository _eventTeamRegistrationRepository;
         private readonly IMapper _mapper;
-        private readonly IPhotoEventService _photoEventService;
-        private readonly ITeamsRepository _teams;
 
-        public EventsTeamRegistrationsController(DataContext context, IPhotoEventService photoEventService,
-            IEventTeamRegistrationRepository eventTeamRegistrationRepository, IMapper mapper, ITeamsRepository teams)
+        public EventsTeamRegistrationsController(
+            IEventTeamRegistrationRepository eventTeamRegistrationRepository, IMapper mapper)
+
         {
-            _context = context;
             _eventTeamRegistrationRepository = eventTeamRegistrationRepository;
             _mapper = mapper;
-            _photoEventService = photoEventService;
-            _teams = teams;
         }
 
         [HttpGet]
@@ -51,11 +42,11 @@ namespace organizer_gracza_backend.Controllers
 
             return _mapper.Map<EventTeamRegistrationDto>(specifiedEvent);
         }
-        
+
         [HttpGet("event/{id}")]
         public async Task<ActionResult<IEnumerable<EventTeamRegistrationDto>>> GetEventRegistration(int id)
         {
-            var specifiedEvent = await 
+            var specifiedEvent = await
                 _eventTeamRegistrationRepository.GetEventRegistrationAsync(id);
 
             var eventsToReturn = _mapper.Map<IEnumerable<EventTeamRegistrationDto>>(specifiedEvent);
@@ -70,13 +61,14 @@ namespace organizer_gracza_backend.Controllers
             var newEventTeamRegistration = new EventTeamRegistration()
             {
                 EventTeamId = eventTeamRegistrationDto.EventTeamId,
-                TeamId = eventTeamRegistrationDto.TeamId
+                TeamId = eventTeamRegistrationDto.TeamId,
+                EventResultId = eventTeamRegistrationDto.EventResultId
             };
 
             var teamRegistration = await _eventTeamRegistrationRepository.GetEventsTeamRegistrationAsync();
 
             if (teamRegistration.Any(teamUser => newEventTeamRegistration.TeamId ==
-                teamUser.TeamId && newEventTeamRegistration.EventTeamId == teamUser.EventTeamId))
+                    teamUser.TeamId && newEventTeamRegistration.EventTeamId == teamUser.EventTeamId))
             {
                 return BadRequest("Nie można zapisać swojej drużyny do wydarzenia, którego jest już członkiem");
             }

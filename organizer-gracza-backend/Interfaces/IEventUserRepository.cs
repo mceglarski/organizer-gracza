@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using organizer_gracza_backend.DTOs;
 using organizer_gracza_backend.Model;
 
 namespace organizer_gracza_backend.Interfaces

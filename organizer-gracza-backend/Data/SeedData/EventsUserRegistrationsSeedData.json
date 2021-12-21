@@ -1,15 +1,18 @@
 [
   {
     "EventUserId": 1,
-    "UserId": 1
+    "UserId": 1,
+    "EventResultId": 1
   },
   {
     "EventUserId": 2,
-    "UserId": 2
+    "UserId": 2,
+    "EventResultId": 2
   },
   {
     "EventUserId": 1,
-    "UserId": 3
+    "UserId": 3,
+    "EventResultId": 3
   },
   {
     "EventUserId": 2,

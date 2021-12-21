@@ -323,21 +323,21 @@ namespace organizer_gracza_backend.Data
             await context.SaveChangesAsync();
         }
         
-        public static async Task SeedForumPosts(DataContext context)
+        public static async Task SeedEventResults(DataContext context)
         {
-            if (await context.ForumPost.AnyAsync())
+            if (await context.EventResults.AnyAsync())
                 return;
         
-            var forumPosts =
-                await System.IO.File.ReadAllTextAsync("Data/SeedData/ForumPostSeedData.json");
-            var forumPostsData = JsonSerializer.Deserialize<List<ForumPost>>
-                (forumPosts);
-            if (forumPostsData == null)
+            var eventResults =
+                await System.IO.File.ReadAllTextAsync("Data/SeedData/EventsResultsSeedData.json");
+            var eventResultsData = JsonSerializer.Deserialize<List<EventResult>>
+                (eventResults);
+            if (eventResultsData == null)
                 return;
         
-            foreach (var forumPost in forumPostsData)
+            foreach (var eventResult in eventResultsData)
             {
-                await context.AddAsync(forumPost);
+                await context.AddAsync(eventResult);
             }
         
             await context.SaveChangesAsync();

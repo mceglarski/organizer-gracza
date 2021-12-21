@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using organizer_gracza_backend.Data;
 using organizer_gracza_backend.DTOs;
 using organizer_gracza_backend.Interfaces;
 using organizer_gracza_backend.Model;
@@ -14,18 +13,14 @@ namespace organizer_gracza_backend.Controllers
     [Authorize]
     public class EventsUserRegistrationsController : BaseApiController
         {
-        private readonly DataContext _context;
         private readonly IEventUserRegistrationRepository _eventUserRegistrationRepository;
         private readonly IMapper _mapper;
-        private readonly IPhotoEventService _photoEventService;
 
-        public EventsUserRegistrationsController(DataContext context,IPhotoEventService photoEventService, 
+        public EventsUserRegistrationsController(
             IEventUserRegistrationRepository eventUserRegistrationRepository, IMapper mapper)
         {
-            _context = context;
             _eventUserRegistrationRepository = eventUserRegistrationRepository;
             _mapper = mapper;
-            _photoEventService = photoEventService;
         }
         
         [HttpGet]
@@ -65,7 +60,9 @@ namespace organizer_gracza_backend.Controllers
             var newEventUserRegistration = new EventUserRegistration()
             {
                 EventUserId = eventUserRegistrationDto.EventUserId,
-                UserId = eventUserRegistrationDto.UserId
+                UserId = eventUserRegistrationDto.UserId,
+                EventResultId = eventUserRegistrationDto.EventResultId
+
             };
             
             var userRegistrations = await _eventUserRegistrationRepository.GetEventsUserRegistrationAsync();

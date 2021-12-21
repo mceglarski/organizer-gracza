@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using organizer_gracza_backend.Data;
 using organizer_gracza_backend.Helpers;
 using organizer_gracza_backend.Interfaces;
-using organizer_gracza_backend.Model;
 using organizer_gracza_backend.Services;
 using organizer_gracza_backend.SignalR;
 
@@ -39,6 +38,7 @@ namespace organizer_gracza_backend.Extensions
             services.AddScoped<IArticlesRepository, ArticlesRepository>();
             services.AddScoped<IForumThread, ForumThreadRepository>();
             services.AddScoped<IForumPost, ForumPostRepository>();
+            services.AddScoped<IEventResultRepository, EventResultRepository>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddDbContext<DataContext>(options =>
             {
