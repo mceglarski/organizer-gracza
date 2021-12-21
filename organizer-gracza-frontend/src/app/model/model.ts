@@ -164,7 +164,7 @@ export interface GeneralStatistics {
   user: User;
 }
 
-export interface Achievements{
+export interface Achievements {
   achievementsId: number;
   name: string;
   details: string;
@@ -172,7 +172,7 @@ export interface Achievements{
   userId: number;
 }
 
-export interface Reminder{
+export interface Reminder {
   reminderId?: number;
   title: string;
   startDate: Date;
@@ -180,7 +180,7 @@ export interface Reminder{
   userId: number;
 }
 
-export interface ForumThread{
+export interface ForumThread {
   forumThreadId: number;
   title: string;
   content: string;
@@ -192,7 +192,7 @@ export interface ForumThread{
   game: Game;
 }
 
-export interface ForumPost{
+export interface ForumPost {
   forumPostId: number;
   content: string;
   postDate: Date;
@@ -200,9 +200,27 @@ export interface ForumPost{
   forumThreadId: number;
 }
 
-export interface EventResult{
+export interface EventResult {
   eventResultId: number;
   winnerName: string;
   eventTeamRegistrationId: number;
   eventUserRegistrationId: number;
+}
+
+export interface TwitchBroadcast {
+  id: string;
+  user_id: string;
+  user_login: string;
+  user_name: string;
+  game_id: string;
+  game_name: string;
+  type: string;
+  title: string;
+  viewer_count: number;
+  started_at: string;
+  language: string;
+  thumbnail_url: string;
+  tag_ids: string;
+  is_mature: boolean;
+  pagination: any;
 }
