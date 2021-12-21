@@ -110,6 +110,7 @@ export interface EventUserRegistration {
   eventUserRegistrationId: number;
   userId: number;
   eventUserId: number;
+  eventResultId: number;
 }
 
 export interface EventTeamRegistration {
@@ -117,6 +118,7 @@ export interface EventTeamRegistration {
   teamId: number;
   eventTeamId: number;
   team: Team;
+  eventResultId: number;
 }
 
 export interface Participiant {
@@ -196,4 +198,11 @@ export interface ForumPost{
   postDate: Date;
   userId: number;
   forumThreadId: number;
+}
+
+export interface EventResult{
+  eventResultId: number;
+  winnerName: string;
+  eventTeamRegistrationId: number;
+  eventUserRegistrationId: number;
 }

@@ -21,7 +21,6 @@ namespace organizer_gracza_backend.Data
         public DbSet<EventTeamRegistration> EventTeamRegistration { get; set; }
         public DbSet<EventUserRegistration> EventUserRegistration { get; set; }
         public DbSet<EventResult> EventResults { get; set; }
-        public DbSet<Stream> Streams { get; set; }
         public DbSet<Game> Games { get; set; }
         public DbSet<Achievements> Achievements { get; set; }
         public DbSet<GeneralStatistics> GeneralStatistics { get; set; }
@@ -70,6 +69,16 @@ namespace organizer_gracza_backend.Data
                 .HasOne(u => u.Sender)
                 .WithMany(m => m.MessagesSent)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<EventTeamRegistration>()
+                .HasOne(a => a.EventResult)
+                .WithOne(a => a.EventTeamRegistration)
+                .HasForeignKey<EventResult>(c => c.EventTeamRegistrationId);
+            
+            modelBuilder.Entity<EventUserRegistration>()
+                .HasOne(a => a.EventResult)
+                .WithOne(a => a.EventUserRegistration)
+                .HasForeignKey<EventResult>(c => c.EventUserRegistrationId);
         }
     }
 }

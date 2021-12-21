@@ -4,10 +4,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using organizer_gracza_backend.Data;
 using organizer_gracza_backend.DTOs;
-using organizer_gracza_backend.Extensions;
 using organizer_gracza_backend.Interfaces;
 using organizer_gracza_backend.Model;
 
@@ -16,22 +13,15 @@ namespace organizer_gracza_backend.Controllers
     [Authorize]
     public class TeamUsersController : BaseApiController
     {
-        private readonly DataContext _context;
         private readonly ITeamUsersRepository _teamUsersRepository;
         private readonly IMapper _mapper;
-        private readonly IUserRepository _userRepository;
-        private readonly ITeamsRepository _teamsRepository;
         private readonly IUserAchievementCounterRepository _userAchievementCounterRepository;
 
-        public TeamUsersController(DataContext context, ITeamUsersRepository teamUsersRepository, IMapper mapper,
-            IUserRepository userRepository, ITeamsRepository teamsRepository,
+        public TeamUsersController(ITeamUsersRepository teamUsersRepository, IMapper mapper,
             IUserAchievementCounterRepository userAchievementCounterRepository)
         {
-            _context = context;
             _teamUsersRepository = teamUsersRepository;
             _mapper = mapper;
-            _userRepository = userRepository;
-            _teamsRepository = teamsRepository;
             _userAchievementCounterRepository = userAchievementCounterRepository;
         }
 

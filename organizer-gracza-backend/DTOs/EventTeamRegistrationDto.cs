@@ -1,5 +1,3 @@
-using organizer_gracza_backend.Model;
-
 namespace organizer_gracza_backend.DTOs
 {
     public class EventTeamRegistrationDto
@@ -8,5 +6,7 @@ namespace organizer_gracza_backend.DTOs
         public int TeamId { get; set; }
         public TeamDto Team { get; set; }
         public int EventTeamId { get; set; }
+        public int EventResultId { get; set; }
+
     }
 }
