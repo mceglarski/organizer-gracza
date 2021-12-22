@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
+import {Reminder} from "../model/model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReminderService {
   baseUrl = environment.apiUrl;
-
 
   constructor(private http: HttpClient) { }
 

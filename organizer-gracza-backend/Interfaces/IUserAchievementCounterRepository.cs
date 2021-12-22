@@ -8,7 +8,8 @@ namespace organizer_gracza_backend.Interfaces
     {
         Task<UserAchievementCounter> GetUserAchievementCounterByIdAsync(int userAchievementCounterId);
         Task<UserAchievementCounter> GetUserAchievementCounterByUsernameAsync(string username);
-        Task<IEnumerable<UserAchievementCounter>> GetUserAchievementCounterByUserId(int userId);
+        Task<IEnumerable<UserAchievementCounter>> GetUserAchievementsCountersByUserId(int userId);
+        Task<UserAchievementCounter> GetUserAchievementCounterByUserId(int userId);
         Task<UserAchievementCounter> GetUserAchievementCounterByIds(int userAchievementCounterId, int userId);
         Task<IEnumerable<UserAchievementCounter>> GetUserAchievementCounterAsync();
         void AddUserAchievementCounter(UserAchievementCounter userAchievementCounter);

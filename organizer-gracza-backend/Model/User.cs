@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
@@ -8,6 +9,8 @@ namespace organizer_gracza_backend.Model
     public class User : IdentityUser<int>
     {
         public string Nickname { get; set; }
+        
+        public string Description { get; set; }
 
         public DateTime Created { get; set; } = DateTime.Now;
         public DateTime LastActive { get; set; } = DateTime.Now;
@@ -30,7 +33,10 @@ namespace organizer_gracza_backend.Model
         public ICollection<Reminder> Reminders { get; set; }
         
         public ICollection<Articles> Articles { get; set; }
-
         
+        public ICollection<ForumThread> ForumThreads { get; set; }
+        public ICollection<ForumPost> ForumPosts { get; set; }
+
+        public ICollection<UserGame> UserGames { get; set; }
     }
 }

@@ -19,7 +19,8 @@ export class MemberPhotoEditorComponent implements OnInit {
   public user: User;
 
 
-  constructor(private accountService: AccountService, private memberService: MembersService) {
+  constructor(private accountService: AccountService,
+              private memberService: MembersService) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
   }
 

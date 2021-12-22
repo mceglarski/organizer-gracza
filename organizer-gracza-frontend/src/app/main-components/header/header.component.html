@@ -13,7 +13,10 @@
             <a class="nav-link" routerLink="/admin">ADMIN PANEL</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">TWÓJ PLAN</a>
+            <a class="nav-link" href="/planner">TWÓJ PLAN</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/news">NEWSY</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink='/community'>SPOŁECZNOŚĆ</a>
@@ -22,24 +25,27 @@
             <a class="nav-link" routerLink="/events">WYDARZENIA</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">TRANSMISJE</a>
+            <a class="nav-link" routerLink="/broadcasts">TRANSMISJE</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink='/messages'>WIADOMOŚCI</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">FORUM</a>
+            <a class="nav-link" href="/forum">FORUM</a>
           </li>
         </ng-container>
         <ng-container *ngIf="(accountService.currentUser$ | async) === null">
           <li class="nav-item">
+            <a class="nav-link" href="/news">NEWSY</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" routerLink="/events">WYDARZENIA</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">TRANSMISJE</a>
+            <a class="nav-link" routerLink="/broadcasts">TRANSMISJE</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">FORUM</a>
+            <a class="nav-link" href="/forum">FORUM</a>
           </li>
         </ng-container>
         <li class="hide nav-item">

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -41,7 +40,8 @@ namespace organizer_gracza_backend.Controllers
             var newGame = new Game()
             {
                 GameId = gameDto.GameId,
-                Title = gameDto.Title
+                Title = gameDto.Title,
+                PhotoUrl = gameDto.PhotoUrl
             };
 
             _gameRepository.AddGame(newGame);

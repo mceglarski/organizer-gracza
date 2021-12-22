@@ -188,38 +188,6 @@ namespace organizer_gracza_backend.Data.Migrations
                     b.ToTable("Articles");
                 });
 
-            modelBuilder.Entity("organizer_gracza_backend.Model.Chat", b =>
-                {
-                    b.Property<int>("ChatId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.HasKey("ChatId");
-
-                    b.ToTable("Chats");
-                });
-
-            modelBuilder.Entity("organizer_gracza_backend.Model.ChatUsers", b =>
-                {
-                    b.Property<int>("ChatUsersId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<int?>("ChatId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("ChatUsersId");
-
-                    b.HasIndex("ChatId");
-
-                    b.ToTable("ChatUsers");
-                });
-
             modelBuilder.Entity("organizer_gracza_backend.Model.Connection", b =>
                 {
                     b.Property<string>("ConnectionId")
@@ -245,10 +213,22 @@ namespace organizer_gracza_backend.Data.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<int?>("EventTeamRegistrationId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("EventUserRegistrationId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("WinnerName")
                         .HasColumnType("text");
 
                     b.HasKey("EventResultId");
+
+                    b.HasIndex("EventTeamRegistrationId")
+                        .IsUnique();
+
+                    b.HasIndex("EventUserRegistrationId")
+                        .IsUnique();
 
                     b.ToTable("EventResults");
                 });
@@ -300,6 +280,9 @@ namespace organizer_gracza_backend.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int?>("EventResultId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("EventTeamId")
                         .HasColumnType("integer");
@@ -364,6 +347,9 @@ namespace organizer_gracza_backend.Data.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<int?>("EventResultId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("EventUserId")
                         .HasColumnType("integer");
 
@@ -389,13 +375,13 @@ namespace organizer_gracza_backend.Data.Migrations
                     b.Property<string>("Content")
                         .HasColumnType("text");
 
-                    b.Property<int?>("ForumThreadId")
+                    b.Property<int>("ForumThreadId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("PostDate")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("UserId")
                         .HasColumnType("integer");
 
                     b.HasKey("ForumPostId");
@@ -417,16 +403,21 @@ namespace organizer_gracza_backend.Data.Migrations
                     b.Property<string>("Content")
                         .HasColumnType("text");
 
+                    b.Property<int>("GameId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<DateTime>("ThreadDate")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Title")
                         .HasColumnType("text");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("UserId")
                         .HasColumnType("integer");
 
                     b.HasKey("ForumThreadId");
+
+                    b.HasIndex("GameId");
 
                     b.HasIndex("UserId");
 
@@ -439,6 +430,9 @@ namespace organizer_gracza_backend.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("PhotoUrl")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
                         .HasColumnType("text");
@@ -605,29 +599,6 @@ namespace organizer_gracza_backend.Data.Migrations
                     b.ToTable("Reminder");
                 });
 
-            modelBuilder.Entity("organizer_gracza_backend.Model.Stream", b =>
-                {
-                    b.Property<int>("StreamId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<int?>("GameId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Url")
-                        .HasColumnType("text");
-
-                    b.HasKey("StreamId");
-
-                    b.HasIndex("GameId");
-
-                    b.ToTable("Streams");
-                });
-
             modelBuilder.Entity("organizer_gracza_backend.Model.Team", b =>
                 {
                     b.Property<int>("TeamId")
@@ -678,15 +649,15 @@ namespace organizer_gracza_backend.Data.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("ChatUsersId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -736,8 +707,6 @@ namespace organizer_gracza_backend.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ChatUsersId");
-
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
 
@@ -755,11 +724,20 @@ namespace organizer_gracza_backend.Data.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<int?>("NumberOfEventUserJoined")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("NumberOfPostsCreated")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int?>("NumberOfTeamsCreated")
                         .HasColumnType("integer");
 
                     b.Property<int?>("NumberOfTeamsJoined")
                         .HasColumnType("integer");
+
+                    b.Property<int?>("NumberOfThreadsCreated")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int?>("UserId")
                         .HasColumnType("integer");
@@ -770,6 +748,27 @@ namespace organizer_gracza_backend.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("UserAchievementCounters");
+                });
+
+            modelBuilder.Entity("organizer_gracza_backend.Model.UserGame", b =>
+                {
+                    b.Property<int>("UserGameId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("GameId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("UserGameId");
+
+                    b.HasIndex("GameId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserGame");
                 });
 
             modelBuilder.Entity("organizer_gracza_backend.Model.UserRole", b =>
@@ -841,20 +840,26 @@ namespace organizer_gracza_backend.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("organizer_gracza_backend.Model.ChatUsers", b =>
-                {
-                    b.HasOne("organizer_gracza_backend.Model.Chat", "Chat")
-                        .WithMany()
-                        .HasForeignKey("ChatId");
-
-                    b.Navigation("Chat");
-                });
-
             modelBuilder.Entity("organizer_gracza_backend.Model.Connection", b =>
                 {
                     b.HasOne("organizer_gracza_backend.Model.Group", null)
                         .WithMany("Connections")
                         .HasForeignKey("GroupName");
+                });
+
+            modelBuilder.Entity("organizer_gracza_backend.Model.EventResult", b =>
+                {
+                    b.HasOne("organizer_gracza_backend.Model.EventTeamRegistration", "EventTeamRegistration")
+                        .WithOne("EventResult")
+                        .HasForeignKey("organizer_gracza_backend.Model.EventResult", "EventTeamRegistrationId");
+
+                    b.HasOne("organizer_gracza_backend.Model.EventUserRegistration", "EventUserRegistration")
+                        .WithOne("EventResult")
+                        .HasForeignKey("organizer_gracza_backend.Model.EventResult", "EventUserRegistrationId");
+
+                    b.Navigation("EventTeamRegistration");
+
+                    b.Navigation("EventUserRegistration");
                 });
 
             modelBuilder.Entity("organizer_gracza_backend.Model.EventTeam", b =>
@@ -916,12 +921,16 @@ namespace organizer_gracza_backend.Data.Migrations
             modelBuilder.Entity("organizer_gracza_backend.Model.ForumPost", b =>
                 {
                     b.HasOne("organizer_gracza_backend.Model.ForumThread", "ForumThread")
-                        .WithMany()
-                        .HasForeignKey("ForumThreadId");
+                        .WithMany("ForumPosts")
+                        .HasForeignKey("ForumThreadId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("organizer_gracza_backend.Model.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
+                        .WithMany("ForumPosts")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("ForumThread");
 
@@ -930,9 +939,19 @@ namespace organizer_gracza_backend.Data.Migrations
 
             modelBuilder.Entity("organizer_gracza_backend.Model.ForumThread", b =>
                 {
+                    b.HasOne("organizer_gracza_backend.Model.Game", "Game")
+                        .WithMany("ForumThread")
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("organizer_gracza_backend.Model.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
+                        .WithMany("ForumThreads")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Game");
 
                     b.Navigation("User");
                 });
@@ -1000,15 +1019,6 @@ namespace organizer_gracza_backend.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("organizer_gracza_backend.Model.Stream", b =>
-                {
-                    b.HasOne("organizer_gracza_backend.Model.Game", "Game")
-                        .WithMany()
-                        .HasForeignKey("GameId");
-
-                    b.Navigation("Game");
-                });
-
             modelBuilder.Entity("organizer_gracza_backend.Model.TeamUser", b =>
                 {
                     b.HasOne("organizer_gracza_backend.Model.Team", "Team")
@@ -1028,18 +1038,30 @@ namespace organizer_gracza_backend.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("organizer_gracza_backend.Model.User", b =>
-                {
-                    b.HasOne("organizer_gracza_backend.Model.ChatUsers", null)
-                        .WithMany("User")
-                        .HasForeignKey("ChatUsersId");
-                });
-
             modelBuilder.Entity("organizer_gracza_backend.Model.UserAchievementCounter", b =>
                 {
                     b.HasOne("organizer_gracza_backend.Model.User", "User")
                         .WithOne("UserAchievementCounter")
                         .HasForeignKey("organizer_gracza_backend.Model.UserAchievementCounter", "UserId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("organizer_gracza_backend.Model.UserGame", b =>
+                {
+                    b.HasOne("organizer_gracza_backend.Model.Game", "Game")
+                        .WithMany("Users")
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("organizer_gracza_backend.Model.User", "User")
+                        .WithMany("Interests")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Game");
 
                     b.Navigation("User");
                 });
@@ -1068,19 +1090,29 @@ namespace organizer_gracza_backend.Data.Migrations
                     b.Navigation("UserRoles");
                 });
 
-            modelBuilder.Entity("organizer_gracza_backend.Model.ChatUsers", b =>
-                {
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("organizer_gracza_backend.Model.EventTeam", b =>
                 {
                     b.Navigation("EventTeamRegistration");
                 });
 
+            modelBuilder.Entity("organizer_gracza_backend.Model.EventTeamRegistration", b =>
+                {
+                    b.Navigation("EventResult");
+                });
+
             modelBuilder.Entity("organizer_gracza_backend.Model.EventUser", b =>
                 {
                     b.Navigation("EventUserRegistration");
+                });
+
+            modelBuilder.Entity("organizer_gracza_backend.Model.EventUserRegistration", b =>
+                {
+                    b.Navigation("EventResult");
+                });
+
+            modelBuilder.Entity("organizer_gracza_backend.Model.ForumThread", b =>
+                {
+                    b.Navigation("ForumPosts");
                 });
 
             modelBuilder.Entity("organizer_gracza_backend.Model.Game", b =>
@@ -1089,7 +1121,11 @@ namespace organizer_gracza_backend.Data.Migrations
 
                     b.Navigation("EventUser");
 
+                    b.Navigation("ForumThread");
+
                     b.Navigation("GameStatistics");
+
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("organizer_gracza_backend.Model.Group", b =>
@@ -1112,9 +1148,15 @@ namespace organizer_gracza_backend.Data.Migrations
 
                     b.Navigation("EventUserRegistration");
 
+                    b.Navigation("ForumPosts");
+
+                    b.Navigation("ForumThreads");
+
                     b.Navigation("GameStatistics");
 
                     b.Navigation("GeneralStatistics");
+
+                    b.Navigation("Interests");
 
                     b.Navigation("MessagesReceived");
 
