@@ -1,11 +1,12 @@
 <div class="container thread-list-container">
   <h1 class="section-title">FORUM &nbsp;</h1>
 
-  <div class="thread-row-first d-flex justify-content-end">
-  <button mat-raised-button color="primary" class="">Dodaj wątek</button>
+  <div class="thread-row-first d-flex justify-content-between align-items-center">
+    <span style="margin-left: 0.5rem;">Wątki</span>
+  <button mat-raised-button color="primary">Dodaj wątek</button>
   </div>
   <div class="thread-row" *ngFor="let thread of forumThread">
-    <div class="row">
+    <div class="row align-items-center">
       <div class="col thread-thumbnail">
         <a href="/forum/{{thread.forumThreadId}}" class="thread-list-link">
           <img class="img-fluid" src="{{thread.game.photoUrl}}">
@@ -30,15 +31,17 @@
       </div>
 
       <div class="col d-flex align-items-center">
-        {{(thread.forumPosts.length > 4) ? (thread.forumPosts.length)+' postów' : (thread.forumPosts.length > 1) ? (thread.forumPosts.length)+' posty' : (thread.forumPosts.length)+' post'}}
-        <i class="material-icons">person_outline</i>{{thread.user.nickname}}
+        <div class="col d-flex align-items-center justify-content-end" style="padding: 5px;">
+          <span class="thread-list-post-counter">{{thread.forumPosts.length}}<br>{{(thread.forumPosts.length > 4) ? 'postów' : (thread.forumPosts.length > 1) ? 'posty' : 'post'}}</span>
+          <i *ngIf="thread.user.photoUrl === null || thread.user.photoUrl === undefined" class="material-icons">person_outline</i>
+          <img *ngIf="thread.user.photoUrl" src="{{thread.user.photoUrl}}" class="thread-list-author-img">
+        </div>
+        <div class="col" style="padding: 5px;">
+          {{thread.user.nickname}}
+        </div>
       </div>
 
     </div>
   </div>
 
 </div>
-
-<!--<div class="col">-->
-<!--  <p>{{thread.user.nickname}}</p>-->
-<!--</div>-->
