@@ -4,3 +4,32 @@
   color: #fff;
   padding: 1rem;
 }
+
+.forum-posts-main {
+  background-color: #3d4452;
+  border-radius: 1%;
+  border: 2px solid gray;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+}
+
+.forum-posts-meta-data img{
+  max-width: 100px;
+  border-radius: 50%;
+}
+
+.forum-posts-meta-data {
+  border-right: 2px dashed;
+  display: inline-block;
+  text-align: center;
+  padding-right: 0px;
+}
+
+.forum-posts-text {
+  margin-left: 0.5rem;
+}
+
+.forum-posts-nickname-link {
+  text-decoration: none;
+  color: white;
+}

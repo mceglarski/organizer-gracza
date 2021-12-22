@@ -31,7 +31,7 @@ export class ForumThreadListComponent implements OnInit {
       });
       console.log('threads: ', f);
       return;
-    })
+    });
   }
 
 }

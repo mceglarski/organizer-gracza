@@ -1,3 +1,45 @@
 <div class="container forum-posts-container">
-  {{thread?.content}}
+  <h3>{{forumThread?.title}}&nbsp;</h3>
+  <div class="row forum-posts-main">
+
+    <div class="row">
+      <div class="col forum-posts-meta-data">
+        <a href="/members/{{forumThread?.user?.username}}">
+          <img src="{{forumThread?.user?.photoUrl}}">
+        </a>
+        <div class="col">
+          <a class="forum-posts-nickname-link" href="/members/{{forumThread?.user?.username}}">
+            {{forumThread?.user?.nickname}}
+          </a>
+        </div>
+        <div class="col">{{forumThread?.threadDate | date}}</div>
+      </div>
+    </div>
+
+    <div class="col text-break forum-posts-text">
+      {{forumThread?.content}}
+    </div>
+
+  </div>
+
+  <div class="row forum-posts-main" *ngFor="let post of posts">
+
+    <div class="row">
+      <div class="col forum-posts-meta-data">
+        <a href="/members/{{post?.username}}">
+          <img src="{{post?.photoUrl}}">
+        </a>
+        <div class="col">
+          <a class="forum-posts-nickname-link" href="/members/{{post?.username}}">
+            {{post?.nickname}}
+          </a>
+        </div>
+        <div class="col">{{post?.postDate | date}}</div>
+      </div>
+    </div>
+
+    <div class="col text-break forum-posts-text">
+      {{post?.content}}
+    </div>
+
 </div>

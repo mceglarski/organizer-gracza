@@ -198,6 +198,9 @@ export interface ForumPost {
   postDate: Date;
   userId: number;
   forumThreadId: number;
+  photoUrl: string;
+  nickname: string;
+  username: string;
 }
 
 export interface EventResult {

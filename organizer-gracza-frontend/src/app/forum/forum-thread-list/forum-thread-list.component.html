@@ -33,11 +33,17 @@
       <div class="col d-flex align-items-center">
         <div class="col d-flex align-items-center justify-content-end" style="padding: 5px;">
           <span class="thread-list-post-counter">{{thread.forumPosts.length}}<br>{{(thread.forumPosts.length > 4) ? 'postów' : (thread.forumPosts.length > 1) ? 'posty' : 'post'}}</span>
-          <i *ngIf="thread.user.photoUrl === null || thread.user.photoUrl === undefined" class="material-icons">person_outline</i>
-          <img *ngIf="thread.user.photoUrl" src="{{thread.user.photoUrl}}" class="thread-list-author-img">
+          <a href="/members/{{thread?.user?.username}}">
+            <i *ngIf="thread.user.photoUrl === null || thread.user.photoUrl === undefined" class="material-icons">person_outline</i>
+          </a>
+          <a href="/members/{{thread?.user?.username}}">
+            <img *ngIf="thread.user.photoUrl" src="{{thread.user.photoUrl}}" class="thread-list-author-img">
+          </a>
         </div>
         <div class="col" style="padding: 5px;">
-          {{thread.user.nickname}}
+          <a class="thread-list-nickname-link" href="/members/{{thread?.user?.username}}">
+            {{thread.user.nickname}}
+          </a>
         </div>
       </div>
 
