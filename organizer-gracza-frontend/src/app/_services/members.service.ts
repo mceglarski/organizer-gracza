@@ -50,6 +50,10 @@ export class MembersService {
       }))
   }
 
+  getCurrentlyLoggedMemberId() {
+    return this.http.get(this.baseUrl + 'users/member');
+  }
+
   getMember(username: string) {
     const member = [...this.memberCache.values()]
       .reduce((arr, elem) => arr.concat(elem.result), [])

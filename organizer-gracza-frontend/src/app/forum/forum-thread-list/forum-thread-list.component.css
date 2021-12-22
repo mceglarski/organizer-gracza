@@ -1,0 +1,67 @@
+.thread-list-container {
+  background-color: black;
+  margin-top: 1%;
+  color: #fff;
+  padding: 1rem;
+}
+
+.thread-row-first {
+  background-color: #3d4452;
+  padding: 0.2rem;
+  margin-bottom: 0.1rem;
+  border-radius: 1%;
+}
+
+.thread-row {
+  background-color: #3d4452;
+  padding: 0.2rem;
+  margin-bottom: 0.5rem;
+  border-radius: 2%;
+}
+
+.thread-thumbnail {
+  max-width: 100px;
+  margin: 0;
+  border-radius: 1px;
+}
+
+.thread-list-author-img {
+  max-width: 50px;
+  max-height: 50px;
+  border-radius: 50%;
+}
+
+.thread-list-nickname-link {
+  text-decoration: none;
+  color: white;
+}
+
+.calendar-icon {
+  font-size: 0.8rem;
+}
+
+.thread-list-link {
+  text-decoration: none;
+  color: white;
+}
+
+.thread-list-post-counter {
+  padding: 5px;
+  text-align: center;
+  border-right: 4px dotted;
+  margin-right: 5px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .thread-thumbnail {
+    min-width: 100px;
+    margin: 0;
+    border-radius: 1px;
+  }
+
+  .thread-list-author-img {
+    max-width: 25px;
+    max-height: 25px;
+    border-radius: 50%;
+  }
+}

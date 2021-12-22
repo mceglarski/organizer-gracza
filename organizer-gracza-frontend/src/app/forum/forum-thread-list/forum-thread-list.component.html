@@ -1,0 +1,53 @@
+<div class="container thread-list-container">
+  <h1 class="section-title">FORUM &nbsp;</h1>
+
+  <div class="thread-row-first d-flex justify-content-between align-items-center">
+    <span style="margin-left: 0.5rem;">Wątki</span>
+  <button mat-raised-button color="primary" routerLink="/forum/thread/add">Dodaj wątek</button>
+  </div>
+  <div class="thread-row" *ngFor="let thread of forumThread">
+    <div class="row align-items-center">
+      <div class="col thread-thumbnail">
+        <a href="/forum/{{thread.forumThreadId}}" class="thread-list-link">
+          <img class="img-fluid" src="{{thread.game.photoUrl}}">
+        </a>
+      </div>
+
+      <div class="col">
+
+        <div class="row d-flex align-items-center">
+          <div class="col">
+            <h6 class="text-break"><a href="/forum/{{thread.forumThreadId}}" class="thread-list-link">{{thread.title}}</a></h6>
+          </div>
+        </div>
+
+        <div class="row d-flex align-items-center">
+          <div class="col">
+            <p><i class="material-icons calendar-icon">calendar_today</i>
+              {{thread.threadDate | date}}</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col d-flex align-items-center">
+        <div class="col d-flex align-items-center justify-content-end" style="padding: 5px;">
+          <span class="thread-list-post-counter">{{thread.forumPosts.length}}<br>{{(thread.forumPosts.length > 4 || thread.forumPosts.length === 0) ? 'postów' : (thread.forumPosts.length > 1) ? 'posty' : 'post'}}</span>
+          <a class="thread-list-nickname-link" href="/members/{{thread?.user?.username}}">
+            <i *ngIf="thread.user.photoUrl === null || thread.user.photoUrl === undefined" class="material-icons">person_outline</i>
+          </a>
+          <a href="/members/{{thread?.user?.username}}">
+            <img *ngIf="thread.user.photoUrl" src="{{thread.user.photoUrl}}" class="thread-list-author-img">
+          </a>
+        </div>
+        <div class="col" style="padding: 5px;">
+          <a class="thread-list-nickname-link" href="/members/{{thread?.user?.username}}">
+            {{thread.user.nickname}}
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

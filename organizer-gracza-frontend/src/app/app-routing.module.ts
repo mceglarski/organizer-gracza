@@ -23,7 +23,10 @@ import {NewsFullArticleComponent} from "./news/news-full-article/news-full-artic
 import {MainCalendarComponent} from "./calendar-planner/main-calendar/main-calendar.component";
 import {NewsListComponent} from "./news/news-list/news-list.component";
 import {BroadcastsComponent} from "./broadcasts/broadcasts.component";
+import {ForumThreadListComponent} from "./forum/forum-thread-list/forum-thread-list.component";
 import {BroadcastEmbeddedComponent} from "./broadcasts/broadcast-embedded/broadcast-embedded.component";
+import {ForumPostsComponent} from "./forum/forum-posts/forum-posts.component";
+import {ForumAddNewThreadComponent} from "./forum/forum-add-new-thread/forum-add-new-thread.component";
 
 const routes: Routes = [
   {path: '', component: MainPageContentComponent},
@@ -31,10 +34,11 @@ const routes: Routes = [
   {path: 'events/eventsteam/:eventTeamId', component: EventsTeamDetailsComponent},
   {path: 'events', component: EventsListComponent},
   {path: 'news', component: NewsListComponent},
-  {path: 'news', component: NewsListComponent},
   {path: 'news/:newsId', component: NewsFullArticleComponent},
   {path: 'broadcasts', component: BroadcastsComponent},
   {path: 'broadcast/:userName', component: BroadcastEmbeddedComponent},
+  {path: 'forum', component: ForumThreadListComponent},
+  {path: 'forum/:threadId', component: ForumPostsComponent},
   {
     path: '',
     runGuardsAndResolvers: 'always',
@@ -50,6 +54,7 @@ const routes: Routes = [
       {path: 'admin', component: AdminPanelComponent, canActivate: [AdminGuard]},
       {path: 'admin/events/eventsuser/:eventUserId', component: EventsSoloEditComponent},
       {path: 'admin/events/eventsteam/:eventTeamId', component: EventsTeamEditComponent},
+      {path: 'forum/thread/add', component: ForumAddNewThreadComponent}
     ]
   },
   {path: 'errors', component: TestErrorsComponent},
