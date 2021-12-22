@@ -46,7 +46,7 @@ namespace organizer_gracza_backend.Controllers
         }
         
         [HttpGet("member")]
-        public int GetMemberUsername()
+        public int GetCurrentlyLoggedMemberId()
         {
             var query = _userRepository.GetUserByUsernameAsync(User.GetUsername());
 

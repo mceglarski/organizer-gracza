@@ -31,7 +31,7 @@
             <a class="nav-link" routerLink='/messages'>WIADOMOŚCI</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">FORUM</a>
+            <a class="nav-link" href="/forum">FORUM</a>
           </li>
         </ng-container>
         <ng-container *ngIf="(accountService.currentUser$ | async) === null">
@@ -45,7 +45,7 @@
             <a class="nav-link" routerLink="/broadcasts">TRANSMISJE</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">FORUM</a>
+            <a class="nav-link" href="/forum">FORUM</a>
           </li>
         </ng-container>
         <li class="hide nav-item">
