@@ -62,7 +62,6 @@ namespace organizer_gracza_backend.Controllers
             {
                 EventTeamId = eventTeamRegistrationDto.EventTeamId,
                 TeamId = eventTeamRegistrationDto.TeamId,
-                EventResultId = eventTeamRegistrationDto.EventResultId
             };
 
             var teamRegistration = await _eventTeamRegistrationRepository.GetEventsTeamRegistrationAsync();

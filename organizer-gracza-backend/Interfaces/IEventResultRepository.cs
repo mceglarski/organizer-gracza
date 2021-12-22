@@ -4,13 +4,13 @@ using organizer_gracza_backend.Model;
 
 namespace organizer_gracza_backend.Interfaces
 {
-    public interface IEventResultRepository
+    public interface IEventTeamResultRepository
     {
-        Task<EventResult> GetEventResultById(int eventResultId);
-        Task<IEnumerable<EventResult>> GetEventResults();
-        void AddEventResult(EventResult eventResult);
-        void DeleteEventResult(EventResult eventResult);
-        void UpdateEventResult(EventResult eventResult);
+        Task<EventTeamResult> GetEventTeamResultById(int eventTeamResultId);
+        Task<IEnumerable<EventTeamResult>> GetEventTeamResults();
+        void AddEventTeamResult(EventTeamResult eventTeamResult);
+        void DeleteEventTeamResult(EventTeamResult eventTeamResult);
+        void UpdateEventTeamResult(EventTeamResult eventTeamResult);
         Task<bool> SaveAllAsync();
     }
 }

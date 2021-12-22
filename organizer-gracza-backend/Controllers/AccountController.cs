@@ -59,7 +59,8 @@ namespace organizer_gracza_backend.Controllers
                 Id = user.Id,
                 Username = user.UserName,
                 Nickname = user.Nickname,
-                Token = await _tokenService.CreateToken(user)
+                Token = await _tokenService.CreateToken(user),
+                PhotoUrl = "https://cdn1.iconfinder.com/data/icons/game-design-butterscotch-vol-1/256/Gamer-512.png"
             };
         }
 

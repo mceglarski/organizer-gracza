@@ -200,11 +200,16 @@ export interface ForumPost {
   forumThreadId: number;
 }
 
-export interface EventResult {
-  eventResultId: number;
-  winnerName: string;
-  eventTeamRegistrationId: number;
-  eventUserRegistrationId: number;
+export interface EventTeamResult {
+  eventTeamResultId: number;
+  eventTeamId: number;
+  teamId: number;
+}
+
+export interface EventUserResult {
+  eventUserResultId: number;
+  eventUserId: number;
+  userId: number;
 }
 
 export interface TwitchBroadcast {

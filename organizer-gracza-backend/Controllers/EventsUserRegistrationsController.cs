@@ -65,7 +65,6 @@ namespace organizer_gracza_backend.Controllers
             {
                 EventUserId = eventUserRegistrationDto.EventUserId,
                 UserId = eventUserRegistrationDto.UserId,
-                EventResultId = eventUserRegistrationDto.EventResultId
             };
 
             var userRegistrations = await _eventUserRegistrationRepository.GetEventsUserRegistrationAsync();

@@ -325,12 +325,12 @@ namespace organizer_gracza_backend.Data
         
         public static async Task SeedEventResults(DataContext context)
         {
-            if (await context.EventResults.AnyAsync())
+            if (await context.EventTeamResult.AnyAsync())
                 return;
         
             var eventResults =
                 await System.IO.File.ReadAllTextAsync("Data/SeedData/EventsResultsSeedData.json");
-            var eventResultsData = JsonSerializer.Deserialize<List<EventResult>>
+            var eventResultsData = JsonSerializer.Deserialize<List<EventTeamResult>>
                 (eventResults);
             if (eventResultsData == null)
                 return;
