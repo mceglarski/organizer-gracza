@@ -234,3 +234,9 @@ export interface UserAchievementCounter{
   numberOfEventUserJoined: number;
   userId: number;
 }
+
+export interface UserGame{
+  userGameId: number;
+  userId: number;
+  gameId: number;
+}

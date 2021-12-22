@@ -46,6 +46,7 @@ namespace organizer_gracza_backend.Helpers
             CreateMap<ForumThread, ForumThreadDto>();
             CreateMap<ForumPost, ForumPostDto>();
             CreateMap<EventResult, EventResultDto>();
+            CreateMap<UserGame, UserGameDto>();
             CreateMap<Message, MessageDto>()
                 .ForMember(dest => dest.SenderPhotoUrl,
                     opt => opt.MapFrom(

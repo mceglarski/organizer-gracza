@@ -6,6 +6,21 @@
     "Created": "2020-06-24",
     "LastActive": "2020-06-21",
     "EventRegistrationId": 1,
+    "Description": "aaa",
+    "UserGames": [
+      {
+        "UserId": 1,
+        "GameId": 1
+      },
+      {
+        "UserId": 1,
+        "GameId": 2
+      },
+      {
+        "UserId": 1,
+        "GameId": 3
+      }
+    ],
     "Photos": [
       {
         "Url": "https://randomuser.me/api/portraits/women/54.jpg",
@@ -20,6 +35,21 @@
     "Created": "2019-12-09",
     "LastActive": "2020-05-06",
     "EventRegistrationId": 2,
+    "Description": "aaa",
+    "UserGames": [
+      {
+        "UserId": 2,
+        "GameId": 3
+      },
+      {
+        "UserId": 2,
+        "GameId": 4
+      },
+      {
+        "UserId": 2,
+        "GameId": 5
+      }
+    ],
     "Photos": [
       {
         "Url": "https://randomuser.me/api/portraits/women/50.jpg",
@@ -34,6 +64,21 @@
     "Created": "2019-08-10",
     "LastActive": "2020-05-12",
     "EventRegistrationId": 3,
+    "Description": "aaa",
+    "UserGames": [
+      {
+        "UserId": 3,
+        "GameId": 1
+      },
+      {
+        "UserId": 3,
+        "GameId": 2
+      },
+      {
+        "UserId": 3,
+        "GameId": 3
+      }
+    ],
     "Photos": [
       {
         "Url": "https://randomuser.me/api/portraits/women/14.jpg",
@@ -48,6 +93,21 @@
     "Created": "2019-04-24",
     "LastActive": "2020-06-17",
     "EventRegistrationId": 4,
+    "Description": "aaa",
+    "UserGames": [
+      {
+        "UserId": 4,
+        "GameId": 1
+      },
+      {
+        "UserId": 4,
+        "GameId": 2
+      },
+      {
+        "UserId": 4,
+        "GameId": 3
+      }
+    ],
     "Photos": [
       {
         "Url": "https://randomuser.me/api/portraits/women/11.jpg",
@@ -62,6 +122,21 @@
     "Created": "2019-04-30",
     "LastActive": "2020-06-21",
     "EventRegistrationId": 5,
+    "Description": "aaa",
+    "UserGames": [
+      {
+        "UserId": 5,
+        "GameId": 1
+      },
+      {
+        "UserId": 5,
+        "GameId": 2
+      },
+      {
+        "UserId": 5,
+        "GameId": 3
+      }
+    ],
     "Photos": [
       {
         "Url": "https://randomuser.me/api/portraits/women/84.jpg",
@@ -76,6 +151,21 @@
     "Created": "2019-04-29",
     "LastActive": "2020-05-16",
     "EventRegistrationId": 1,
+    "Description": "aaa",
+    "UserGames": [
+      {
+        "UserId": 6,
+        "GameId": 1
+      },
+      {
+        "UserId": 6,
+        "GameId": 2
+      },
+      {
+        "UserId": 6,
+        "GameId": 3
+      }
+    ],
     "Photos": [
       {
         "Url": "https://randomuser.me/api/portraits/men/90.jpg",
@@ -90,6 +180,21 @@
     "Created": "2020-04-05",
     "LastActive": "2020-06-23",
     "EventRegistrationId": 1,
+    "Description": "aaa",
+    "UserGames": [
+      {
+        "UserId": 7,
+        "GameId": 1
+      },
+      {
+        "UserId": 7,
+        "GameId": 2
+      },
+      {
+        "UserId": 7,
+        "GameId": 3
+      }
+    ],
     "Photos": [
       {
         "Url": "https://randomuser.me/api/portraits/men/87.jpg",
@@ -104,6 +209,21 @@
     "Created": "2020-03-14",
     "LastActive": "2020-05-17",
     "EventRegistrationId": 1,
+    "Description": "aaa",
+    "UserGames": [
+      {
+        "UserId": 8,
+        "GameId": 1
+      },
+      {
+        "UserId": 8,
+        "GameId": 2
+      },
+      {
+        "UserId": 8,
+        "GameId": 3
+      }
+    ],
     "Photos": [
       {
         "Url": "https://randomuser.me/api/portraits/men/57.jpg",
@@ -118,7 +238,21 @@
     "Created": "2019-01-28",
     "LastActive": "2020-06-07",
     "EventRegistrationId": 1,
-
+    "Description": "aaa",
+    "UserGames": [
+      {
+        "UserId": 9,
+        "GameId": 1
+      },
+      {
+        "UserId": 9,
+        "GameId": 2
+      },
+      {
+        "UserId": 9,
+        "GameId": 3
+      }
+    ],
     "Photos": [
       {
         "Url": "https://randomuser.me/api/portraits/men/11.jpg",
@@ -133,6 +267,21 @@
     "Created": "2020-02-25",
     "LastActive": "2020-06-11",
     "EventRegistrationId": 1,
+    "Description": "aaa",
+    "UserGames": [
+      {
+        "UserId": 10,
+        "GameId": 1
+      },
+      {
+        "UserId": 10,
+        "GameId": 2
+      },
+      {
+        "UserId": 10,
+        "GameId": 3
+      }
+    ],
     "Photos": [
       {
         "Url": "https://randomuser.me/api/portraits/men/93.jpg",
