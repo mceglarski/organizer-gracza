@@ -6,6 +6,6 @@ namespace organizer_gracza_backend.DTOs
         public int UserId { get; set; }
         public UserDto User { get; set; }
         public int EventUserId { get; set; }
-        public int EventResultId { get; set; }
+
     }
 }

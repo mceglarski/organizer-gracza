@@ -17,5 +17,9 @@ namespace organizer_gracza_backend.DTOs
         public int? GameId { get; set; }
         public GameDto Game { get; set; }
         public ICollection<EventUserRegistrationDto> EventUserRegistration { get; set; }
+
+        public int? EventUserResultId { get; set; }
+        public EventUserResultDto EventUserResult { get; set; }
+
     }
 }

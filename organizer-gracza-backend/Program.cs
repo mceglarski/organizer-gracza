@@ -18,47 +18,44 @@ namespace organizer_gracza_backend
     {
         public static async Task Main(string[] args)
         {
-           var host = CreateHostBuilder(args).Build();
-           using var scope = host.Services.CreateScope();
-           var services = scope.ServiceProvider;
-           try
-           {
-               var context = services.GetRequiredService<DataContext>();
-               var userManager = services.GetRequiredService<UserManager<User>>();
-               var roleManager = services.GetRequiredService<RoleManager<AppRole>>();
-               await context.Database.MigrateAsync();
-               await Seed.SeedGames(context);
-               await Seed.SeedEventsUser(context);
-               await Seed.SeedEventsTeam(context);
-               await Seed.SeedUsers(userManager, roleManager);
-               await Seed.SeedEventsUserRegistrations(context);
-               await Seed.SeedTeams(context);
-               await Seed.SeedTeamUsers(context);
-               await Seed.SeedEventsTeamRegistrations(context);
-               await Seed.SeedAdmin(userManager);
-               await Seed.SeedGameStatistics(context);
-               await Seed.SeedGeneralStatistics(context);
-               await Seed.SeedAchievements(context);
-               await Seed.SeedUserAchievementCounter(context);
-               await Seed.SeedReminders(context);
-               await Seed.SeedArticles(context);
-               await Seed.SeedForumThreads(context);
-               await Seed.SeedEventResults(context);
-           }
-           catch(Exception exception)
-           {
-               var logger = services.GetRequiredService<ILogger<Program>>();
-               logger.LogError(exception, "An error occurred during migration");
-           }
+            var host = CreateHostBuilder(args).Build();
+            using var scope = host.Services.CreateScope();
+            var services = scope.ServiceProvider;
+            try
+            {
+                var context = services.GetRequiredService<DataContext>();
+                var userManager = services.GetRequiredService<UserManager<User>>();
+                var roleManager = services.GetRequiredService<RoleManager<AppRole>>();
+                await context.Database.MigrateAsync();
+                await Seed.SeedGames(context);
+                await Seed.SeedUsers(userManager, roleManager);
+                await Seed.SeedTeams(context);
+                await Seed.SeedTeamUsers(context);
+                await Seed.SeedEventsUser(context);
+                await Seed.SeedEventsTeam(context);
+                // await Seed.SeedEventsUserRegistrations(context);
+                // await Seed.SeedEventsTeamRegistrations(context);
+                await Seed.SeedAdmin(userManager);
+                await Seed.SeedGameStatistics(context);
+                await Seed.SeedGeneralStatistics(context);
+                await Seed.SeedAchievements(context);
+                await Seed.SeedUserAchievementCounter(context);
+                await Seed.SeedReminders(context);
+                await Seed.SeedArticles(context);
+                await Seed.SeedForumThreads(context);
+                // await Seed.SeedEventResults(context);
+            }
+            catch (Exception exception)
+            {
+                var logger = services.GetRequiredService<ILogger<Program>>();
+                logger.LogError(exception, "An error occurred during migration");
+            }
 
-           await host.RunAsync();
+            await host.RunAsync();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
+                .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
     }
 }

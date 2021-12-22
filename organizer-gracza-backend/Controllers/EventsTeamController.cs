@@ -76,7 +76,8 @@ namespace organizer_gracza_backend.Controllers
                 WinnerPrize = eventTeamDto.WinnerPrize,
                 EventOrganiser = eventTeamDto.EventOrganiser,
                 GameId = eventTeamDto.GameId,
-                PhotoUrl = eventTeamDto.PhotoUrl
+                PhotoUrl = eventTeamDto.PhotoUrl,
+                EventTeamResultId = eventTeamDto.EventResultId,
             };
 
             if (eventTeamDto.StartDate > eventTeamDto.EndDate)

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using organizer_gracza_backend.Model;
 
 namespace organizer_gracza_backend.DTOs
 {
@@ -17,5 +18,7 @@ namespace organizer_gracza_backend.DTOs
         public int? GameId { get; set; }
         public GameDto Game { get; set; }
         public ICollection<EventTeamRegistrationDto> EventTeamRegistration { get; set; }
+        public int? EventResultId { get; set; }
+        public EventTeamResultDto EventTeamResult { get; set; }
     }
 }

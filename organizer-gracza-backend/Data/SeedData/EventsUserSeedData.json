@@ -1,35 +1,524 @@
 [
   {
-    "Name": "Fortnite Gaming Edition",
-    "Description": "The Fortnite Gaming Edition to coroczne zawody esportowe oparte na grze wideo Fortnite, z inauguracyjnymi wydarzeniami finałowymi odbywającymi się w dniach 26-28 lipca 2019 roku na Arthur Ashe Stadium w Flushing w Nowym Jorku. W różnych zawodach dostępna była pula nagród o łącznej wartości 30 milionów dolarów.\nFortnite Gaming Edition zostało podzielone na dwa różne wydarzenia, jedno dla graczy solo, a drugie dla drużyn dwuosobowych, czyli duetów.",
-    "StartDate": "2022-04-06",
-    "EndDate": "2022-06-10",
-    "WinnerPrize": 300,
-    "EventType": "Drużyny 5v5",
-    "EventOrganiser": "CdProjekt",
-    "PhotoUrl": "https://images6.alphacoders.com/514/514762.jpg",
-    "GameId": 1
+    "Name": "Celeste Speedrun Challenge",
+    "Description": "Celeste Speedrun Challenge to coroczne wydarzenie organizowane przez twórce gry.\n Zawodnicy z całego świata biorą udział w wydarzeniu na czas, gdzie za zadanie masz przejść całą grę w jak najszbszym czasie. \n Wydarzenie jest organizowane w Kanadzie dokładne miejsce zostanie ogłoszone.",
+    "StartDate": "2022-01-02",
+    "EndDate": "2022-01-10",
+    "WinnerPrize": 10000,
+    "EventType": "Solo",
+    "EventOrganiser": "Maddy Thorson",
+    "PhotoUrl": "https://media.cdn.videotesty.pl/media/pliki/produkty/2018/12/22/Celeste.jpg",
+    "GameId": 9,
+    "EventUserRegistration": [
+      {
+        "UserId": 1
+      },
+      {
+        "UserId": 2
+      },
+      {
+        "UserId": 3
+      },
+      {
+        "UserId": 4
+      },
+      {
+        "UserId": 5
+      },
+      {
+        "UserId": 6
+      },
+      {
+        "UserId": 7
+      },
+      {
+        "UserId": 8
+      },
+      {
+        "UserId": 9
+      },
+      {
+        "UserId": 10
+      },
+      {
+        "UserId": 11
+      },
+      {
+        "UserId": 12
+      },
+      {
+        "UserId": 13
+      },
+      {
+        "UserId": 14
+      },
+      {
+        "UserId": 15
+      },
+      {
+        "UserId": 16
+      },
+      {
+        "UserId": 17
+      },
+      {
+        "UserId": 18
+      },
+      {
+        "UserId": 19
+      },
+      {
+        "UserId": 20
+      },
+      {
+        "UserId": 21
+      },
+      {
+        "UserId": 22
+      },
+      {
+        "UserId": 23
+      },
+      {
+        "UserId": 24
+      }
+    ]
   },
   {
-    "Name": "WARZONE Duo Challange",
-    "Description": "The Fortnite Gaming Edition to coroczne zawody esportowe oparte na grze wideo Fortnite, z inauguracyjnymi wydarzeniami finałowymi odbywającymi się w dniach 26-28 lipca 2019 roku na Arthur Ashe Stadium w Flushing w Nowym Jorku. W różnych zawodach dostępna była pula nagród o łącznej wartości 30 milionów dolarów.\nFortnite Gaming Edition zostało podzielone na dwa różne wydarzenia, jedno dla graczy solo, a drugie dla drużyn dwuosobowych, czyli duetów.",
-    "StartDate": "2022-04-06",
-    "EndDate": "2022-06-10",
-    "WinnerPrize": 250,
-    "EventType": "Drużyny 5v5",
-    "EventOrganiser": "Enigma",
-    "PhotoUrl": "https://images6.alphacoders.com/514/514762.jpg",
-    "GameId": 2
+    "Name": "IEM Katowice 2021 - Starcraft 2",
+    "Description": "Zwieńczenie StarCraft II ESL Pro Tour na IEM Katowice 2021!\n Po trwającej rok intensywnej rywalizacji, wyłoniliśmy najlepszych zawodników. Od 20 do 28 lutego, ci gracze z całego świata będą walczyć o lwią część z puli nagród wynoszącej 250 000 dolarów i jedyną w życiu okazję podniesienia wspaniałego trofeum ESL Pro Tour Masters Championship IEM Katowice 2021.",
+    "StartDate": "2022-02-20",
+    "EndDate": "2022-02-28",
+    "WinnerPrize": 250000,
+    "EventType": "Solo 1v1",
+    "EventOrganiser": "ESL",
+    "PhotoUrl": "https://gamingsociety.pl/wp-content/uploads/2021/02/IEM-Katowice-2021-2-1.jpg",
+    "GameId": 6,
+    "EventUserRegistration": [
+      {
+        "UserId": 28
+      },
+      {
+        "UserId": 29
+      },
+      {
+        "UserId": 30
+      },
+      {
+        "UserId": 31
+      },
+      {
+        "UserId": 32
+      },
+      {
+        "UserId": 33
+      },
+      {
+        "UserId": 34
+      },
+      {
+        "UserId": 35
+      },
+      {
+        "UserId": 36
+      },
+      {
+        "UserId": 37
+      },
+      {
+        "UserId": 38
+      },
+      {
+        "UserId": 39
+      },
+      {
+        "UserId": 40
+      },
+      {
+        "UserId": 41
+      },
+      {
+        "UserId": 42
+      },
+      {
+        "UserId": 43
+      },
+      {
+        "UserId": 44
+      },
+      {
+        "UserId": 45
+      },
+      {
+        "UserId": 46
+      },
+      {
+        "UserId": 47
+      },
+      {
+        "UserId": 48
+      },
+      {
+        "UserId": 49
+      },
+      {
+        "UserId": 50
+      },
+      {
+        "UserId": 51
+      }
+    ]
   },
   {
-    "Name": "League of Legends Masters",
-    "Description": "The Fortnite Gaming Edition to coroczne zawody esportowe oparte na grze wideo Fortnite, z inauguracyjnymi wydarzeniami finałowymi odbywającymi się w dniach 26-28 lipca 2019 roku na Arthur Ashe Stadium w Flushing w Nowym Jorku. W różnych zawodach dostępna była pula nagród o łącznej wartości 30 milionów dolarów.\nFortnite Gaming Edition zostało podzielone na dwa różne wydarzenia, jedno dla graczy solo, a drugie dla drużyn dwuosobowych, czyli duetów.",
-    "StartDate": "2022-04-06",
-    "EndDate": "2022-06-10",
-    "WinnerPrize": 500,
-    "EventType": "Drużyny 5v5",
-    "EventOrganiser": "Bosch",
-    "PhotoUrl": "https://images6.alphacoders.com/514/514762.jpg",
-    "GameId": 3
+    "Name": "Code Red Escape from Tarkov tournament",
+    "Description": "Code Red tournament to wydarzenie organizowane przez twórców gry w celu wybrania najlepszego gracza Escape from Tarkov. \n Gracze biorą udział w wydarzeniu Battle Royale każdy na każdego a w dużej mierze o zwyciężeniu zadecyduje szczęście.",
+    "StartDate": "2022-01-06",
+    "EndDate": "2022-01-08",
+    "WinnerPrize": 10000,
+    "EventType": "Battle Royale",
+    "EventOrganiser": "BattleState Games",
+    "PhotoUrl": "https://mocah.org/uploads/posts/577816-escape-from.jpg",
+    "GameId": 8,
+    "EventUserRegistration": [
+      {
+        "UserId": 1
+      },
+      {
+        "UserId": 2
+      },
+      {
+        "UserId": 3
+      },
+      {
+        "UserId": 4
+      },
+      {
+        "UserId": 5
+      },
+      {
+        "UserId": 6
+      },
+      {
+        "UserId": 7
+      },
+      {
+        "UserId": 8
+      },
+      {
+        "UserId": 9
+      },
+      {
+        "UserId": 10
+      },
+      {
+        "UserId": 11
+      },
+      {
+        "UserId": 12
+      },
+      {
+        "UserId": 13
+      },
+      {
+        "UserId": 21
+      },
+      {
+        "UserId": 31
+      },
+      {
+        "UserId": 41
+      },
+      {
+        "UserId": 25
+      },
+      {
+        "UserId": 26
+      },
+      {
+        "UserId": 27
+      },
+      {
+        "UserId": 28
+      },
+      {
+        "UserId": 29
+      },
+      {
+        "UserId": 30
+      },
+      {
+        "UserId": 42
+      },
+      {
+        "UserId": 43
+      }
+    ],
+    "EventUserResult": {
+      "UserId": 1
+    }
+  },
+  {
+    "Name": "PGL Major Stockholm 2021",
+    "Description": "PGL Major to coroczny turniej organizowany przez twórców gry Counter-Strike Global Offensive.\n Każdego roku turniej jest w innym miejscu ale na tych samych zasadach. Gracze biorą udział w walkach 1 na 1 na zasadach klaszycznej rozgrywki.",
+    "StartDate": "2022-03-02",
+    "EndDate": "2022-03-24",
+    "WinnerPrize": 2000000,
+    "EventType": "Solo 1v1",
+    "EventOrganiser": "Valve",
+    "PhotoUrl": "https://www.fantasyexpo.pl/wp-content/uploads/2021/05/FExPGL_1920x1080e-1.jpg",
+    "GameId": 4,
+    "EventUserRegistration": [
+      {
+        "UserId": 1
+      },
+      {
+        "UserId": 2
+      },
+      {
+        "UserId": 3
+      },
+      {
+        "UserId": 4
+      },
+      {
+        "UserId": 5
+      },
+      {
+        "UserId": 6
+      },
+      {
+        "UserId": 7
+      },
+      {
+        "UserId": 8
+      },
+      {
+        "UserId": 9
+      },
+      {
+        "UserId": 10
+      },
+      {
+        "UserId": 11
+      },
+      {
+        "UserId": 12
+      },
+      {
+        "UserId": 13
+      },
+      {
+        "UserId": 21
+      },
+      {
+        "UserId": 31
+      },
+      {
+        "UserId": 41
+      },
+      {
+        "UserId": 25
+      },
+      {
+        "UserId": 26
+      },
+      {
+        "UserId": 27
+      },
+      {
+        "UserId": 46
+      },
+      {
+        "UserId": 47
+      },
+      {
+        "UserId": 48
+      },
+      {
+        "UserId": 49
+      },
+      {
+        "UserId": 50
+      }
+    ]
+  },
+  {
+    "Name": "Fornite - Solo Open Hype Cup",
+    "Description": "Solo Open Hype Cup to wydarzenie organizowane przez twórców gry w celu sprawdzenia umiejętności szybkiej budowy przez graczy. \n Gracze biorą udział w jak najszbszym zbudowaniu bazy a później mają za zadanie zniszczenie swoich przeciwników.",
+    "StartDate": "2022-01-02",
+    "EndDate": "2022-01-12",
+    "WinnerPrize": 5000,
+    "EventType": "Battle Royale",
+    "EventOrganiser": "Epic Games",
+    "PhotoUrl": "https://www.elecspo.com/static/uploads/13/2021/04/14br-competitive-hypecup-social-1920x1080-905654173.jpg",
+    "GameId": 10,
+    "EventUserRegistration": [
+      {
+        "UserId": 1
+      },
+      {
+        "UserId": 2
+      },
+      {
+        "UserId": 3
+      },
+      {
+        "UserId": 4
+      },
+      {
+        "UserId": 5
+      },
+      {
+        "UserId": 6
+      },
+      {
+        "UserId": 7
+      },
+      {
+        "UserId": 8
+      },
+      {
+        "UserId": 9
+      },
+      {
+        "UserId": 10
+      },
+      {
+        "UserId": 11
+      },
+      {
+        "UserId": 12
+      },
+      {
+        "UserId": 13
+      },
+      {
+        "UserId": 21
+      },
+      {
+        "UserId": 31
+      },
+      {
+        "UserId": 41
+      },
+      {
+        "UserId": 25
+      },
+      {
+        "UserId": 26
+      },
+      {
+        "UserId": 27
+      },
+      {
+        "UserId": 28
+      },
+      {
+        "UserId": 29
+      },
+      {
+        "UserId": 30
+      },
+      {
+        "UserId": 42
+      },
+      {
+        "UserId": 43
+      }
+    ],
+    "EventUserResult": {
+      "UserId": 8
+    }
+  },
+  {
+    "Name": "Valorant - TEC Challenger Series #6",
+    "Description": "TEC Challenger Series to szósta już odsłona wydarzenia organizowana przez twórców. \n Gracze mają za pokonać swojego przeciwnika na klasycznych zasadach rozgrywki. \n.",
+    "StartDate": "2022-02-06",
+    "EndDate": "2022-02-16",
+    "WinnerPrize": 2000000,
+    "EventType": "Solo 1v1",
+    "EventOrganiser": "Riot",
+    "PhotoUrl": "https://theesports.club/wp-content/uploads/2020/12/Home-page-banner-S4-1130x650.jpg",
+    "GameId": 3,
+    "EventUserRegistration": [
+      {
+        "UserId": 1
+      },
+      {
+        "UserId": 2
+      },
+      {
+        "UserId": 3
+      },
+      {
+        "UserId": 4
+      },
+      {
+        "UserId": 5
+      },
+      {
+        "UserId": 6
+      },
+      {
+        "UserId": 7
+      },
+      {
+        "UserId": 8
+      },
+      {
+        "UserId": 9
+      },
+      {
+        "UserId": 10
+      },
+      {
+        "UserId": 11
+      },
+      {
+        "UserId": 12
+      },
+      {
+        "UserId": 13
+      },
+      {
+        "UserId": 14
+      },
+      {
+        "UserId": 15
+      },
+      {
+        "UserId": 25
+      },
+      {
+        "UserId": 26
+      },
+      {
+        "UserId": 27
+      },
+      {
+        "UserId": 28
+      },
+      {
+        "UserId": 29
+      },
+      {
+        "UserId": 30
+      },
+      {
+        "UserId": 35
+      },
+      {
+        "UserId": 36
+      },
+      {
+        "UserId": 37
+      },
+      {
+        "UserId": 38
+      },
+      {
+        "UserId": 39
+      }
+    ]
   }
 ]

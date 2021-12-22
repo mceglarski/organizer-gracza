@@ -82,6 +82,7 @@ namespace organizer_gracza_backend.Controllers
                 EventOrganiser = eventUserDto.EventOrganiser,
                 GameId = eventUserDto.GameId,
                 PhotoUrl = eventUserDto.PhotoUrl,
+                EventUserResultId = eventUserDto.EventUserResultId
             };
             
             if (eventUserDto.StartDate > eventUserDto.EndDate)
