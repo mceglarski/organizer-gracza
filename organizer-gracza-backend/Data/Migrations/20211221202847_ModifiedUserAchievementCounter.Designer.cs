@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using organizer_gracza_backend.Data;
 
 namespace organizer_gracza_backend.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20211221202847_ModifiedUserAchievementCounter")]
+    partial class ModifiedUserAchievementCounter
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -361,13 +363,13 @@ namespace organizer_gracza_backend.Data.Migrations
                     b.Property<string>("Content")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("ForumThreadId")
+                    b.Property<int?>("ForumThreadId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("PostDate")
+                    b.Property<DateTime?>("PostDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("ForumPostId");
@@ -388,16 +390,16 @@ namespace organizer_gracza_backend.Data.Migrations
                     b.Property<string>("Content")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("GameId")
+                    b.Property<int?>("GameId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("ThreadDate")
+                    b.Property<DateTime?>("ThreadDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("ForumThreadId");
@@ -632,9 +634,6 @@ namespace organizer_gracza_backend.Data.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("TEXT");
@@ -723,27 +722,6 @@ namespace organizer_gracza_backend.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("UserAchievementCounters");
-                });
-
-            modelBuilder.Entity("organizer_gracza_backend.Model.UserGame", b =>
-                {
-                    b.Property<int>("UserGameId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("GameId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("UserGameId");
-
-                    b.HasIndex("GameId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserGame");
                 });
 
             modelBuilder.Entity("organizer_gracza_backend.Model.UserRole", b =>
@@ -897,15 +875,11 @@ namespace organizer_gracza_backend.Data.Migrations
                 {
                     b.HasOne("organizer_gracza_backend.Model.ForumThread", "ForumThread")
                         .WithMany("ForumPosts")
-                        .HasForeignKey("ForumThreadId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ForumThreadId");
 
                     b.HasOne("organizer_gracza_backend.Model.User", "User")
                         .WithMany("ForumPosts")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("ForumThread");
 
@@ -916,15 +890,11 @@ namespace organizer_gracza_backend.Data.Migrations
                 {
                     b.HasOne("organizer_gracza_backend.Model.Game", "Game")
                         .WithMany("ForumThread")
-                        .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("GameId");
 
                     b.HasOne("organizer_gracza_backend.Model.User", "User")
                         .WithMany("ForumThreads")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Game");
 
@@ -1022,25 +992,6 @@ namespace organizer_gracza_backend.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("organizer_gracza_backend.Model.UserGame", b =>
-                {
-                    b.HasOne("organizer_gracza_backend.Model.Game", "Game")
-                        .WithMany("Users")
-                        .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("organizer_gracza_backend.Model.User", "User")
-                        .WithMany("Interests")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Game");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("organizer_gracza_backend.Model.UserRole", b =>
                 {
                     b.HasOne("organizer_gracza_backend.Model.AppRole", "Role")
@@ -1099,8 +1050,6 @@ namespace organizer_gracza_backend.Data.Migrations
                     b.Navigation("ForumThread");
 
                     b.Navigation("GameStatistics");
-
-                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("organizer_gracza_backend.Model.Group", b =>
@@ -1130,8 +1079,6 @@ namespace organizer_gracza_backend.Data.Migrations
                     b.Navigation("GameStatistics");
 
                     b.Navigation("GeneralStatistics");
-
-                    b.Navigation("Interests");
 
                     b.Navigation("MessagesReceived");
 

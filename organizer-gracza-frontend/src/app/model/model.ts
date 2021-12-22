@@ -227,3 +227,19 @@ export interface TwitchBroadcast {
   is_mature: boolean;
   pagination: any;
 }
+
+export interface UserAchievementCounter{
+  userAchievementCounterId: number;
+  numberOfTeamsCreated: number;
+  numberOfTeamsJoined: number;
+  numberOfThreadsCreated: number;
+  numberOfPostsCreated: number;
+  numberOfEventUserJoined: number;
+  userId: number;
+}
+
+export interface UserGame{
+  userGameId: number;
+  userId: number;
+  gameId: number;
+}
