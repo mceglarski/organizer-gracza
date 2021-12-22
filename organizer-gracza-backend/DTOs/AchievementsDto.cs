@@ -1,6 +1,4 @@
-﻿using organizer_gracza_backend.Model;
-
-namespace organizer_gracza_backend.DTOs
+﻿namespace organizer_gracza_backend.DTOs
 {
     public class AchievementsDto
     {

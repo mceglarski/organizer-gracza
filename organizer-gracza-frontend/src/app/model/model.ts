@@ -110,6 +110,7 @@ export interface EventUserRegistration {
   eventUserRegistrationId: number;
   userId: number;
   eventUserId: number;
+  eventResultId: number;
 }
 
 export interface EventTeamRegistration {
@@ -117,6 +118,7 @@ export interface EventTeamRegistration {
   teamId: number;
   eventTeamId: number;
   team: Team;
+  eventResultId: number;
 }
 
 export interface Participiant {
@@ -142,6 +144,7 @@ export interface TeamUser {
 export interface Game {
   gameId: number;
   title: string;
+  photoUrl: string;
 }
 
 export interface GameStatistics {
@@ -161,7 +164,7 @@ export interface GeneralStatistics {
   user: User;
 }
 
-export interface Achievements{
+export interface Achievements {
   achievementsId: number;
   name: string;
   details: string;
@@ -169,10 +172,74 @@ export interface Achievements{
   userId: number;
 }
 
-export interface Reminder{
+export interface Reminder {
   reminderId?: number;
   title: string;
   startDate: Date;
   user?: User;
   userId: number;
+}
+
+export interface ForumThread {
+  forumThreadId: number;
+  title: string;
+  content: string;
+  threadDate: Date;
+  forumPosts: ForumPost[];
+  userId: number;
+  user: User;
+  gameId: number;
+  game: Game;
+}
+
+export interface ForumPost {
+  forumPostId: number;
+  content: string;
+  postDate: Date;
+  userId: number;
+  forumThreadId: number;
+  photoUrl: string;
+  nickname: string;
+  username: string;
+}
+
+export interface EventResult {
+  eventResultId: number;
+  winnerName: string;
+  eventTeamRegistrationId: number;
+  eventUserRegistrationId: number;
+}
+
+export interface TwitchBroadcast {
+  id: string;
+  user_id: string;
+  user_login: string;
+  user_name: string;
+  game_id: string;
+  game_name: string;
+  type: string;
+  title: string;
+  viewer_count: number;
+  started_at: string;
+  language: string;
+  thumbnail_url: string;
+  tag_ids: string;
+  is_mature: boolean;
+  pagination: any;
+}
+
+export interface UserAchievementCounter{
+  userAchievementCounterId: number;
+  numberOfTeamsCreated: number;
+  numberOfTeamsJoined: number;
+  numberOfThreadsCreated: number;
+  numberOfPostsCreated: number;
+  numberOfEventUserJoined: number;
+  userId: number;
+}
+
+export interface UserGame{
+  userGameId: number;
+  userId: number;
+  gameId: number;
 }

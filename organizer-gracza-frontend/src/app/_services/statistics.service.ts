@@ -32,7 +32,7 @@ export class StatisticsService {
   }
 
   deleteGameStatistics(gameStatisticsId: number){
-    return this.http.delete(this.baseUrl + 'gamestatistics' + gameStatisticsId)
+    return this.http.delete(this.baseUrl + 'gamestatistics/' + gameStatisticsId)
   }
 
   updateGameStatistics(gameStatistics: GameStatistics, gameStatisticsId: number){
@@ -56,7 +56,7 @@ export class StatisticsService {
   }
 
   deleteGeneralStatistics(generalStatisticId: number){
-    return this.http.delete(this.baseUrl + 'generalstatistics' + generalStatisticId)
+    return this.http.delete(this.baseUrl + 'generalstatistics/' + generalStatisticId)
   }
 
   updateGeneralStatistics(generalStatistic: GeneralStatistics, generalStatisticId: number){

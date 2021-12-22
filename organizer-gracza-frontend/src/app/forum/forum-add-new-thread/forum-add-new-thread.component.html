@@ -1,0 +1,50 @@
+<div class="container forum-add-thread-container">
+  <h1 class="section-title"><span class="section-title-accent">DODAJ</span> WĄTEK&nbsp;</h1>
+
+  <div class="forum-add-thread-form">
+    <form [formGroup]="addThreadForm" (ngSubmit)="onSubmit()">
+
+      <div class="row">
+        <label class="field field_v3">
+          <input class="field__input forum-add-thread-title"
+                 formControlName="title">
+          <span class="field__label-wrap">
+          <span class="field__label">Tytuł</span>
+          </span>
+        </label>
+      </div>
+
+      <div class="row">
+        <label class="field field_v3">
+          <textarea class="field__input"
+                    formControlName="content"
+                    rows="1"
+                    cols="150"
+                    style="min-height: 25rem;"></textarea>
+          <span class="field__label-wrap">
+          <span class="field__label">Treść</span>
+          </span>
+        </label>
+      </div>
+
+      <label class="row forum-add-thread-label">Kategoria</label>
+      <div class="row">
+        <select class="forum-add-thread-game-select" formControlName="game">
+          <option *ngFor="let game of games" [value]="game?.gameId">
+            {{game?.title}}
+          </option>
+        </select>
+      </div>
+
+      <div class="row">
+        <button mat-raised-button color="primary" type="submit">Dodaj wątek</button>
+      </div>
+
+
+
+    </form>
+  </div>
+
+
+
+</div>

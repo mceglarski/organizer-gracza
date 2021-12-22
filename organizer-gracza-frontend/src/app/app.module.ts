@@ -86,6 +86,11 @@ import {
   NgxMatTimepickerModule
 } from "@angular-material-components/datetime-picker";
 import { NewsListComponent } from './news/news-list/news-list.component';
+import { BroadcastsComponent } from './broadcasts/broadcasts.component';
+import { ForumThreadListComponent } from './forum/forum-thread-list/forum-thread-list.component';
+import { BroadcastEmbeddedComponent } from './broadcasts/broadcast-embedded/broadcast-embedded.component';
+import { ForumPostsComponent } from './forum/forum-posts/forum-posts.component';
+import { ForumAddNewThreadComponent } from './forum/forum-add-new-thread/forum-add-new-thread.component';
 
 registerLocaleData(localePl, 'pl');
 
@@ -143,7 +148,13 @@ FullCalendarModule.registerPlugins([
     NewsFullArticleComponent,
     MainCalendarComponent,
     AddNewEventModalComponent,
-    NewsListComponent
+    NewsListComponent,
+    BroadcastsComponent,
+    BroadcastEmbeddedComponent,
+    BroadcastsComponent,
+    ForumThreadListComponent,
+    ForumPostsComponent,
+    ForumAddNewThreadComponent
   ],
   imports: [
     BrowserModule,

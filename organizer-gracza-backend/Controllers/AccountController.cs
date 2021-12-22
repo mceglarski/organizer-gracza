@@ -1,13 +1,9 @@
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using organizer_gracza_backend.Data;
 using organizer_gracza_backend.DTOs;
 using organizer_gracza_backend.Interfaces;
 using organizer_gracza_backend.Model;

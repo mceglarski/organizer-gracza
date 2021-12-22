@@ -1,10 +1,6 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
-using organizer_gracza_backend.DTOs;
 using organizer_gracza_backend.Interfaces;
 using organizer_gracza_backend.Model;
 
@@ -13,10 +9,8 @@ namespace organizer_gracza_backend.Data
     public class EventUserRepository : IEventUserRepository
     {
         private readonly DataContext _context;
-        private readonly IMapper _mapper;
-        public EventUserRepository(DataContext context, IMapper mapper)
+        public EventUserRepository(DataContext context)
         {
-            _mapper = mapper;
             _context = context;
         }
 

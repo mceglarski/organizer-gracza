@@ -2,6 +2,8 @@
 
 This is an engineering thesis at the Polish-Japanese Academy of Information Technology. 
 
+Demo: https://organizer-gracza.herokuapp.com/
+
 # Requirments
 
 dotnet version 5.0.4

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using organizer_gracza_backend.Model;
 
 namespace organizer_gracza_backend.DTOs
 {
@@ -14,7 +13,11 @@ namespace organizer_gracza_backend.DTOs
 
         public DateTime LastActive { get; set; }
 
+        public string Description { get; set; }
+
         public string PhotoUrl { get; set; }
         public ICollection<PhotoDto> Photos { get; set; }
+        public ICollection<UserGameDto> UserGames { get; set; }
+
     }
 }

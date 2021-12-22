@@ -4,5 +4,6 @@ namespace organizer_gracza_backend.DTOs
     {
         public int GameId { get; set; }
         public string Title { get; set; }
+        public string PhotoUrl { get; set; }
     }
 }

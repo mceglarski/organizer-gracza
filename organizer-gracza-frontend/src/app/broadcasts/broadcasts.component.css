@@ -1,0 +1,54 @@
+.broadcasts-main-container {
+  background-color: black;
+  margin-top: 1%;
+  color: #fff;
+  padding: 0.5rem;
+  height: 120%;
+}
+
+.col-xl-3 {
+  -moz-hyphens:auto;
+  -ms-hyphens:auto;
+  -webkit-hyphens:auto;
+  hyphens:auto;
+  word-wrap:break-word;
+}
+
+.broadcasts-select {
+  height: 3rem;
+  border-radius: 5%;
+  margin-right: 0.4rem;
+  background-color: #e5e5e5;
+}
+
+.broadcasts-element {
+  margin: 1rem;
+  background-color: #3d4452;
+  width: 440px;
+  height: 350px;
+  border-radius: 1%;
+}
+
+.broadcast-element-content {
+  padding: 0.3rem;
+}
+
+.broadcast-person-icon {
+  color: #ce0000;
+}
+
+.broadcast-link {
+  text-decoration: none;
+  color: white;
+}
+
+@media only screen and (max-width: 1300px) {
+  .broadcast-thumbnail {
+    width: 220px;
+    height: 124px;
+  }
+  .broadcasts-element {
+    width: 220px;
+    height: 275px;
+  }
+}

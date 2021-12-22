@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -43,6 +41,14 @@ namespace organizer_gracza_backend.Controllers
         public int GetUserId(string username)
         {
             var query = _userRepository.GetUserByUsernameAsync(username);
+
+            return query.Result.Id;
+        }
+        
+        [HttpGet("member")]
+        public int GetCurrentlyLoggedMemberId()
+        {
+            var query = _userRepository.GetUserByUsernameAsync(User.GetUsername());
 
             return query.Result.Id;
         }

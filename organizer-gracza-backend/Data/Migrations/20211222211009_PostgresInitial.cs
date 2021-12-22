@@ -24,29 +24,33 @@ namespace organizer_gracza_backend.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Chats",
+                name: "AspNetUsers",
                 columns: table => new
                 {
-                    ChatId = table.Column<int>(type: "integer", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: true)
+                    Nickname = table.Column<string>(type: "text", nullable: true),
+                    Description = table.Column<string>(type: "text", nullable: true),
+                    Created = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    LastActive = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    Email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(type: "boolean", nullable: false),
+                    PasswordHash = table.Column<string>(type: "text", nullable: true),
+                    SecurityStamp = table.Column<string>(type: "text", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "text", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "text", nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(type: "boolean", nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(type: "boolean", nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
+                    LockoutEnabled = table.Column<bool>(type: "boolean", nullable: false),
+                    AccessFailedCount = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Chats", x => x.ChatId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "EventResults",
-                columns: table => new
-                {
-                    EventResultId = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    WinnerName = table.Column<string>(type: "text", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_EventResults", x => x.EventResultId);
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -55,7 +59,8 @@ namespace organizer_gracza_backend.Data.Migrations
                 {
                     GameId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Title = table.Column<string>(type: "text", nullable: true)
+                    Title = table.Column<string>(type: "text", nullable: true),
+                    PhotoUrl = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -105,181 +110,6 @@ namespace organizer_gracza_backend.Data.Migrations
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ChatUsers",
-                columns: table => new
-                {
-                    ChatUsersId = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    ChatId = table.Column<int>(type: "integer", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ChatUsers", x => x.ChatUsersId);
-                    table.ForeignKey(
-                        name: "FK_ChatUsers_Chats_ChatId",
-                        column: x => x.ChatId,
-                        principalTable: "Chats",
-                        principalColumn: "ChatId",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "EventTeam",
-                columns: table => new
-                {
-                    EventTeamId = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: true),
-                    Description = table.Column<string>(type: "text", nullable: true),
-                    StartDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    EndDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    EventType = table.Column<string>(type: "text", nullable: true),
-                    WinnerPrize = table.Column<double>(type: "double precision", nullable: true),
-                    EventOrganiser = table.Column<string>(type: "text", nullable: true),
-                    PhotoUrl = table.Column<string>(type: "text", nullable: true),
-                    GameId = table.Column<int>(type: "integer", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_EventTeam", x => x.EventTeamId);
-                    table.ForeignKey(
-                        name: "FK_EventTeam_Games_GameId",
-                        column: x => x.GameId,
-                        principalTable: "Games",
-                        principalColumn: "GameId",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "EventUser",
-                columns: table => new
-                {
-                    EventUserId = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: true),
-                    Description = table.Column<string>(type: "text", nullable: true),
-                    StartDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    EndDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    EventType = table.Column<string>(type: "text", nullable: true),
-                    WinnerPrize = table.Column<double>(type: "double precision", nullable: true),
-                    EventOrganiser = table.Column<string>(type: "text", nullable: true),
-                    PhotoUrl = table.Column<string>(type: "text", nullable: true),
-                    GameId = table.Column<int>(type: "integer", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_EventUser", x => x.EventUserId);
-                    table.ForeignKey(
-                        name: "FK_EventUser_Games_GameId",
-                        column: x => x.GameId,
-                        principalTable: "Games",
-                        principalColumn: "GameId",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Streams",
-                columns: table => new
-                {
-                    StreamId = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Url = table.Column<string>(type: "text", nullable: true),
-                    Name = table.Column<string>(type: "text", nullable: true),
-                    GameId = table.Column<int>(type: "integer", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Streams", x => x.StreamId);
-                    table.ForeignKey(
-                        name: "FK_Streams_Games_GameId",
-                        column: x => x.GameId,
-                        principalTable: "Games",
-                        principalColumn: "GameId",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Connections",
-                columns: table => new
-                {
-                    ConnectionId = table.Column<string>(type: "text", nullable: false),
-                    Username = table.Column<string>(type: "text", nullable: true),
-                    GroupName = table.Column<string>(type: "text", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Connections", x => x.ConnectionId);
-                    table.ForeignKey(
-                        name: "FK_Connections_Groups_GroupName",
-                        column: x => x.GroupName,
-                        principalTable: "Groups",
-                        principalColumn: "Name",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AspNetUsers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Nickname = table.Column<string>(type: "text", nullable: true),
-                    Created = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    LastActive = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    ChatUsersId = table.Column<int>(type: "integer", nullable: true),
-                    UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
-                    NormalizedUserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
-                    Email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
-                    NormalizedEmail = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(type: "boolean", nullable: false),
-                    PasswordHash = table.Column<string>(type: "text", nullable: true),
-                    SecurityStamp = table.Column<string>(type: "text", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "text", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "text", nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(type: "boolean", nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(type: "boolean", nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
-                    LockoutEnabled = table.Column<bool>(type: "boolean", nullable: false),
-                    AccessFailedCount = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AspNetUsers_ChatUsers_ChatUsersId",
-                        column: x => x.ChatUsersId,
-                        principalTable: "ChatUsers",
-                        principalColumn: "ChatUsersId",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "EventTeamRegistration",
-                columns: table => new
-                {
-                    EventTeamRegistrationId = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    TeamId = table.Column<int>(type: "integer", nullable: false),
-                    EventTeamId = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_EventTeamRegistration", x => x.EventTeamRegistrationId);
-                    table.ForeignKey(
-                        name: "FK_EventTeamRegistration_EventTeam_EventTeamId",
-                        column: x => x.EventTeamId,
-                        principalTable: "EventTeam",
-                        principalColumn: "EventTeamId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_EventTeamRegistration_Teams_TeamId",
-                        column: x => x.TeamId,
-                        principalTable: "Teams",
-                        principalColumn: "TeamId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -414,82 +244,6 @@ namespace organizer_gracza_backend.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EventUserRegistration",
-                columns: table => new
-                {
-                    EventUserRegistrationId = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    UserId = table.Column<int>(type: "integer", nullable: false),
-                    EventUserId = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_EventUserRegistration", x => x.EventUserRegistrationId);
-                    table.ForeignKey(
-                        name: "FK_EventUserRegistration_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_EventUserRegistration_EventUser_EventUserId",
-                        column: x => x.EventUserId,
-                        principalTable: "EventUser",
-                        principalColumn: "EventUserId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ForumThread",
-                columns: table => new
-                {
-                    ForumThreadId = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Title = table.Column<string>(type: "text", nullable: true),
-                    Content = table.Column<string>(type: "text", nullable: true),
-                    ThreadDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    UserId = table.Column<int>(type: "integer", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ForumThread", x => x.ForumThreadId);
-                    table.ForeignKey(
-                        name: "FK_ForumThread_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "GameStatistics",
-                columns: table => new
-                {
-                    GameStatisticsId = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    WonGames = table.Column<int>(type: "integer", nullable: true),
-                    LostGames = table.Column<int>(type: "integer", nullable: true),
-                    GameId = table.Column<int>(type: "integer", nullable: true),
-                    UserId = table.Column<int>(type: "integer", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_GameStatistics", x => x.GameStatisticsId);
-                    table.ForeignKey(
-                        name: "FK_GameStatistics_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_GameStatistics_Games_GameId",
-                        column: x => x.GameId,
-                        principalTable: "Games",
-                        principalColumn: "GameId",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "GeneralStatistics",
                 columns: table => new
                 {
@@ -588,6 +342,186 @@ namespace organizer_gracza_backend.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserAchievementCounters",
+                columns: table => new
+                {
+                    UserAchievementCounterId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    NumberOfTeamsCreated = table.Column<int>(type: "integer", nullable: true),
+                    NumberOfTeamsJoined = table.Column<int>(type: "integer", nullable: true),
+                    NumberOfThreadsCreated = table.Column<int>(type: "integer", nullable: true),
+                    NumberOfPostsCreated = table.Column<int>(type: "integer", nullable: true),
+                    NumberOfEventUserJoined = table.Column<int>(type: "integer", nullable: true),
+                    UserId = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserAchievementCounters", x => x.UserAchievementCounterId);
+                    table.ForeignKey(
+                        name: "FK_UserAchievementCounters_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EventTeam",
+                columns: table => new
+                {
+                    EventTeamId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    Description = table.Column<string>(type: "text", nullable: true),
+                    StartDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    EndDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    EventType = table.Column<string>(type: "text", nullable: true),
+                    WinnerPrize = table.Column<double>(type: "double precision", nullable: true),
+                    EventOrganiser = table.Column<string>(type: "text", nullable: true),
+                    PhotoUrl = table.Column<string>(type: "text", nullable: true),
+                    GameId = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EventTeam", x => x.EventTeamId);
+                    table.ForeignKey(
+                        name: "FK_EventTeam_Games_GameId",
+                        column: x => x.GameId,
+                        principalTable: "Games",
+                        principalColumn: "GameId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EventUser",
+                columns: table => new
+                {
+                    EventUserId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    Description = table.Column<string>(type: "text", nullable: true),
+                    StartDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    EndDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    EventType = table.Column<string>(type: "text", nullable: true),
+                    WinnerPrize = table.Column<double>(type: "double precision", nullable: true),
+                    EventOrganiser = table.Column<string>(type: "text", nullable: true),
+                    PhotoUrl = table.Column<string>(type: "text", nullable: true),
+                    GameId = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EventUser", x => x.EventUserId);
+                    table.ForeignKey(
+                        name: "FK_EventUser_Games_GameId",
+                        column: x => x.GameId,
+                        principalTable: "Games",
+                        principalColumn: "GameId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ForumThread",
+                columns: table => new
+                {
+                    ForumThreadId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Title = table.Column<string>(type: "text", nullable: true),
+                    Content = table.Column<string>(type: "text", nullable: true),
+                    ThreadDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    UserId = table.Column<int>(type: "integer", nullable: false),
+                    GameId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ForumThread", x => x.ForumThreadId);
+                    table.ForeignKey(
+                        name: "FK_ForumThread_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ForumThread_Games_GameId",
+                        column: x => x.GameId,
+                        principalTable: "Games",
+                        principalColumn: "GameId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "GameStatistics",
+                columns: table => new
+                {
+                    GameStatisticsId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    WonGames = table.Column<int>(type: "integer", nullable: true),
+                    LostGames = table.Column<int>(type: "integer", nullable: true),
+                    GameId = table.Column<int>(type: "integer", nullable: true),
+                    UserId = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GameStatistics", x => x.GameStatisticsId);
+                    table.ForeignKey(
+                        name: "FK_GameStatistics_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_GameStatistics_Games_GameId",
+                        column: x => x.GameId,
+                        principalTable: "Games",
+                        principalColumn: "GameId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserGame",
+                columns: table => new
+                {
+                    UserGameId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UserId = table.Column<int>(type: "integer", nullable: false),
+                    GameId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserGame", x => x.UserGameId);
+                    table.ForeignKey(
+                        name: "FK_UserGame_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserGame_Games_GameId",
+                        column: x => x.GameId,
+                        principalTable: "Games",
+                        principalColumn: "GameId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Connections",
+                columns: table => new
+                {
+                    ConnectionId = table.Column<string>(type: "text", nullable: false),
+                    Username = table.Column<string>(type: "text", nullable: true),
+                    GroupName = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Connections", x => x.ConnectionId);
+                    table.ForeignKey(
+                        name: "FK_Connections_Groups_GroupName",
+                        column: x => x.GroupName,
+                        principalTable: "Groups",
+                        principalColumn: "Name",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "TeamUsers",
                 columns: table => new
                 {
@@ -614,24 +548,57 @@ namespace organizer_gracza_backend.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserAchievementCounters",
+                name: "EventTeamRegistration",
                 columns: table => new
                 {
-                    UserAchievementCounterId = table.Column<int>(type: "integer", nullable: false)
+                    EventTeamRegistrationId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    NumberOfTeamsCreated = table.Column<int>(type: "integer", nullable: true),
-                    NumberOfTeamsJoined = table.Column<int>(type: "integer", nullable: true),
-                    UserId = table.Column<int>(type: "integer", nullable: true)
+                    TeamId = table.Column<int>(type: "integer", nullable: false),
+                    EventTeamId = table.Column<int>(type: "integer", nullable: false),
+                    EventResultId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserAchievementCounters", x => x.UserAchievementCounterId);
+                    table.PrimaryKey("PK_EventTeamRegistration", x => x.EventTeamRegistrationId);
                     table.ForeignKey(
-                        name: "FK_UserAchievementCounters_AspNetUsers_UserId",
+                        name: "FK_EventTeamRegistration_EventTeam_EventTeamId",
+                        column: x => x.EventTeamId,
+                        principalTable: "EventTeam",
+                        principalColumn: "EventTeamId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EventTeamRegistration_Teams_TeamId",
+                        column: x => x.TeamId,
+                        principalTable: "Teams",
+                        principalColumn: "TeamId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EventUserRegistration",
+                columns: table => new
+                {
+                    EventUserRegistrationId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UserId = table.Column<int>(type: "integer", nullable: false),
+                    EventUserId = table.Column<int>(type: "integer", nullable: false),
+                    EventResultId = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EventUserRegistration", x => x.EventUserRegistrationId);
+                    table.ForeignKey(
+                        name: "FK_EventUserRegistration_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EventUserRegistration_EventUser_EventUserId",
+                        column: x => x.EventUserId,
+                        principalTable: "EventUser",
+                        principalColumn: "EventUserId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -642,8 +609,8 @@ namespace organizer_gracza_backend.Data.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Content = table.Column<string>(type: "text", nullable: true),
                     PostDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    UserId = table.Column<int>(type: "integer", nullable: true),
-                    ForumThreadId = table.Column<int>(type: "integer", nullable: true)
+                    UserId = table.Column<int>(type: "integer", nullable: false),
+                    ForumThreadId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -653,12 +620,39 @@ namespace organizer_gracza_backend.Data.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ForumPost_ForumThread_ForumThreadId",
                         column: x => x.ForumThreadId,
                         principalTable: "ForumThread",
                         principalColumn: "ForumThreadId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EventResults",
+                columns: table => new
+                {
+                    EventResultId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    WinnerName = table.Column<string>(type: "text", nullable: true),
+                    EventTeamRegistrationId = table.Column<int>(type: "integer", nullable: true),
+                    EventUserRegistrationId = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EventResults", x => x.EventResultId);
+                    table.ForeignKey(
+                        name: "FK_EventResults_EventTeamRegistration_EventTeamRegistrationId",
+                        column: x => x.EventTeamRegistrationId,
+                        principalTable: "EventTeamRegistration",
+                        principalColumn: "EventTeamRegistrationId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_EventResults_EventUserRegistration_EventUserRegistrationId",
+                        column: x => x.EventUserRegistrationId,
+                        principalTable: "EventUserRegistration",
+                        principalColumn: "EventUserRegistrationId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -704,25 +698,27 @@ namespace organizer_gracza_backend.Data.Migrations
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUsers_ChatUsersId",
-                table: "AspNetUsers",
-                column: "ChatUsersId");
-
-            migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_ChatUsers_ChatId",
-                table: "ChatUsers",
-                column: "ChatId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Connections_GroupName",
                 table: "Connections",
                 column: "GroupName");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EventResults_EventTeamRegistrationId",
+                table: "EventResults",
+                column: "EventTeamRegistrationId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EventResults_EventUserRegistrationId",
+                table: "EventResults",
+                column: "EventUserRegistrationId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_EventTeam_GameId",
@@ -763,6 +759,11 @@ namespace organizer_gracza_backend.Data.Migrations
                 name: "IX_ForumPost_UserId",
                 table: "ForumPost",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ForumThread_GameId",
+                table: "ForumThread",
+                column: "GameId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ForumThread_UserId",
@@ -806,11 +807,6 @@ namespace organizer_gracza_backend.Data.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Streams_GameId",
-                table: "Streams",
-                column: "GameId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_TeamUsers_TeamId",
                 table: "TeamUsers",
                 column: "TeamId");
@@ -825,6 +821,16 @@ namespace organizer_gracza_backend.Data.Migrations
                 table: "UserAchievementCounters",
                 column: "UserId",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserGame_GameId",
+                table: "UserGame",
+                column: "GameId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserGame_UserId",
+                table: "UserGame",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -857,12 +863,6 @@ namespace organizer_gracza_backend.Data.Migrations
                 name: "EventResults");
 
             migrationBuilder.DropTable(
-                name: "EventTeamRegistration");
-
-            migrationBuilder.DropTable(
-                name: "EventUserRegistration");
-
-            migrationBuilder.DropTable(
                 name: "ForumPost");
 
             migrationBuilder.DropTable(
@@ -881,13 +881,13 @@ namespace organizer_gracza_backend.Data.Migrations
                 name: "Reminder");
 
             migrationBuilder.DropTable(
-                name: "Streams");
-
-            migrationBuilder.DropTable(
                 name: "TeamUsers");
 
             migrationBuilder.DropTable(
                 name: "UserAchievementCounters");
+
+            migrationBuilder.DropTable(
+                name: "UserGame");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -896,28 +896,28 @@ namespace organizer_gracza_backend.Data.Migrations
                 name: "Groups");
 
             migrationBuilder.DropTable(
-                name: "EventTeam");
+                name: "EventTeamRegistration");
 
             migrationBuilder.DropTable(
-                name: "EventUser");
+                name: "EventUserRegistration");
 
             migrationBuilder.DropTable(
                 name: "ForumThread");
 
             migrationBuilder.DropTable(
+                name: "EventTeam");
+
+            migrationBuilder.DropTable(
                 name: "Teams");
 
             migrationBuilder.DropTable(
-                name: "Games");
+                name: "EventUser");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "ChatUsers");
-
-            migrationBuilder.DropTable(
-                name: "Chats");
+                name: "Games");
         }
     }
 }

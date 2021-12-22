@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace organizer_gracza_backend.DTOs
 {
     public class UserDto
@@ -8,5 +10,11 @@ namespace organizer_gracza_backend.DTOs
         public string Token { get; set; }
 
         public string PhotoUrl { get; set; }
+        
+        public string Description { get; set; }
+        
+        public ICollection<UserGameDto> UserGames { get; set; }
+
+
     }
 }
