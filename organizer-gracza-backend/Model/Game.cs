@@ -16,6 +16,8 @@ namespace organizer_gracza_backend.Model
         public ICollection<GameStatistics> GameStatistics { get; set; }
         
         public ICollection<ForumThread> ForumThread { get; set; }
+        
+        public ICollection<UserGame> UserGames { get; set; }
 
     }
 }

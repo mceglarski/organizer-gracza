@@ -1,41 +1,41 @@
 <div class="container-fluid broadcasts-main-container">
 
 
-    <select name="game"
-            id="game-select"
-            class="broadcasts-select"
-            (change)="onGameChange($any($event.target).value)">
-      <option value="">Dowolna kategoria</option>
-      <option value="21779">League of legends</option>
-      <option value="27546">World of Tanks</option>
-      <option value="516575">Valorant</option>
-      <option value="32399">Counter Strike: Global Offensive</option>
-      <option value="29595">Dota 2</option>
-    </select>
-    <select name="language"
-            id="language-select"
-            class="broadcasts-select"
-            (change)="onLanguageChange($any($event.target).value)">
-      <option value="">Dowolny język</option>
-      <option value="en">Angielski</option>
-      <option value="pl">Polski</option>
-    </select>
+  <select name="game"
+          id="game-select"
+          class="broadcasts-select"
+          (change)="onGameChange($any($event.target).value)">
+    <option value="">Dowolna kategoria</option>
+    <option value="21779">League of legends</option>
+    <option value="27546">World of Tanks</option>
+    <option value="516575">Valorant</option>
+    <option value="32399">Counter Strike: Global Offensive</option>
+    <option value="29595">Dota 2</option>
+  </select>
+  <select name="language"
+          id="language-select"
+          class="broadcasts-select"
+          (change)="onLanguageChange($any($event.target).value)">
+    <option value="">Dowolny język</option>
+    <option value="en">Angielski</option>
+    <option value="pl">Polski</option>
+  </select>
 
 
   <div class="row">
-   <div *ngFor="let broadcast of twitchBroadcasts" class="col-xl-3">
+    <div *ngFor="let broadcast of twitchBroadcasts" class="col-xl-3">
 
-     <div class="broadcasts-element">
-       <img class="img-fluid broadcast-thumbnail" src="{{broadcast.thumbnail_url}}" routerLink="/broadcast/{{broadcast.user_name}}">
-       <h5 class="broadcast-element-content">
-         <a class="broadcast-link" href="/broadcast/{{broadcast.user_name}}">{{(broadcast.title.length > 50) ? (broadcast.title | slice:0:47)+'...' : broadcast.title}}</a>
-       </h5>
-       <h6 class="broadcast-element-content">
-         <a class="broadcast-link" href="/broadcast/{{broadcast.user_name}}">{{broadcast.user_name}}</a>
-         <i class="material-icons broadcast-person-icon">person</i> {{broadcast.viewer_count | number: '1.0-0'}}
-       </h6>
-     </div>
+      <div class="broadcasts-element">
+        <img class="img-fluid broadcast-thumbnail" src="{{broadcast.thumbnail_url}}" routerLink="/broadcast/{{broadcast.user_name}}">
+        <h5 class="broadcast-element-content">
+          <a class="broadcast-link" href="/broadcast/{{broadcast.user_name}}">{{(broadcast.title.length > 50) ? (broadcast.title | slice:0:47)+'...' : broadcast.title}}</a>
+        </h5>
+        <h6 class="broadcast-element-content">
+          <a class="broadcast-link" href="/broadcast/{{broadcast.user_name}}">{{broadcast.user_name}}</a>
+          <i class="material-icons broadcast-person-icon">person</i> {{broadcast.viewer_count | number: '1.0-0'}}
+        </h6>
+      </div>
 
-   </div>
+    </div>
   </div>
 </div>
