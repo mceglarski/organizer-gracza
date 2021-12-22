@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ForumService} from "../../_services/forum.service";
 import {ForumPost, ForumThread, Member} from "../../model/model";
 import {MembersService} from "../../_services/members.service";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-forum-posts',
@@ -15,14 +17,32 @@ export class ForumPostsComponent implements OnInit {
   public forumThread: ForumThread;
   public posts: ForumPost[] = [];
 
+  public noWhitespaceValidator(control: FormControl) {
+    const isWhitespace = (control.value || '').trim().length === 0;
+    const isValid = !isWhitespace;
+    return isValid ? null : { 'whitespace': true };
+  }
+
+  public addPostForm = new FormGroup({
+    content: new FormControl('', [Validators.required, this.noWhitespaceValidator])
+  });
+
   private members: Member[] = [];
+  private currentlyLoggedMember: number;
 
   constructor(private activatedRoute: ActivatedRoute,
               private forumService: ForumService,
-              private membersService: MembersService) { }
+              private membersService: MembersService,
+              private toastr: ToastrService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.threadId = this.activatedRoute.snapshot.paramMap.get('threadId');
+    this.membersService.getCurrentlyLoggedMemberId().subscribe(m => {
+      // @ts-ignore
+      this.currentlyLoggedMember = m;
+      return;
+    })
     // @ts-ignore
     this.forumService.getForumThread(this.threadId).subscribe(f => {
       // @ts-ignore
@@ -41,6 +61,26 @@ export class ForumPostsComponent implements OnInit {
       });
       return;
     });
+  }
+
+  public onSubmit(): void {
+    console.log(this.addPostForm);
+
+    if (this.addPostForm.valid) {
+      this.forumService.addForumPost({
+        content: this.addPostForm.value.content.trim(),
+        postDate: new Date(),
+        forumThreadId: this.threadId
+      }).subscribe(result => {
+        window.location.reload();
+      }, error => {
+        this.toastr.error("Nie udało się dodać nowego postu");
+        console.log(error);
+      });
+    } else {
+      this.toastr.error("Treść nie może być pusta");
+    }
+
   }
 
 }

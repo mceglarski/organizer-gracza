@@ -42,4 +42,23 @@
       {{post?.content}}
     </div>
 
+  </div>
+
+  <div class="row justify-content-center">
+      <div class="col-xl-10 forum-posts-reply">
+        <form [formGroup]="addPostForm" (ngSubmit)="onSubmit()">
+          <label class="field field_v3">
+                <textarea class="field__input"
+                          formControlName="content"
+                          rows="1"
+                          cols="50"
+                          style="min-height: 10rem;"></textarea>
+            <span class="field__label-wrap">
+                <span class="field__label">Dodaj odpowiedź</span>
+                </span>
+          </label>
+          <button mat-raised-button color="primary" type="submit">Dodaj odpowiedź</button>
+        </form>
+      </div>
+  </div>
 </div>

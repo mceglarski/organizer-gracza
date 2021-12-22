@@ -4,6 +4,8 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {GameService} from "../../_services/game.service";
 import {Game} from "../../model/model";
 import {MembersService} from "../../_services/members.service";
+import {ToastrService} from "ngx-toastr";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-forum-add-new-thread',
@@ -12,9 +14,15 @@ import {MembersService} from "../../_services/members.service";
 })
 export class ForumAddNewThreadComponent implements OnInit {
 
+  public noWhitespaceValidator(control: FormControl) {
+    const isWhitespace = (control.value || '').trim().length === 0;
+    const isValid = !isWhitespace;
+    return isValid ? null : { 'whitespace': true };
+  }
+
   public addThreadForm = new FormGroup({
-    title: new FormControl('', Validators.required),
-    content: new FormControl('', Validators.required),
+    title: new FormControl('', [Validators.required, this.noWhitespaceValidator]),
+    content: new FormControl('', [Validators.required, this.noWhitespaceValidator]),
     game: new FormControl('', Validators.required)
   });
   public games: Game[] = [];
@@ -23,7 +31,9 @@ export class ForumAddNewThreadComponent implements OnInit {
 
   constructor(private forumService: ForumService,
               private gameService: GameService,
-              private membersService: MembersService) { }
+              private membersService: MembersService,
+              private toastr: ToastrService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.gameService.getGames().subscribe(g => {
@@ -41,15 +51,24 @@ export class ForumAddNewThreadComponent implements OnInit {
 
   public onSubmit(): void {
     console.log(this.addThreadForm);
-    this.forumService.addForumThread({
-      title: this.addThreadForm.value.title,
-      content: this.addThreadForm.value.content,
-      threadDate: new Date(),
-      gameId: this.addThreadForm.value.game,
-      userId: this.currentlyLoggedMember
-    }).subscribe(result => {
-      return;
-    });
+    if (this.addThreadForm.valid) {
+      this.forumService.addForumThread({
+        title: this.addThreadForm.value.title.trim(),
+        content: this.addThreadForm.value.content.trim(),
+        threadDate: new Date(),
+        gameId: this.addThreadForm.value.game,
+        userId: this.currentlyLoggedMember
+      }).subscribe(result => {
+        this.toastr.info("Wątek został dodany!");
+        this.router.navigate(["/forum"]);
+      }, error => {
+          this.toastr.error("Nie udało się dodać nowego wątku");
+          console.log(error);
+        });
+    } else {
+      this.toastr.error("Uzupełnij wszystkie pola formularza");
+    }
+
   }
 
 }
