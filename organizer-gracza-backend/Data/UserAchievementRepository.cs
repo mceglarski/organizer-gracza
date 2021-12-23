@@ -15,7 +15,7 @@ namespace organizer_gracza_backend.Data
         {
             _context = context;
         }
-        
+
         public async Task<UserAchievement> GetUserAchievementByIdAsync(int userAchievementsId)
         {
             return await _context.UserAchievements
@@ -49,6 +49,7 @@ namespace organizer_gracza_backend.Data
                 .Include(u => u.User)
                 .Where(x => x.UserId == userId)
                 .SingleOrDefaultAsync(x => x.AchievementsId == achievementId);
+
         }
 
         public async Task<IEnumerable<UserAchievement>> GetUserAchievementsAsync()

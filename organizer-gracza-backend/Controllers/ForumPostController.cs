@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using organizer_gracza_backend.Data;
 using organizer_gracza_backend.DTOs;
 using organizer_gracza_backend.Extensions;
 using organizer_gracza_backend.Interfaces;
@@ -14,13 +17,18 @@ namespace organizer_gracza_backend.Controllers
         private readonly IForumPost _forumPost;
         private readonly IMapper _mapper;
         private readonly IUserAchievementCounterRepository _userAchievementCounterRepository;
+        private readonly IUserAchievementRepository _userAchievementRepository;
+        private readonly DataContext _context;
 
-        public ForumPostController(IForumPost forumPost,
-            IMapper mapper, IUserAchievementCounterRepository userAchievementCounterRepository)
+        public ForumPostController(IForumPost forumPost, DataContext context,
+            IMapper mapper, IUserAchievementCounterRepository userAchievementCounterRepository,
+            IUserAchievementRepository userAchievementRepository)
         {
             _forumPost = forumPost;
             _mapper = mapper;
             _userAchievementCounterRepository = userAchievementCounterRepository;
+            _userAchievementRepository = userAchievementRepository;
+            _context = context;
         }
 
         [HttpGet]
@@ -54,7 +62,6 @@ namespace organizer_gracza_backend.Controllers
         [HttpPost]
         public async Task<ActionResult<ForumPostDto>> CreateForumPost(ForumPostDto forumPostDto)
         {
-
             var newForumPost = new ForumPost()
             {
                 Content = forumPostDto.Content,
@@ -70,11 +77,71 @@ namespace organizer_gracza_backend.Controllers
 
             var userAchievement = await _userAchievementCounterRepository
                 .GetUserAchievementCounterByUserId(forumPostDto.UserId);
-            
-            userAchievement.NumberOfPostsCreated++;
 
+            userAchievement.NumberOfPostsCreated++;
+            
+                        
             if (!await _userAchievementCounterRepository.SaveAllAsync())
                 return BadRequest("Failed to add increase counter");
+
+            var firstPostAchievement = await _userAchievementRepository
+                .GetUserAchievementsForUserAndAchievementAsync(forumPostDto.UserId, 11);
+
+            if (userAchievement.NumberOfPostsCreated == 1)
+            {
+                var newUserAchievement = new UserAchievement()
+                {
+                    UserId = forumPostDto.UserId,
+                    AchievementsId = 11
+                };
+                
+                _userAchievementRepository.AddUserAchievement(newUserAchievement);
+                
+                if (!await _userAchievementRepository.SaveAllAsync())
+                    return BadRequest("Failed to add 'Wyraziłem swoją opinie' achievement");
+            }
+            
+            if (userAchievement.NumberOfPostsCreated == 10)
+            {
+                var newUserAchievement = new UserAchievement()
+                {
+                    UserId = forumPostDto.UserId,
+                    AchievementsId = 12
+                };
+                
+                _userAchievementRepository.AddUserAchievement(newUserAchievement);
+                
+                if (!await _userAchievementRepository.SaveAllAsync())
+                    return BadRequest("Failed to add 'Chętny do odpowiedzi' achievement");
+            }
+            
+            if (userAchievement.NumberOfPostsCreated == 25)
+            {
+                var newUserAchievement = new UserAchievement()
+                {
+                    UserId = forumPostDto.UserId,
+                    AchievementsId = 13
+                };
+                
+                _userAchievementRepository.AddUserAchievement(newUserAchievement);
+                
+                if (!await _userAchievementRepository.SaveAllAsync())
+                    return BadRequest("Failed to add 'Pomocna dłoń' achievement");
+            }
+            
+            if (userAchievement.NumberOfPostsCreated == 100)
+            {
+                var newUserAchievement = new UserAchievement()
+                {
+                    UserId = forumPostDto.UserId,
+                    AchievementsId = 14
+                };
+                
+                _userAchievementRepository.AddUserAchievement(newUserAchievement);
+                
+                if (!await _userAchievementRepository.SaveAllAsync())
+                    return BadRequest("Failed to add 'Najlepszy przyjaciel' achievement");
+            }
 
             return Ok(_mapper.Map<ForumPostDto>(newForumPost));
         }

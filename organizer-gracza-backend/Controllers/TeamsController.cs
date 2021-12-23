@@ -22,16 +22,23 @@ namespace organizer_gracza_backend.Controllers
         private readonly IMapper _mapper;
         private readonly IPhotoService _photoService;
         private readonly IUserAchievementCounterRepository _userAchievementCounterRepository;
-
+        private readonly IUserAchievementRepository _userAchievementRepository;
+        private readonly IUserRepository _userRepository;
+        private readonly ITeamUsersRepository _teamUsersRepository;
 
         public TeamsController(DataContext context, ITeamsRepository teamsRepository, IMapper mapper,
-            IPhotoService photoService, IUserAchievementCounterRepository userAchievementCounterRepository)
+            IPhotoService photoService, IUserAchievementCounterRepository userAchievementCounterRepository,
+            IUserAchievementRepository userAchievementRepository, IUserRepository userRepository,
+            ITeamUsersRepository teamUsersRepository)
         {
             _context = context;
             _teamsRepository = teamsRepository;
             _mapper = mapper;
             _photoService = photoService;
             _userAchievementCounterRepository = userAchievementCounterRepository;
+            _userAchievementRepository = userAchievementRepository;
+            _userRepository = userRepository;
+            _teamUsersRepository = teamUsersRepository;
         }
 
         [HttpGet]
@@ -78,11 +85,44 @@ namespace organizer_gracza_backend.Controllers
 
             if (!await _teamsRepository.SaveAllAsync()) 
                 return BadRequest("Failed to add team");
+
+            var userId = _userRepository.GetUserByUsernameAsync(User.GetUsername());
+
+            var newTeamUser = new TeamUser()
+            {
+                UserId = userId.Result.Id,
+                TeamId = newTeam.TeamId
+            };
+            
+            _teamUsersRepository.AddTeamUser(newTeamUser);
+            
+            if (!await _teamUsersRepository.SaveAllAsync())
+                return BadRequest("Failed to join created team");
             
             var userAchievement =
                 _userAchievementCounterRepository.GetUserAchievementCounterByUsernameAsync(User.GetUsername());
 
             userAchievement.Result.NumberOfTeamsCreated++;
+
+            if (!await _userAchievementCounterRepository.SaveAllAsync())
+                return BadRequest("Failed to add increase counter");
+
+            if (userAchievement.Result.NumberOfTeamsCreated == 1)
+            {
+
+                var query = _userRepository.GetUserByUsernameAsync(User.GetUsername());
+                
+                var newUserAchievement = new UserAchievement()
+                {
+                    UserId = query.Result.Id,
+                    AchievementsId = 1
+                };
+
+                _userAchievementRepository.AddUserAchievement(newUserAchievement);
+
+                if (!await _userAchievementRepository.SaveAllAsync())
+                    return BadRequest("Failed to add 'Samotnik' achievement");
+            }
                 
             return Ok(_mapper.Map<TeamDto>(newTeam));
 

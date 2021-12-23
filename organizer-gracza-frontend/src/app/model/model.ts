@@ -5,6 +5,8 @@ export interface User {
   token: string;
   photoUrl: string;
   roles: string[];
+  description: string;
+  steamId: string;
 }
 
 export interface News {
@@ -32,6 +34,8 @@ export interface Member {
   lastActive: Date;
   photoUrl: string;
   photos: Photo[];
+  description: string;
+  steamId: string;
 }
 
 export interface Pagination {

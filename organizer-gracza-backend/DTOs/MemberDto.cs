@@ -14,6 +14,7 @@ namespace organizer_gracza_backend.DTOs
         public DateTime LastActive { get; set; }
 
         public string Description { get; set; }
+        public string SteamId { get; set; }
 
         public string PhotoUrl { get; set; }
         public ICollection<PhotoDto> Photos { get; set; }
