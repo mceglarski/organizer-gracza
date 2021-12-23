@@ -1,14 +1,58 @@
 ﻿[
   {
     "Name": "W poszukiwaniu przyjaciół",
-    "Details": "Załóż swoją pierwszą drużyne",
-    "PhotoUrl": "League of Legends",
-    "UserId": 1
+    "Details": "Załóż swoją pierwszą drużyne"
   },
   {
     "Name": "Gracz drużynowy",
-    "Details": "Dołącz do pięciu drużyn",
-    "PhotoUrl": "League of Legends",
-    "UserId": 2
+    "Details": "Dołącz do pięciu drużyn"
+  },
+  {
+    "Name": "Samotnik",
+    "Details": "Dołącz do pierwszego eventu solo"
+  },
+  {
+    "Name": "Samotny Wilk",
+    "Details": "Dołącz do dziesięciu event-ów solo"
+  },
+  {
+    "Name": "Z przyjaciółmi raźniej",
+    "Details": "Dołącz do pierwszego eventu drużynowego"
+  },
+  {
+    "Name": "W gronie najlepiej",
+    "Details": "Dołącz do dziesięciu event-ów drużynowych"
+  },
+  {
+    "Name": "Czekający na opinie",
+    "Details": "Utwórz swój pierwszy wątek na forum"
+  },
+  {
+    "Name": "Zainteresowany",
+    "Details": "Utwórz 10 wątków na forum"
+  },
+  {
+    "Name": "Rozpoczynający rozmowe",
+    "Details": "Utwórz 25 wątków na forum"
+  },
+  {
+    "Name": "Zawodowy inicjator konwersacji",
+    "Details": "Utwórz 100 wątków na forum"
+  },
+  {
+    "Name": "Wyraziłem swoją opinie",
+    "Details": "Utwórz swój pierwszy post na forum"
+  },
+  {
+    "Name": "Chętny do odpowiedzi",
+    "Details": "Dodaj 10 postów na forum"
+  },
+  {
+    "Name": "Pomocna dłoń",
+    "Details": "Dodaj 25 postów na forum"
+  },
+  {
+    "Name": "Najlepszy przyjaciel",
+    "Details": "Dodaj 100 postów na forum"
   }
 ]

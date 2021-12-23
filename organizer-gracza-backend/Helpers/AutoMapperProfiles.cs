@@ -48,6 +48,7 @@ namespace organizer_gracza_backend.Helpers
             CreateMap<EventTeamResult, EventTeamResultDto>();
             CreateMap<UserGame, UserGameDto>();
             CreateMap<EventUserResult, EventUserResultDto>();
+            CreateMap<UserAchievement, UserAchievementDto>();
             CreateMap<Message, MessageDto>()
                 .ForMember(dest => dest.SenderPhotoUrl,
                     opt => opt.MapFrom(

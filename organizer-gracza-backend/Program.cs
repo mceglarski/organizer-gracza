@@ -33,8 +33,6 @@ namespace organizer_gracza_backend
                 await Seed.SeedTeamUsers(context);
                 await Seed.SeedEventsUser(context);
                 await Seed.SeedEventsTeam(context);
-                // await Seed.SeedEventsUserRegistrations(context);
-                // await Seed.SeedEventsTeamRegistrations(context);
                 await Seed.SeedAdmin(userManager);
                 await Seed.SeedGameStatistics(context);
                 await Seed.SeedGeneralStatistics(context);
@@ -43,7 +41,7 @@ namespace organizer_gracza_backend
                 await Seed.SeedReminders(context);
                 await Seed.SeedArticles(context);
                 await Seed.SeedForumThreads(context);
-                // await Seed.SeedEventResults(context);
+                await Seed.SeedUserAchievements(context);
             }
             catch (Exception exception)
             {

@@ -1,0 +1,146 @@
+[
+  {
+    "UserId": 1,
+    "AchievementsId": 1
+  },
+  {
+    "UserId": 1,
+    "AchievementsId": 3
+  },
+  {
+    "UserId": 1,
+    "AchievementsId": 5
+  },
+  {
+    "UserId": 1,
+    "AchievementsId": 11
+  },
+  {
+    "UserId": 1,
+    "AchievementsId": 12
+  },
+  {
+    "UserId": 1,
+    "AchievementsId": 7
+  },
+  {
+    "UserId": 2,
+    "AchievementsId": 3
+  },
+  {
+    "UserId": 2,
+    "AchievementsId": 4
+  },
+  {
+    "UserId": 2,
+    "AchievementsId": 7
+  },
+  {
+    "UserId": 2,
+    "AchievementsId": 11
+  },
+  {
+    "UserId": 3,
+    "AchievementsId": 1
+  },
+  {
+    "UserId": 3,
+    "AchievementsId": 2
+  },
+  {
+    "UserId": 3,
+    "AchievementsId": 5
+  },
+  {
+    "UserId": 3,
+    "AchievementsId": 6
+  },
+  {
+    "UserId": 4,
+    "AchievementsId": 1
+  },
+  {
+    "UserId": 4,
+    "AchievementsId": 2
+  },
+  {
+    "UserId": 4,
+    "AchievementsId": 3
+  },
+  {
+    "UserId": 4,
+    "AchievementsId": 4
+  },
+  {
+    "UserId": 4,
+    "AchievementsId": 5
+  },
+  {
+    "UserId": 4,
+    "AchievementsId": 6
+  },
+  {
+    "UserId": 5,
+    "AchievementsId": 7
+  },
+  {
+    "UserId": 5,
+    "AchievementsId": 8
+  },
+  {
+    "UserId": 5,
+    "AchievementsId": 9
+  },
+  {
+    "UserId": 6,
+    "AchievementsId": 11
+  },
+  {
+    "UserId": 6,
+    "AchievementsId": 12
+  },
+  {
+    "UserId": 6,
+    "AchievementsId": 13
+  },
+  {
+    "UserId": 7,
+    "AchievementsId": 1
+  },
+  {
+    "UserId": 7,
+    "AchievementsId": 3
+  },
+  {
+    "UserId": 8,
+    "AchievementsId": 2
+  },
+  {
+    "UserId": 8,
+    "AchievementsId": 5
+  },
+  {
+    "UserId": 9,
+    "AchievementsId": 7
+  },
+  {
+    "UserId": 9,
+    "AchievementsId": 8
+  },
+  {
+    "UserId": 9,
+    "AchievementsId": 9
+  },
+  {
+    "UserId": 10,
+    "AchievementsId": 11
+  },
+  {
+    "UserId": 10,
+    "AchievementsId": 12
+  },
+  {
+    "UserId": 10,
+    "AchievementsId": 13
+  }
+]

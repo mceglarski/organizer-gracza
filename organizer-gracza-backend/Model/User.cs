@@ -27,7 +27,7 @@ namespace organizer_gracza_backend.Model
         public ICollection<GameStatistics> GameStatistics { get; set; }
         public GeneralStatistics GeneralStatistics { get; set; }
         
-        public ICollection<Achievements> Achievements { get; set; }
+        public ICollection<UserAchievement> UserAchievements { get; set; }
         public UserAchievementCounter UserAchievementCounter { get; set; }
         
         public ICollection<Reminder> Reminders { get; set; }

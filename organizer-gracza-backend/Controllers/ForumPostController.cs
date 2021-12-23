@@ -72,7 +72,7 @@ namespace organizer_gracza_backend.Controllers
                 .GetUserAchievementCounterByUserId(forumPostDto.UserId);
             
             userAchievement.NumberOfPostsCreated++;
-            
+
             if (!await _userAchievementCounterRepository.SaveAllAsync())
                 return BadRequest("Failed to add increase counter");
 

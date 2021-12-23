@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {MemberContentComponent} from "../member-content/member-content.component";
-import {Achievements, Member} from "../../model/model";
+import {Achievements, Member, UserAchievement} from "../../model/model";
 import {AchievementsService} from "../../_services/achievements.service";
 import {ActivatedRoute} from "@angular/router";
+import {UserachievementService} from "../../_services/userachievement.service";
 
 @Component({
   selector: 'app-member-achievements',
@@ -11,11 +12,12 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class MemberAchievementsComponent implements OnInit {
 
-  public memberAchievements: Achievements[] = [];
+  public memberAchievements: UserAchievement[] = [];
   public member: Member;
 
 
   constructor(public memberContent: MemberContentComponent,
+              private userAchievementService: UserachievementService,
               private achievementService: AchievementsService,
               private route: ActivatedRoute) { }
 
@@ -27,10 +29,9 @@ export class MemberAchievementsComponent implements OnInit {
   }
 
   private loadMemberAchievement(): void {
-    this.achievementService.getAchievementsByUserId(this.member.id).subscribe(a => {
+    this.userAchievementService.getUserAchievementsByUserId(this.member.id).subscribe(a => {
       // @ts-ignore
       this.memberAchievements = a;
     })
   }
-
 }

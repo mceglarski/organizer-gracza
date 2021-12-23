@@ -41,6 +41,7 @@ namespace organizer_gracza_backend.Extensions
             services.AddScoped<IEventTeamResultRepository, EventTeamResultRepository>();
             services.AddScoped<IUserGamesRepository, UserGamesRepository>();
             services.AddScoped<IEventUserResultRepository, EventUserResultRepository>();
+            services.AddScoped<IUserAchievementRepository, UserAchievementRepository>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddDbContext<DataContext>(options =>
             {
