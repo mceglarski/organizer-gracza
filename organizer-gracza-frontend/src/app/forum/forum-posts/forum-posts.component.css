@@ -23,6 +23,7 @@
   display: inline-block;
   text-align: center;
   padding-right: 0px;
+  width: 200px;
 }
 
 .forum-posts-text {
@@ -32,6 +33,12 @@
 .forum-posts-nickname-link {
   text-decoration: none;
   color: white;
+}
+
+.forum-posts-avatar {
+  width: 100px;
+  height: 100px;
+  object-fit: fill;
 }
 
 .forum-posts-reply {
@@ -221,3 +228,12 @@ LEVEL 4. SETTINGS
   height: auto;
 }
 
+@media only screen and (max-width: 1000px) {
+  .forum-posts-avatar {
+    width: 50px;
+    height: 50px;
+  }
+  .forum-posts-meta-data {
+    width: 120px;
+  }
+}

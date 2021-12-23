@@ -10,10 +10,10 @@
       <ul class="navbar-nav">
         <ng-container *ngIf="accountService.currentUser$ | async">
           <li *appHasRole='["Admin", "Moderator"]' class="nav-item">
-            <a class="nav-link" routerLink="/admin">ADMIN PANEL</a>
+            <a class="nav-link header-align-right" routerLink="/admin">ADMIN PANEL</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/planner">TWÓJ PLAN</a>
+            <a class="nav-link header-align-right" href="/planner">TWÓJ PLAN</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/news">NEWSY</a>
@@ -58,8 +58,8 @@
       </div>
 
       <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
-        <img src="{{user.photoUrl || './assets/user.png'}}" alt="brak">
-        <a class="dropdown-toggle text-light ml-2" dropdownToggle>Witaj {{user.nickname || user.username | titlecase}}</a>
+        <img src="{{user.photoUrl || './assets/user.png'}}" alt="avatar" class="header-avatar">
+        <a class="dropdown-toggle text-light" dropdownToggle>Witaj {{user.nickname || user.username | titlecase}}</a>
         <div class="dropdown-menu " *dropdownMenu>
           <a class="dropdown-item" routerLink='members/{{user.username}}'>Mój profil</a>
           <div class="dropdown-divider"></div>

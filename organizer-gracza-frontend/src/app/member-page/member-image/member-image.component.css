@@ -11,8 +11,9 @@
   margin-top: 15px;
   width: 50%;
   border-radius: 50%;
-  max-height: 220px;
-  max-width: 220px;
+  height: 220px;
+  width: 220px;
+  object-fit: fill;
 }
 
 h2 {

@@ -1,5 +1,5 @@
 export interface User {
-  Id: number;
+  id: number;
   username: string;
   nickname: string;
   token: string;
@@ -54,7 +54,7 @@ export class PaginatedResult<T> {
 
 export class PagintationParams {
   pageNumber = 1;
-  pageSize = 6;
+  pageSize = 20;
 }
 
 export interface Message {

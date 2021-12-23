@@ -1,7 +1,7 @@
 <div class="chat-content container" *ngIf="member">
   <div class="card-body"
        #scrollMe
-       style="overflow: auto; height: 535px;"
+       style="overflow: auto; height: 635px;"
        [scrollTop]="scrollMe.scrollHeight">
     <div *ngIf="(messageService.messageThread$ | async)?.length === 0">
       Nie masz jeszcze żadnych wiaodmości z użytkownikiem {{member.username}} wyślij pierwszą wiadomość.
@@ -24,28 +24,31 @@
                 <span class="text-success" *ngIf="message.dateRead && message.senderUsername!== member.username">
                   (read {{message.dateRead | timeago}})
                 </span>
+                <button (click)="deleteMessage(message.messageId)"
+                        class="btn-danger">
+                  Usuń wiadomość
+                </button>
               </small>
             </div>
-            <p style="white-space: pre-line">{{message.content}}</p>
+            <p class="text-break" style="white-space: pre-line">{{message.content}}</p>
           </div>
         </div>
       </li>
     </ul>
   </div>
   <div class="card-footer">
-    <form #messageForm="ngForm" (ngSubmit)="sendMessage()" autocomplete="off">
+    <form #messageForm="ngForm" (ngSubmit)="sendMessage()" (keydown.enter)="sendMessage()" autocomplete="off">
       <div class="input-group">
         <textarea
           name="messageContent"
           id="messagesMemberChatInput"
           required
           [(ngModel)]="messageContent"
-          (keydown)="triggerFunction($event)"
           type="text"
           class="form-control input-sm messages-member-chat-input"
           placeholder="Wyślij wiadomość prywatną"></textarea>
         <div class="input-group-append">
-          <button [disabled]="!messageForm.valid || loading" class="btn btn-primary" type="submit">Wyślij
+          <button [disabled]="!messageForm.valid || hasWhiteSpace(messageContent) || loading" class="btn btn-primary" type="submit">Wyślij
             <i *ngIf="loading" class="fa fa-spinner fa-spin"></i></button>
         </div>
       </div>
