@@ -12,6 +12,9 @@
           <li *appHasRole='["Admin", "Moderator"]' class="nav-item">
             <a class="nav-link header-align-right" routerLink="/admin">ADMIN PANEL</a>
           </li>
+          <li *appHasRole='["Admin", "Redaktor"]' class="nav-item">
+            <a class="nav-link header-align-right" routerLink="/editor-panel">PANEL REDAKTORA</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link header-align-right" href="/planner">TWÓJ PLAN</a>
           </li>

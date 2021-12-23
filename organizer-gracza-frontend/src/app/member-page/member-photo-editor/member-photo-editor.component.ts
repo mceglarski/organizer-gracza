@@ -15,9 +15,9 @@ export class MemberPhotoEditorComponent implements OnInit {
   @Input() public member: Member;
   public uploader: FileUploader;
   public hasBaseDropzoneOver = false;
-  public baseUrl = environment.apiUrl;
   public user: User;
 
+  private baseUrl = environment.apiUrl;
 
   constructor(private accountService: AccountService,
               private memberService: MembersService) {
@@ -53,7 +53,7 @@ export class MemberPhotoEditorComponent implements OnInit {
     })
   }
 
-  initializeUploader(){
+  private initializeUploader(): void {
     this.uploader = new FileUploader({
       url: this.baseUrl + 'users/add-photo',
       authToken: 'Bearer ' + this.user.token,
