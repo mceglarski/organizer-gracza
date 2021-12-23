@@ -33,4 +33,12 @@ export class SteamService {
   getAchievementsDetails(gameId: number){
     return this.http.get(this.baseUrl + 'steam/achievements/details' + gameId);
   }
+
+  getUserRecentlyPlayedGames(userId: string){
+    return this.http.get(this.baseUrl + 'steam/user/played/' + userId);
+  }
+
+  getUserAchievements(userId: string, gameId: number){
+    return this.http.get(this.baseUrl + 'steam/user/achievements/' + userId + '/game/' + gameId);
+  }
 }

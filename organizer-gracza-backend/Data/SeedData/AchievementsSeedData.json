@@ -1,57 +1,71 @@
 ﻿[
   {
+    "AchievementsId": 1,
     "Name": "W poszukiwaniu przyjaciół",
     "Details": "Załóż swoją pierwszą drużyne"
   },
   {
+    "AchievementsId": 2,
     "Name": "Gracz drużynowy",
     "Details": "Dołącz do pięciu drużyn"
   },
   {
+    "AchievementsId": 3,
     "Name": "Samotnik",
     "Details": "Dołącz do pierwszego eventu solo"
   },
   {
+    "AchievementsId": 4,
     "Name": "Samotny Wilk",
     "Details": "Dołącz do dziesięciu event-ów solo"
   },
   {
+    "AchievementsId": 5,
     "Name": "Z przyjaciółmi raźniej",
     "Details": "Dołącz do pierwszego eventu drużynowego"
   },
   {
+    "AchievementsId": 6,
     "Name": "W gronie najlepiej",
     "Details": "Dołącz do dziesięciu event-ów drużynowych"
   },
   {
+    "AchievementsId": 7,
     "Name": "Czekający na opinie",
     "Details": "Utwórz swój pierwszy wątek na forum"
   },
   {
+    "AchievementsId": 8,
     "Name": "Zainteresowany",
     "Details": "Utwórz 10 wątków na forum"
   },
   {
+    "AchievementsId": 9,
     "Name": "Rozpoczynający rozmowe",
     "Details": "Utwórz 25 wątków na forum"
   },
   {
+    "AchievementsId": 10,
     "Name": "Zawodowy inicjator konwersacji",
     "Details": "Utwórz 100 wątków na forum"
   },
   {
+    "AchievementsId": 11,
     "Name": "Wyraziłem swoją opinie",
     "Details": "Utwórz swój pierwszy post na forum"
   },
   {
+    "AchievementsId": 12,
     "Name": "Chętny do odpowiedzi",
     "Details": "Dodaj 10 postów na forum"
   },
   {
+    "AchievementsId": 13,
     "Name": "Pomocna dłoń",
     "Details": "Dodaj 25 postów na forum"
   },
   {
+    "AchievementsId": 14,
     "Name": "Najlepszy przyjaciel",
     "Details": "Dodaj 100 postów na forum"
   }

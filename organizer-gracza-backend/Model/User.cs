@@ -11,6 +11,8 @@ namespace organizer_gracza_backend.Model
         public string Nickname { get; set; }
         
         public string Description { get; set; }
+        
+        public string SteamId { get; set; }
 
         public DateTime Created { get; set; } = DateTime.Now;
         public DateTime LastActive { get; set; } = DateTime.Now;

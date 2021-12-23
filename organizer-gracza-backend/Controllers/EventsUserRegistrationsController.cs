@@ -17,14 +17,17 @@ namespace organizer_gracza_backend.Controllers
         private readonly IEventUserRegistrationRepository _eventUserRegistrationRepository;
         private readonly IMapper _mapper;
         private readonly IUserAchievementCounterRepository _userAchievementCounterRepository;
+        private readonly IUserAchievementRepository _userAchievementRepository;
 
         public EventsUserRegistrationsController(
             IEventUserRegistrationRepository eventUserRegistrationRepository, IMapper mapper,
-            IUserAchievementCounterRepository userAchievementCounterRepository)
+            IUserAchievementCounterRepository userAchievementCounterRepository,
+            IUserAchievementRepository userAchievementRepository)
         {
             _eventUserRegistrationRepository = eventUserRegistrationRepository;
             _mapper = mapper;
             _userAchievementCounterRepository = userAchievementCounterRepository;
+            _userAchievementRepository = userAchievementRepository;
         }
 
         [HttpGet]
@@ -80,17 +83,44 @@ namespace organizer_gracza_backend.Controllers
 
             if (!await _eventUserRegistrationRepository.SaveAllAsync())
                 return BadRequest("Failed to add registration for users event");
-            
+
             var userAchievement = await _userAchievementCounterRepository
                 .GetUserAchievementCounterByUserId(newEventUserRegistration.UserId);
-            
+
             userAchievement.NumberOfEventUserJoined++;
-            
+
             if (!await _userAchievementCounterRepository.SaveAllAsync())
                 return BadRequest("Failed to add increase counter");
-                
-            return Ok(_mapper.Map<EventUserRegistrationDto>(newEventUserRegistration));
 
+            if (userAchievement.NumberOfEventUserJoined == 1)
+            {
+                var newUserAchievement = new UserAchievement()
+                {
+                    UserId = eventUserRegistrationDto.UserId,
+                    AchievementsId = 3
+                };
+
+                _userAchievementRepository.AddUserAchievement(newUserAchievement);
+
+                if (!await _userAchievementRepository.SaveAllAsync())
+                    return BadRequest("Failed to add 'Samotnik' achievement");
+            }
+
+            if (userAchievement.NumberOfEventUserJoined == 10)
+            {
+                var newUserAchievement = new UserAchievement()
+                {
+                    UserId = eventUserRegistrationDto.UserId,
+                    AchievementsId = 4
+                };
+
+                _userAchievementRepository.AddUserAchievement(newUserAchievement);
+
+                if (!await _userAchievementRepository.SaveAllAsync())
+                    return BadRequest("Failed to add 'Samotny Wilk' achievement");
+            }
+
+            return Ok(_mapper.Map<EventUserRegistrationDto>(newEventUserRegistration));
         }
 
         [HttpDelete("{id}")]
