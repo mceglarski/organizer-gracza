@@ -15,10 +15,6 @@ export class AchievementsService {
     return this.http.get(this.baseUrl + 'achievements');
   }
 
-  getAchievementsByUserId(userId: number){
-    return this.http.get(this.baseUrl + 'achievements/userId/' + userId);
-  }
-
   getAchievementById(achievementId: number){
     return this.http.get(this.baseUrl + 'achievements/' + achievementId);
   }

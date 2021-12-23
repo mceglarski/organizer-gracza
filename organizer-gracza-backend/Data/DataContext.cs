@@ -35,6 +35,7 @@ namespace organizer_gracza_backend.Data
         public DbSet<Connection> Connections { get; set; }
         public DbSet<UserAchievementCounter> UserAchievementCounters { get; set; }
         public DbSet<UserGame> UserGame { get; set; }
+        public DbSet<UserAchievement> UserAchievements { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

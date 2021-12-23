@@ -248,3 +248,9 @@ export interface UserGame{
   userId: number;
   gameId: number;
 }
+
+export interface UserAchievement {
+  userAchievementsId: number;
+  achievementsId: number;
+  userId: number;
+}

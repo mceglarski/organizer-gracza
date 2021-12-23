@@ -93,44 +93,6 @@ namespace organizer_gracza_backend.Data
         
             await context.SaveChangesAsync();
         }
-
-        public static async Task SeedEventsUserRegistrations(DataContext context)
-        {
-            if (await context.EventUserRegistration.AnyAsync())
-                return;
-        
-            var eventsUserRegistrationsData =
-                await System.IO.File.ReadAllTextAsync("Data/SeedData/EventsUserRegistrationsSeedData.json");
-            var eventRegistrations = JsonSerializer.Deserialize<List<EventUserRegistration>>(eventsUserRegistrationsData);
-            if (eventRegistrations == null)
-                return;
-        
-            foreach (var eventRegistration in eventRegistrations)
-            {
-                await context.AddAsync(eventRegistration);
-            }
-        
-            await context.SaveChangesAsync();
-        }
-        
-        public static async Task SeedEventsTeamRegistrations(DataContext context)
-        {
-            if (await context.EventTeamRegistration.AnyAsync())
-                return;
-        
-            var eventsTeamRegistrationsData =
-                await System.IO.File.ReadAllTextAsync("Data/SeedData/EventsTeamRegistrationsSeedData.json");
-            var eventRegistrations = JsonSerializer.Deserialize<List<EventTeamRegistration>>(eventsTeamRegistrationsData);
-            if (eventRegistrations == null)
-                return;
-        
-            foreach (var eventRegistration in eventRegistrations)
-            {
-                await context.AddAsync(eventRegistration);
-            }
-        
-            await context.SaveChangesAsync();
-        }
         
         public static async Task SeedTeams(DataContext context)
         {
@@ -322,22 +284,21 @@ namespace organizer_gracza_backend.Data
         
             await context.SaveChangesAsync();
         }
-        
-        public static async Task SeedEventResults(DataContext context)
+        public static async Task SeedUserAchievements(DataContext context)
         {
-            if (await context.EventTeamResult.AnyAsync())
+            if (await context.UserAchievements.AnyAsync())
                 return;
         
-            var eventResults =
-                await System.IO.File.ReadAllTextAsync("Data/SeedData/EventsResultsSeedData.json");
-            var eventResultsData = JsonSerializer.Deserialize<List<EventTeamResult>>
-                (eventResults);
-            if (eventResultsData == null)
+            var userAchievements =
+                await System.IO.File.ReadAllTextAsync("Data/SeedData/UserAchievementSeedData.json");
+            var userAchievementsData = JsonSerializer.Deserialize<List<UserAchievement>>
+                (userAchievements);
+            if (userAchievementsData == null)
                 return;
         
-            foreach (var eventResult in eventResultsData)
+            foreach (var userAchievement in userAchievementsData)
             {
-                await context.AddAsync(eventResult);
+                await context.AddAsync(userAchievement);
             }
         
             await context.SaveChangesAsync();
