@@ -11,28 +11,40 @@
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-.flex-menu-container{
+.flex-menu-container {
   justify-content: flex-end;
   margin-right: 5%;
 }
 
-.navbar-brand{
+.navbar-brand {
   margin-left: 5%;
   font-weight: bold;
   font-size: 1.5rem;
 }
 
-.dropdown-toggle, .dropdown-item{
+.dropdown-toggle, .dropdown-item {
   cursor: pointer;
 }
 
-.hide{
+.hide {
   display: none;
 }
 
-img{
-  max-height: 50px;
-  max-width: 50px;
+.header-align-right {
+  text-align: right;
+}
+
+.header-avatar {
+  height: 50px;
+  width: 50px;
   border: 2px solid #ffffff;
   display: inline;
+  object-fit: fill;
+  margin-right: 0.2rem;
+}
+
+@media only screen and (max-width: 1100px) {
+  .header-align-right {
+    text-align: left;
+  }
 }

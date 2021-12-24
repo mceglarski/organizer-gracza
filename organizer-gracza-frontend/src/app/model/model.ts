@@ -1,5 +1,5 @@
 export interface User {
-  Id: number;
+  id: number;
   username: string;
   nickname: string;
   token: string;
@@ -38,6 +38,13 @@ export interface Member {
   steamId: string;
 }
 
+export interface SteamInformation {
+  communityvisibilitystate?: number;
+  profileurl?: string;
+  gameid?: number;
+  realname?: string;
+}
+
 export interface Pagination {
   currentPage: number;
   itemsPerPage: number;
@@ -54,7 +61,7 @@ export class PaginatedResult<T> {
 
 export class PagintationParams {
   pageNumber = 1;
-  pageSize = 6;
+  pageSize = 20;
 }
 
 export interface Message {
@@ -254,7 +261,9 @@ export interface UserGame{
 }
 
 export interface UserAchievement {
+  achievements: Achievements;
   userAchievementsId: number;
   achievementsId: number;
   userId: number;
+  user: User;
 }

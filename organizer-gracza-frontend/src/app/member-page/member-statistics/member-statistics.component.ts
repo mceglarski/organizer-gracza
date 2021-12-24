@@ -37,36 +37,39 @@ export class MemberStatisticsComponent implements OnInit {
     this.loadGames();
   }
 
-  loadGameStatistics() {
+  public loadGame(gameId: number): void {
+    this.gameService.getGame(gameId).subscribe(game => {
+      // @ts-ignore
+      this.game = game;
+      console.log(game);
+      this.loadGameStatisticsForUser(gameId);
+      return;
+    });
+  }
+
+
+  private loadGameStatistics(): void {
     this.statisticsService.getGameStatisticsByUserId(this.memberId).subscribe(gameStats => {
       // @ts-ignore
       this.gameStatistics = gameStats;
     });
   }
 
-  loadGeneralStatistics() {
+  private loadGeneralStatistics(): void {
     this.statisticsService.getGeneralStatisticsByUserId(this.memberId).subscribe(generalStats => {
       // @ts-ignore
       this.generalStatistics = generalStats;
     });
   }
 
-  loadGames() {
+  private loadGames(): void {
     this.gameService.getGames().subscribe(games => {
       // @ts-ignore
       this.games = games;
     })
   }
 
-  loadGame() {
-    this.gameService.getGame(this.gameId).subscribe(game => {
-      // @ts-ignore
-      this.game = game;
-      this.loadGameStatisticsForUser();
-    })
-  }
-
-  loadMember() {
+  private loadMember(): void {
     // @ts-ignore
     this.memberService.getMember(this.route.snapshot.paramMap.get('username')).subscribe(member => {
       this.member = member;
@@ -74,7 +77,7 @@ export class MemberStatisticsComponent implements OnInit {
     })
   }
 
-  loadMemberId() {
+  private loadMemberId(): void {
     this.memberService.getMemberIdByUsername(this.member.username).subscribe(memberId => {
       this.memberId = memberId;
       this.loadGameStatistics();
@@ -82,11 +85,12 @@ export class MemberStatisticsComponent implements OnInit {
     })
   }
 
-  loadGameStatisticsForUser() {
-    this.statisticsService.getGameStatisticsForUser(this.memberId, this.gameId).subscribe(statistic => {
+  private loadGameStatisticsForUser(gameId: number): void {
+    this.statisticsService.getGameStatisticsForUser(this.memberId, gameId).subscribe(statistic => {
       // @ts-ignore
       this.gameStatistic = statistic;
-    })
+      return
+    });
   }
 }
 

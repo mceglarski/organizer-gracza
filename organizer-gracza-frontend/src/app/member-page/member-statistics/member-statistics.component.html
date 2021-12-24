@@ -1,11 +1,6 @@
 <div class="member-statistics">
 
-  <div class="title">
-    <h4>GENERALNE STATYSTYKI</h4>
-    <div class="separator"></div>
-  </div>
-<hr>
-  <h5>STATYSTYKI z wydarzeń</h5>
+  <h1 class="section-title"><span class="section-title-accent">STATYSTYKI</span> Z WYDARZEŃ&nbsp;</h1>
 
   <div class="row" *ngIf="generalStatistics">
     <p class="col-xl-12">
@@ -13,20 +8,20 @@
       Użytkownik do tej pory wziął udział w:  {{generalStatistics.eventsParticipated}}
       {{generalStatistics.eventsParticipated === 1 ? 'wydarzeniu' : 'wydarzeniach'}}</p>
   </div>
-  <hr>
-  <h5>STATYSTYKI Z GRY</h5>
 
-  <div class="game-select row">
-    <mat-form-field appearance="fill">
-      <mat-label>Wybierz grę:</mat-label>
-      <mat-select [(ngModel)]="gameId" name="game-name">
-        <mat-option [value]="game.gameId" *ngFor="let game of games" (click)="loadGame()">{{game.title}}</mat-option>
-      </mat-select>
-    </mat-form-field>
+  <h1 class="section-title"><span class="section-title-accent">STATYSTYKI</span> Z GIER&nbsp;</h1>
+
+  <label>Wybierz grę:</label>
+  <div class="game-select">
+      <select (change)="loadGame($any($event.target).value)"
+              name="game-name"
+              class="game-select-input">
+        <option [value]="game.gameId" *ngFor="let game of games" (click)="loadGame(game.gameId)">{{game.title}}</option>
+      </select>
   </div>
 
   <div *ngIf="gameStatistic; else nullAnswer">
-    Liczba wygranych gier: {{gameStatistic.wonGames}}
+    Liczba wygranych gier: {{gameStatistic.wonGames}}<br>
     Liczba przegranych gier: {{gameStatistic.lostGames}}
   </div>
   <ng-template #nullAnswer>

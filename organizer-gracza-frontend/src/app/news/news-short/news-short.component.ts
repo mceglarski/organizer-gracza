@@ -20,7 +20,10 @@ export class NewsShortComponent implements OnInit {
     this.articlesService.getArticles().subscribe(article => {
       // @ts-ignore
       this.articleArray = article;
-      this.articleArray.splice(0,2);
+      this.articleArray.sort((a, b) => {
+        return new Date(b.publicationDate).getTime() - new Date(a.publicationDate).getTime();
+      });
+      this.articleArray = this.articleArray.slice(0,3);
       this.sendExtendedNews(this.articleArray[0]);
     });
   }

@@ -8,7 +8,7 @@ import {map} from "rxjs/operators";
 @Injectable({
   providedIn: 'root'
 })
-export class AdminGuard implements CanActivate {
+export class EditorGuard implements CanActivate {
 
   constructor(private accountService: AccountService,
               private toastr: ToastrService,
@@ -20,7 +20,7 @@ export class AdminGuard implements CanActivate {
     return this.accountService.currentUser$.pipe(
       // @ts-ignore
       map(user => {
-        if(user.roles.includes('Admin') || user.roles.includes('Moderator')){
+        if(user.roles.includes('Admin') || user.roles.includes('Redaktor')){
           return true;
         }
         this.toastr.error('You cannot enter this area');

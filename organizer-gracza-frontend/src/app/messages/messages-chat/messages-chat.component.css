@@ -27,9 +27,10 @@
 
 .messages-chat-list-picture {
   margin: 5px;
-  max-height: 100px;
-  max-width: 100px;
+  height: 100px;
+  width: 100px;
   border-radius: 50%;
+  object-fit: fill;
 }
 
 .messages-chat-image-container {

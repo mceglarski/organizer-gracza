@@ -17,12 +17,6 @@ export class ForumPostsComponent implements OnInit {
   public forumThread: ForumThread;
   public posts: ForumPost[] = [];
 
-  public noWhitespaceValidator(control: FormControl) {
-    const isWhitespace = (control.value || '').trim().length === 0;
-    const isValid = !isWhitespace;
-    return isValid ? null : { 'whitespace': true };
-  }
-
   public addPostForm = new FormGroup({
     content: new FormControl('', [Validators.required, this.noWhitespaceValidator])
   });
@@ -63,6 +57,12 @@ export class ForumPostsComponent implements OnInit {
     });
   }
 
+  public noWhitespaceValidator(control: FormControl) {
+    const isWhitespace = (control.value || '').trim().length === 0;
+    const isValid = !isWhitespace;
+    return isValid ? null : { 'whitespace': true };
+  }
+
   public onSubmit(): void {
     console.log(this.addPostForm);
 
@@ -70,7 +70,8 @@ export class ForumPostsComponent implements OnInit {
       this.forumService.addForumPost({
         content: this.addPostForm.value.content.trim(),
         postDate: new Date(),
-        forumThreadId: this.threadId
+        forumThreadId: this.threadId,
+        userId: this.currentlyLoggedMember
       }).subscribe(result => {
         window.location.reload();
       }, error => {

@@ -1,0 +1,49 @@
+<div class="container news-editor-panel-container">
+  <h1 class="section-title"><span class="section-title-accent">PANEL</span> REDAKTORA&nbsp;</h1>
+
+  <div class="news-editor-panel-form">
+    <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+
+      <div class="row">
+        <label class="field field_v3">
+          <input class="field__input news-editor-panel-title"
+                 formControlName="title">
+          <span class="field__label-wrap">
+          <span class="field__label">Tytuł</span>
+          </span>
+        </label>
+      </div>
+
+      <div class="row">
+        <label class="field field_v3">
+          <textarea class="field__input"
+                    formControlName="content"
+                    rows="1"
+                    cols="150"
+                    style="min-height: 25rem;"></textarea>
+          <span class="field__label-wrap">
+          <span class="field__label">Treść</span>
+          </span>
+        </label>
+      </div>
+
+      <label class="row news-editor-panel-label">Dodaj zdjęcie</label>
+      <div class="row">
+        <input class="news-editor-panel-file-upload" type="file" ng2FileSelect [uploader]="uploader" />
+      </div>
+      <div class="row">
+        <button type="button" class="btn btn-success btn-s"
+                (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+          <span class="fa fa-upload"></span> Prześlij zdjęcie
+        </button>
+        <h4 style="color: #28A745" *ngIf="photoUploaded"> Zdjęcie zostało dodane!</h4>
+      </div>
+
+      <div class="row">
+        <button mat-raised-button color="primary" class="news-editor-panel-submit" type="submit">Dodaj artykuł</button>
+      </div>
+
+    </form>
+  </div>
+
+</div>
