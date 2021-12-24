@@ -16,13 +16,13 @@ export class MemberContentComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.loadMember();
-  }
-
-  public loadMember(): void {
-    // @ts-ignore
-    this.memberService.getMember(this.route.snapshot.paramMap.get('username')).subscribe(member => {
-      this.member = member;
+    this.memberService.getCurrentlyLoggedMemberId().subscribe(id => {
+      // @ts-ignore
+      this.memberService.getMemberById(id).subscribe( member => {
+        this.member = member;
+        return;
+      })
     })
   }
+
 }

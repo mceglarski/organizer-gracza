@@ -13,20 +13,19 @@ import {ToastrService} from "ngx-toastr";
   styleUrls: ['./teams-details.component.css']
 })
 export class TeamsDetailsComponent implements OnInit {
-  // @ts-ignore
-  team: Team;
-  // @ts-ignore
-  user: User;
-  // @ts-ignore
-  model = {};
-  // @ts-ignore
-  memberId: number;
-  // @ts-ignore
-  teamUsers: TeamUser[];
+
+  public team: Team;
+  public user: User;
+  public model = {};
+  public memberId: number;
+  public teamUsers: TeamUser[];
 
 
-  constructor(private teamService: TeamsService, public route: ActivatedRoute, private memberService: MembersService,
-              private accountService: AccountService, private toastr: ToastrService)
+  constructor(public route: ActivatedRoute,
+              private teamService: TeamsService,
+              private memberService: MembersService,
+              private accountService: AccountService,
+              private toastr: ToastrService)
   {
       this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
       this.user = user;
@@ -38,30 +37,7 @@ export class TeamsDetailsComponent implements OnInit {
     this.loadMember();
   }
 
-  loadTeam() {
-    // @ts-ignore
-    this.teamService.getTeamByName(this.route.snapshot.paramMap.get('name')).subscribe(specifiedTeam => {
-      // @ts-ignore
-      this.team = specifiedTeam;
-      this.loadUsersInTeam();
-    })
-  }
-
-  loadMember(){
-    this.memberService.getMemberIdByUsername(this.user.username).subscribe(memberId =>{
-      this.memberId = memberId;
-    })
-  }
-
-  loadUsersInTeam(){
-    this.teamService.getUsersInTeam(this.team.teamId).subscribe(teamUsers => {
-      // @ts-ignore
-      this.teamUsers = teamUsers;
-    })
-  }
-
-
-  joinTeam(){
+  public joinTeam(): void {
     this.model = {
       userId: this.memberId,
       teamId: this.team.teamId
@@ -72,4 +48,28 @@ export class TeamsDetailsComponent implements OnInit {
       this.toastr.error("Nie udało się dołączyć do drużyny")
     })
   }
+
+  private loadTeam(): void {
+    // @ts-ignore
+    this.teamService.getTeamByName(this.route.snapshot.paramMap.get('name')).subscribe(specifiedTeam => {
+      // @ts-ignore
+      this.team = specifiedTeam;
+      this.loadUsersInTeam();
+    })
+  }
+
+  private loadMember(): void {
+    this.memberService.getMemberIdByUsername(this.user.username).subscribe(memberId =>{
+      this.memberId = memberId;
+    })
+  }
+
+  private loadUsersInTeam(): void {
+    this.teamService.getUsersInTeam(this.team.teamId).subscribe(teamUsers => {
+      // @ts-ignore
+      this.teamUsers = teamUsers;
+      return;
+    });
+  }
+
 }

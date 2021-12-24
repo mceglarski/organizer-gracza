@@ -92,6 +92,7 @@ import { BroadcastEmbeddedComponent } from './broadcasts/broadcast-embedded/broa
 import { ForumPostsComponent } from './forum/forum-posts/forum-posts.component';
 import { ForumAddNewThreadComponent } from './forum/forum-add-new-thread/forum-add-new-thread.component';
 import { NewsEditorPanelComponent } from './news-editor/news-editor-panel/news-editor-panel.component';
+import { SteamInformationComponent } from './member-page/steam-information/steam-information.component';
 
 registerLocaleData(localePl, 'pl');
 
@@ -156,7 +157,8 @@ FullCalendarModule.registerPlugins([
     ForumThreadListComponent,
     ForumPostsComponent,
     ForumAddNewThreadComponent,
-    NewsEditorPanelComponent
+    NewsEditorPanelComponent,
+    SteamInformationComponent
   ],
   imports: [
     BrowserModule,

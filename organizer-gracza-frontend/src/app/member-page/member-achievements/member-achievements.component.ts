@@ -15,7 +15,6 @@ export class MemberAchievementsComponent implements OnInit {
   public memberAchievements: UserAchievement[] = [];
   public member: Member;
 
-
   constructor(public memberContent: MemberContentComponent,
               private userAchievementService: UserachievementService,
               private achievementService: AchievementsService,
@@ -29,9 +28,18 @@ export class MemberAchievementsComponent implements OnInit {
   }
 
   private loadMemberAchievement(): void {
-    this.userAchievementService.getUserAchievementsByUserId(this.member.id).subscribe(a => {
+    this.userAchievementService.getUserAchievementsByUserId(this.member.id).subscribe( memberAchievement => {
       // @ts-ignore
-      this.memberAchievements = a;
+      this.memberAchievements = memberAchievement;
+      return;
     })
+  }
+
+  private loadAchievements(): void {
+    this.achievementService.getAchievements().subscribe(a => {
+      // @ts-ignore
+      this.achievements = a;
+      return;
+    });
   }
 }

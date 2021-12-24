@@ -38,6 +38,13 @@ export interface Member {
   steamId: string;
 }
 
+export interface SteamInformation {
+  communityvisibilitystate?: number;
+  profileurl?: string;
+  gameid?: number;
+  realname?: string;
+}
+
 export interface Pagination {
   currentPage: number;
   itemsPerPage: number;
@@ -254,7 +261,9 @@ export interface UserGame{
 }
 
 export interface UserAchievement {
+  achievements: Achievements;
   userAchievementsId: number;
   achievementsId: number;
   userId: number;
+  user: User;
 }

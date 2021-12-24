@@ -2,6 +2,13 @@
   <div class="">
     <app-member-image></app-member-image>
   </div>
+  <div class="member-profile-description">
+    <h1 class="section-title">O MNIE&nbsp;</h1>
+    <span class="member-profile-description-text">{{member.description}}</span>
+  </div>
+  <div class="" *ngIf="member.steamId">
+    <app-steam-information [steamId]="member.steamId"></app-steam-information>
+  </div><br><br>
   <div class="">
     <app-member-achievements></app-member-achievements>
   </div><br><br>
