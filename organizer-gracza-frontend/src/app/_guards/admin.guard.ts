@@ -10,7 +10,9 @@ import {map} from "rxjs/operators";
 })
 export class AdminGuard implements CanActivate {
 
-  constructor(private accountService: AccountService, private toastr: ToastrService, private route: Router) {}
+  constructor(private accountService: AccountService,
+              private toastr: ToastrService,
+              private route: Router) {}
 
 
   canActivate(): Observable<boolean> {

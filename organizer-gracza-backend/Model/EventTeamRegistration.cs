@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace organizer_gracza_backend.Model
 {
@@ -10,9 +11,5 @@ namespace organizer_gracza_backend.Model
         public Team Team { get; set; }
         public int EventTeamId { get; set; }
         public EventTeam EventTeam { get; set; }
-        
-        public int? EventResultId { get; set; }
-        
-        public EventResult EventResult { get; set; }
     }
 }

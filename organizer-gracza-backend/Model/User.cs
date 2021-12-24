@@ -11,6 +11,8 @@ namespace organizer_gracza_backend.Model
         public string Nickname { get; set; }
         
         public string Description { get; set; }
+        
+        public string SteamId { get; set; }
 
         public DateTime Created { get; set; } = DateTime.Now;
         public DateTime LastActive { get; set; } = DateTime.Now;
@@ -27,7 +29,7 @@ namespace organizer_gracza_backend.Model
         public ICollection<GameStatistics> GameStatistics { get; set; }
         public GeneralStatistics GeneralStatistics { get; set; }
         
-        public ICollection<Achievements> Achievements { get; set; }
+        public ICollection<UserAchievement> UserAchievements { get; set; }
         public UserAchievementCounter UserAchievementCounter { get; set; }
         
         public ICollection<Reminder> Reminders { get; set; }
@@ -38,5 +40,6 @@ namespace organizer_gracza_backend.Model
         public ICollection<ForumPost> ForumPosts { get; set; }
 
         public ICollection<UserGame> UserGames { get; set; }
+        public ICollection<EventUserResult> EventUserResult { get; set; }
     }
 }

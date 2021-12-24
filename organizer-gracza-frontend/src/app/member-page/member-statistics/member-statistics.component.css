@@ -48,6 +48,13 @@ hr {
   color: white;
 }
 
+.game-select-input {
+  height: 3rem;
+  border-radius: 5%;
+  margin-right: 0.4rem;
+  background-color: #e5e5e5;
+}
+
 .member-statistics-event-icon {
   height: 100px;
   width: 100px;

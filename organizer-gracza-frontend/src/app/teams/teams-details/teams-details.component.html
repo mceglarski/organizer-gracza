@@ -1,16 +1,16 @@
-<div class="team-details-page" *ngIf="team">
-  <div class="title">
-    <h4 class="ml-2">SZCZEGÓŁY DRUŻYNY</h4>
-    <div class="separator"></div>
-  </div>
-  <div class="flex-content">
-    <div class="team-details">
-      <h2 class="ml-2 mt-1 mb-3">Nazwa drużyny: {{team.name}}</h2>
-      <h2 class="ml-2 mt-1 mb-3">Skład drużyny:
-        <div *ngFor="let user of teamUsers">{{user.user.nickname}}</div>
+<div class="container team-details-page" *ngIf="team">
+
+  <h1 class="section-title"><span class="section-title-accent">SZCZEGÓŁY</span> DRUŻYNY&nbsp;</h1>
+
+  <div class="row">
+    <div class="col">
+      <h2 class="">Nazwa drużyny: <span class="section-title-accent">{{team.name}}</span></h2><br>
+      <h2 class="">Skład drużyny:
       </h2>
+        <div *ngFor="let user of teamUsers">{{user.user.photoUrl}}{{user.user.nickname}}</div>
+
     </div>
-    <div class="team-photo">
+    <div class="col ">
       <h2>Logo drużyny</h2>
       <img src="{{team.photoUrl}}" alt="{{team}}">
     </div>

@@ -27,6 +27,8 @@ import {ForumThreadListComponent} from "./forum/forum-thread-list/forum-thread-l
 import {BroadcastEmbeddedComponent} from "./broadcasts/broadcast-embedded/broadcast-embedded.component";
 import {ForumPostsComponent} from "./forum/forum-posts/forum-posts.component";
 import {ForumAddNewThreadComponent} from "./forum/forum-add-new-thread/forum-add-new-thread.component";
+import {NewsEditorPanelComponent} from "./news-editor/news-editor-panel/news-editor-panel.component";
+import {EditorGuard} from "./_guards/editor.guard";
 
 const routes: Routes = [
   {path: '', component: MainPageContentComponent},
@@ -52,6 +54,7 @@ const routes: Routes = [
       {path: 'messages', component: MessagesChatComponent},
       {path: 'messages/thread/:username', component: MessagesMembersChatComponent, resolve: {member: MemberDetailedResolver}},
       {path: 'admin', component: AdminPanelComponent, canActivate: [AdminGuard]},
+      {path: 'editor-panel', component: NewsEditorPanelComponent, canActivate: [EditorGuard]},
       {path: 'admin/events/eventsuser/:eventUserId', component: EventsSoloEditComponent},
       {path: 'admin/events/eventsteam/:eventTeamId', component: EventsTeamEditComponent},
       {path: 'forum/thread/add', component: ForumAddNewThreadComponent}

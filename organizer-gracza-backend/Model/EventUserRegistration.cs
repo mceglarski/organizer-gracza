@@ -10,9 +10,5 @@ namespace organizer_gracza_backend.Model
         public User User { get; set; }
         public int EventUserId { get; set; }
         public EventUser EventUser { get; set; }
-        
-        public int? EventResultId { get; set; }
-        
-        public EventResult EventResult { get; set; }
     }
 }

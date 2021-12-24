@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using organizer_gracza_backend.Data;
 using organizer_gracza_backend.DTOs;
 using organizer_gracza_backend.Extensions;
 using organizer_gracza_backend.Interfaces;
@@ -14,13 +16,18 @@ namespace organizer_gracza_backend.Controllers
         private readonly IForumThread _forumThread;
         private readonly IMapper _mapper;
         private readonly IUserAchievementCounterRepository _userAchievementCounterRepository;
+        private readonly IUserAchievementRepository _userAchievementRepository;
+        private readonly DataContext _context;
 
         public ForumThreadController(IForumThread forumThread,
-            IMapper mapper, IUserAchievementCounterRepository userAchievementCounterRepository)
+            IMapper mapper, IUserAchievementCounterRepository userAchievementCounterRepository,
+            DataContext context, IUserAchievementRepository userAchievementRepository)
         {
             _forumThread = forumThread;
             _mapper = mapper;
             _userAchievementCounterRepository = userAchievementCounterRepository;
+            _userAchievementRepository = userAchievementRepository;
+            _context = context;
         }
 
         [HttpGet]
@@ -75,6 +82,63 @@ namespace organizer_gracza_backend.Controllers
             
             if (!await _userAchievementCounterRepository.SaveAllAsync())
                 return BadRequest("Failed to add increase counter");
+            
+
+            if (userAchievement.NumberOfThreadsCreated == 1)
+            {
+                var newUserAchievement = new UserAchievement()
+                {
+                    UserId = forumThreadDto.UserId,
+                    AchievementsId = 7
+                };
+                
+                _userAchievementRepository.AddUserAchievement(newUserAchievement);
+                
+                if (!await _userAchievementRepository.SaveAllAsync())
+                    return BadRequest("Failed to add 'Czekający na opinie' achievement");
+            }
+            
+            if (userAchievement.NumberOfThreadsCreated == 10)
+            {
+                var newUserAchievement = new UserAchievement()
+                {
+                    UserId = forumThreadDto.UserId,
+                    AchievementsId = 8
+                };
+                
+                _userAchievementRepository.AddUserAchievement(newUserAchievement);
+                
+                if (!await _userAchievementRepository.SaveAllAsync())
+                    return BadRequest("Failed to add 'Zainteresowany' achievement");
+            }
+            
+            if (userAchievement.NumberOfThreadsCreated == 25)
+            {
+                var newUserAchievement = new UserAchievement()
+                {
+                    UserId = forumThreadDto.UserId,
+                    AchievementsId = 9
+                };
+                
+                _userAchievementRepository.AddUserAchievement(newUserAchievement);
+                
+                if (!await _userAchievementRepository.SaveAllAsync())
+                    return BadRequest("Failed to add 'Rozpoczynający rozmowe' achievement");
+            }
+            
+            if (userAchievement.NumberOfThreadsCreated == 100)
+            {
+                var newUserAchievement = new UserAchievement()
+                {
+                    UserId = forumThreadDto.UserId,
+                    AchievementsId = 10
+                };
+                
+                _userAchievementRepository.AddUserAchievement(newUserAchievement);
+                
+                if (!await _userAchievementRepository.SaveAllAsync())
+                    return BadRequest("Failed to add 'Zawodowy inicjator konwersacji' achievement");
+            }
                 
             return Ok(_mapper.Map<ForumThreadDto>(newForumThread));
 

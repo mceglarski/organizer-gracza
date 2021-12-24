@@ -44,7 +44,6 @@ export class ForumAddNewThreadComponent implements OnInit {
     this.membersService.getCurrentlyLoggedMemberId().subscribe(m => {
       // @ts-ignore
       this.currentlyLoggedMember = m;
-      console.log(m);
       return;
     });
   }

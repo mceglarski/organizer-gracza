@@ -21,7 +21,6 @@ namespace organizer_gracza_backend.Data
             return await _context.EventTeamRegistration
                 .Include(e => e.EventTeam)
                 .Include(t => t.Team)
-                .Include(f => f.EventResult)
                 .FirstOrDefaultAsync(x => x.EventTeamRegistrationId == eventTeamRegistrationId);
         }
 
@@ -30,7 +29,6 @@ namespace organizer_gracza_backend.Data
             return await _context.EventTeamRegistration
                 .Include(e => e.EventTeam)
                 .Include(t => t.Team)
-                .Include(f => f.EventResult)
                 .Where(x => x.EventTeamId == eventTeamId)
                 .ToListAsync();
         }
@@ -40,7 +38,6 @@ namespace organizer_gracza_backend.Data
             return await _context.EventTeamRegistration
                 .Include(e => e.EventTeam)
                 .Include(t => t.Team)
-                .Include(f => f.EventResult)
                 .ToListAsync();
         }
 

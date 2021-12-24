@@ -38,16 +38,6 @@ namespace organizer_gracza_backend.Controllers
             return _mapper.Map<AchievementsDto>(achievements);
         }
 
-        [HttpGet("userId/{id}")]
-        public async Task<ActionResult<IEnumerable<AchievementsDto>>> GetAchievementsByUserIdAsync(int id)
-        {
-            var achievements = await _achievementsRepository.GetAchievementsByUserId(id);
-
-            var achievementsToReturn = _mapper.Map<IEnumerable<AchievementsDto>>(achievements);
-
-            return Ok(achievementsToReturn);
-        }
-
         [HttpPost]
         public async Task<ActionResult<AchievementsDto>> CreateAchievement(AchievementsDto achievementsDto)
         {
@@ -55,8 +45,6 @@ namespace organizer_gracza_backend.Controllers
             {
                 Details = achievementsDto.Details,
                 Name = achievementsDto.Name,
-                PhotoUrl = achievementsDto.PhotoUrl,
-                UserId = achievementsDto.UserId
             };
 
             _achievementsRepository.AddAchievement(newAchievement);
@@ -89,8 +77,6 @@ namespace organizer_gracza_backend.Controllers
                 achievementAsync.Name = achievements.Name;
             if (achievements.Details != null)
                 achievementAsync.Details = achievements.Details;
-            if (achievements.PhotoUrl != null)
-                achievementAsync.PhotoUrl = achievements.PhotoUrl;
 
             if (await _achievementsRepository.SaveAllAsync())
                 return NoContent();

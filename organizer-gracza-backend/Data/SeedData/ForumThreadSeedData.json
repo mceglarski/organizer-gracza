@@ -9,14 +9,27 @@
       {
         "Content": "Moim zdaniem nie jest tak źle najgorzej boli mnie nerf Serca Innowatora.",
         "PostDate": "2021-12-13",
-        "UserId": 2,
-        "ForumThreadId": 1
+        "UserId": 2
       },
       {
         "Content": "A tam narzekacie super jest bo wreszcie będzie można kupować inne itemy.",
         "PostDate": "2021-12-14",
-        "UserId": 3,
-        "ForumThreadId": 1
+        "UserId": 3
+      },
+      {
+        "Content": "Niby jakie? Teraz nie ma możliwości kupienia itema i wygrania gry jak to było jeszcze do tej pory...",
+        "PostDate": "2021-12-15",
+        "UserId": 4
+      },
+      {
+        "Content": "Może dlatego, że to gra zespołowa i zamiast wygrywać grę solo postaw na drużyne",
+        "PostDate": "2021-12-15",
+        "UserId": 5
+      },
+      {
+        "Content": "Spokojnie nie ma co się kłócić, każdy może mieć swoje zdanie",
+        "PostDate": "2021-12-16",
+        "UserId": 1
       }
     ]
   },
@@ -30,14 +43,22 @@
       {
         "Content": "Ja dopiero co zacząłem gre więc w sumie nie narzekam przyda się szczególnie, że jest OP.",
         "PostDate": "2021-12-26",
-        "UserId": 5,
-        "ForumThreadId": 2
+        "UserId": 5
       },
       {
         "Content": "No dla ciebie może tak ale ja gram od 8 lat i już widzę ten czołg trzeci raz do zdobycia jak nie więcej.",
         "PostDate": "2021-12-26",
-        "UserId": 6,
-        "ForumThreadId": 2
+        "UserId": 6
+      },
+      {
+        "Content": "Skoro grasz 8 lat może powinieneś też pozwolić nowym graczom zdobyć te czołgi co już sam masz",
+        "PostDate": "2021-12-26",
+        "UserId": 7
+      },
+      {
+        "Content": "Może faktycznie masz rację, niestety to już któryś raz z rzędu kiedy twórcy to robią",
+        "PostDate": "2021-12-27",
+        "UserId": 6
       }
     ]
   },
@@ -51,14 +72,12 @@
       {
         "Content": "Nie do końca działa bo dosłownie odszedłem od komputera na 20 sekund i mnie wyrzuciło.",
         "PostDate": "2021-12-18",
-        "UserId": 7,
-        "ForumThreadId": 3
+        "UserId": 7
       },
       {
         "Content": "Moim zdaniem działa bardzo dobrze nie powinno się odchodzić zdecydowanie wtedy jak mecz się rozpoczyna.",
         "PostDate": "2021-12-19",
-        "UserId": 8,
-        "ForumThreadId": 3
+        "UserId": 8
       }
     ]
   },
@@ -72,14 +91,18 @@
       {
         "Content": "Oglądałem na żywo i muszę powiedzieć, że było na co popatrzeć dużo emocji ale grunt, że mój ulubieniec wygrał!!.",
         "PostDate": "2021-12-25",
-        "UserId": 6,
-        "ForumThreadId": 4
+        "UserId": 6
       },
       {
         "Content": "Na szczęście zwyciężyła nie tylko jedna osoba i mój faworyt też się znalazł w tym gronie.",
         "PostDate": "2021-12-25",
-        "UserId": 1,
-        "ForumThreadId": 4
+        "UserId": 1
+      },
+
+      {
+        "Content": "Niestety ja tego szczęścia nie miałem ale mam nadzieję, że następnym razem się uda.",
+        "PostDate": "2021-12-25",
+        "UserId": 12
       }
     ]
   },
@@ -93,14 +116,132 @@
       {
         "Content": "Moim zdaniem powinni coś zrobić z Matchmakingiem bo czekam na głupią rozgrywkę po kilkanaście minut.",
         "PostDate": "2021-12-26",
-        "UserId": 2,
-        "ForumThreadId": 5
+        "UserId": 2
       },
       {
         "Content": "Ja w sumie uważam, że nie mam co narzekać jak dla mnie wszystko działa fajnie czasem długo się oczekuje na zalogowanie.",
         "PostDate": "2021-12-27",
-        "UserId": 3,
-        "ForumThreadId": 5
+        "UserId": 3
+      },
+      {
+        "Content": "Nie no to u mnie chyba wszystko działa.",
+        "PostDate": "2021-12-27",
+        "UserId": 15
+      }
+    ]
+  },
+  {
+    "Title": "Szukam pomocy - Base building",
+    "Content": "Cześć, jestem graczem, który głównie poświęcał swój czas na grach single-player czy jest ktoś kto mógłby mnie poduczyć taktyk multi-player?",
+    "ThreadDate": "2022-01-02",
+    "UserId": 25,
+    "GameId": 6,
+    "ForumPosts": [
+      {
+        "Content": "Cześć, gram w SC2 już od wielu lat na singlu jak i multi bez problemu mogę ciebie poduczyć napisz do mnie w prywatnej wiadomości to się zgadamy.",
+        "PostDate": "2022-01-02",
+        "UserId": 26
+      },
+      {
+        "Content": "Siemka, od siebie mogę powiedzieć żebys sprawdził na YT kanał LowkoTV gościu naprawdę ogarnia i daje wiele tip-ów.",
+        "PostDate": "2022-01-02",
+        "UserId": 27
+      }
+    ]
+  },
+  {
+    "Title": "Hejka, temat studnia COD czy BF",
+    "Content": "Cześć na wielu forach można się spotkać z wieloma opiniami ale chciałem poznać waszą opinię co sądzicie o odwiecznej wojnie COD vs BF",
+    "ThreadDate": "2022-01-05",
+    "UserId": 29,
+    "GameId": 7,
+    "ForumPosts": [
+      {
+        "Content": "Cześć, ja z FPS-ami mam doświadczenie od dzieciaka więć COD i BF też się pojawił w moim życiu. Obie te gry mają swoje zalety i wady, które kształtują się na przestrzeni lat ale Kocham je obie.",
+        "PostDate": "2022-01-05",
+        "UserId": 30
+      },
+      {
+        "Content": "Hej, ode mnie mogę powiedzieć, że przez ostatnie odsłony COD-a przeniosłem się na BF-a i nie żałuje.",
+        "PostDate": "2022-01-06",
+        "UserId": 31
+      },
+      {
+        "Content": "Witam, ja natomiast zdecydowanie wolę COD-a całe zamieszanie, które odbywa się podczas rozgrywki w BF-a to dla mnie zdecydowanie zbyt dużo.",
+        "PostDate": "2022-01-06",
+        "UserId": 32
+      }
+    ]
+  },
+  {
+    "Title": "Szukam graczy do wspólnej rozgrywki",
+    "Content": "Siemka, gram w Tarkova od alfy teraz akurat przyszedł nowy wipe więc może chciałby się ktoś dołączyć do wspólnej rozgrywki level 8 USEC.",
+    "ThreadDate": "2022-01-10",
+    "UserId": 36,
+    "GameId": 8,
+    "ForumPosts": [
+      {
+        "Content": "Cześć, właśnie zacząłem grę i jestem totalnie świeży jeżeli to nie przeszkadza to napisz swój nick na privie.",
+        "PostDate": "2022-01-10",
+        "UserId": 37
+      },
+      {
+        "Content": "Hejka, jasne poduczę ciebie co już umiem bo wiem sam po sobie, że ciężko jest wejść w świat Tarkova.",
+        "PostDate": "2022-01-10",
+        "UserId": 36
+      },
+      {
+        "Content": "Hejka też napisałem level 12 BEAR.",
+        "PostDate": "2022-01-10",
+        "UserId": 38
+      }
+    ]
+  },
+  {
+    "Title": "Celeste wasze czasy",
+    "Content": "Cześć, chciałem się dowiedzieć jakie są wasze czase ze wszystkimi zebranymi truskawkami? U mnie to 8h 45min 26sekund",
+    "ThreadDate": "2022-01-16",
+    "UserId": 40,
+    "GameId": 9,
+    "ForumPosts": [
+      {
+        "Content": "Hejka, u mnie to było 1h 45min 53sekund",
+        "PostDate": "2022-01-16",
+        "UserId": 18
+      },
+      {
+        "Content": "Cześć u mnie to było 5h 12min 24sekund.",
+        "PostDate": "2022-01-16",
+        "UserId": 41
+      },
+      {
+        "Content": "Witam, na priva wysłałem tobie link ze stroną do wszystkich speedrun-ów.",
+        "PostDate": "2022-01-17",
+        "UserId": 42
+      }
+    ]
+  },
+  {
+    "Title": "Fornite koledzy do gry",
+    "Content": "Siemka wszystkim szukam chętnych kolegów i koleżanek do gry mój nick w grze to KochamKarpia26",
+    "ThreadDate": "2022-02-02",
+    "UserId": 45,
+    "GameId": 10,
+    "ForumPosts": [
+      {
+        "Content": "Hejka wysłałem zapro.",
+        "PostDate": "2022-02-02",
+        "UserId": 47
+      },
+      {
+        "Content": "Cześć ode mnie też poszło.",
+        "PostDate": "2022-02-03",
+        "UserId": 46
+      },
+      {
+        "Content": "Kto jeszcze gra w Fortnajta?.",
+        "PostDate": "2022-02-03",
+        "UserId": 48
       }
     ]
   }

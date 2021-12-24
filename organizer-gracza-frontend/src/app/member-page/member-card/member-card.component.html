@@ -1,6 +1,8 @@
-<div class="card mb-4 mr-3 ml-3 mt-3">
+<div class="container card mb-4 mr-3 ml-3 mt-3">
   <div class="card-img-wrapper">
-    <img src="{{member.photoUrl || './assets/user.png'}}" alt="{{member.nickname}}" class="card-img-top">
+    <img src="{{member.photoUrl || './assets/user.png'}}"
+         alt="{{member.nickname}}"
+         class="card-img-top img-fluid">
     <ul class="list-inline member-icons animate text-center">
       <li class="list-inline-item">
         <button class="btn btn-primary" routerLink="/members/{{member.username}}">
@@ -14,12 +16,12 @@
       </li>
     </ul>
   </div>
-  <div class="card-body p-1">
-    <h6 class="card-title text-center mb-1">
+  <div class="row card-body p-1">
+    <h6 class="col card-title text-center mb-1">
       <span [class.is-online]="(presenceService.onlineUsers$ | async)?.includes(member.username)">
               <i class="fa fa-user mr-2"></i>
       </span>
-      {{member.nickname}}
+      <span class="text-break">{{member.nickname}}</span>
     </h6>
   </div>
 </div>

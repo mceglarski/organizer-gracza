@@ -138,7 +138,6 @@ export class EventManagementComponent implements OnInit {
       if(response){
         this.loadTeamEvent();
         const photo: Photo = JSON.parse(response);
-        console.log(photo);
         this.eventTeam.photoUrl = photo.url;
       }
     }

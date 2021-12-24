@@ -109,6 +109,23 @@ namespace organizer_gracza_backend.Controllers
             }
             return BadRequest("Problem adding photo");
         }
+        
+        [HttpPost("add-photo-article")]
+        public async Task<ActionResult<PhotoDto>> AddArticlePhoto(IFormFile file)
+        {
+            var result = await _photoService.AddPhotoAsync(file);
+
+            if (result.Error != null)
+                return BadRequest(result.Error.Message);
+
+            var photo = new Photo()
+            {
+                Url = result.SecureUrl.AbsoluteUri,
+                PublicId = result.PublicId
+            };
+
+            return _mapper.Map<PhotoDto>(photo);
+        }
 
         [HttpPut("set-main-photo/{photoId}")]
         public async Task<ActionResult> SetMainPhoto(int photoId)

@@ -41,14 +41,3 @@
   text-decoration: none;
   color: white;
 }
-
-@media only screen and (max-width: 1300px) {
-  .broadcast-thumbnail {
-    width: 220px;
-    height: 124px;
-  }
-  .broadcasts-element {
-    width: 220px;
-    height: 275px;
-  }
-}

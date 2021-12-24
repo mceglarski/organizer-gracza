@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace organizer_gracza_backend.Model
 {
@@ -8,9 +10,7 @@ namespace organizer_gracza_backend.Model
         public int AchievementsId { get; set; }
         public string Name { get; set; }
         public string Details { get; set; }
-        public string PhotoUrl { get; set; }
         
-        public int? UserId { get; set; }
-        public User User { get; set; }
+        public ICollection<UserAchievement> UserAchievements { get; set; }
     }
 }

@@ -4,21 +4,183 @@
     "Description": "The Fortnite Gaming Edition to coroczne zawody esportowe oparte na grze wideo Fortnite, z inauguracyjnymi wydarzeniami finałowymi odbywającymi się w dniach 26-28 lipca 2019 roku na Arthur Ashe Stadium w Flushing w Nowym Jorku. W różnych zawodach dostępna była pula nagród o łącznej wartości 30 milionów dolarów.\nFortnite Gaming Edition zostało podzielone na dwa różne wydarzenia, jedno dla graczy solo, a drugie dla drużyn dwuosobowych, czyli duetów.",
     "StartDate": "2022-04-06",
     "EndDate": "2022-06-10",
-    "WinnerPrize": 300,
+    "WinnerPrize": 300000,
     "EventType": "Drużyny 5v5",
     "EventOrganiser": "CdProjekt",
-    "PhotoUrl": "https://images6.alphacoders.com/514/514762.jpg",
-    "GameId": 4
+    "PhotoUrl": "https://img.gg.deals/c6/de/9e190b91e32d3591026db93a61312e8d1cb8_1920xt1080_S1000.jpg",
+    "GameId": 10,
+    "EventTeamRegistration": [
+      {
+        "TeamId": 1
+      },
+      {
+        "TeamId": 2
+      },
+      {
+        "TeamId": 6
+      },
+      {
+        "TeamId": 10
+      },
+      {
+        "TeamId": 8
+      }
+    ]
   },
   {
     "Name": "WARZONE Duo Challange",
-    "Description": "The Fortnite Gaming Edition to coroczne zawody esportowe oparte na grze wideo Fortnite, z inauguracyjnymi wydarzeniami finałowymi odbywającymi się w dniach 26-28 lipca 2019 roku na Arthur Ashe Stadium w Flushing w Nowym Jorku. W różnych zawodach dostępna była pula nagród o łącznej wartości 30 milionów dolarów.\nFortnite Gaming Edition zostało podzielone na dwa różne wydarzenia, jedno dla graczy solo, a drugie dla drużyn dwuosobowych, czyli duetów.",
-    "StartDate": "2022-04-06",
-    "EndDate": "2022-06-10",
-    "WinnerPrize": 250,
+    "Description": "Warzone Duo Challenge to coroczny turniej na, którym zbierają się drużyny z całego świata aby wziąć udział w rozgrywkach 2 na 2.\n Turniej zaczyna się 15 kwietnia i trwa 10 dni przez ten czas 60 drużyn będzie brało w dynamicznych rozgrwykach.",
+    "StartDate": "2022-04-15",
+    "EndDate": "2022-04-15",
+    "WinnerPrize": 250000,
+    "EventType": "Duo 2v2",
+    "EventOrganiser": "Battle.net",
+    "PhotoUrl": "https://www.tabletowo.pl/wp-content/uploads/2020/04/Call-of-Duty-Warzone-Receznzja-Tabletowo.jpg",
+    "GameId": 7,
+    "EventTeamRegistration": [
+      {
+        "TeamId": 5
+      },
+      {
+        "TeamId": 6
+      },
+      {
+        "TeamId": 7
+      },
+      {
+        "TeamId": 8
+      },
+      {
+        "TeamId": 9
+      }
+    ]
+  },
+  {
+    "Name": "The International 2021",
+    "Description": "The International 2021 znany również jako The International 10 (TI10), był dziesiątą iteracją The International, corocznego turnieju esportowego mistrzostw świata w Dota 2.\n Turniej, którego gospodarzem jest Valve, producent gry, odbył się po rocznej serii turniejów przyznających punkty kwalifikacyjne, znanych jako Dota Pro Circuit (DPC), z 12 najlepszymi drużynami w rankingu, które zostały bezpośrednio zaproszone do turnieju.\n Dodatkowo, sześć kolejnych drużyn zdobyło zaproszenia poprzez regionalne kwalifikacje, które odbyły się wcześniej w 2021 roku. Turniej odbędzie się w Bukareszcie, w Rumunii, z głównym wydarzeniem za zamkniętymi drzwiami w Arena Națională z powodu ograniczeń dotyczących zgromadzeń w mieście.",
+    "StartDate": "2021-12-07",
+    "EndDate": "2021-12-17",
+    "WinnerPrize": 40018195,
     "EventType": "Drużyny 5v5",
-    "EventOrganiser": "Enigma",
-    "PhotoUrl": "https://images6.alphacoders.com/514/514762.jpg",
-    "GameId": 5
+    "EventOrganiser": "Valve",
+    "PhotoUrl": "https://cdn-wp.thesportsrush.com/2021/10/3a65757a-ti-10-prize-pool.jpg",
+    "GameId": 5,
+    "EventTeamRegistration": [
+      {
+        "TeamId": 1
+      },
+      {
+        "TeamId": 2
+      },
+      {
+        "TeamId": 3
+      },
+      {
+        "TeamId": 4
+      },
+      {
+        "TeamId": 5
+      }
+    ],
+    "EventTeamResult": {
+      "TeamId": 1
+    }
+  },
+  {
+    "Name": "League of Legends ― Mistrzostwa 2021",
+    "Description": "Gracze stają się wojownikami, wojownicy gigantami, a giganci przechodzą do legend. Podczas Mistrzostw tylko jedna drużyna zapanuje nad Summoner’s Rift i zdobędzie Puchar Przywoływacza.\n 4 listopada dziesięć najlepszych, profesjonalnych drużyn spotka się w Reykjaviku, stolicy Islandii, aby walczyć o najwyższą pozycję w rankingu podczas Mistrzostw Świata League of Legends.",
+    "StartDate": "2021-11-04",
+    "EndDate": "2021-11-23",
+    "WinnerPrize": 500000,
+    "EventType": "Drużyny 5v5",
+    "EventOrganiser": "Riot",
+    "PhotoUrl": "https://support-leagueoflegends.riotgames.com/hc/article_attachments/4406813626643/Worlds_JarvanIV_PS.jpg",
+    "GameId": 1,
+    "EventTeamRegistration": [
+      {
+        "TeamId": 1
+      },
+      {
+        "TeamId": 2
+      },
+      {
+        "TeamId": 3
+      },
+      {
+        "TeamId": 4
+      },
+      {
+        "TeamId": 5
+      },
+      {
+        "TeamId": 8
+      }
+    ]
+
+  },
+  {
+    "Name": "World of Tanks Championship International 2021",
+    "Description": "Jest to pierwszy na świecie turniej 15v15 w World of Tanks, w którym wezmą udział najlepsze drużyny z pięciu regionów: Wspólnoty Niepodległych Państw, Europy, Ameryki Północnej, Azji i Pacyfiku oraz Chin!.",
+    "StartDate": "2022-01-01",
+    "EndDate": "2022-01-04",
+    "WinnerPrize": 130000,
+    "EventType": "Drużyny 15v15",
+    "EventOrganiser": "WarGaming",
+    "PhotoUrl": "https://eu-wotp.wgcdn.co/dcont/fb/image/regional_champions_en.jpg",
+    "GameId": 2,
+    "EventTeamRegistration": [
+      {
+        "TeamId": 5
+      },
+      {
+        "TeamId": 10
+      },
+      {
+        "TeamId": 3
+      },
+      {
+        "TeamId": 4
+      },
+      {
+        "TeamId": 6
+      },
+      {
+        "TeamId": 8
+      }
+    ]
+  },
+  {
+    "Name": "VALORANT Champions 2021",
+    "Description": "VALORANT Champions Tour zakończy inauguracyjny sezon 2021 w Berlinie! Champions to finał na koniec roku, gromadzący najlepsze drużyny z całego świata, które będą walczyć o tytuł Mistrza Świata VALORANT.\n Wydarzenie odbędzie się w dniach 1-12 grudnia i weźmie w nim udział szesnaście drużyn, dwanaście, które zakwalifikują się dzięki wynikom w sezonie zasadniczym oraz cztery z kwalifikacji ostatniej szansy, które odbędą się w październiku.",
+    "StartDate": "2021-12-01",
+    "EndDate": "2021-12-12",
+    "WinnerPrize": 1000000,
+    "EventType": "Drużyny 5v5",
+    "EventOrganiser": "VCT",
+    "PhotoUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/bltc9e63f8e745e1711/6131ebe785514a6ee3faca1e/1.VCT_Berlin_Art_04_KR.jpg",
+    "GameId": 3,
+    "EventTeamRegistration": [
+      {
+        "TeamId": 10
+      },
+      {
+        "TeamId": 7
+      },
+      {
+        "TeamId": 3
+      },
+      {
+        "TeamId": 4
+      },
+      {
+        "TeamId": 5
+      },
+      {
+        "TeamId": 8
+      }
+    ],
+    "EventTeamResult": {
+      "TeamId": 8
+    }
   }
 ]

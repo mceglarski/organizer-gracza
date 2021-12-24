@@ -137,5 +137,51 @@ namespace organizer_gracza_backend.Controllers
                 return BadRequest($"Error getting achievements for game {gameId}: {e.Message}");
             }
         }
+        
+        [HttpGet("user/achievements/{userId}/game/{gameId}")]
+        public async Task<IActionResult> GetUserAchievements(string userId, int gameId)
+        {
+            using HttpClient steam = new HttpClient();
+            try
+            {
+                steam.BaseAddress = new Uri(API_Uri);
+                var response = await steam.GetAsync($"/ISteamUserStats/GetPlayerAchievements/v0001/?appid={gameId}&key={API_Key}&steamid={userId}");
+                response.EnsureSuccessStatusCode();
+        
+                
+                
+                string result = await response.Content.ReadAsStringAsync();
+                var json = JsonConvert.DeserializeObject(result);
+        
+                return Ok(json);
+            }
+            catch (HttpRequestException e)
+            {
+                return BadRequest($"Error getting achievements for game {userId}: {e.Message}");
+            }
+        }
+        
+        [HttpGet("user/played/{userId}")]
+        public async Task<IActionResult> GetUserAchievements(string userId)
+        {
+            using HttpClient steam = new HttpClient();
+            try
+            {
+                steam.BaseAddress = new Uri(API_Uri);
+                var response = await steam.GetAsync($"/IPlayerService/GetRecentlyPlayedGames/v0001/?key={API_Key}&steamid={userId}&format=json");
+                response.EnsureSuccessStatusCode();
+        
+                
+                
+                string result = await response.Content.ReadAsStringAsync();
+                var json = JsonConvert.DeserializeObject(result);
+        
+                return Ok(json);
+            }
+            catch (HttpRequestException e)
+            {
+                return BadRequest($"Error getting achievements for game {userId}: {e.Message}");
+            }
+        }
     }
 }

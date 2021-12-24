@@ -13,6 +13,8 @@ namespace organizer_gracza_backend.DTOs
         
         public string Description { get; set; }
         
+        public string SteamId { get; set; }
+        
         public ICollection<UserGameDto> UserGames { get; set; }
 
 

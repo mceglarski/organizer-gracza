@@ -1,10 +1,12 @@
 export interface User {
-  Id: number;
+  id: number;
   username: string;
   nickname: string;
   token: string;
   photoUrl: string;
   roles: string[];
+  description: string;
+  steamId: string;
 }
 
 export interface News {
@@ -32,6 +34,15 @@ export interface Member {
   lastActive: Date;
   photoUrl: string;
   photos: Photo[];
+  description: string;
+  steamId: string;
+}
+
+export interface SteamInformation {
+  communityvisibilitystate?: number;
+  profileurl?: string;
+  gameid?: number;
+  realname?: string;
 }
 
 export interface Pagination {
@@ -50,7 +61,7 @@ export class PaginatedResult<T> {
 
 export class PagintationParams {
   pageNumber = 1;
-  pageSize = 6;
+  pageSize = 20;
 }
 
 export interface Message {
@@ -203,11 +214,16 @@ export interface ForumPost {
   username: string;
 }
 
-export interface EventResult {
-  eventResultId: number;
-  winnerName: string;
-  eventTeamRegistrationId: number;
-  eventUserRegistrationId: number;
+export interface EventTeamResult {
+  eventTeamResultId: number;
+  eventTeamId: number;
+  teamId: number;
+}
+
+export interface EventUserResult {
+  eventUserResultId: number;
+  eventUserId: number;
+  userId: number;
 }
 
 export interface TwitchBroadcast {
@@ -242,4 +258,12 @@ export interface UserGame{
   userGameId: number;
   userId: number;
   gameId: number;
+}
+
+export interface UserAchievement {
+  achievements: Achievements;
+  userAchievementsId: number;
+  achievementsId: number;
+  userId: number;
+  user: User;
 }

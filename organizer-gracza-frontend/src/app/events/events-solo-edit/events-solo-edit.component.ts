@@ -62,7 +62,6 @@ export class EventsSoloEditComponent implements OnInit {
     this.uploader.onSuccessItem = (item, response, status, headers) => {
       if (response) {
         const photo: Photo = JSON.parse(response);
-        console.log(photo);
         this.eventUser.photoUrl = photo.url;
         this.accountService.setCurrentUser(this.user);
       }

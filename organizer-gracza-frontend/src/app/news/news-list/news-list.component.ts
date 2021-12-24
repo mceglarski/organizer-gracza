@@ -17,7 +17,9 @@ export class NewsListComponent implements OnInit {
     this.articlesService.getArticles().subscribe(article => {
       // @ts-ignore
       this.articleArray = article;
-      console.log(this.articleArray);
+      this.articleArray.sort((a, b) => {
+        return new Date(b.publicationDate).getTime() - new Date(a.publicationDate).getTime();
+      });
     });
   }
 
