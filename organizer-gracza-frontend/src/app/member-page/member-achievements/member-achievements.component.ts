@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnChanges, OnInit} from '@angular/core';
 import {MemberContentComponent} from "../member-content/member-content.component";
 import {Achievements, Member, UserAchievement} from "../../model/model";
 import {AchievementsService} from "../../_services/achievements.service";
@@ -10,20 +10,18 @@ import {UserachievementService} from "../../_services/userachievement.service";
   templateUrl: './member-achievements.component.html',
   styleUrls: ['./member-achievements.component.css']
 })
-export class MemberAchievementsComponent implements OnInit {
+export class MemberAchievementsComponent implements OnInit, OnChanges {
 
+  @Input() public member: Member;
   public memberAchievements: UserAchievement[] = [];
-  public member: Member;
 
-  constructor(public memberContent: MemberContentComponent,
-              private userAchievementService: UserachievementService,
-              private achievementService: AchievementsService,
-              private route: ActivatedRoute) { }
+  constructor(private userAchievementService: UserachievementService,
+              private achievementService: AchievementsService) { }
 
   ngOnInit(): void {
-    this.route.data.subscribe(data => {
-      this.member = data.member;
-    });
+  }
+
+  ngOnChanges() {
     this.loadMemberAchievement();
   }
 
@@ -35,11 +33,4 @@ export class MemberAchievementsComponent implements OnInit {
     })
   }
 
-  private loadAchievements(): void {
-    this.achievementService.getAchievements().subscribe(a => {
-      // @ts-ignore
-      this.achievements = a;
-      return;
-    });
-  }
 }

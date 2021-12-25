@@ -45,7 +45,7 @@
 
   </div>
 
-  <div class="row justify-content-center">
+  <div class="row justify-content-center" *ngIf="user">
       <div class="col-xl-10 forum-posts-reply">
         <form [formGroup]="addPostForm" (ngSubmit)="onSubmit()">
           <label class="field field_v3">
