@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ForumService} from "../../_services/forum.service";
-import {ForumPost, ForumThread, Member} from "../../model/model";
+import {ForumPost, ForumThread, Member, User} from "../../model/model";
 import {MembersService} from "../../_services/members.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
+import {take} from "rxjs/operators";
+import {AccountService} from "../../_services/account.service";
 
 @Component({
   selector: 'app-forum-posts',
@@ -16,27 +18,33 @@ export class ForumPostsComponent implements OnInit {
   public threadId: string | null;
   public forumThread: ForumThread;
   public posts: ForumPost[] = [];
+  public currentlyLoggedMember: number;
+  public user: User;
 
   public addPostForm = new FormGroup({
     content: new FormControl('', [Validators.required, this.noWhitespaceValidator])
   });
 
   private members: Member[] = [];
-  private currentlyLoggedMember: number;
 
   constructor(private activatedRoute: ActivatedRoute,
+              private accountService: AccountService,
               private forumService: ForumService,
               private membersService: MembersService,
               private toastr: ToastrService,
-              private router: Router) { }
+              private router: Router) {
+    this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
+  }
 
   ngOnInit(): void {
     this.threadId = this.activatedRoute.snapshot.paramMap.get('threadId');
-    this.membersService.getCurrentlyLoggedMemberId().subscribe(m => {
-      // @ts-ignore
-      this.currentlyLoggedMember = m;
-      return;
-    })
+    if (this.user) {
+      this.membersService.getCurrentlyLoggedMemberId().subscribe(m => {
+        // @ts-ignore
+        this.currentlyLoggedMember = m;
+        return;
+      });
+    }
     // @ts-ignore
     this.forumService.getForumThread(this.threadId).subscribe(f => {
       // @ts-ignore

@@ -1,2 +1,59 @@
-<h1 class="section-title"><span class="section-title-accent">STEAM</span> INFORMACJE&nbsp;</h1>
-W przygotowaniu
+<h1 class="section-title" *ngIf="steamId"><span class="section-title-accent">STEAM</span> INFORMACJE&nbsp;</h1>
+<br>
+<a [href]="steamInfo?.profileurl" class="steam-information-profile-url" target="_blank">
+  <h4>Kliknij aby zobaczyć profil gracza</h4>
+</a>
+<div class="row steam-information-row">
+  <div class="col-xl-1">
+    <a [href]="steamInfo?.profileurl" class="steam-information-profile-url" target="_blank">
+      <img class="img-fluid steam-information-avatar" [src]="steamInfo?.avatarfull">
+    </a>
+  </div>
+  <div class="col-xl-11">
+    <a [href]="steamInfo?.profileurl" class="steam-information-profile-url" target="_blank">{{steamInfo?.personaname}}</a>
+  </div>
+</div>
+
+<ng-container *ngIf="steamInfo?.gameid">
+  <h4>Aktualnie gra w: </h4>
+  <div class="row">
+    <div class="col">
+      <span class="steam-information-current-game">{{steamInfo?.gameextrainfo}} -
+        ilość zdobytych osiągnięć: <i class="material-icons steam-achievement">gamepad</i>
+        {{firstGameUnlockedAchievements}}
+      </span>
+    </div>
+  </div>
+  <br>
+</ng-container>
+
+<!-- show two elements when player is not playing anything currently -->
+<ng-container *ngIf="lastPlayedGame">
+  <h4>Ostatnio grał w: </h4>
+  <div class="row" *ngIf="isRecentGameAvailable">
+    <div class="col">
+      <span class="steam-information-current-game">{{lastPlayedGame[0].name}} -
+        ilość zdobytych osiągnięć: <i class="material-icons steam-achievement">gamepad</i>
+        {{secondGameUnlockedAchievements}}
+      </span>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="!isRecentGameAvailable">
+    <div class="col">
+      <span class="steam-information-current-game">{{lastPlayedGame[0].name}} -
+        ilość zdobytych osiągnięć: <i class="material-icons steam-achievement">gamepad</i>
+        {{firstGameUnlockedAchievements}}
+      </span>
+    </div>
+  </div>
+  <div class="row" *ngIf="!isRecentGameAvailable">
+    <div class="col">
+      <span class="steam-information-current-game">{{lastPlayedGame[1].name}} -
+        ilość zdobytych osiągnięć: <i class="material-icons steam-achievement">gamepad</i>
+        {{secondGameUnlockedAchievements}}
+      </span>
+    </div>
+  </div>
+
+</ng-container>

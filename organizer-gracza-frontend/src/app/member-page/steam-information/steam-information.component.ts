@@ -1,21 +1,33 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {SteamService} from "../../_services/steam.service";
-import {SteamInformation} from "../../model/model";
+import {SteamAchievements, SteamInformation, SteamLastPlayedGame} from "../../model/model";
 
 @Component({
   selector: 'app-steam-information',
   templateUrl: './steam-information.component.html',
   styleUrls: ['./steam-information.component.css']
 })
-export class SteamInformationComponent implements OnInit {
+export class SteamInformationComponent implements OnInit, OnChanges {
 
   @Input() steamId: string;
   public steamInfo: SteamInformation;
-  public currentlyPlayedGame: string;
+  public lastPlayedGame: SteamLastPlayedGame[];
+  public firstGameAchievements: SteamAchievements[];
+  public firstGameUnlockedAchievements: number = 0;
+  public secondGameAchievements: SteamAchievements[];
+  public secondGameUnlockedAchievements: number = 0;
+  public isRecentGameAvailable: boolean;
 
   constructor(private steamService: SteamService) { }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges() {
+    this.init();
+  }
+
+  private init(): void {
     this.steamService.getUser(this.steamId).subscribe(response => {
       this.steamInfo = {
         // @ts-ignore
@@ -25,21 +37,62 @@ export class SteamInformationComponent implements OnInit {
         // @ts-ignore
         gameid: response.response.players[0].gameid,
         // @ts-ignore
-        realname: response.response.players[0].realname
+        realname: response.response.players[0].realname,
+        // @ts-ignore
+        profilestate: response.response.players[0].profilestate,
+        // @ts-ignore
+        personaname: response.response.players[0].personaname,
+        // @ts-ignore
+        gameextrainfo: response.response.players[0].gameextrainfo,
+        // @ts-ignore
+        avatarfull: response.response.players[0].avatarfull
       }
       if (this.steamInfo.gameid) {
-        this.steamService.getUserRecentlyPlayedGames(this.steamId).subscribe( game => {
-          // console.log(game);
-          return;
-        });
+        this.getRecentFirstPlayedGameAchievements(this.steamId, this.steamInfo.gameid);
       }
-      else {
-        this.steamService.getUserRecentlyPlayedGames(this.steamId).subscribe( game => {
-          // console.log(game);
-          return;
-        });
-      }
-      // console.log(this.steamInfo);
+      this.steamService.getUserRecentlyPlayedGames(this.steamId).subscribe( game => {
+        // @ts-ignore
+        this.lastPlayedGame = game.response.games;
+        this.lastPlayedGame = this.lastPlayedGame?.filter( l => l.appid != this.steamInfo.gameid);
+        if (this.lastPlayedGame && this.steamInfo.gameid) {
+          this.isRecentGameAvailable = true;
+          // @ts-ignore
+          this.steamService.getUserAchievements(this.steamId, this.lastPlayedGame[0].appid).subscribe( game => {
+            // @ts-ignore
+            this.secondGameAchievements = game.playerstats.achievements;
+            this.secondGameAchievements.forEach(a => this.secondGameUnlockedAchievements += a.achieved);
+            return;
+          });
+        }
+        else if (this.lastPlayedGame?.length === 1 && !this.steamInfo.gameid) {
+          // @ts-ignore
+          this.getRecentFirstPlayedGameAchievements(this.steamId, this.lastPlayedGame[0].appid);
+        }
+        else if (this.lastPlayedGame?.length > 1 && !this.steamInfo.gameid) {
+          // @ts-ignore
+          this.getRecentFirstPlayedGameAchievements(this.steamId, this.lastPlayedGame[0].appid);
+          // @ts-ignore
+          this.steamService.getUserAchievements(this.steamId, this.lastPlayedGame[1].appid).subscribe( game => {
+            // @ts-ignore
+            this.secondGameAchievements = game.playerstats.achievements;
+            this.secondGameAchievements.forEach(a => this.secondGameUnlockedAchievements += a.achieved);
+            return;
+          });
+        }
+        return;
+      });
+      return;
+    });
+  }
+
+  private getRecentFirstPlayedGameAchievements(steamId: string, gameid: number): void {
+    this.steamService.getUserAchievements(steamId, gameid).subscribe( game => {
+      // @ts-ignore
+      this.firstGameAchievements = game.playerstats.achievements;
+      this.firstGameAchievements.forEach(a => this.firstGameUnlockedAchievements += a.achieved);
+      return;
+    }, error => {
+      console.log(error);
       return;
     });
   }
