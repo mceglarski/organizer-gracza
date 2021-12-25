@@ -26,6 +26,7 @@ namespace organizer_gracza_backend.Controllers
             _photoService = photoService;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery]PaginationParams paginationParams)
         {
@@ -37,6 +38,7 @@ namespace organizer_gracza_backend.Controllers
             return Ok(users);
         }
         
+        [AllowAnonymous]
         [HttpGet("user/{username}")]
         public int GetUserId(string username)
         {
@@ -53,12 +55,14 @@ namespace organizer_gracza_backend.Controllers
             return query.Result.Id;
         }
         
+        [AllowAnonymous]
         [HttpGet("{username}", Name = "GetUser")]
         public async Task<ActionResult<MemberDto>> GetUser(string username)
         {
             return await _userRepository.GetMemberAsync(username);
         }
         
+        [AllowAnonymous]
         [HttpGet("member/{id}")]
         public async Task<ActionResult<MemberDto>> GetUserById(int id)
         {

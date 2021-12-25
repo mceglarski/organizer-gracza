@@ -40,9 +40,22 @@ export interface Member {
 
 export interface SteamInformation {
   communityvisibilitystate?: number;
+  profilestate?: number;
+  personaname?: string;
   profileurl?: string;
   gameid?: number;
+  gameextrainfo?: string;
   realname?: string;
+  avatarfull?: string;
+}
+
+export interface SteamLastPlayedGame {
+  appid?: number;
+  name?: string;
+}
+
+export interface SteamAchievements {
+  achieved: number;
 }
 
 export interface Pagination {

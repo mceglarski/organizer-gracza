@@ -1,6 +1,6 @@
 <div class="member-statistics">
 
-  <h1 class="section-title"><span class="section-title-accent">STATYSTYKI</span> Z WYDARZEŃ&nbsp;</h1>
+  <h1 *ngIf="generalStatistics" class="section-title"><span class="section-title-accent">STATYSTYKI</span> Z WYDARZEŃ&nbsp;</h1>
 
   <div class="row" *ngIf="generalStatistics">
     <p class="col-xl-12">
@@ -13,10 +13,10 @@
 
   <label>Wybierz grę:</label>
   <div class="game-select">
-      <select (change)="loadGame($any($event.target).value)"
+      <select (change)="loadGameStatistics($any($event.target).value)"
               name="game-name"
               class="game-select-input">
-        <option [value]="game.gameId" *ngFor="let game of games" (click)="loadGame(game.gameId)">{{game.title}}</option>
+        <option [value]="game.gameId" *ngFor="let game of games" (click)="loadGameStatistics(game.gameId)">{{game.title}}</option>
       </select>
   </div>
 
