@@ -1,13 +1,20 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.VisualBasic;
 using organizer_gracza_backend.DTOs;
+using organizer_gracza_backend.Helpers;
 using organizer_gracza_backend.Interfaces;
 using organizer_gracza_backend.Model;
+using organizer_gracza_backend.Services;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 
 namespace organizer_gracza_backend.Controllers
 {
@@ -17,16 +24,22 @@ namespace organizer_gracza_backend.Controllers
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, 
-            ITokenService tokenService, IMapper mapper)
+        private readonly IConfiguration _configuration;
+
+
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager,
+            ITokenService tokenService, IMapper mapper, IConfiguration configuration)
         {
             _tokenService = tokenService;
             _mapper = mapper;
             _userManager = userManager;
             _signInManager = signInManager;
+            _configuration = configuration;
         }
+        
+        private string API_Key => _configuration["SendGrid:NAME"];
 
+        
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
@@ -61,6 +74,15 @@ namespace organizer_gracza_backend.Controllers
 
             if (!roleResult.Succeeded)
                 return BadRequest(result.Errors);
+            
+            var client = new SendGridClient(API_Key);
+            var from = new EmailAddress("organizergracza@gmail.com", "Organizer gracza");
+            var subject = "Potwierdzenie adresu E-mail";
+            var to = new EmailAddress(user.Email, user.UserName);
+            var plainTextContent = "Dzień dobry, dziękujemy za zarejestrowanie się na naszej stronie Organizer Gracza. Prosimy wejść na link wysłany w wiadomości w celu potwierdzenia swojego adresu E-mail.";
+            var htmlContent = "Dzień dobry, dziękujemy za zarejestrowanie się na naszej stronie Organizer Gracza. Prosimy wejść na link wysłany w wiadomości w celu potwierdzenia swojego adresu E-mail.";
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+            var response = await client.SendEmailAsync(msg);
             
             return new UserDto()
             {

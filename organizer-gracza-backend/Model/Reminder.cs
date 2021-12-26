@@ -7,6 +7,7 @@ namespace organizer_gracza_backend.Model
     {
         [Key]
         public int ReminderId { get; set; }
+        [MaxLength(150)]
         public string Title { get; set; }
         public DateTime? StartDate { get; set; }
         
