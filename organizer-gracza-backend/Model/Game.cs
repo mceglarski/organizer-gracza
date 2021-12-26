@@ -9,7 +9,9 @@ namespace organizer_gracza_backend.Model
     {
         [Key]
         public int GameId { get; set; }
+        [MaxLength(100)]
         public string Title { get; set; }
+        [MaxLength(200)]
         public string PhotoUrl { get; set; }
         public ICollection<EventTeam> EventTeam { get; set; }
         public ICollection<EventUser> EventUser { get; set; }

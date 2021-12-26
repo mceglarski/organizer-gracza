@@ -7,6 +7,7 @@ export interface User {
   roles: string[];
   description: string;
   steamId: string;
+  emailConfirmed: number;
 }
 
 export interface News {
@@ -36,6 +37,7 @@ export interface Member {
   photos: Photo[];
   description: string;
   steamId: string;
+  emailConfirmed: number;
 }
 
 export interface SteamInformation {
