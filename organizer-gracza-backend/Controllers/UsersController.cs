@@ -73,13 +73,14 @@ namespace organizer_gracza_backend.Controllers
         [HttpPut]
         public async Task<ActionResult> UpdateUser(MemberUpdateDto memberUpdateDto)
         {
+            Console.Write(memberUpdateDto);
             memberUpdateDto.Nickname = Strings.Trim(memberUpdateDto.Nickname);
             memberUpdateDto.SteamId = Strings.Trim(memberUpdateDto.SteamId);
             
             var user = await _userRepository.GetUserByUsernameAsync(User.GetUsername());
 
             if (IsValidSteamid(memberUpdateDto.SteamId) == false)
-                return BadRequest("SteamId is in incorrent format");
+                return BadRequest("SteamId is in incorrect format");
 
             _mapper.Map(memberUpdateDto, user);
 

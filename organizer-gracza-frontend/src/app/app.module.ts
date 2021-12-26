@@ -93,6 +93,7 @@ import { ForumPostsComponent } from './forum/forum-posts/forum-posts.component';
 import { ForumAddNewThreadComponent } from './forum/forum-add-new-thread/forum-add-new-thread.component';
 import { NewsEditorPanelComponent } from './news-editor/news-editor-panel/news-editor-panel.component';
 import { SteamInformationComponent } from './member-page/steam-information/steam-information.component';
+import { ActivateMailComponent } from './member-page/activate-mail/activate-mail.component';
 
 registerLocaleData(localePl, 'pl');
 
@@ -158,7 +159,8 @@ FullCalendarModule.registerPlugins([
     ForumPostsComponent,
     ForumAddNewThreadComponent,
     NewsEditorPanelComponent,
-    SteamInformationComponent
+    SteamInformationComponent,
+    ActivateMailComponent
   ],
   imports: [
     BrowserModule,

@@ -29,6 +29,7 @@ import {ForumPostsComponent} from "./forum/forum-posts/forum-posts.component";
 import {ForumAddNewThreadComponent} from "./forum/forum-add-new-thread/forum-add-new-thread.component";
 import {NewsEditorPanelComponent} from "./news-editor/news-editor-panel/news-editor-panel.component";
 import {EditorGuard} from "./_guards/editor.guard";
+import {ActivateMailComponent} from "./member-page/activate-mail/activate-mail.component";
 
 const routes: Routes = [
   {path: '', component: MainPageContentComponent},
@@ -52,6 +53,7 @@ const routes: Routes = [
       {path: 'teams/details/:name', component: TeamsDetailsComponent},
       {path: 'member/edit', component: MemberEditComponent, canDeactivate: [PreventUnsavedChangesGuard]},
       {path: 'messages', component: MessagesChatComponent},
+      {path: 'activate-mail', component: ActivateMailComponent},
       {path: 'messages/thread/:username', component: MessagesMembersChatComponent, resolve: {member: MemberDetailedResolver}},
       {path: 'admin', component: AdminPanelComponent, canActivate: [AdminGuard]},
       {path: 'editor-panel', component: NewsEditorPanelComponent, canActivate: [EditorGuard]},

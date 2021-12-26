@@ -47,7 +47,7 @@
       </span>
     </div>
   </div>
-  <div class="row" *ngIf="!isRecentGameAvailable">
+  <div class="row" *ngIf="!isRecentGameAvailable && secondGameUnlockedAchievements">
     <div class="col">
       <span class="steam-information-current-game">{{lastPlayedGame[1].name}} -
         ilość zdobytych osiągnięć: <i class="material-icons steam-achievement">gamepad</i>

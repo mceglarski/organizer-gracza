@@ -1,6 +1,11 @@
 .photo-content{
 
 }
+
+.my-drop-zone {
+  color: #c3073f;
+}
+
 .img-thumbnail{
   max-height: 100px;
   max-width: 100px;

@@ -72,6 +72,25 @@ namespace organizer_gracza_backend.Controllers
                 return Ok(_mapper.Map<UserGameDto>(newUserGame));
             return BadRequest("Failed to add user game");
         }
+        
+        [HttpPost("list")]
+        public async Task<ActionResult<UserGameDto>> CreateUserGameList(List<UserGameDto> userGamesDto)
+        {
+
+            foreach (var game in userGamesDto)
+            {
+                var newUserGame = new UserGame()
+                {
+                    UserId = game.UserId,
+                    GameId = game.GameId
+                };
+                _userGamesRepository.AddUserGame(newUserGame);
+            }
+
+            if (await _userGamesRepository.SaveOptionalAsync())
+                return Ok(_mapper.Map<List<UserGameDto>>(userGamesDto));
+            return BadRequest("Failed to add user game");
+        }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteUserGame(int id)
@@ -81,6 +100,17 @@ namespace organizer_gracza_backend.Controllers
             _userGamesRepository.DeleteUserGame(userGames);
 
             if (await _userGamesRepository.SaveAllAsync())
+                return Ok();
+
+            return BadRequest("An error occurred while deleting user game");
+        }
+        
+        [HttpDelete("all/{userId}")]
+        public async Task<ActionResult> DeleteAllUserGames(int userId)
+        {
+            _userGamesRepository.DeleteAllUserGames(userId);
+
+            if (await _userGamesRepository.SaveOptionalAsync())
                 return Ok();
 
             return BadRequest("An error occurred while deleting user game");

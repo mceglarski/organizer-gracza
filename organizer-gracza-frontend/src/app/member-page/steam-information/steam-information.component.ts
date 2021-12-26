@@ -92,7 +92,6 @@ export class SteamInformationComponent implements OnInit, OnChanges {
       this.firstGameAchievements.forEach(a => this.firstGameUnlockedAchievements += a.achieved);
       return;
     }, error => {
-      console.log(error);
       return;
     });
   }

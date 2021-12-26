@@ -36,6 +36,7 @@ export interface Member {
   photos: Photo[];
   description: string;
   steamId: string;
+  // userGames: UserGame[];
 }
 
 export interface SteamInformation {
@@ -268,7 +269,7 @@ export interface UserAchievementCounter{
 }
 
 export interface UserGame{
-  userGameId: number;
+  userGameId?: number;
   userId: number;
   gameId: number;
 }
