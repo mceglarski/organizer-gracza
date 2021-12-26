@@ -1,0 +1,54 @@
+﻿{
+  "playerstats": {
+    "steamID": "76561198006496927",
+    "gameName": "Counter-Strike: Global Offensive",
+    "achievements": [
+      {
+        "apiname": "WIN_BOMB_PLANT",
+        "achieved": 1,
+        "unlocktime": 1427493180
+      },
+      {
+        "apiname": "BOMB_PLANT_LOW",
+        "achieved": 1,
+        "unlocktime": 1481842002
+      },
+      {
+        "apiname": "BOMB_DEFUSE_LOW",
+        "achieved": 0,
+        "unlocktime": 0
+      },
+      {
+        "apiname": "KILL_ENEMY_LOW",
+        "achieved": 1,
+        "unlocktime": 1424445213
+      },
+      {
+        "apiname": "KILL_ENEMY_MED",
+        "achieved": 1,
+        "unlocktime": 1459948235
+      },
+      {
+        "apiname": "KILL_ENEMY_HIGH",
+        "achieved": 0,
+        "unlocktime": 0
+      },
+      {
+        "apiname": "BOMB_DEFUSE_CLOSE_CALL",
+        "achieved": 1,
+        "unlocktime": 1539985365
+      },
+      {
+        "apiname": "KILL_BOMB_DEFUSER",
+        "achieved": 1,
+        "unlocktime": 1481200520
+      },
+      {
+        "apiname": "WIN_BOMB_DEFUSE",
+        "achieved": 1,
+        "unlocktime": 1427493498
+      }
+    ],
+    "success": true
+  }
+}

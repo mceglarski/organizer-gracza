@@ -1,0 +1,100 @@
+﻿{
+  "game": {
+    "gameName": "ValveTestApp260",
+    "gameVersion": "241",
+    "availableGameStats": {
+      "achievements": [
+        {
+          "name": "WIN_BOMB_PLANT",
+          "defaultvalue": 0,
+          "displayName": "Someone Set Up Us The Bomb",
+          "hidden": 0,
+          "description": "Win a round by planting a bomb",
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/730/9f60ea3c56b4ab248ab598bbd62568b953116301.jpg",
+          "icongray": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/730/978bdbc78917f57180549c864a9c7dcc1711dfec.jpg"
+        },
+        {
+          "name": "BOMB_PLANT_LOW",
+          "defaultvalue": 0,
+          "displayName": "Boomala Boomala",
+          "hidden": 0,
+          "description": "Plant 100 bombs",
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/730/325ccbd68e599083c1597fd90dc6d4265d1ca3b4.jpg",
+          "icongray": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/730/a4f62b47ba5a852c71af6fe35411addbc0d1d193.jpg"
+        },
+        {
+          "name": "BOMB_DEFUSE_LOW",
+          "defaultvalue": 0,
+          "displayName": "The Hurt Blocker",
+          "hidden": 0,
+          "description": "Defuse 100 bombs successfully",
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/730/9b8627953feca51a56f0c2ac871493c8634a1c07.jpg",
+          "icongray": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/730/2cd43018d802f495bc12abb4299a5354afac2790.jpg"
+        },
+        {
+          "name": "KILL_ENEMY_LOW",
+          "defaultvalue": 0,
+          "displayName": "Body Bagger",
+          "hidden": 0,
+          "description": "Kill 25 enemies",
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/730/b11ef0453168cd3d10684e184004f71dcc0faa82.jpg",
+          "icongray": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/730/c2fc81593400110271e1f968f0e704a19ee83011.jpg"
+        },
+        {
+          "name": "KILL_ENEMY_MED",
+          "defaultvalue": 0,
+          "displayName": "Corpseman",
+          "hidden": 0,
+          "description": "Kill 500 enemies",
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/730/60d83a42df84fa5d84910af681370579e3bb16bf.jpg",
+          "icongray": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/730/4ddb4bf34e96d538b6c9aab1ff1796f51d218e5d.jpg"
+        },
+        {
+          "name": "KILL_ENEMY_HIGH",
+          "defaultvalue": 0,
+          "displayName": "God of War",
+          "hidden": 0,
+          "description": "Kill 10,000 enemies",
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/730/2c2bb56a4f7376b53eeaf8e6d84044460b0d1cf2.jpg",
+          "icongray": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/730/55fbfbb54876d0e777f430062201b9ea616face5.jpg"
+        },
+        {
+          "name": "BOMB_DEFUSE_CLOSE_CALL",
+          "defaultvalue": 0,
+          "displayName": "Second to None",
+          "hidden": 0,
+          "description": "Successfully defuse a bomb with less than one second remaining",
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/730/986a53e24114699cb1f230f52b55b27e0de28ecf.jpg",
+          "icongray": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/730/eb4763f562c2ea763afab225e410e74245893e43.jpg"
+        },
+        {
+          "name": "KILL_BOMB_DEFUSER",
+          "defaultvalue": 0,
+          "displayName": "Counter-Counter-Terrorist",
+          "hidden": 0,
+          "description": "Kill a Counter-Terrorist while he is defusing the bomb",
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/730/c09cb3fe34841fd1000a48c3b7825c4fde026188.jpg",
+          "icongray": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/730/010dc024d20bb7471a6ada87ba3d92c840228cbe.jpg"
+        },
+        {
+          "name": "WIN_BOMB_DEFUSE",
+          "defaultvalue": 0,
+          "displayName": "Rite of First Defusal",
+          "hidden": 0,
+          "description": "Win a round by defusing a bomb",
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/730/b2027dac5a9883f0f145e78a33e531a58944f3ec.jpg",
+          "icongray": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/730/3c3e898c96d92e3f77624bbcf7b02c38d6cc3506.jpg"
+        },
+        {
+          "name": "BOMB_PLANT_IN_25_SECONDS",
+          "defaultvalue": 0,
+          "displayName": "Short Fuse",
+          "hidden": 0,
+          "description": "Plant a bomb within 25 seconds (excluding Demolition mode)",
+          "icon": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/730/648550738f4845f12aa686a1b4ee8c4a51ec2348.jpg",
+          "icongray": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/730/3c8e0316829a1c3db72668b239ce2ea8669cb781.jpg"
+        }
+      ]
+    }
+  }
+}

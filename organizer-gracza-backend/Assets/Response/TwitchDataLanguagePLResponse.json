@@ -1,0 +1,380 @@
+﻿{
+  "data": [
+    {
+      "id": "44905452909",
+      "user_id": "69616738",
+      "user_login": "xth0rek",
+      "user_name": "xth0rek",
+      "game_id": "1342987707",
+      "game_name": "Propnight",
+      "type": "live",
+      "title": "PROPNIGHT Z EKIPĄ (VGZ, KENON, MISIU) | !dc !betclic",
+      "viewer_count": 4198,
+      "started_at": "2021-12-25T14:00:56Z",
+      "language": "pl",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_xth0rek-{width}x{height}.jpg",
+      "tag_ids": [
+        "f9d04efa-6e25-49bf-bf0a-da3e2addaf1b"
+      ],
+      "is_mature": false
+    },
+    {
+      "id": "44906030877",
+      "user_id": "62603776",
+      "user_login": "cygan___",
+      "user_name": "cygan___",
+      "game_id": "27546",
+      "game_name": "World of Tanks",
+      "type": "live",
+      "title": "NOWE 🟢 !DROPY 🟢 TURNIEJ 1V1 Z NAGRODAMI - dilej wiec będę pisał. !cel !święta - spuchł mi ryjec bo 8mka boly",
+      "viewer_count": 1648,
+      "started_at": "2021-12-25T15:37:04Z",
+      "language": "pl",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_cygan___-{width}x{height}.jpg",
+      "tag_ids": [
+        "f9d04efa-6e25-49bf-bf0a-da3e2addaf1b",
+        "c2542d6d-cd10-4532-919b-3d19f30a768b"
+      ],
+      "is_mature": false
+    },
+    {
+      "id": "44906120733",
+      "user_id": "76937848",
+      "user_login": "dmajszi",
+      "user_name": "dmajszi",
+      "game_id": "509658",
+      "game_name": "Just Chatting",
+      "type": "live",
+      "title": "Piękne święta ❄️ !shadowpay !nowyfilm 🎄 Skiny za punkty !losowanie 🎁",
+      "viewer_count": 1197,
+      "started_at": "2021-12-25T15:51:13Z",
+      "language": "pl",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_dmajszi-{width}x{height}.jpg",
+      "tag_ids": [
+        "f9d04efa-6e25-49bf-bf0a-da3e2addaf1b"
+      ],
+      "is_mature": false
+    },
+    {
+      "id": "44904696861",
+      "user_id": "130530322",
+      "user_login": "kubx",
+      "user_name": "Kubx",
+      "game_id": "33214",
+      "game_name": "Fortnite",
+      "type": "live",
+      "title": "WESOŁYCH ŚWIĄT🎅 | STREAM DO 2022 ROKU😎🤙 | -> KOD: KUBX <- | !darmowysub !twitter !instagram !discord !donate",
+      "viewer_count": 1162,
+      "started_at": "2021-12-25T11:47:21Z",
+      "language": "pl",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_kubx-{width}x{height}.jpg",
+      "tag_ids": [
+        "f9d04efa-6e25-49bf-bf0a-da3e2addaf1b"
+      ],
+      "is_mature": false
+    },
+    {
+      "id": "44905490253",
+      "user_id": "43483007",
+      "user_login": "xn0rth",
+      "user_name": "xN0rth",
+      "game_id": "32982",
+      "game_name": "Grand Theft Auto V",
+      "type": "live",
+      "title": "5City WL -OFF | Alberto Speedo | GOAL: Bank przy komendzie",
+      "viewer_count": 1044,
+      "started_at": "2021-12-25T14:06:57Z",
+      "language": "pl",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_xn0rth-{width}x{height}.jpg",
+      "tag_ids": [
+        "f9d04efa-6e25-49bf-bf0a-da3e2addaf1b",
+        "0cb7e377-a308-44e8-91f7-07eea1d96129"
+      ],
+      "is_mature": false
+    },
+    {
+      "id": "44171834892",
+      "user_id": "246961124",
+      "user_login": "mork",
+      "user_name": "MORK",
+      "game_id": "509658",
+      "game_name": "Just Chatting",
+      "type": "live",
+      "title": "gruby byłem już przed Świętami, ok? !dc !ig",
+      "viewer_count": 951,
+      "started_at": "2021-12-25T15:01:11Z",
+      "language": "pl",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_mork-{width}x{height}.jpg",
+      "tag_ids": [
+        "f9d04efa-6e25-49bf-bf0a-da3e2addaf1b"
+      ],
+      "is_mature": false
+    },
+    {
+      "id": "44905912445",
+      "user_id": "85463072",
+      "user_login": "randombrucetv",
+      "user_name": "RandomBruceTV",
+      "game_id": "263490",
+      "game_name": "Rust",
+      "type": "live",
+      "title": "ŚWIĄTECZNY STRIMEK RUST/LIGA ZEDZIK TRAP BASE CZILLERKA <3 PEEPOFAT",
+      "viewer_count": 891,
+      "started_at": "2021-12-25T15:17:51Z",
+      "language": "pl",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_randombrucetv-{width}x{height}.jpg",
+      "tag_ids": [
+        "f9d04efa-6e25-49bf-bf0a-da3e2addaf1b",
+        "a31daeb5-edc2-4b29-afa1-84c96612836d",
+        "8486f56b-8677-44f7-8004-000295391524"
+      ],
+      "is_mature": false
+    },
+    {
+      "id": "44905981517",
+      "user_id": "163291449",
+      "user_login": "hanyss07",
+      "user_name": "Hanyss07",
+      "game_id": "32982",
+      "game_name": "Grand Theft Auto V",
+      "type": "live",
+      "title": "|CoCoRP| Pierwszy Dzień Świąt ;) Ogarniamy <3",
+      "viewer_count": 633,
+      "started_at": "2021-12-25T15:29:16Z",
+      "language": "pl",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_hanyss07-{width}x{height}.jpg",
+      "tag_ids": [
+        "ff56eeeb-99ed-4a60-93fc-0b3f05d8661e",
+        "f9d04efa-6e25-49bf-bf0a-da3e2addaf1b"
+      ],
+      "is_mature": true
+    },
+    {
+      "id": "44905801821",
+      "user_id": "214022577",
+      "user_login": "matek",
+      "user_name": "Matek",
+      "game_id": "509658",
+      "game_name": "Just Chatting",
+      "type": "live",
+      "title": "TIKTOCZEK 🎁🎄 !KONKURS | SUB ZA 4ZŁ -> !PRIME | KOD ▶ MATEKFN ◀ | !sociale !steel",
+      "viewer_count": 589,
+      "started_at": "2021-12-25T15:00:14Z",
+      "language": "pl",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_matek-{width}x{height}.jpg",
+      "tag_ids": [
+        "e90b5f6e-4c6e-4003-885b-4d0d5adeb580",
+        "f9d04efa-6e25-49bf-bf0a-da3e2addaf1b"
+      ],
+      "is_mature": false
+    },
+    {
+      "id": "44905694541",
+      "user_id": "436868771",
+      "user_login": "kalach444",
+      "user_name": "Kalach444",
+      "game_id": "65876",
+      "game_name": "Cyberpunk 2077",
+      "type": "live",
+      "title": "CZY UDA MI SIĘ PRZETRWAC W KORPORACYJNYM ŚWIECIE? ",
+      "viewer_count": 560,
+      "started_at": "2021-12-25T14:42:03Z",
+      "language": "pl",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_kalach444-{width}x{height}.jpg",
+      "tag_ids": [
+        "f9d04efa-6e25-49bf-bf0a-da3e2addaf1b"
+      ],
+      "is_mature": false
+    },
+    {
+      "id": "44904754733",
+      "user_id": "574813315",
+      "user_login": "ukulula",
+      "user_name": "UkuLula",
+      "game_id": "509658",
+      "game_name": "Just Chatting",
+      "type": "live",
+      "title": "Święta z Twitchem 🤶 !instagram",
+      "viewer_count": 381,
+      "started_at": "2021-12-25T11:58:03Z",
+      "language": "pl",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_ukulula-{width}x{height}.jpg",
+      "tag_ids": [
+        "f9d04efa-6e25-49bf-bf0a-da3e2addaf1b",
+        "64d9afa6-139a-48d5-ab4e-51d0a92b22de",
+        "ac763b17-7bea-4632-9eb4-d106689ff409",
+        "8c1ada77-52f0-4935-a1b0-a02dc65f28b4"
+      ],
+      "is_mature": false
+    },
+    {
+      "id": "44905829885",
+      "user_id": "29565737",
+      "user_login": "jactroll",
+      "user_name": "jactroll",
+      "game_id": "21779",
+      "game_name": "League of Legends",
+      "type": "live",
+      "title": "!Growyourself . pl",
+      "viewer_count": 374,
+      "started_at": "2021-12-25T15:04:32Z",
+      "language": "pl",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_jactroll-{width}x{height}.jpg",
+      "tag_ids": [
+        "f9d04efa-6e25-49bf-bf0a-da3e2addaf1b"
+      ],
+      "is_mature": false
+    },
+    {
+      "id": "44906168909",
+      "user_id": "27187817",
+      "user_login": "lewus",
+      "user_name": "Lewus",
+      "game_id": "509658",
+      "game_name": "Just Chatting",
+      "type": "live",
+      "title": "wow mega !rewind",
+      "viewer_count": 371,
+      "started_at": "2021-12-25T15:58:46Z",
+      "language": "pl",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_lewus-{width}x{height}.jpg",
+      "tag_ids": [
+        "f9d04efa-6e25-49bf-bf0a-da3e2addaf1b"
+      ],
+      "is_mature": false
+    },
+    {
+      "id": "44171453628",
+      "user_id": "144288160",
+      "user_login": "damiefifa",
+      "user_name": "damiefifa",
+      "game_id": "1869092879",
+      "game_name": "FIFA 22",
+      "type": "live",
+      "title": "GRAM W SWIETA D:",
+      "viewer_count": 336,
+      "started_at": "2021-12-25T14:01:30Z",
+      "language": "pl",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_damiefifa-{width}x{height}.jpg",
+      "tag_ids": [
+        "f9d04efa-6e25-49bf-bf0a-da3e2addaf1b"
+      ],
+      "is_mature": false
+    },
+    {
+      "id": "44905790029",
+      "user_id": "732312364",
+      "user_login": "nitekk_",
+      "user_name": "Nitekk_",
+      "game_id": "27471",
+      "game_name": "Minecraft",
+      "type": "live",
+      "title": "PRZEDŁUŻANY LIVE! 5zł +1min | Sub +1 min | 100 Bits + 30 sek. LECIMY! ;)",
+      "viewer_count": 313,
+      "started_at": "2021-12-25T14:58:28Z",
+      "language": "pl",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_nitekk_-{width}x{height}.jpg",
+      "tag_ids": [
+        "f9d04efa-6e25-49bf-bf0a-da3e2addaf1b"
+      ],
+      "is_mature": false
+    },
+    {
+      "id": "44906244973",
+      "user_id": "47698897",
+      "user_login": "patryk_krutyj",
+      "user_name": "Patryk_Krutyj",
+      "game_id": "752590871",
+      "game_name": "F1 2021",
+      "type": "live",
+      "title": "Wesołych Świąt! Sebastian Vettel - Mistrzostowa (MONAKO)",
+      "viewer_count": 296,
+      "started_at": "2021-12-25T16:10:30Z",
+      "language": "pl",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_patryk_krutyj-{width}x{height}.jpg",
+      "tag_ids": [
+        "f9d04efa-6e25-49bf-bf0a-da3e2addaf1b"
+      ],
+      "is_mature": false
+    },
+    {
+      "id": "44906270317",
+      "user_id": "139026736",
+      "user_login": "niklaus",
+      "user_name": "Niklaus",
+      "game_id": "2224",
+      "game_name": "Max Payne",
+      "type": "live",
+      "title": "Stream z wygnania świątecznego RETROVIBE !prime ",
+      "viewer_count": 248,
+      "started_at": "2021-12-25T16:14:19Z",
+      "language": "pl",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_niklaus-{width}x{height}.jpg",
+      "tag_ids": [
+        "f9d04efa-6e25-49bf-bf0a-da3e2addaf1b",
+        "8ba227ca-073c-46a7-b3cc-193e52c5ab4d",
+        "67259b26-ff83-444e-9d3c-faab390df16f"
+      ],
+      "is_mature": true
+    },
+    {
+      "id": "44906150269",
+      "user_id": "88222396",
+      "user_login": "asaiika",
+      "user_name": "Asaiika",
+      "game_id": "513143",
+      "game_name": "Teamfight Tactics",
+      "type": "live",
+      "title": "chillera do grandmastera // EUW // !ig nowa foteczka // !rank",
+      "viewer_count": 233,
+      "started_at": "2021-12-25T15:55:54Z",
+      "language": "pl",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_asaiika-{width}x{height}.jpg",
+      "tag_ids": [
+        "f9d04efa-6e25-49bf-bf0a-da3e2addaf1b"
+      ],
+      "is_mature": false
+    },
+    {
+      "id": "44904664493",
+      "user_id": "191099908",
+      "user_login": "sl3dziv",
+      "user_name": "sl3dziv",
+      "game_id": "509658",
+      "game_name": "Just Chatting",
+      "type": "live",
+      "title": "wesołych swiat 😎 I !sociale !donate !ig !onlyfans",
+      "viewer_count": 224,
+      "started_at": "2021-12-25T11:41:06Z",
+      "language": "pl",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_sl3dziv-{width}x{height}.jpg",
+      "tag_ids": [
+        "f9d04efa-6e25-49bf-bf0a-da3e2addaf1b"
+      ],
+      "is_mature": true
+    },
+    {
+      "id": "44903840077",
+      "user_id": "39032904",
+      "user_login": "ovvy_",
+      "user_name": "Ovvy_",
+      "game_id": "29307",
+      "game_name": "Path of Exile",
+      "type": "live",
+      "title": "[DROPY] [HC] Atlas Invasion DD inquis   // !yt !darmowysub !builds // !profile !Nexus !discord",
+      "viewer_count": 214,
+      "started_at": "2021-12-25T08:52:17Z",
+      "language": "pl",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_ovvy_-{width}x{height}.jpg",
+      "tag_ids": [
+        "f9d04efa-6e25-49bf-bf0a-da3e2addaf1b",
+        "c2542d6d-cd10-4532-919b-3d19f30a768b",
+        "b157e8d6-b7ba-49f4-836f-09886c072f1f"
+      ],
+      "is_mature": false
+    }
+  ],
+  "pagination": {
+    "cursor": "eyJiIjp7IkN1cnNvciI6ImV5SnpJam8wTVRrNExqWTJOVEF5TURjNE5UWTRNaXdpWkNJNlptRnNjMlVzSW5RaU9uUnlkV1Y5In0sImEiOnsiQ3Vyc29yIjoiZXlKeklqb3lNRFF1TlRZeE1ETXlNVEUzTlRNNE1EVXNJbVFpT21aaGJITmxMQ0owSWpwMGNuVmxmUT09In19"
+  }
+}

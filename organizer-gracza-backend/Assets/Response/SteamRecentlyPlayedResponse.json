@@ -1,0 +1,150 @@
+﻿{
+  "response": {
+    "total_count": 13,
+    "games": [
+      {
+        "appid": 1295500,
+        "name": "Warhammer 40,000: Battlesector",
+        "playtime_2weeks": 3368,
+        "playtime_forever": 3368,
+        "img_icon_url": "da834f752b2aa0ad3a3567ccec96372cc4a890ce",
+        "img_logo_url": "6c7363029b794b62431abc33c475800417279a85",
+        "playtime_windows_forever": 3368,
+        "playtime_mac_forever": 0,
+        "playtime_linux_forever": 0
+      },
+      {
+        "appid": 1467450,
+        "name": "The Chronicles Of Myrtana: Archolos",
+        "playtime_2weeks": 947,
+        "playtime_forever": 1035,
+        "img_icon_url": "31696dfdb19506bbd300ea0a3ed5124dfa59f290",
+        "img_logo_url": "0b7d4ff97325faa9b8cd3a2dfcc38b9a4c1ef2c9",
+        "playtime_windows_forever": 1035,
+        "playtime_mac_forever": 0,
+        "playtime_linux_forever": 0
+      },
+      {
+        "appid": 1096530,
+        "name": "Solasta: Crown of the Magister",
+        "playtime_2weeks": 490,
+        "playtime_forever": 11510,
+        "img_icon_url": "ee1daddb7b47a1861d1274e46904bd1aee98ecff",
+        "img_logo_url": "5d25907729f96618bf9660829184e7156178ac9d",
+        "playtime_windows_forever": 11510,
+        "playtime_mac_forever": 0,
+        "playtime_linux_forever": 0
+      },
+      {
+        "appid": 719040,
+        "name": "Wasteland 3",
+        "playtime_2weeks": 412,
+        "playtime_forever": 412,
+        "img_icon_url": "86c0cf36d11ec827c0d4b6a64a6d70781d8c1184",
+        "img_logo_url": "da6bf9db6ec0ba4f5b24626be7d1490d7870a189",
+        "playtime_windows_forever": 412,
+        "playtime_mac_forever": 0,
+        "playtime_linux_forever": 0
+      },
+      {
+        "appid": 527430,
+        "name": "Warhammer 40,000: Inquisitor - Martyr",
+        "playtime_2weeks": 213,
+        "playtime_forever": 4617,
+        "img_icon_url": "0679e210754d3036b52f46297e5514473ef101e4",
+        "img_logo_url": "7a0f8f043b97b1adc216f0719a839a9ded621e39",
+        "playtime_windows_forever": 811,
+        "playtime_mac_forever": 0,
+        "playtime_linux_forever": 0
+      },
+      {
+        "appid": 394450,
+        "name": "Warhammer 40,000: Deathwatch - Enhanced Edition",
+        "playtime_2weeks": 177,
+        "playtime_forever": 936,
+        "img_icon_url": "bf5a5be5067c71d837b5c3124cb32dedeb039cb4",
+        "img_logo_url": "122f1e9e12ea73d35264afdd0a84ea7d847300a5",
+        "playtime_windows_forever": 177,
+        "playtime_mac_forever": 0,
+        "playtime_linux_forever": 0
+      },
+      {
+        "appid": 1240440,
+        "name": "Halo Infinite",
+        "playtime_2weeks": 64,
+        "playtime_forever": 1606,
+        "img_icon_url": "ec684b943169d675439f6cdf64fa2f2aa90d9821",
+        "img_logo_url": "8af1b72ec4407ec71ff241ec610e87d3df263488",
+        "playtime_windows_forever": 1606,
+        "playtime_mac_forever": 0,
+        "playtime_linux_forever": 0
+      },
+      {
+        "appid": 1549970,
+        "name": "Aliens: Fireteam Elite",
+        "playtime_2weeks": 60,
+        "playtime_forever": 4182,
+        "img_icon_url": "c2ad8ba213932fae2b528eda83973c22ae7379eb",
+        "img_logo_url": "bbdc11785c908a833a8e4a3c223b5d28975330e9",
+        "playtime_windows_forever": 4182,
+        "playtime_mac_forever": 0,
+        "playtime_linux_forever": 0
+      },
+      {
+        "appid": 20570,
+        "name": "Warhammer 40,000: Dawn of War II - Chaos Rising",
+        "playtime_2weeks": 53,
+        "playtime_forever": 55,
+        "img_icon_url": "c336ad99c1fbd88afbcb9c1604fa78d0e6f470b4",
+        "img_logo_url": "4e1f6cc110bda6b96ff62637cde1e5f23eaacc2f",
+        "playtime_windows_forever": 53,
+        "playtime_mac_forever": 0,
+        "playtime_linux_forever": 0
+      },
+      {
+        "appid": 954740,
+        "name": "Terminator: Resistance",
+        "playtime_2weeks": 30,
+        "playtime_forever": 30,
+        "img_icon_url": "a319e5b054ed6bf954db1b148142ec2e3921242b",
+        "img_logo_url": "d51b894027c3c02cd2606b7ed3a92877abf4c389",
+        "playtime_windows_forever": 30,
+        "playtime_mac_forever": 0,
+        "playtime_linux_forever": 0
+      },
+      {
+        "appid": 492230,
+        "name": "Space Hulk: Tactics",
+        "playtime_2weeks": 24,
+        "playtime_forever": 238,
+        "img_icon_url": "7ee894005310b71e0548b522c0b53cbfe592af42",
+        "img_logo_url": "9a5b9173add671b699dd66a9aafae1e46a7e546e",
+        "playtime_windows_forever": 111,
+        "playtime_mac_forever": 0,
+        "playtime_linux_forever": 0
+      },
+      {
+        "appid": 55150,
+        "name": "Warhammer 40,000: Space Marine - Anniversary Edition",
+        "playtime_2weeks": 17,
+        "playtime_forever": 1795,
+        "img_icon_url": "46b0ce6e587472d1d56cc88dd32c8b57392f8b10",
+        "img_logo_url": "c18d0776e4b1db78c57e66b5bd7ba74b5927816a",
+        "playtime_windows_forever": 17,
+        "playtime_mac_forever": 0,
+        "playtime_linux_forever": 0
+      },
+      {
+        "appid": 56400,
+        "name": "Warhammer 40,000: Dawn of War II - Retribution",
+        "playtime_2weeks": 2,
+        "playtime_forever": 2857,
+        "img_icon_url": "56241ad73fdc9a4d208d5417a0d9109e9a6e29cd",
+        "img_logo_url": "df63f6688e90e8874061e268556f88af2f712f5e",
+        "playtime_windows_forever": 2,
+        "playtime_mac_forever": 0,
+        "playtime_linux_forever": 0
+      }
+    ]
+  }
+}

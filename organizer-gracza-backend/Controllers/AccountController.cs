@@ -4,6 +4,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using organizer_gracza_backend.DTOs;
 using organizer_gracza_backend.Interfaces;
 using organizer_gracza_backend.Model;
@@ -29,12 +30,19 @@ namespace organizer_gracza_backend.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
+            registerDto.Username = Strings.Trim(registerDto.Username);
+            registerDto.Nickname = Strings.Trim(registerDto.Nickname);
+            registerDto.Email = Strings.Trim(registerDto.Email);
+
             if (await UsernameExists(registerDto.Username))
                 return BadRequest("Username is taken");
 
             if (await NicknameExists(registerDto.Nickname))
                 return BadRequest("Nickname is taken");
-
+            
+            if (await NicknameExistsToLower(registerDto.Nickname.ToLower()))
+                return BadRequest("Nickname is taken");
+            
             if (await EmailExists(registerDto.Email))
                 return BadRequest("Email is taken");
             
@@ -67,6 +75,7 @@ namespace organizer_gracza_backend.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
+
             var user = await _userManager.Users
                 .Include(p => p.Photos)
                 .SingleOrDefaultAsync(x => x.UserName == loginDto.Username.ToLower());
@@ -92,17 +101,23 @@ namespace organizer_gracza_backend.Controllers
 
         private async Task<bool> UsernameExists(string username)
         {
-            return await _userManager.Users.AnyAsync(x => x.UserName == username.ToLower());
+            return await _userManager.Users.AnyAsync(x => x.UserName.Equals(username.ToLower()));
         }
         
         private async Task<bool> NicknameExists(string nickname)
         {
-            return await _userManager.Users.AnyAsync(x => x.Nickname == nickname.ToLower());
+
+            return await _userManager.Users.AnyAsync(x => x.Nickname.Equals(nickname));
+        }
+        
+        private async Task<bool> NicknameExistsToLower(string nickname)
+        {
+            return await _userManager.Users.AnyAsync(x => x.Nickname.ToLower().Equals(nickname.ToLower()));
         }
 
         private async Task<bool> EmailExists(string email)
         {
-            return await _userManager.Users.AnyAsync(x => x.Email == email.ToLower());
+            return await _userManager.Users.AnyAsync(x => x.Email.Equals(email.ToLower()));
         }
     }
 }

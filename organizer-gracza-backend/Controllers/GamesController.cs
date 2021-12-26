@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using organizer_gracza_backend.Data;
 using organizer_gracza_backend.DTOs;
 using organizer_gracza_backend.Interfaces;
@@ -37,12 +38,20 @@ namespace organizer_gracza_backend.Controllers
         [HttpPost]
         public async Task<ActionResult<GameDto>> CreateEvent(GameDto gameDto)
         {
+            gameDto.Title = Strings.Trim(gameDto.Title);
+
             var newGame = new Game()
             {
                 GameId = gameDto.GameId,
                 Title = gameDto.Title,
                 PhotoUrl = gameDto.PhotoUrl
             };
+            
+            if (await TitleExists(gameDto.Title))
+                return BadRequest("Title is already taken");
+            
+            if (await TitleExistsToLower(gameDto.Title.ToLower()))
+                return BadRequest("Title is already taken");
 
             _gameRepository.AddGame(newGame);
 
@@ -62,6 +71,17 @@ namespace organizer_gracza_backend.Controllers
                 return Ok();
 
             return BadRequest("An error occurred while deleting game");
+        }
+        
+        private async Task<bool> TitleExists(string title)
+        {
+
+            return await _context.Games.AnyAsync(x => x.Title.Equals(title));
+        }
+        
+        private async Task<bool> TitleExistsToLower(string title)
+        {
+            return await _context.Games.AnyAsync(x => x.Title.ToLower().Equals(title.ToLower()));
         }
     }
 }
