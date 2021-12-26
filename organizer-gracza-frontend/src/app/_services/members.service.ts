@@ -104,6 +104,10 @@ export class MembersService {
     )
   }
 
+  sendLink(email: string){
+    return this.http.get(this.baseUrl + 'users/sendlink/' + email);
+  }
+
   setMainPhoto(photoId: number) {
     return this.http.put(this.baseUrl + 'users/set-main-photo/' + photoId, {})
   }

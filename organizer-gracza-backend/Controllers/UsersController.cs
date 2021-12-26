@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualBasic;
 using organizer_gracza_backend.DTOs;
@@ -13,6 +12,9 @@ using organizer_gracza_backend.Extensions;
 using organizer_gracza_backend.Helpers;
 using organizer_gracza_backend.Interfaces;
 using organizer_gracza_backend.Model;
+using SendGrid;
+using SendGrid.Helpers.Mail;
+using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
 namespace organizer_gracza_backend.Controllers
 {
@@ -22,15 +24,21 @@ namespace organizer_gracza_backend.Controllers
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
         private readonly IPhotoService _photoService;
+        private readonly UserManager<User> _userManager;
+        private readonly IConfiguration _configuration;
 
-        public UsersController(IUserRepository userRepository, IMapper mapper, IPhotoService photoService)
+        public UsersController(IUserRepository userRepository, IMapper mapper, IPhotoService photoService,
+            UserManager<User> userManager, IConfiguration configuration)
         {
             _userRepository = userRepository;
             _mapper = mapper;
             _photoService = photoService;
+            _userManager = userManager;
+            _configuration = configuration;
         }
 
-
+        private string API_Key => _configuration["SendGrid:API_Key"];
+        
         [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery] PaginationParams paginationParams)
@@ -112,6 +120,60 @@ namespace organizer_gracza_backend.Controllers
             if (await _userRepository.SaveAllAsync())
                 return NoContent();
             return BadRequest("Email confirmed failed");
+        }
+        
+                
+        [HttpPut("password")]
+        public async Task<ActionResult> ChangePassword(MemberUpdateDto memberUpdateDto)
+        {
+            memberUpdateDto.Nickname = Strings.Trim(memberUpdateDto.Nickname);
+            memberUpdateDto.SteamId = Strings.Trim(memberUpdateDto.SteamId);
+
+            var user = await _userRepository.GetUserByUsernameAsync(User.GetUsername());
+
+            if (IsValidSteamid(memberUpdateDto.SteamId) == false)
+                return BadRequest("SteamId is in incorrect format");
+
+            var currentUser = _userRepository.GetUserByUsernameAsync(User.GetUsername()).Result;
+            
+            await _userManager.RemovePasswordAsync(currentUser);
+            await _userManager.AddPasswordAsync(currentUser, memberUpdateDto.NewPassword);
+
+            _mapper.Map(memberUpdateDto, user);
+
+            _userRepository.Update(user);
+
+            if (await _userRepository.SaveAllAsync())
+                return NoContent();
+            return BadRequest("password failed");
+        }
+        
+                        
+        [HttpGet("resetpassword")]
+        public async Task<ActionResult> ForgotPassword(MemberUpdateDto memberUpdateDto, string email)
+        {
+            memberUpdateDto.Nickname = Strings.Trim(memberUpdateDto.Nickname);
+            memberUpdateDto.SteamId = Strings.Trim(memberUpdateDto.SteamId);
+
+            var user = await _userRepository.GetUserByUsernameAsync(User.GetUsername());
+
+            if (IsValidSteamid(memberUpdateDto.SteamId) == false)
+                return BadRequest("SteamId is in incorrect format");
+            
+            SendForgotPasswordLink(email);
+            
+            var currentUser = _userRepository.GetUserByUsernameAsync(User.GetUsername()).Result;
+            
+            await _userManager.RemovePasswordAsync(currentUser);
+            await _userManager.AddPasswordAsync(currentUser, memberUpdateDto.NewPassword);
+
+            _mapper.Map(memberUpdateDto, user);
+
+            _userRepository.Update(user);
+
+            if (await _userRepository.SaveAllAsync())
+                return NoContent();
+            return BadRequest("password failed");
         }
 
         [HttpPost("add-photo")]
@@ -220,6 +282,21 @@ namespace organizer_gracza_backend.Controllers
             }
 
             return true;
+        }
+        
+        [HttpGet("sendlink/{email}")]
+        public async void SendForgotPasswordLink(string email)
+        {
+            var client = new SendGridClient(API_Key);
+            var from = new EmailAddress("organizergracza@gmail.com", "Organizer Gracza");
+            var subject = "Link do zresetowania hasła";
+            var to = new EmailAddress(email, "Użytkownik");
+            var plainTextContent = "Dzień dobry, w celu zresetowania hasła dla swojego konta proszę wejść w link. Link do zresetowania: https://organizer-gracza.herokuapp.com/resetpassword";
+            var htmlContent = "Dzień dobry, w celu zresetowania hasła dla swojego konta proszę wejść w link. Link do zresetowania: https://organizer-gracza.herokuapp.com/resetpassword";
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+            var response = await client.SendEmailAsync(msg);
+            if (!response.IsSuccessStatusCode)
+                BadRequest("Nie udało się wysłać wiadomości w celu zresetowania hasła.");
         }
     }
 }
