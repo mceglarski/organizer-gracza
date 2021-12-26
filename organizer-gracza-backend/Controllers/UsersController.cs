@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -28,7 +29,7 @@ namespace organizer_gracza_backend.Controllers
             _mapper = mapper;
             _photoService = photoService;
         }
-        
+
 
         [AllowAnonymous]
         [HttpGet]
@@ -41,7 +42,8 @@ namespace organizer_gracza_backend.Controllers
 
             return Ok(users);
         }
-[AllowAnonymous]
+
+        [AllowAnonymous]
         [HttpGet("user/{username}")]
         public int GetUserId(string username)
         {
@@ -57,13 +59,15 @@ namespace organizer_gracza_backend.Controllers
 
             return query.Result.Id;
         }
-[AllowAnonymous]
+
+        [AllowAnonymous]
         [HttpGet("{username}", Name = "GetUser")]
         public async Task<ActionResult<MemberDto>> GetUser(string username)
         {
             return await _userRepository.GetMemberAsync(username);
         }
-[AllowAnonymous]
+
+        [AllowAnonymous]
         [HttpGet("member/{id}")]
         public async Task<ActionResult<MemberDto>> GetUserById(int id)
         {
@@ -76,7 +80,7 @@ namespace organizer_gracza_backend.Controllers
             Console.Write(memberUpdateDto);
             memberUpdateDto.Nickname = Strings.Trim(memberUpdateDto.Nickname);
             memberUpdateDto.SteamId = Strings.Trim(memberUpdateDto.SteamId);
-            
+
             var user = await _userRepository.GetUserByUsernameAsync(User.GetUsername());
 
             if (IsValidSteamid(memberUpdateDto.SteamId) == false)
@@ -89,6 +93,26 @@ namespace organizer_gracza_backend.Controllers
             if (await _userRepository.SaveAllAsync())
                 return NoContent();
             return BadRequest("Failed to update user");
+        }
+        
+        [HttpPut("/email")]
+        public async Task<ActionResult> SetEmailConfirmed(MemberUpdateDto memberUpdateDto)
+        {
+            memberUpdateDto.Nickname = Strings.Trim(memberUpdateDto.Nickname);
+            memberUpdateDto.SteamId = Strings.Trim(memberUpdateDto.SteamId);
+
+            var user = await _userRepository.GetUserByUsernameAsync(User.GetUsername());
+
+            if (IsValidSteamid(memberUpdateDto.SteamId) == false)
+                return BadRequest("SteamId is in incorrect format");
+
+            _mapper.Map(memberUpdateDto, user);
+
+            _userRepository.Update(user);
+
+            if (await _userRepository.SaveAllAsync())
+                return NoContent();
+            return BadRequest("Email confirmed failed");
         }
 
         [HttpPost("add-photo")]
@@ -122,7 +146,7 @@ namespace organizer_gracza_backend.Controllers
 
             return BadRequest("Problem adding photo");
         }
-        
+
         [HttpPost("add-photo-article")]
         public async Task<ActionResult<PhotoDto>> AddArticlePhoto(IFormFile file)
         {

@@ -37,6 +37,7 @@ export interface Member {
   description: string;
   steamId: string;
   // userGames: UserGame[];
+  emailConfirmed: number;
 }
 
 export interface SteamInformation {
@@ -269,7 +270,7 @@ export interface UserAchievementCounter{
 }
 
 export interface UserGame{
-  userGameId?: number;
+  userGameId: number;
   userId: number;
   gameId: number;
 }

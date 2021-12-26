@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using NUnit.Framework;
 using organizer_gracza_backend.Controllers;
 using organizer_gracza_backend.Data;
 using organizer_gracza_backend.Interfaces;
+using organizer_gracza_backend.Model;
 
 namespace organizer_gracza_backend.UnitTests
 {
@@ -12,6 +14,7 @@ namespace organizer_gracza_backend.UnitTests
         private readonly IMapper _mapper;
         private readonly IPhotoService _photoService;
         private UsersController _usersController;
+
         
         [SetUp]
         public void Setup()
