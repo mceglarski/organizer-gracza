@@ -36,8 +36,7 @@ export interface Member {
   photos: Photo[];
   description: string;
   steamId: string;
-  // userGames: UserGame[];
-  emailConfirmed: number;
+  emailConfirmed?: number;
 }
 
 export interface SteamInformation {

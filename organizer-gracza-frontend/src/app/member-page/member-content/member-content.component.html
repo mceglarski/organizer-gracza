@@ -6,7 +6,9 @@
     <h1 class="section-title">O MNIE&nbsp;</h1>
     <span class="member-profile-description-text">{{member.description}}</span><br><br>
     <h4>Interesuje mnie</h4>
-
+    <h5 class="col member-profile-interested-game" *ngFor="let game of gamesToShow">
+      <i class="material-icons member-profile-game-icon">videogame_asset</i>{{game}}
+    </h5>
   </div>
   <div class="" *ngIf="member.steamId">
     <app-steam-information [steamId]="member.steamId"></app-steam-information>
