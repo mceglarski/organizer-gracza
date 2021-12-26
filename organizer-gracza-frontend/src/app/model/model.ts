@@ -270,7 +270,7 @@ export interface UserAchievementCounter{
 }
 
 export interface UserGame{
-  userGameId: number;
+  userGameId?: number;
   userId: number;
   gameId: number;
 }

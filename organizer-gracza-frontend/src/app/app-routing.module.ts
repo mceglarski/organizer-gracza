@@ -53,7 +53,7 @@ const routes: Routes = [
       {path: 'teams/details/:name', component: TeamsDetailsComponent},
       {path: 'member/edit', component: MemberEditComponent, canDeactivate: [PreventUnsavedChangesGuard]},
       {path: 'messages', component: MessagesChatComponent},
-      {path: 'activate-mail', component: ActivateMailComponent},
+      {path: 'activate-email', component: ActivateMailComponent},
       {path: 'messages/thread/:username', component: MessagesMembersChatComponent, resolve: {member: MemberDetailedResolver}},
       {path: 'admin', component: AdminPanelComponent, canActivate: [AdminGuard]},
       {path: 'editor-panel', component: NewsEditorPanelComponent, canActivate: [EditorGuard]},
