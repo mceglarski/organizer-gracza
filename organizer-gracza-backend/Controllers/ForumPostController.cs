@@ -80,9 +80,8 @@ namespace organizer_gracza_backend.Controllers
 
             userAchievement.NumberOfPostsCreated++;
             
-                        
             if (!await _userAchievementCounterRepository.SaveAllAsync())
-                return BadRequest("Failed to add increase counter");
+                return BadRequest("Failed to increase counter");
 
             var firstPostAchievement = await _userAchievementRepository
                 .GetUserAchievementsForUserAndAchievementAsync(forumPostDto.UserId, 11);

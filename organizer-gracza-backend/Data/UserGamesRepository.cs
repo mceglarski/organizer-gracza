@@ -53,15 +53,30 @@ namespace organizer_gracza_backend.Data
         {
             _context.UserGame.Add(userGame);
         }
-
+        
         public void DeleteUserGame(UserGame userGame)
         {
             _context.UserGame.Remove(userGame);
         }
 
+        public void DeleteAllUserGames(int userId)
+        {
+            var userGamesRemove = _context.UserGame.Where(g => g.UserId == userId).ToList();
+            if (userGamesRemove.Count <= 0) return;
+            foreach (var game in userGamesRemove)
+            {
+                _context.UserGame.Remove(game);
+            }
+        }
+
         public async Task<bool> SaveAllAsync()
         {
             return await _context.SaveChangesAsync() > 0;
+        }
+        
+        public async Task<bool> SaveOptionalAsync()
+        {
+            return await _context.SaveChangesAsync() >= 0;
         }
 
         public void UpdateUserGame(UserGame userGame)

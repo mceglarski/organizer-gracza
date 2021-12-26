@@ -1,7 +1,9 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {Member} from "../../model/model";
+import {Game, Member, UserGame} from "../../model/model";
 import {MembersService} from "../../_services/members.service";
 import {ActivatedRoute} from "@angular/router";
+import {UsergameService} from "../../_services/usergame.service";
+import {GameService} from "../../_services/game.service";
 
 @Component({
   selector: 'app-member-content',
@@ -11,10 +13,17 @@ import {ActivatedRoute} from "@angular/router";
 export class MemberContentComponent implements OnInit {
 
   public member: Member;
+  public userGames: UserGame[];
+  public gamesToShow: string[] = [];
+
+  private games: Game[];
 
   constructor(private memberService: MembersService,
+              private userGameService: UsergameService,
+              private gameService: GameService,
               private route: ActivatedRoute,
-              private cd: ChangeDetectorRef) { }
+              private cd: ChangeDetectorRef) {
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -22,10 +31,24 @@ export class MemberContentComponent implements OnInit {
       this.memberService.getMember(name).subscribe(m => {
         this.member = m;
         this.cd.detectChanges();
+        this.userGameService.getUserGameForUser(this.member.id).subscribe(userGame => {
+          // @ts-ignore
+          this.userGames = userGame;
+          this.gameService.getGames().subscribe(game => {
+            // @ts-ignore
+            this.games = game;
+            this.userGames.forEach(g => {
+              // @ts-ignore
+              this.gamesToShow.push(this.games.find(f => f.gameId === g.gameId).title);
+            });
+            return;
+          });
+        });
         return;
       });
       return;
-    })
+    });
+
     this.cd.detectChanges();
   }
 

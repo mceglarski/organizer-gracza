@@ -25,7 +25,8 @@ namespace organizer_gracza_backend.Data
                 new AppRole {Name = "Użytkownik"},
                 new AppRole {Name = "Redaktor"},
                 new AppRole {Name = "Moderator"},
-                new AppRole {Name = "Admin"}
+                new AppRole {Name = "Admin"},
+                new AppRole {Name = "Zablokowany"}
             };
 
             foreach (var role in roles)

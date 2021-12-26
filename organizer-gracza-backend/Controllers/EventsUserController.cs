@@ -68,8 +68,13 @@ namespace organizer_gracza_backend.Controllers
         [HttpPost]
         public async Task<ActionResult<EventUserDto>> CreateEventUser(EventUserDto eventUserDto)
         {
-            if (await UserEventExists(eventUserDto.Name))
-                return BadRequest("Event name is taken");
+            eventUserDto.Name = Strings.Trim(eventUserDto.Name);
+
+            if (await NameExists(eventUserDto.Name))
+                return BadRequest("Name is already taken");
+            
+            if (await NameExistsToLower(eventUserDto.Name.ToLower()))
+                return BadRequest("Name is already taken");
             
             var newEventUser = new EventUser()
             {
@@ -122,7 +127,7 @@ namespace organizer_gracza_backend.Controllers
                 return NoContent();
             }
 
-            if (await UserEventExists(specifiedEvent.Name) && !eventAsync.Name.Equals(specifiedEvent.Name))
+            if (await NameExists(specifiedEvent.Name) && !eventAsync.Name.Equals(specifiedEvent.Name))
                 return BadRequest("Event name is taken");
 
             eventAsync.EventUserId = eventAsync.EventUserId;
@@ -177,9 +182,14 @@ namespace organizer_gracza_backend.Controllers
             return BadRequest("Problem occured when adding photo");
         }
         
-        private async Task<bool> UserEventExists(string name)
+        private async Task<bool> NameExists(string name)
         {
-            return await _context.EventUser.AnyAsync(x => x.Name == name);
+            return await _context.EventUser.AnyAsync(x => x.Name.Equals(name));
+        }
+        
+        private async Task<bool> NameExistsToLower(string name)
+        {
+            return await _context.EventUser.AnyAsync(x => x.Name.ToLower().Equals(name.ToLower()));
         }
 
         private bool CompareEventUser(EventUser firstEvent, EventUser secondEvent)

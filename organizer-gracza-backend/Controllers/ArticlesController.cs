@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using organizer_gracza_backend.Data;
 using organizer_gracza_backend.DTOs;
 using organizer_gracza_backend.Interfaces;
@@ -61,6 +63,8 @@ namespace organizer_gracza_backend.Controllers
         [HttpPost]
         public async Task<ActionResult<Articles>> CreateArticle(ArticlesDto articlesDto)
         {
+            articlesDto.Title = Strings.Trim(articlesDto.Title);
+
             var newArticle = new Articles()
             {
                 Title = articlesDto.Title,
@@ -69,6 +73,12 @@ namespace organizer_gracza_backend.Controllers
                 PhotoUrl = articlesDto.PhotoUrl,
                 UserId = articlesDto.UserId
             };
+            
+            if (await TitleExists(articlesDto.Title))
+                return BadRequest("Title is already taken");
+            
+            if (await TitleExistsToLower(articlesDto.Title.ToLower()))
+                return BadRequest("Title is already taken");
 
             _articlesRepository.AddArticle(newArticle);
 
@@ -93,6 +103,9 @@ namespace organizer_gracza_backend.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult> UpdateArticle(Articles articles, int id)
         {
+            articles.Title = Strings.Trim(articles.Title);
+
+            
             var articlesAsync = await _articlesRepository.GetArticleById(id);
 
             articlesAsync.ArticlesId = articles.ArticlesId;
@@ -110,6 +123,17 @@ namespace organizer_gracza_backend.Controllers
             if (await _articlesRepository.SaveAllAsync())
                 return NoContent();
             return BadRequest("Failed to update article");
+        }
+        
+        private async Task<bool> TitleExists(string title)
+        {
+
+            return await _context.Articles.AnyAsync(x => x.Title.Equals(title));
+        }
+        
+        private async Task<bool> TitleExistsToLower(string title)
+        {
+            return await _context.Articles.AnyAsync(x => x.Title.ToLower().Equals(title.ToLower()));
         }
     }
 }

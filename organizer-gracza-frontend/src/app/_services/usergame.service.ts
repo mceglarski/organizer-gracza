@@ -26,8 +26,14 @@ export class UsergameService {
   addUserGame(model: any){
     return this.http.post(this.baseUrl + 'usergame', model);
   }
+  addUserGameList(model: any) {
+    return this.http.post(this.baseUrl + 'usergame/list', model);
+  }
   deleteUserGame(userGameId: number){
     return this.http.delete(this.baseUrl + 'usergame/' + userGameId);
+  }
+  deleteAllUserGames(userId: number) {
+    return this.http.delete(this.baseUrl + 'usergame/all/' + userId);
   }
   updateUserGame(userGame: UserGame, userGameId: number){
     return this.http.put(this.baseUrl + 'usergame/' + userGameId, userGame);

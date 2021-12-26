@@ -1,0 +1,11 @@
+.activate-mail-container {
+  background-color: black;
+  height: 105%;
+  color: #ffffff;
+  padding: 1rem;
+  text-align: center;
+}
+
+.activate-mail-btn {
+  height: 4rem;
+}

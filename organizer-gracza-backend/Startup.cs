@@ -1,11 +1,14 @@
 using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using organizer_gracza_backend.Data;
 using organizer_gracza_backend.Extensions;
 using organizer_gracza_backend.Middleware;
+using organizer_gracza_backend.Model;
 using organizer_gracza_backend.SignalR;
 
 namespace organizer_gracza_backend

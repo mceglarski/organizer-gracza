@@ -73,7 +73,10 @@ namespace organizer_gracza_backend.Controllers
             teamDto.Name = Strings.Trim(teamDto.Name);
             
             if (await NameExists(teamDto.Name))
-                return BadRequest("Name is taken");
+                return BadRequest("Name is already taken");
+            
+            if (await NameExistsToLower(teamDto.Name.ToLower()))
+                return BadRequest("Name is already taken");
             
             var newTeam = new Team()
             {
@@ -144,6 +147,7 @@ namespace organizer_gracza_backend.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult> UpdateTeam(Team team, int id)
         {
+            team.Name = Strings.Trim(team.Name);
             var teamAsync = await _teamsRepository.GetTeamAsync(id);
 
             teamAsync.TeamId = teamAsync.TeamId;
@@ -180,10 +184,14 @@ namespace organizer_gracza_backend.Controllers
             }
             return BadRequest("Problem adding photo");
         }
-        
         private async Task<bool> NameExists(string name)
         {
-            return await _context.Teams.AnyAsync(x => x.Name.ToLower() == name.ToLower());
+            return await _context.Teams.AnyAsync(x => x.Name.Equals(name));
+        }
+        
+        private async Task<bool> NameExistsToLower(string name)
+        {
+            return await _context.Teams.AnyAsync(x => x.Name.ToLower().Equals(name.ToLower()));
         }
     }
 }

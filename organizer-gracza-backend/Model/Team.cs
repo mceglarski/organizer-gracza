@@ -8,8 +8,9 @@ namespace organizer_gracza_backend.Model
     {
         [Key]
         public int TeamId { get; set; }
+        [MaxLength(30)]
         public string Name { get; set; }
-        
+        [MaxLength(200)]
         public string PhotoUrl { get; set; }
         public ICollection<EventTeamRegistration> EventTeamRegistration { get; set; }
         public ICollection<TeamUser> TeamUser { get; set; }

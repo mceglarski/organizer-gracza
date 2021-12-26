@@ -1,0 +1,74 @@
+﻿{
+  "achievementpercentages": {
+    "achievements": [
+      {
+        "name": "GIVE_DAMAGE_LOW",
+        "percent": 66.80000305175781
+      },
+      {
+        "name": "KILL_ENEMY_RELOADING",
+        "percent": 66.19999694824219
+      },
+      {
+        "name": "UNSTOPPABLE_FORCE",
+        "percent": 66.0999984741211
+      },
+      {
+        "name": "KILL_ENEMY_LOW",
+        "percent": 64.5
+      },
+      {
+        "name": "WIN_ROUNDS_LOW",
+        "percent": 63.599998474121094
+      },
+      {
+        "name": "IMMOVABLE_OBJECT",
+        "percent": 61.79999923706055
+      },
+      {
+        "name": "EARN_MONEY_LOW",
+        "percent": 61.099998474121094
+      },
+      {
+        "name": "KILL_SNIPER_WITH_SNIPER",
+        "percent": 60.20000076293945
+      },
+      {
+        "name": "KILL_LOW_DAMAGE",
+        "percent": 59.900001525878906
+      },
+      {
+        "name": "LOSSLESS_EXTERMINATION",
+        "percent": 57.29999923706055
+      },
+      {
+        "name": "KILL_ENEMY_LAST_BULLET",
+        "percent": 55.0
+      },
+      {
+        "name": "DAMAGE_NO_KILL",
+        "percent": 53.5
+      },
+      {
+        "name": "HEADSHOTS_IN_ROUND",
+        "percent": 52.79999923706055
+      },
+      {
+        "name": "HIP_SHOT",
+        "percent": 52.400001525878906
+      },
+      {
+        "name": "FAST_ROUND_WIN",
+        "percent": 50.79999923706055
+      },
+      {
+        "name": "KILLING_SPREE",
+        "percent": 48.20000076293945
+      },
+      {
+        "name": "DOMINATIONS_LOW",
+        "percent": 47.5
+      }
+    ]
+  }
+}

@@ -1,11 +1,36 @@
 .edit-page-content {
   background-color: black;
-  height: 1160px;
-  color: #C3073F;
+  height: 105%;
+  color: #ffffff;
+  padding: 1rem;
 }
 
-.edit-member-nickname {
+.edit-member-section-title {
+  color: #ff004f;
+}
+
+.edit-member-container {
   margin-bottom: 1rem;
+  border: 1px solid white;
+  padding: 1rem;
+}
+
+.member-edit-games {
+  color: white;
+  font-size: 1.2rem;
+}
+
+.member-edit-games-checkbox {
+  /*-webkit-appearance:none;*/
+  width:20px;
+  height:20px;
+  background:white;
+  border-radius:5px;
+  border:2px solid #555;
+}
+
+.member-edit-steam-link {
+  color: white;
 }
 
 img.img-thumbnail {

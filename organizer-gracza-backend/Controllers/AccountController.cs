@@ -1,12 +1,20 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.VisualBasic;
 using organizer_gracza_backend.DTOs;
+using organizer_gracza_backend.Helpers;
 using organizer_gracza_backend.Interfaces;
 using organizer_gracza_backend.Model;
+using organizer_gracza_backend.Services;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 
 namespace organizer_gracza_backend.Controllers
 {
@@ -16,25 +24,38 @@ namespace organizer_gracza_backend.Controllers
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, 
-            ITokenService tokenService, IMapper mapper)
+        private readonly IConfiguration _configuration;
+
+
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager,
+            ITokenService tokenService, IMapper mapper, IConfiguration configuration)
         {
             _tokenService = tokenService;
             _mapper = mapper;
             _userManager = userManager;
             _signInManager = signInManager;
+            _configuration = configuration;
         }
+        
+        private string API_Key => _configuration["SendGrid:NAME"];
 
+        
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
+            registerDto.Username = Strings.Trim(registerDto.Username);
+            registerDto.Nickname = Strings.Trim(registerDto.Nickname);
+            registerDto.Email = Strings.Trim(registerDto.Email);
+
             if (await UsernameExists(registerDto.Username))
                 return BadRequest("Username is taken");
 
             if (await NicknameExists(registerDto.Nickname))
                 return BadRequest("Nickname is taken");
-
+            
+            if (await NicknameExistsToLower(registerDto.Nickname.ToLower()))
+                return BadRequest("Nickname is taken");
+            
             if (await EmailExists(registerDto.Email))
                 return BadRequest("Email is taken");
             
@@ -54,6 +75,15 @@ namespace organizer_gracza_backend.Controllers
             if (!roleResult.Succeeded)
                 return BadRequest(result.Errors);
             
+            var client = new SendGridClient(API_Key);
+            var from = new EmailAddress("organizergracza@gmail.com", "Organizer gracza");
+            var subject = "Potwierdzenie adresu E-mail";
+            var to = new EmailAddress(user.Email, user.UserName);
+            var plainTextContent = "Dzień dobry, dziękujemy za zarejestrowanie się na naszej stronie Organizer Gracza. Prosimy wejść na link wysłany w wiadomości w celu potwierdzenia swojego adresu E-mail.";
+            var htmlContent = "Dzień dobry, dziękujemy za zarejestrowanie się na naszej stronie Organizer Gracza. Prosimy wejść na link wysłany w wiadomości w celu potwierdzenia swojego adresu E-mail.";
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+            var response = await client.SendEmailAsync(msg);
+            
             return new UserDto()
             {
                 Id = user.Id,
@@ -67,6 +97,7 @@ namespace organizer_gracza_backend.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
+
             var user = await _userManager.Users
                 .Include(p => p.Photos)
                 .SingleOrDefaultAsync(x => x.UserName == loginDto.Username.ToLower());
@@ -92,17 +123,23 @@ namespace organizer_gracza_backend.Controllers
 
         private async Task<bool> UsernameExists(string username)
         {
-            return await _userManager.Users.AnyAsync(x => x.UserName == username.ToLower());
+            return await _userManager.Users.AnyAsync(x => x.UserName.Equals(username.ToLower()));
         }
         
         private async Task<bool> NicknameExists(string nickname)
         {
-            return await _userManager.Users.AnyAsync(x => x.Nickname == nickname.ToLower());
+
+            return await _userManager.Users.AnyAsync(x => x.Nickname.Equals(nickname));
+        }
+        
+        private async Task<bool> NicknameExistsToLower(string nickname)
+        {
+            return await _userManager.Users.AnyAsync(x => x.Nickname.ToLower().Equals(nickname.ToLower()));
         }
 
         private async Task<bool> EmailExists(string email)
         {
-            return await _userManager.Users.AnyAsync(x => x.Email == email.ToLower());
+            return await _userManager.Users.AnyAsync(x => x.Email.Equals(email.ToLower()));
         }
     }
 }

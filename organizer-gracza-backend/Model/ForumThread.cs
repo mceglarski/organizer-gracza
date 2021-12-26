@@ -10,7 +10,9 @@ namespace organizer_gracza_backend.Model
     {
         [Key]
         public int ForumThreadId { get; set; }
+        [MaxLength(100)]
         public string Title { get; set; }
+        [MaxLength(2000)]
         public string Content { get; set; }
         public DateTime ThreadDate { get; set; }
         

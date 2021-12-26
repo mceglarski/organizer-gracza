@@ -1,0 +1,27 @@
+﻿{
+  "response": {
+    "players": [
+      {
+        "steamid": "76561198006496927",
+        "communityvisibilitystate": 3,
+        "profilestate": 1,
+        "personaname": "ROJSON",
+        "lastlogoff": 0,
+        "profileurl": "https://steamcommunity.com/id/rojsonv13/",
+        "avatar": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/66/6648d37ac207319f6a3c2f71deec48a0928a60cd.jpg",
+        "avatarmedium": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/66/6648d37ac207319f6a3c2f71deec48a0928a60cd_medium.jpg",
+        "avatarfull": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/66/6648d37ac207319f6a3c2f71deec48a0928a60cd_full.jpg",
+        "personastate": 0,
+        "realname": "Patryk Rojewski",
+        "primaryclanid": "103582791438495970",
+        "timecreated": 1235044715,
+        "personastateflags": 0,
+        "loccountrycode": "PL",
+        "locstatecode": null,
+        "loccityid": 0,
+        "gameextrainfo": null,
+        "gameid": null
+      }
+    ]
+  }
+}

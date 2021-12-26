@@ -8,11 +8,14 @@ namespace organizer_gracza_backend.Model
         [Key]
         public int MessageId { get; set; }
         public int SenderId { get; set; }
+        [MinLength(2), MaxLength(20)]
         public string SenderUsername { get; set; }
         public User Sender { get; set; }
         public int RecipientId { get; set; }
+        [MinLength(2), MaxLength(20)]
         public string RecipientUsername { get; set; }
         public User Recipient { get; set; }
+        [MaxLength(1000)]
         public string Content { get; set; }
         public DateTime? DateRead { get; set; }
         public DateTime MessageSent { get; set; } = DateTime.UtcNow;

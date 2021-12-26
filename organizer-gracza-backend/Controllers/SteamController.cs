@@ -2,19 +2,31 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using organizer_gracza_backend.Helpers;
 using organizer_gracza_backend.Model;
+
 
 namespace organizer_gracza_backend.Controllers
 {
     public class SteamController : BaseApiController
     {
-        private const string API_Key = "57424338AC0C7CC262106AC5A91BA3C7";
-        private const string API_Uri = "https://api.steampowered.com";
+        private readonly IConfiguration _configuration;
 
+        public SteamController(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+        
+        private string API_Key => _configuration["SteamSettings:API_Key"];
+        private string API_Uri => _configuration["SteamSettings:API_Uri"];
+        
         [HttpGet("user/{id}")]
         public async Task<IActionResult> GetUser(string id)
         {
+            
             using HttpClient steam = new HttpClient();
             try
             {
@@ -151,7 +163,7 @@ namespace organizer_gracza_backend.Controllers
                 
                 
                 string result = await response.Content.ReadAsStringAsync();
-                var json = JsonConvert.DeserializeObject(result);
+                var json = JsonConvert.DeserializeObject<SteamUserAchievementResponse>(result);
         
                 return Ok(json);
             }
@@ -174,7 +186,7 @@ namespace organizer_gracza_backend.Controllers
                 
                 
                 string result = await response.Content.ReadAsStringAsync();
-                var json = JsonConvert.DeserializeObject(result);
+                var json = JsonConvert.DeserializeObject<SteamRecentlyPlayedResponse>(result);
         
                 return Ok(json);
             }

@@ -7,6 +7,7 @@ namespace organizer_gracza_backend.Model
     {
         [Key]
         public int ForumPostId { get; set; }
+        [MaxLength(2000)]
         public string Content { get; set; }
         public DateTime PostDate { get; set; }
         
