@@ -1,25 +1,47 @@
 <div class="edit-page-content container" *ngIf="member">
-  <div class="col-xl-4">
-    <h1>Edytuj swój profil</h1>
-  </div>
-
+  <h1 class="section-title"><span class="section-title-accent">EDYTUJ</span> SWÓJ PROFIL&nbsp;</h1>
+  <br>
   <div>
     <div class="alert alert-info" *ngIf="editForm.dirty">
       <strong>Informacja: </strong> Wprowadziłeś/aś zmiany. Wszystkie niezapisane zmiany zostaną utracone!
     </div>
   </div>
 
-  <div class="col-xl-6 edit-member-nickname">
+  <div class="col edit-member-container">
     <form #editForm="ngForm" (ngSubmit)="updateMember()" id="editForm">
-    <h4>Nickname</h4>
-    <textarea class="form-control" [(ngModel)]="member.nickname" name="nickname" rows="1"></textarea>
+      <h4 class="edit-member-section-title">Nickname</h4>
+      <input type="text" class="col-xl-4 form-control" [(ngModel)]="member.nickname" name="nickname">
+      <br>
+      <h4 class="edit-member-section-title">Opis</h4>
+      <textarea class="form-control" [(ngModel)]="member.description" name="description" rows="10"></textarea>
+      <br>
+      <div class="row">
+        <h4 class="col-xl-12 edit-member-section-title">Gry, które mnie interesują</h4>
+        <div *ngFor="let game of games" class="member-edit-games col-xl-6">
+          <input #userGameCheckbox
+                 class="member-edit-games-checkbox"
+                 type="checkbox"
+                 name="userGames"
+                 (change)="onGameCheckboxChanged(game?.gameId, userGameCheckbox.checked)"
+                 [checked]="checkUserGamesInput(game?.gameId)"> {{game?.title}}
+        </div>
+      </div>
+      <br>
+      <h4 class="edit-member-section-title">Profil Steam</h4>
+      <h6 class=""><a href="https://steamid.io/" target="_blank" class="member-edit-steam-link">
+          Tutaj należy wkleić adres do swojego profilu, który na końcu zawiera
+      SteamID64. Wejdź tutaj, aby wygenerować swój poprawny link do profilu: https://steamid.io/
+      </a></h6>
+      <input type="text" class="col-xl-6 form-control" [(ngModel)]="steamUrl" name="steamId">
     </form>
+    <br>
+    <button [disabled]="" form="editForm" type="submit" class="btn btn-success btn-block col-xl-3">Zapisz zmiany</button>
   </div>
 
-  <div class="col-xl-6">
-    <h4>Wybierz zdjęcie profilowe</h4>
+  <div class="col-xl-12 edit-member-container">
+    <h4 class="edit-member-section-title">Wybierz zdjęcie profilowe</h4>
     <app-member-photo-editor [member]="member"></app-member-photo-editor>
+    <button form="editForm" type="submit" class="btn btn-success btn-block col-xl-3">Zapisz zmiany</button>
   </div>
 
-  <button [disabled]="!editForm.dirty" form="editForm" type="submit" class="btn btn-success btn-block col-xl-6">Zapisz zmiany</button>
 </div>

@@ -94,7 +94,7 @@ namespace organizer_gracza_backend.Controllers
             return BadRequest("Failed to update user");
         }
         
-        [HttpPut("/email")]
+        [HttpPut("email")]
         public async Task<ActionResult> SetEmailConfirmed(MemberUpdateDto memberUpdateDto)
         {
             memberUpdateDto.Nickname = Strings.Trim(memberUpdateDto.Nickname);

@@ -30,7 +30,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                 }
                 throw modalStateErrors.flat();
               } else {
-                this.toastr.error('Bad Request', error.status);
+                // this.toastr.error('Bad Request', error.status);
               }
               break;
             case 401:
@@ -44,7 +44,7 @@ export class ErrorInterceptor implements HttpInterceptor {
               this.router.navigateByUrl('/server-error', navigationExtras);
               break;
             default:
-              this.toastr.error('Something unexpected weng wrong')
+              this.toastr.error('Something unexpected went wrong')
                 console.log(error);
               break;
           }

@@ -4,7 +4,9 @@
   </div>
   <div class="member-profile-description">
     <h1 class="section-title">O MNIE&nbsp;</h1>
-    <span class="member-profile-description-text">{{member.description}}</span>
+    <span class="member-profile-description-text">{{member.description}}</span><br><br>
+    <h4>Interesuje mnie</h4>
+
   </div>
   <div class="" *ngIf="member.steamId">
     <app-steam-information [steamId]="member.steamId"></app-steam-information>
