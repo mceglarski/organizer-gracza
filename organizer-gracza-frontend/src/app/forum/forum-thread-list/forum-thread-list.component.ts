@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ForumService} from "../../_services/forum.service";
-import {ForumThread, Member} from "../../model/model";
+import {ForumThread, Member, User} from "../../model/model";
 import {MembersService} from "../../_services/members.service";
+import {take} from "rxjs/operators";
+import {AccountService} from "../../_services/account.service";
 
 @Component({
   selector: 'app-forum-thread-list',
@@ -10,12 +12,16 @@ import {MembersService} from "../../_services/members.service";
 })
 export class ForumThreadListComponent implements OnInit {
 
-  public forumThread: ForumThread[] = [];
+  public forumThread: ForumThread[] = []
+  public user: User;
 
   private members: Member[] = [];
 
   constructor(private forumService: ForumService,
-              private membersService: MembersService) { }
+              private accountService: AccountService,
+              private membersService: MembersService) {
+    this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
+  }
 
   ngOnInit(): void {
     this.forumService.getForumThreads().subscribe(f => {

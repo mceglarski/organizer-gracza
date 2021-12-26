@@ -5,7 +5,7 @@
     <div class="row">
       <div class="col forum-posts-meta-data">
         <a href="/members/{{forumThread?.user?.username}}">
-          <img src="{{forumThread?.user?.photoUrl}}">
+          <img class="forum-posts-avatar" src="{{forumThread?.user?.photoUrl}}">
         </a>
         <div class="col">
           <a class="forum-posts-nickname-link" href="/members/{{forumThread?.user?.username}}">
@@ -27,15 +27,16 @@
     <div class="row">
       <div class="col forum-posts-meta-data">
         <a href="/members/{{post?.username}}">
-          <img src="{{post?.photoUrl}}">
+          <img class="forum-posts-avatar" src="{{post?.photoUrl}}">
         </a>
         <div class="col">
           <a class="forum-posts-nickname-link" href="/members/{{post?.username}}">
-            {{post?.nickname}}
+            <span class="text-break">{{post?.nickname}}</span>
           </a>
         </div>
         <div class="col">{{post?.postDate | date}}</div>
       </div>
+
     </div>
 
     <div class="col text-break forum-posts-text">
@@ -44,7 +45,7 @@
 
   </div>
 
-  <div class="row justify-content-center">
+  <div class="row justify-content-center" *ngIf="user">
       <div class="col-xl-10 forum-posts-reply">
         <form [formGroup]="addPostForm" (ngSubmit)="onSubmit()">
           <label class="field field_v3">

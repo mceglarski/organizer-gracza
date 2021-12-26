@@ -1,18 +1,19 @@
-import {Component, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {AfterViewChecked, ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Member, Message, User} from "../../model/model";
 import {MessageService} from "../../_services/message.service";
 import {MembersService} from "../../_services/members.service";
 import {AccountService} from "../../_services/account.service";
 import {take} from "rxjs/operators";
 import {ActivatedRoute, Router} from "@angular/router";
-import {NgForm} from "@angular/forms";
+import {FormControl, NgForm} from "@angular/forms";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-messages-members-chat',
   templateUrl: './messages-members-chat.component.html',
   styleUrls: ['./messages-members-chat.component.css']
 })
-export class MessagesMembersChatComponent implements OnInit, OnDestroy {
+export class MessagesMembersChatComponent implements OnInit, OnDestroy  {
   @ViewChild('messageForm') messageForm: NgForm;
   public messages: Message[];
   public user: User;
@@ -24,7 +25,8 @@ export class MessagesMembersChatComponent implements OnInit, OnDestroy {
               private memberService: MembersService,
               private accountService: AccountService,
               private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private toastr: ToastrService) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
       this.user = user;
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -42,33 +44,33 @@ export class MessagesMembersChatComponent implements OnInit, OnDestroy {
     this.messageService.stopHubConnection();
   }
 
-  public sendMessage() {
-    this.loading = true;
-    this.messageService.sendMessage(this.member.username, this.messageContent).then(() => {
-      this.messageForm.reset();
-    }).finally(() => this.loading = false);
+  public hasWhiteSpace(text: string): boolean {
+    return text?.trim().length === 0;
   }
 
-  public triggerFunction(event: any) {
-    console.log(event);
-    if (event.ctrlKey && event.key === 'Enter') {
-      /*
-        cannot make textarea produce a next line.
-      */
-      let text = document.getElementById("messagesMemberChatInput");
-      // @ts-ignore
-      text.value += '\n';
-      console.log(text);
-      //  text = text.
-
-      console.log("next line!");
-    } else if (event.key === 'Enter') {
-      event.preventDefault();
-      console.log("submit!");
+  public sendMessage(): void {
+    this.loading = true;
+    if (this.messageForm.valid && !this.hasWhiteSpace(this.messageContent)) {
+      this.messageService.sendMessage(this.member.username, this.messageContent).then(() => {
+        this.messageForm.reset();
+      }).finally(() => this.loading = false);
+    }
+    else {
+      this.loading = false;
     }
   }
 
-  private loadMessages() {
+  public deleteMessage(id: number): void {
+    this.messageService.deleteMessage(id).subscribe(result => {
+      window.location.reload();
+      return;
+    }, error => {
+      this.toastr.error("Nie udało się usunąć wiadomości");
+      return;
+    });
+  }
+
+  private loadMessages(): void {
     this.messageService.getMessageThread(this.member.username).subscribe(messages => {
       this.messages = messages;
     })

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {Member} from "../../model/model";
 import {MembersService} from "../../_services/members.service";
 import {ActivatedRoute} from "@angular/router";
@@ -13,16 +13,20 @@ export class MemberContentComponent implements OnInit {
   public member: Member;
 
   constructor(private memberService: MembersService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private cd: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-    this.loadMember();
+    this.route.params.subscribe(params => {
+      const name = params['username'];
+      this.memberService.getMember(name).subscribe(m => {
+        this.member = m;
+        this.cd.detectChanges();
+        return;
+      });
+      return;
+    })
+    this.cd.detectChanges();
   }
 
-  public loadMember(): void {
-    // @ts-ignore
-    this.memberService.getMember(this.route.snapshot.paramMap.get('username')).subscribe(member => {
-      this.member = member;
-    })
-  }
 }

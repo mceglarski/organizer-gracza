@@ -1,48 +1,29 @@
-.forum-posts-container {
+.news-editor-panel-container {
   background-color: black;
   margin-top: 1%;
   color: #fff;
   padding: 1rem;
 }
 
-.forum-posts-main {
-  background-color: #3d4452;
-  border-radius: 1%;
-  border: 2px solid gray;
-  margin-bottom: 0.5rem;
-  padding: 0.5rem;
+.news-editor-panel-form {
+  padding: 0.5rem 2rem 2rem 1rem;
+  /*border: 2px solid gray;*/
 }
 
-.forum-posts-meta-data img{
-  max-width: 100px;
-  border-radius: 50%;
+.news-editor-panel-label {
+  font-size: 1.3rem;
 }
 
-.forum-posts-meta-data {
-  border-right: 2px dashed;
-  display: inline-block;
-  text-align: center;
-  padding-right: 0px;
-  width: 200px;
+.news-editor-panel-title {
+  border-radius: 2%;
 }
 
-.forum-posts-text {
-  margin-left: 0.5rem;
+.news-editor-panel-file-upload {
+
 }
 
-.forum-posts-nickname-link {
-  text-decoration: none;
-  color: white;
-}
-
-.forum-posts-avatar {
-  width: 100px;
-  height: 100px;
-  object-fit: fill;
-}
-
-.forum-posts-reply {
-
+.news-editor-panel-submit {
+  margin-top: 2rem;
 }
 
 /*
@@ -226,14 +207,4 @@ LEVEL 4. SETTINGS
   background-color: #262626;
   width: 100%;
   height: auto;
-}
-
-@media only screen and (max-width: 1000px) {
-  .forum-posts-avatar {
-    width: 50px;
-    height: 50px;
-  }
-  .forum-posts-meta-data {
-    width: 120px;
-  }
 }

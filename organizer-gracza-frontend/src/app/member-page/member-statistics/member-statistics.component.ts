@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {StatisticsService} from "../../_services/statistics.service";
 import {Game, GameStatistics, GeneralStatistics, Member, User} from "../../model/model";
 import {AccountService} from "../../_services/account.service";
@@ -13,80 +13,55 @@ import {FormControl} from "@angular/forms";
   templateUrl: './member-statistics.component.html',
   styleUrls: ['./member-statistics.component.css']
 })
-export class MemberStatisticsComponent implements OnInit {
+export class MemberStatisticsComponent implements OnInit, OnChanges {
+
+  @Input() public member: Member;
   public gameStatistics: GameStatistics[] = [];
   public gameStatistic: GameStatistics;
   public generalStatistics: GeneralStatistics;
-  private user: User;
+
   public games: Game[];
   public game: Game;
   private memberId: number;
-  private member: Member;
   public gameId: number;
 
   constructor(private accountService: AccountService,
               private statisticsService: StatisticsService,
-              private gameService: GameService,
-              private memberService: MembersService,
-              private route: ActivatedRoute) {
-    this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
+              private gameService: GameService) {
   }
 
   ngOnInit(): void {
-    this.loadMember();
+  }
+
+  ngOnChanges() {
+    this.memberId = this.member.id;
     this.loadGames();
+    this.loadGeneralStatistics();
   }
 
-  loadGameStatistics() {
-    this.statisticsService.getGameStatisticsByUserId(this.memberId).subscribe(gameStats => {
+  public loadGameStatistics(gameId: number): void {
+    this.statisticsService.getGameStatisticsForUser(this.memberId, gameId).subscribe(statistic => {
       // @ts-ignore
-      this.gameStatistics = gameStats;
+      this.gameStatistic = statistic;
+      return;
     });
   }
 
-  loadGeneralStatistics() {
-    this.statisticsService.getGeneralStatisticsByUserId(this.memberId).subscribe(generalStats => {
-      // @ts-ignore
-      this.generalStatistics = generalStats;
-    });
-  }
-
-  loadGames() {
+  private loadGames(): void {
     this.gameService.getGames().subscribe(games => {
       // @ts-ignore
       this.games = games;
-    })
+      return;
+    });
   }
 
-  loadGame() {
-    this.gameService.getGame(this.gameId).subscribe(game => {
+  private loadGeneralStatistics(): void {
+    this.statisticsService.getGeneralStatisticsByUserId(this.memberId).subscribe(generalStats => {
       // @ts-ignore
-      this.game = game;
-      this.loadGameStatisticsForUser();
-    })
+      this.generalStatistics = generalStats;
+      return;
+    });
   }
 
-  loadMember() {
-    // @ts-ignore
-    this.memberService.getMember(this.route.snapshot.paramMap.get('username')).subscribe(member => {
-      this.member = member;
-      this.loadMemberId();
-    })
-  }
-
-  loadMemberId() {
-    this.memberService.getMemberIdByUsername(this.member.username).subscribe(memberId => {
-      this.memberId = memberId;
-      this.loadGameStatistics();
-      this.loadGeneralStatistics();
-    })
-  }
-
-  loadGameStatisticsForUser() {
-    this.statisticsService.getGameStatisticsForUser(this.memberId, this.gameId).subscribe(statistic => {
-      // @ts-ignore
-      this.gameStatistic = statistic;
-    })
-  }
 }
 

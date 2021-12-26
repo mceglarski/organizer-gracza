@@ -1,26 +1,8 @@
 .member-achievements {
-  /*margin-left: 0.5%;*/
-  /*width: 99.5%;*/
 }
 
-.title {
-  display: flex;
-  flex-direction: row;
-}
-
-.separator {
-  margin-left: 5px;
-  margin-right: 5px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  width: 100%;
-}
-
-.separator::after {
-  content: '';
-  flex: 1;
-  border-bottom: 0.3rem solid #2D2D2D;
+.section-title {
+  margin: 0;
 }
 
 .rectangle-achievements {
@@ -33,6 +15,7 @@
   min-width: 350px;
   background-color: goldenrod;
   margin: 0.5rem;
+  padding: 0.2rem;
 }
 
 .achievement-image {
@@ -40,5 +23,12 @@
 }
 
 .achievement-name {
+  font-size: 1.3rem;
   color: #2D2D2D;
+  margin-left: 0.2rem;
+}
+
+.achievement-details {
+  text-align: center;
+  color: #383838;
 }

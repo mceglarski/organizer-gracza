@@ -1,9 +1,6 @@
-<div class="member-achievements container-fluid">
+<div class="member-achievements">
 
-  <div class="title mb-3">
-    <h4>OSIĄGNIĘCIA</h4>
-    <div class="separator"></div>
-  </div>
+  <h1 class="section-title">OSIĄGNIĘCIA&nbsp;</h1>
 
   <div class="rectangle-achievements row justify-content-center">
 
@@ -11,10 +8,10 @@
       <div class="col-sm-12">Użytkownik nie zdobył jeszcze osiągnięć</div>
     </div>
 
-    <div class="achievement row col-xl-3" *ngFor="let achievement of memberAchievements">
-      <div class="col-sm-4"><img class="achievement-image" src="../../../assets/achievment-icon.png" alt="Achievement"></div>
-      <div class="col-sm-8 achievement-name"><b>{{achievement.achievementsId}}</b></div>
-<!--      <div class="col-sm-8 achievement-name"><b>{{achievement.name}}</b><br>{{achievement.details}}</div>-->
+    <div class="achievement row justify-content-center col-xl-3" *ngFor="let achievement of memberAchievements">
+      <div class=""><img class="achievement-image" src="../../../assets/achievment-icon.png" alt="Achievement"></div>
+      <div class="achievement-name"><b>{{achievement?.achievements?.name}}</b></div>
+      <div class="col-xl-12 achievement-details"><b>{{achievement?.achievements?.details}}</b></div>
     </div>
 
   </div>
