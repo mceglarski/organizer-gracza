@@ -94,6 +94,7 @@ import { ForumAddNewThreadComponent } from './forum/forum-add-new-thread/forum-a
 import { NewsEditorPanelComponent } from './news-editor/news-editor-panel/news-editor-panel.component';
 import { SteamInformationComponent } from './member-page/steam-information/steam-information.component';
 import { ActivateMailComponent } from './member-page/activate-mail/activate-mail.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 registerLocaleData(localePl, 'pl');
 
@@ -195,7 +196,8 @@ FullCalendarModule.registerPlugins([
     MatDatepickerModule,
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
-    NgxMatNativeDateModule
+    NgxMatNativeDateModule,
+    MatTooltipModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
