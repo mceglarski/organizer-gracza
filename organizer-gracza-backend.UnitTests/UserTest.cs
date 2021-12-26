@@ -5,6 +5,7 @@ using organizer_gracza_backend.Controllers;
 using organizer_gracza_backend.Data;
 using organizer_gracza_backend.Interfaces;
 using organizer_gracza_backend.Model;
+using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
 namespace organizer_gracza_backend.UnitTests
 {
@@ -13,13 +14,16 @@ namespace organizer_gracza_backend.UnitTests
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
         private readonly IPhotoService _photoService;
+        private readonly DataContext _context;
+        private readonly UserManager<User> _userManager;
+        private readonly IConfiguration _configuration;
         private UsersController _usersController;
 
         
         [SetUp]
         public void Setup()
         {
-            _usersController = new UsersController(_userRepository,_mapper, _photoService);
+            _usersController = new UsersController(_userRepository,_mapper, _photoService, _userManager, _configuration);
         }
 
         [Test]

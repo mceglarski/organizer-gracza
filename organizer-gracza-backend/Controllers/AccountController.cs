@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -8,13 +6,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualBasic;
+using Newtonsoft.Json.Linq;
 using organizer_gracza_backend.DTOs;
-using organizer_gracza_backend.Helpers;
 using organizer_gracza_backend.Interfaces;
 using organizer_gracza_backend.Model;
-using organizer_gracza_backend.Services;
 using SendGrid;
 using SendGrid.Helpers.Mail;
+using User = organizer_gracza_backend.Model.User;
+
 
 namespace organizer_gracza_backend.Controllers
 {
@@ -37,7 +36,7 @@ namespace organizer_gracza_backend.Controllers
             _configuration = configuration;
         }
         
-        private string API_Key => _configuration["SendGrid:NAME"];
+        private string API_Key => _configuration["SendGrid:API_Key"];
 
         
         [HttpPost("register")]
@@ -79,11 +78,13 @@ namespace organizer_gracza_backend.Controllers
             var from = new EmailAddress("organizergracza@gmail.com", "Organizer gracza");
             var subject = "Potwierdzenie adresu E-mail";
             var to = new EmailAddress(user.Email, user.UserName);
-            var plainTextContent = "Dzień dobry, dziękujemy za zarejestrowanie się na naszej stronie Organizer Gracza. Prosimy wejść na link wysłany w wiadomości w celu potwierdzenia swojego adresu E-mail.";
-            var htmlContent = "Dzień dobry, dziękujemy za zarejestrowanie się na naszej stronie Organizer Gracza. Prosimy wejść na link wysłany w wiadomości w celu potwierdzenia swojego adresu E-mail.";
+            var plainTextContent = "Dzień dobry, dziękujemy za zarejestrowanie się na naszej stronie Organizer Gracza. Prosimy wejść na link wysłany w wiadomości w celu potwierdzenia swojego adresu E-mail. Link do potwierdzenia: https://organizer-gracza.herokuapp.com/activate-email";
+            var htmlContent = "Dzień dobry, dziękujemy za zarejestrowanie się na naszej stronie Organizer Gracza. Prosimy wejść na link wysłany w wiadomości w celu potwierdzenia swojego adresu E-mail. Link do potwierdzenia: https://organizer-gracza.herokuapp.com/activate-email";
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
             var response = await client.SendEmailAsync(msg);
-            
+            if (!response.IsSuccessStatusCode)
+                BadRequest("Nie udało się wysłać wiadomości z linkiem do potwierdzenia E-mailu.");
+
             return new UserDto()
             {
                 Id = user.Id,
