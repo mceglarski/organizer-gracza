@@ -14,6 +14,7 @@ export class MemberContentComponent implements OnInit {
 
   public member: Member;
   public userGames: UserGame[];
+  public gamesToShow: string[] = [];
 
   private games: Game[];
 
@@ -21,7 +22,8 @@ export class MemberContentComponent implements OnInit {
               private userGameService: UsergameService,
               private gameService: GameService,
               private route: ActivatedRoute,
-              private cd: ChangeDetectorRef) { }
+              private cd: ChangeDetectorRef) {
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -29,23 +31,25 @@ export class MemberContentComponent implements OnInit {
       this.memberService.getMember(name).subscribe(m => {
         this.member = m;
         this.cd.detectChanges();
+        this.userGameService.getUserGameForUser(this.member.id).subscribe(userGame => {
+          // @ts-ignore
+          this.userGames = userGame;
+          this.gameService.getGames().subscribe(game => {
+            // @ts-ignore
+            this.games = game;
+            this.userGames.forEach(g => {
+              // @ts-ignore
+              this.gamesToShow.push(this.games.find(f => f.gameId === g.gameId).title);
+            });
+            return;
+          });
+        });
         return;
       });
       return;
     });
+
     this.cd.detectChanges();
-
-    this.userGameService.getUserGameForUser(this.member.id).subscribe(userGame => {
-      // @ts-ignore
-      this.userGames = userGame;
-      this.gameService.getGames().subscribe(game => {
-        // @ts-ignore
-        this.games = game;
-
-        // this.games = this.games.filter(g => g.gameId === )
-        return;
-      })
-    });
   }
 
 }
