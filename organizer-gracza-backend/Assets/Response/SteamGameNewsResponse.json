@@ -1,0 +1,86 @@
+﻿{
+  "appnews": {
+    "appid": 730,
+    "newsitems": [
+      {
+        "gid": "5320438099050741254",
+        "title": "Valve are updating Half-Life and more for Steam Deck",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/Rock, Paper, Shotgun/5320438099050741254",
+        "is_external_url": true,
+        "author": "",
+        "contents": "<img src=\"https://assets2.rockpapershotgun.com/deckmods.jpg/BROK/resize/1920x1920%3E/format/jpg/quality/80/deckmods.jpg\" /> <p>Valve are working to upgrade a number of their more popular games for the Steam Deck, optimising controls and interfaces to play better on their upcoming portable powerhouse, the Steam Deck. The <a href=\"https://www.rockpapershotgun.com/games/half-life\">Half-Life</a> series, Dota 2, and Counter Strike: Global Offensive, either already have or will receive upgrades designed to make them \"better experiences\".</p>\n <p><a href=\"https://www.rockpapershotgun.com/valve-are-updating-half-life-and-more-for-steam-deck\">Read more</a></p>",
+        "feedlabel": "Rock, Paper, Shotgun",
+        "date": 1640012665,
+        "feedname": "Rock, Paper, Shotgun",
+        "feed_type": 0,
+        "appid": 70
+      },
+      {
+        "gid": "4224937392747669152",
+        "title": "Experimental Vulkan support is here for Counter-Strike: Global Offensive",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/GamingOnLinux/4224937392747669152",
+        "is_external_url": true,
+        "author": "",
+        "contents": "<p><p>As we suggested it would be, Valve has announced that experimental Vulkan support for Counter-Strike: Global Offensive (CSGO) has landed and can be tried out right now.</p><p><img src=\"https://www.gamingonlinux.com/uploads/articles/tagline_images/844310271id20213gol.jpg\" alt /></p><p>Read the full article here: https://www.gamingonlinux.com/2021/12/experimental-vulkan-support-is-here-for-counter-strike-global-offensive</p></p>",
+        "feedlabel": "GamingOnLinux",
+        "date": 1639567986,
+        "feedname": "GamingOnLinux",
+        "feed_type": 0,
+        "appid": 730
+      },
+      {
+        "gid": "4224936849664840702",
+        "title": "Valve broke Counter-Strike: Global Offensive on Linux, Vulkan may come soon",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/GamingOnLinux/4224936849664840702",
+        "is_external_url": true,
+        "author": "",
+        "contents": "<p><p>Despite Valve pushing many areas of Linux gaming, including the upcoming Steam Deck handheld which will use the Arch-based SteamOS 3, they still totally break their own games. UPDATED.</p><p><img src=\"https://www.gamingonlinux.com/uploads/articles/tagline_images/2001390432id20198gol.jpg\" alt /></p><p>Read the full article here: https://www.gamingonlinux.com/2021/12/valve-broke-counter-strike-global-offensive-on-linux-vulkan-may-come-soon</p></p>",
+        "feedlabel": "GamingOnLinux",
+        "date": 1639394574,
+        "feedname": "GamingOnLinux",
+        "feed_type": 0,
+        "appid": 730
+      },
+      {
+        "gid": "4224935490650191074",
+        "title": "This CS:GO fan map changes Dust II from desert into an abandoned \"green oasis\"",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/PCGamesN/4224935490650191074",
+        "is_external_url": true,
+        "author": "editor@pcgamesn.com",
+        "contents": "<img width=\"900\" height=\"507\" src=\"https://www.pcgamesn.com/wp-content/uploads/2021/11/csgo-dust-2-mod-2055-map-900x506.jpg\"/><p><a href=\"https://www.pcgamesn.com/counter-strike-global-offensive\">Counter-Strike: Global Offensive</a> fans know Dust II well. Succeeding the original Dust map, it's one of the <a href=\"https://www.pcgamesn.com/15-best-pc-first-person-shooters\">FPS game's</a> most popular battlegrounds - and it's an iconic one, too, with its distinctive Middle Eastern town-style streets and aesthetic. Now, though, you can play the same map with a whole other vibe, as a modder's transformed its desert setting into a \"green oasis\".</p>\n<p>CS:GO modder BARS's new <a href=\"https://steamcommunity.com/sharedfiles/filedetails/?id=2662892831&searchtext=\">'Dust II 2055' overhaul mod</a> is the latest in their '2055' series, which gives existing maps an \"abandoned style\" by imagining a future state in which weather events have changed, people have left the sites behind, and nature has started reclaiming the buildings and streets. \"Dust 2 has turned from a desert into a green oasis,\" the modder says in the reimagined Dust II 2055's description. \"Acid rain and changing weather conditions have completely changed the map\" - and it has indeed been totally transformed.</p>\n<p>Dust II's previously sun-baked streets have become overrun with moss and grass, there are trees with trails of vines hanging from their branches scattered about, and the whole ecosystem's far from sunny. Even the <a href=\"https://steamuserimages-a.akamaihd.net/ugc/1826768689058660789/CB9D3A7A11C96F4BA9A50B7662C174EA8F8C9815/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false\">underground and covered areas</a> have fallen to nature, with huge tree roots breaking through the walls and gates.</p>\n<p><a href=\"https://www.pcgamesn.com/counter-strike-global-offensive/dust-2-2055-mod-map\">Read the rest of the story...</a></p>\n<p>RELATED LINKS:<br />\n<a href=\"https://www.pcgamesn.com/counter-strike-global-offensive/dreams-nightmares-weapon-skins\">Here are the Dreams and Nightmares weapon skins coming to CS:GO</a><br />\n<a href=\"https://www.pcgamesn.com/counter-strike-global-offensive/map-space-station-1v1\">This popular CS:GO map brings 1v1 to outer space</a><br />\n<a href=\"https://www.pcgamesn.com/counter-strike-global-offensive/csgo-update-extraction-insertion-changes\">New Counter-Strike: Global Offensive update brings a batch of Riptide map changes</a></p>",
+        "feedlabel": "PCGamesN",
+        "date": 1638188953,
+        "feedname": "PCGamesN",
+        "feed_type": 0,
+        "appid": 730
+      },
+      {
+        "gid": "4224935490643507807",
+        "title": "Steam sets new concurrent users record with over 27 million online",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/eurogamer/4224935490643507807",
+        "is_external_url": true,
+        "author": "",
+        "contents": "<img src=\"https://d2skuhm0vrry40.cloudfront.net/2021/articles/2021-11-27-16-30/steam-sets-new-concurrent-users-record-with-over-27-million-online-1638030654556.jpg/EG11/resize/300x-1/quality/90/format/jpg\" alt=\"\"/><p>Steam has set a new concurrent users record with over 27 million online.</p><p>According to <a href=\"https://steamdb.info/app/753/graphs/\" target=\"_blank\">SteamDB</a>, Valve's platform hit a new all-time peak this afternoon of 27,182,165 concurrent users.</p><p>That beats Steam's previous best of 26.9 million users online at the same time in April.</p><p><a href=\"https://www.eurogamer.net/articles/2021-11-27-steam-sets-new-concurrent-users-record-with-over-27-million-online\">Read more</a></p>",
+        "feedlabel": "Eurogamer",
+        "date": 1638030660,
+        "feedname": "eurogamer",
+        "feed_type": 0,
+        "appid": 570
+      },
+      {
+        "gid": "4224935490640722027",
+        "title": "Revenge of the Squidlike: You can now play Squid Game in CS:GO too",
+        "url": "https://steamstore-a.akamaihd.net/news/externalpost/PC Gamer/4224935490640722027",
+        "is_external_url": true,
+        "author": "Ted Litchfield",
+        "contents": "<img src=\"https://cdn.mos.cms.futurecdn.net/pqYx3jhLpSNwaotbUTMpKZ.jpg\"/><br><br>\n                Squid Game is a Netflix-produced Korean drama that has achieved absolutely ludicrous success since its release in September 2021. In it, desperate contestants compete in deadly variations of children&apos;s games for a chance at a cash prize. It has spawned <a href=\"https://www.pcgamer.com/squid-game-games/\" target=\"_blank\">quite a few knock offs</a> in the videogame world, as well as <a href=\"https://www.pcgamer.com/mr-beast-squid-game-real-youtube/\" target=\"_blank\">one in the real world</a>. Writing about Squid Game games previously, I foolishly predicted that we wouldn&apos;t see many more of them, and also remarked on how they reminded me of the Source engine mods I loved when I was a teenager...\n                <a href=\"https://www.pcgamer.com/revenge-of-the-squidlike-you-can-now-play-squid-game-in-csgo-too?utm_source=steam&utm_medium=referral\" target=\"_blank\">Read more.</a>",
+        "feedlabel": "PC Gamer",
+        "date": 1637963115,
+        "feedname": "PC Gamer",
+        "feed_type": 0,
+        "appid": 730
+      }
+    ],
+    "count": 6
+  }
+}

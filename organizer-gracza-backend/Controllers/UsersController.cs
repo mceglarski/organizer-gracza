@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -5,6 +6,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic;
 using organizer_gracza_backend.DTOs;
 using organizer_gracza_backend.Extensions;
 using organizer_gracza_backend.Helpers;
@@ -19,24 +21,26 @@ namespace organizer_gracza_backend.Controllers
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
         private readonly IPhotoService _photoService;
+
         public UsersController(IUserRepository userRepository, IMapper mapper, IPhotoService photoService)
         {
             _userRepository = userRepository;
             _mapper = mapper;
             _photoService = photoService;
         }
+        
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery]PaginationParams paginationParams)
+        public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery] PaginationParams paginationParams)
         {
             var users = await _userRepository.GetMembersAsync(paginationParams);
-            
-            Response.AddPaginationHeader(users.CurrentPage, users.PageSize, 
+
+            Response.AddPaginationHeader(users.CurrentPage, users.PageSize,
                 users.TotalCount, users.TotalPages);
-            
+
             return Ok(users);
         }
-        
+
         [HttpGet("user/{username}")]
         public int GetUserId(string username)
         {
@@ -44,7 +48,7 @@ namespace organizer_gracza_backend.Controllers
 
             return query.Result.Id;
         }
-        
+
         [HttpGet("member")]
         public int GetCurrentlyLoggedMemberId()
         {
@@ -52,13 +56,13 @@ namespace organizer_gracza_backend.Controllers
 
             return query.Result.Id;
         }
-        
+
         [HttpGet("{username}", Name = "GetUser")]
         public async Task<ActionResult<MemberDto>> GetUser(string username)
         {
             return await _userRepository.GetMemberAsync(username);
         }
-        
+
         [HttpGet("member/{id}")]
         public async Task<ActionResult<MemberDto>> GetUserById(int id)
         {
@@ -68,10 +72,16 @@ namespace organizer_gracza_backend.Controllers
         [HttpPut]
         public async Task<ActionResult> UpdateUser(MemberUpdateDto memberUpdateDto)
         {
+            memberUpdateDto.Nickname = Strings.Trim(memberUpdateDto.Nickname);
+            memberUpdateDto.SteamId = Strings.Trim(memberUpdateDto.SteamId);
+            
             var user = await _userRepository.GetUserByUsernameAsync(User.GetUsername());
 
+            if (IsValidSteamid(memberUpdateDto.SteamId) == false)
+                return BadRequest("SteamId is in incorrent format");
+
             _mapper.Map(memberUpdateDto, user);
-            
+
             _userRepository.Update(user);
 
             if (await _userRepository.SaveAllAsync())
@@ -99,14 +109,15 @@ namespace organizer_gracza_backend.Controllers
             {
                 photo.IsMain = true;
             }
-            
+
             user.Photos.Add(photo);
 
             if (await _userRepository.SaveAllAsync())
             {
-                return CreatedAtRoute("GetUser", new {username = user.UserName},
+                return CreatedAtRoute("GetUser", new { username = user.UserName },
                     _mapper.Map<PhotoDto>(photo));
             }
+
             return BadRequest("Problem adding photo");
         }
 
@@ -155,6 +166,18 @@ namespace organizer_gracza_backend.Controllers
                 return Ok();
 
             return BadRequest("Failed to delete photo");
+        }
+
+        public bool IsValidSteamid(string id)
+        {
+            var array = id.ToCharArray();
+            foreach (var item in array)
+            {
+                if (!char.IsDigit(item))
+                    return false;
+            }
+
+            return true;
         }
     }
 }

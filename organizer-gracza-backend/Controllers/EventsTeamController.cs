@@ -63,8 +63,14 @@ namespace organizer_gracza_backend.Controllers
         [HttpPost]
         public async Task<ActionResult<EventTeamDto>> CreateEventTeam(EventTeamDto eventTeamDto)
         {
-            if (await TeamEventExists(eventTeamDto.Name))
-                return BadRequest("Event name is taken");
+            eventTeamDto.Name = Strings.Trim(eventTeamDto.Name);
+
+            
+            if (await NameExists(eventTeamDto.Name))
+                return BadRequest("Name is already taken");
+            
+            if (await NameExistsToLower(eventTeamDto.Name.ToLower()))
+                return BadRequest("Name is already taken");
             
             var newEventUser = new EventTeam()
             {
@@ -117,7 +123,7 @@ namespace organizer_gracza_backend.Controllers
                 return NoContent();
             }
 
-            if (await TeamEventExists(specifiedEvent.Name) && !eventAsync.Name.Equals(specifiedEvent.Name))
+            if (await NameExists(specifiedEvent.Name) && !eventAsync.Name.Equals(specifiedEvent.Name))
                 return BadRequest("Event name is taken");
             
             eventAsync.EventTeamId = eventAsync.EventTeamId;
@@ -172,9 +178,14 @@ namespace organizer_gracza_backend.Controllers
             return BadRequest("Problem occured when adding photo");
         }
         
-        private async Task<bool> TeamEventExists(string name)
+        private async Task<bool> NameExists(string name)
         {
-            return await _context.EventTeam.AnyAsync(x => x.Name == name);
+            return await _context.EventTeam.AnyAsync(x => x.Name.Equals(name));
+        }
+        
+        private async Task<bool> NameExistsToLower(string name)
+        {
+            return await _context.EventTeam.AnyAsync(x => x.Name.ToLower().Equals(name.ToLower()));
         }
         
         private bool CompareEventTeam(EventTeam firstEvent, EventTeam secondEvent)

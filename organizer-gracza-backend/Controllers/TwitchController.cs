@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using organizer_gracza_backend.Model;
@@ -12,6 +13,16 @@ namespace organizer_gracza_backend.Controllers
 {
     public class TwitchController : BaseApiController
     {
+        private readonly IConfiguration _configuration;
+
+        public TwitchController(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+        
+        private string TokenValue => _configuration["TwitchSettings:TokenValue"];
+        private string IdValue => _configuration["TwitchSettings:IdValue"];
+        
         [HttpGet]
         public async Task<IActionResult> GetData()
         {
@@ -19,13 +30,13 @@ namespace organizer_gracza_backend.Controllers
             try
             {
                 twitch.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue("Bearer", "wh6c1oa2kkqp33h1bjziw93no30761");
-                twitch.DefaultRequestHeaders.Add("Client-Id", "gp762nuuoqcoxypju8c569th9wz7q5");
+                    new AuthenticationHeaderValue("Bearer", TokenValue);
+                twitch.DefaultRequestHeaders.Add("Client-Id", IdValue);
                 var response = await twitch.GetAsync("https://api.twitch.tv/helix/streams");
                 response.EnsureSuccessStatusCode();
 
                 string result = await response.Content.ReadAsStringAsync();
-                var json = JsonConvert.DeserializeObject(result);
+                var json = JsonConvert.DeserializeObject<TwitchDataResponse>(result);
 
                 return Ok(json);
             }
@@ -42,13 +53,13 @@ namespace organizer_gracza_backend.Controllers
             try
             {
                 twitch.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue("Bearer", "wh6c1oa2kkqp33h1bjziw93no30761");
-                twitch.DefaultRequestHeaders.Add("Client-Id", "gp762nuuoqcoxypju8c569th9wz7q5");
+                    new AuthenticationHeaderValue("Bearer", TokenValue);
+                twitch.DefaultRequestHeaders.Add("Client-Id", IdValue);
                 var response = await twitch.GetAsync($"https://api.twitch.tv/helix/streams/?game_id={id}");
                 response.EnsureSuccessStatusCode();
 
                 string result = await response.Content.ReadAsStringAsync();
-                var json = JsonConvert.DeserializeObject(result);
+                var json = JsonConvert.DeserializeObject<TwitchDataResponse>(result);
 
                 return Ok(json);
             }
@@ -65,13 +76,13 @@ namespace organizer_gracza_backend.Controllers
             try
             {
                 twitch.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue("Bearer", "wh6c1oa2kkqp33h1bjziw93no30761");
-                twitch.DefaultRequestHeaders.Add("Client-Id", "gp762nuuoqcoxypju8c569th9wz7q5");
+                    new AuthenticationHeaderValue("Bearer", TokenValue);
+                twitch.DefaultRequestHeaders.Add("Client-Id", IdValue);
                 var response = await twitch.GetAsync($"https://api.twitch.tv/helix/streams/?game_id={gameId}&language={languageId}");
                 response.EnsureSuccessStatusCode();
 
                 string result = await response.Content.ReadAsStringAsync();
-                var json = JsonConvert.DeserializeObject(result);
+                var json = JsonConvert.DeserializeObject<TwitchDataResponse>(result);
 
                 return Ok(json);
             }
@@ -88,13 +99,13 @@ namespace organizer_gracza_backend.Controllers
             try
             {
                 twitch.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue("Bearer", "wh6c1oa2kkqp33h1bjziw93no30761");
-                twitch.DefaultRequestHeaders.Add("Client-Id", "gp762nuuoqcoxypju8c569th9wz7q5");
+                    new AuthenticationHeaderValue("Bearer", TokenValue);
+                twitch.DefaultRequestHeaders.Add("Client-Id", IdValue);
                 var response = await twitch.GetAsync($"https://api.twitch.tv/helix/streams/?language={id}");
                 response.EnsureSuccessStatusCode();
 
                 string result = await response.Content.ReadAsStringAsync();
-                var json = JsonConvert.DeserializeObject(result);
+                var json = JsonConvert.DeserializeObject<TwitchDataResponse>(result);
 
                 return Ok(json);
             }

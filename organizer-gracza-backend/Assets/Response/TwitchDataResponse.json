@@ -1,0 +1,384 @@
+﻿{
+  "data": [
+    {
+      "id": "44903948589",
+      "user_id": "545050196",
+      "user_login": "kato_junichi0817",
+      "user_name": "加藤純一です",
+      "game_id": "",
+      "game_name": "",
+      "type": "live",
+      "title": "カラオケスナック純",
+      "viewer_count": 47643,
+      "started_at": "2021-12-25T09:15:03Z",
+      "language": "ja",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_kato_junichi0817-{width}x{height}.jpg",
+      "tag_ids": [
+        "6ba1d230-e52f-4d81-b1e0-41f25a8a9f5d",
+        "dc179e62-215f-4785-bbc5-385ef8f1285b",
+        "c2839af5-f1d2-46c4-8edc-1d0bfbd85070"
+      ],
+      "is_mature": false
+    },
+    {
+      "id": "40363808219",
+      "user_id": "71190292",
+      "user_login": "trainwreckstv",
+      "user_name": "Trainwreckstv",
+      "game_id": "498566",
+      "game_name": "Slots",
+      "type": "live",
+      "title": "MERRY CHRISTMAS | 18+ still lookin' for my 1st max win ever #ad | !twitter | !instagram | !podcast | !youtube",
+      "viewer_count": 33912,
+      "started_at": "2021-12-25T01:32:25Z",
+      "language": "en",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_trainwreckstv-{width}x{height}.jpg",
+      "tag_ids": [
+        "6ea6bca4-4712-4ab9-a906-e3336a9d8039"
+      ],
+      "is_mature": true
+    },
+    {
+      "id": "44905972925",
+      "user_id": "45044816",
+      "user_login": "montanablack88",
+      "user_name": "MontanaBlack88",
+      "game_id": "509658",
+      "game_name": "Just Chatting",
+      "type": "live",
+      "title": "Moin",
+      "viewer_count": 33762,
+      "started_at": "2021-12-25T15:27:54Z",
+      "language": "de",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_montanablack88-{width}x{height}.jpg",
+      "tag_ids": [
+        "9166ad14-41f1-4b04-a3b8-c8eb838c6be6"
+      ],
+      "is_mature": true
+    },
+    {
+      "id": "40365185995",
+      "user_id": "49839696",
+      "user_login": "rebirthztv",
+      "user_name": "RebirthzTV",
+      "game_id": "32982",
+      "game_name": "Grand Theft Auto V",
+      "type": "live",
+      "title": "ตู้ โอคอนเนอร์ SS1 การแก้แค้นที่ดีที่สุดคือการทำชีวิตตัวเองให้ดี Omnuay",
+      "viewer_count": 30930,
+      "started_at": "2021-12-25T14:28:17Z",
+      "language": "th",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_rebirthztv-{width}x{height}.jpg",
+      "tag_ids": [
+        "f19c7524-c18d-41af-9f39-034c8d0b0fee"
+      ],
+      "is_mature": false
+    },
+    {
+      "id": "44890811325",
+      "user_id": "48878319",
+      "user_login": "thegrefg",
+      "user_name": "TheGrefg",
+      "game_id": "509658",
+      "game_name": "Just Chatting",
+      "type": "live",
+      "title": "¿EL FINAL? 💜 !EXTENSIBLE *DÍA 23* 💜 !horario !esland",
+      "viewer_count": 27728,
+      "started_at": "2021-12-24T00:36:13Z",
+      "language": "es",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_thegrefg-{width}x{height}.jpg",
+      "tag_ids": [
+        "d4bb9c58-2141-4881-bcdc-3fe0505457d1"
+      ],
+      "is_mature": false
+    },
+    {
+      "id": "44904829405",
+      "user_id": "86277097",
+      "user_login": "buster",
+      "user_name": "buster",
+      "game_id": "32399",
+      "game_name": "Counter-Strike: Global Offensive",
+      "type": "live",
+      "title": "Buster All Star Haval Cup: Team Buster vs Team Evelone",
+      "viewer_count": 27506,
+      "started_at": "2021-12-25T12:10:20Z",
+      "language": "ru",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_buster-{width}x{height}.jpg",
+      "tag_ids": [
+        "0569b171-2a2b-476e-a596-5bdfb45a1327"
+      ],
+      "is_mature": false
+    },
+    {
+      "id": "44904454797",
+      "user_id": "139470326",
+      "user_login": "handongsuk",
+      "user_name": "한동숙",
+      "game_id": "504504672",
+      "game_name": "Love Delivery",
+      "type": "live",
+      "title": "러브 딜리버리",
+      "viewer_count": 16494,
+      "started_at": "2021-12-25T11:00:34Z",
+      "language": "ko",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_handongsuk-{width}x{height}.jpg",
+      "tag_ids": [
+        "ab2975e3-b9ca-4b1a-a93e-fb61a5d5c3a4"
+      ],
+      "is_mature": false
+    },
+    {
+      "id": "44168627020",
+      "user_id": "128293484",
+      "user_login": "k3soju",
+      "user_name": "k3soju",
+      "game_id": "513143",
+      "game_name": "Teamfight Tactics",
+      "type": "live",
+      "title": "C9 k3soju | it clicked | HAPPY HOLIDAYS EVERYONE | !yt",
+      "viewer_count": 16004,
+      "started_at": "2021-12-25T01:47:41Z",
+      "language": "en",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_k3soju-{width}x{height}.jpg",
+      "tag_ids": [
+        "6ea6bca4-4712-4ab9-a906-e3336a9d8039"
+      ],
+      "is_mature": false
+    },
+    {
+      "id": "44905599389",
+      "user_id": "56649026",
+      "user_login": "quin69",
+      "user_name": "Quin69",
+      "game_id": "29307",
+      "game_name": "Path of Exile",
+      "type": "live",
+      "title": "🎁X-MAS DROPS BATCHEST🎁 STARTING ATLAS INVASION EVENT NOW BLIND!!!! MERRY CHRISTMAS | !interview with Leslie AKA SILVER FOX",
+      "viewer_count": 15115,
+      "started_at": "2021-12-25T14:25:21Z",
+      "language": "en",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_quin69-{width}x{height}.jpg",
+      "tag_ids": [
+        "6ea6bca4-4712-4ab9-a906-e3336a9d8039",
+        "c2542d6d-cd10-4532-919b-3d19f30a768b",
+        "b157e8d6-b7ba-49f4-836f-09886c072f1f"
+      ],
+      "is_mature": false
+    },
+    {
+      "id": "44171189628",
+      "user_id": "70075625",
+      "user_login": "silvername",
+      "user_name": "SilverName",
+      "game_id": "138585",
+      "game_name": "Hearthstone",
+      "type": "live",
+      "title": "TOP 1 MIPA https://t.me/SilverNameTV/1583",
+      "viewer_count": 14867,
+      "started_at": "2021-12-25T13:15:15Z",
+      "language": "ru",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_silvername-{width}x{height}.jpg",
+      "tag_ids": [
+        "0569b171-2a2b-476e-a596-5bdfb45a1327"
+      ],
+      "is_mature": false
+    },
+    {
+      "id": "44904205213",
+      "user_id": "10985633",
+      "user_login": "spygea",
+      "user_name": "SPYGEA",
+      "game_id": "491931",
+      "game_name": "Escape from Tarkov",
+      "type": "live",
+      "title": "タルコフ",
+      "viewer_count": 14557,
+      "started_at": "2021-12-25T10:09:36Z",
+      "language": "ja",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_spygea-{width}x{height}.jpg",
+      "tag_ids": [
+        "6ba1d230-e52f-4d81-b1e0-41f25a8a9f5d"
+      ],
+      "is_mature": false
+    },
+    {
+      "id": "44169855244",
+      "user_id": "44741426",
+      "user_login": "streamerhouse",
+      "user_name": "StreamerHouse",
+      "game_id": "493597",
+      "game_name": "New World",
+      "type": "live",
+      "title": "24/7 !DROPS !GIVEAWAYS !LOOT  New World - Follow @StreamerHouse - ALWAYS LIVE SINCE 2013",
+      "viewer_count": 13771,
+      "started_at": "2021-12-25T07:18:28Z",
+      "language": "en",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_streamerhouse-{width}x{height}.jpg",
+      "tag_ids": [
+        "6ea6bca4-4712-4ab9-a906-e3336a9d8039",
+        "c2542d6d-cd10-4532-919b-3d19f30a768b",
+        "8bbdb07d-df18-4f82-a928-04a9003e9a7e",
+        "6131f3f8-67aa-4c2d-b9c3-daa8f95a850e",
+        "8486f56b-8677-44f7-8004-000295391524",
+        "79977fb9-f106-4a87-a386-f1b0f99783dd",
+        "1706e401-a023-49fc-9b10-7bf73f59c940"
+      ],
+      "is_mature": false
+    },
+    {
+      "id": "44903594845",
+      "user_id": "45302947",
+      "user_login": "iitztimmy",
+      "user_name": "iiTzTimmy",
+      "game_id": "511224",
+      "game_name": "Apex Legends",
+      "type": "live",
+      "title": "Merry Christmas :) Matching all subs today! Last stream of the year!! // Follow my socials @iiTzTimmy",
+      "viewer_count": 13603,
+      "started_at": "2021-12-25T07:59:15Z",
+      "language": "en",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_iitztimmy-{width}x{height}.jpg",
+      "tag_ids": [
+        "6ea6bca4-4712-4ab9-a906-e3336a9d8039"
+      ],
+      "is_mature": false
+    },
+    {
+      "id": "44899408093",
+      "user_id": "125387632",
+      "user_login": "amouranth",
+      "user_name": "Amouranth",
+      "game_id": "498592",
+      "game_name": "I'm Only Sleeping",
+      "type": "live",
+      "title": "🎅🏻CHRISTMAS SLEEPOVER TONIGHT💦!s-->social media links",
+      "viewer_count": 13271,
+      "started_at": "2021-12-24T21:39:46Z",
+      "language": "en",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_amouranth-{width}x{height}.jpg",
+      "tag_ids": [
+        "6ea6bca4-4712-4ab9-a906-e3336a9d8039",
+        "2ffd5c3e-b927-4749-ba53-79d3b626b2da",
+        "77223888-8535-4614-974b-b1b2673456eb",
+        "64d9afa6-139a-48d5-ab4e-51d0a92b22de"
+      ],
+      "is_mature": false
+    },
+    {
+      "id": "44164794828",
+      "user_id": "152984821",
+      "user_login": "nba",
+      "user_name": "NBA",
+      "game_id": "518203",
+      "game_name": "Sports",
+      "type": "live",
+      "title": "24 Hour Countdown to #NBAXMAS Hardwood Classic Marathon! ",
+      "viewer_count": 12825,
+      "started_at": "2021-12-24T16:53:58Z",
+      "language": "en",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_nba-{width}x{height}.jpg",
+      "tag_ids": [
+        "6ea6bca4-4712-4ab9-a906-e3336a9d8039"
+      ],
+      "is_mature": false
+    },
+    {
+      "id": "44904079005",
+      "user_id": "160504245",
+      "user_login": "39daph",
+      "user_name": "39daph",
+      "game_id": "115977",
+      "game_name": "The Witcher 3: Wild Hunt",
+      "type": "live",
+      "title": "obscure small indie game",
+      "viewer_count": 12268,
+      "started_at": "2021-12-25T09:43:39Z",
+      "language": "en",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_39daph-{width}x{height}.jpg",
+      "tag_ids": [
+        "c1ea4496-4418-4a4f-bc30-083cfc6a616b",
+        "396aee63-bb8a-43c4-95da-98fca08e144b",
+        "6ea6bca4-4712-4ab9-a906-e3336a9d8039",
+        "0cef8341-8c67-481f-95a8-325932a6699c",
+        "2de58b90-39a2-4d02-b57e-bd2d1899f4c3"
+      ],
+      "is_mature": false
+    },
+    {
+      "id": "44904334125",
+      "user_id": "128222917",
+      "user_login": "bbbb87",
+      "user_name": "世誠",
+      "game_id": "21779",
+      "game_name": "League of Legends",
+      "type": "live",
+      "title": "【K7 RB】衝鑽石",
+      "viewer_count": 11186,
+      "started_at": "2021-12-25T10:36:39Z",
+      "language": "zh",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_bbbb87-{width}x{height}.jpg",
+      "tag_ids": [
+        "74c92063-a389-4fd2-8460-b1bb82b04ec7"
+      ],
+      "is_mature": true
+    },
+    {
+      "id": "44904994141",
+      "user_id": "77415295",
+      "user_login": "jasper7se",
+      "user_name": "Jasper7se",
+      "game_id": "516575",
+      "game_name": "VALORANT",
+      "type": "live",
+      "title": "Jasper7se - クリスマスレディアント 800位~",
+      "viewer_count": 11080,
+      "started_at": "2021-12-25T12:40:53Z",
+      "language": "ja",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_jasper7se-{width}x{height}.jpg",
+      "tag_ids": [
+        "6ba1d230-e52f-4d81-b1e0-41f25a8a9f5d"
+      ],
+      "is_mature": false
+    },
+    {
+      "id": "44171665276",
+      "user_id": "108268890",
+      "user_login": "gorgc",
+      "user_name": "Gorgc",
+      "game_id": "29595",
+      "game_name": "Dota 2",
+      "type": "live",
+      "title": "Christmas Special #2  *** MASTERCHEF LATER",
+      "viewer_count": 11000,
+      "started_at": "2021-12-25T14:35:32Z",
+      "language": "en",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_gorgc-{width}x{height}.jpg",
+      "tag_ids": [
+        "6ea6bca4-4712-4ab9-a906-e3336a9d8039"
+      ],
+      "is_mature": true
+    },
+    {
+      "id": "44905258365",
+      "user_id": "85397463",
+      "user_login": "noway4u_sir",
+      "user_name": "NoWay4u_Sir",
+      "game_id": "21779",
+      "game_name": "League of Legends",
+      "type": "live",
+      "title": "Mentality Man 2-2",
+      "viewer_count": 9492,
+      "started_at": "2021-12-25T13:26:23Z",
+      "language": "de",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_noway4u_sir-{width}x{height}.jpg",
+      "tag_ids": [
+        "9166ad14-41f1-4b04-a3b8-c8eb838c6be6"
+      ],
+      "is_mature": false
+    }
+  ],
+  "pagination": {
+    "cursor": "eyJiIjp7IkN1cnNvciI6ImV5SnpJam8wTnpZME15NDNNekU0T1RnME5qY3lNalFzSW1RaU9tWmhiSE5sTENKMElqcDBjblZsZlE9PSJ9LCJhIjp7IkN1cnNvciI6ImV5SnpJam81TkRreUxqZzBNRGd4TWpjMU1qVXhOaXdpWkNJNlptRnNjMlVzSW5RaU9uUnlkV1Y5In19"
+  }
+}

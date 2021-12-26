@@ -2,6 +2,9 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
+using organizer_gracza_backend.Data;
 using organizer_gracza_backend.DTOs;
 using organizer_gracza_backend.Interfaces;
 using organizer_gracza_backend.Model;
@@ -12,12 +15,14 @@ namespace organizer_gracza_backend.Controllers
     {
         private readonly IAchievementsRepository _achievementsRepository;
         private readonly IMapper _mapper;
+        private readonly DataContext _context;
 
         public AchievementsController(IAchievementsRepository achievementsRepository,
-            IMapper mapper)
+            IMapper mapper, DataContext context)
         {
             _achievementsRepository = achievementsRepository;
             _mapper = mapper;
+            _context = context;
         }
 
         [HttpGet]
@@ -41,11 +46,19 @@ namespace organizer_gracza_backend.Controllers
         [HttpPost]
         public async Task<ActionResult<AchievementsDto>> CreateAchievement(AchievementsDto achievementsDto)
         {
+            achievementsDto.Name = Strings.Trim(achievementsDto.Name);
+
             var newAchievement = new Achievements()
             {
                 Details = achievementsDto.Details,
                 Name = achievementsDto.Name,
             };
+            
+            if (await NameExists(achievementsDto.Name))
+                return BadRequest("Name is already taken");
+            
+            if (await NameExistsToLower(achievementsDto.Name.ToLower()))
+                return BadRequest("Name is already taken");
 
             _achievementsRepository.AddAchievement(newAchievement);
 
@@ -70,6 +83,8 @@ namespace organizer_gracza_backend.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult> UpdateAchievement(Achievements achievements, int id)
         {
+            achievements.Name = Strings.Trim(achievements.Name);
+            
             var achievementAsync = await _achievementsRepository.GetAchievementByIdAsync(id);
 
             achievementAsync.AchievementsId = achievementAsync.AchievementsId;
@@ -81,6 +96,18 @@ namespace organizer_gracza_backend.Controllers
             if (await _achievementsRepository.SaveAllAsync())
                 return NoContent();
             return BadRequest("Failed to update achievement");
+        }
+        
+        
+        private async Task<bool> NameExists(string name)
+        {
+
+            return await _context.Achievements.AnyAsync(x => x.Name.Equals(name));
+        }
+        
+        private async Task<bool> NameExistsToLower(string name)
+        {
+            return await _context.Achievements.AnyAsync(x => x.Name.ToLower().Equals(name.ToLower()));
         }
     }
 }
