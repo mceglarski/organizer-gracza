@@ -15,7 +15,28 @@
     </div>
 
     <div class="event-result col-xl-4">
-        Wyniki
+      <h3 class="event-solo-result-title">Ostatnie wyniki: </h3>
+
+      <div *ngFor="let result of eventTeamResults" class="row justify-content-center event-result-row">
+        <div class="col-xl-12 d-flex justify-content-center">
+          <a class="event-result-event-link" href="/events/eventsteam/{{result.eventTeamId}}">
+            <span class="event-result-name">{{result?.eventTeamName}}</span>
+          </a>
+        </div>
+        <div class="col-xl-12 d-flex justify-content-center">
+          <a *ngIf="user" class="event-result-event-link" href="/teams/details/{{result.team?.name}}">
+            <img class="image-fluid event-result-image" src="{{result.team?.photoUrl}}">
+          </a>
+          <img *ngIf="!user" class="image-fluid event-result-image" src="{{result.team?.photoUrl}}">
+        </div>
+        <div class="col d-flex justify-content-center">
+          <a *ngIf="user" class="event-result-event-link" href="/teams/details/{{result.team?.name}}">
+            <span class="event-result-winner-nickname">{{result.team?.name}}</span>
+          </a>
+          <span *ngIf="!user" class="event-result-winner-nickname">{{result.team?.name}}</span>
+        </div>
+      </div>
+
     </div>
   </div>
 

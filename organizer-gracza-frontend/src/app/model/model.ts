@@ -235,15 +235,20 @@ export interface ForumPost {
 }
 
 export interface EventTeamResult {
-  eventTeamResultId: number;
+  eventTeamResultId?: number;
   eventTeamId: number;
   teamId: number;
+  eventTeamName?: string;
+  team?: Team;
 }
 
 export interface EventUserResult {
-  eventUserResultId: number;
+  eventUserResultId?: number;
   eventUserId: number;
   userId: number;
+  eventUser?: EventUser;
+  user?: User;
+  eventUserName?: string;
 }
 
 export interface TwitchBroadcast {

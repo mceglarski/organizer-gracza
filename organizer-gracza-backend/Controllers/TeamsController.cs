@@ -41,6 +41,7 @@ namespace organizer_gracza_backend.Controllers
             _teamUsersRepository = teamUsersRepository;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TeamDto>>> GetTeamsAsync()
         {

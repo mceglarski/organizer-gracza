@@ -41,11 +41,14 @@
 
     <div class="col text-break forum-posts-text">
       {{post?.content}}
+      <span class="d-flex justify-content-end">
+        <button *appHasRole='["Moderator"]' mat-button (click)="deletePost(post.forumPostId)" class="btn btn-danger btn-delete">X</button>
+      </span>
     </div>
 
   </div>
 
-  <div class="row justify-content-center" *ngIf="user">
+  <div class="row justify-content-center" *ngIf="user && !isUserBlocked">
       <div class="col-xl-10 forum-posts-reply">
         <form [formGroup]="addPostForm" (ngSubmit)="onSubmit()">
           <label class="field field_v3">

@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
 
   public sendResetPassword(): void {
     this.memberService.sendLink(this.resetPasswordForm.value.email).subscribe(response => {
-      this.toastr.success('Link do przywrócenia hasła został wysłany');
+      this.toastr.success('Jeśli podany mail jest prawidłowy, link do przywrócenia hasła został wysłany');
     }, error => {
       this.toastr.error('Coś poszło nie tak');
     })

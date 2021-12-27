@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {ForumService} from "../../_services/forum.service";
 import {ForumPost, ForumThread, Member, User} from "../../model/model";
 import {MembersService} from "../../_services/members.service";
@@ -20,6 +20,7 @@ export class ForumPostsComponent implements OnInit {
   public posts: ForumPost[] = [];
   public currentlyLoggedMember: number;
   public user: User;
+  public isUserBlocked: boolean = false;
 
   public addPostForm = new FormGroup({
     content: new FormControl('', [Validators.required, this.noWhitespaceValidator])
@@ -31,14 +32,14 @@ export class ForumPostsComponent implements OnInit {
               private accountService: AccountService,
               private forumService: ForumService,
               private membersService: MembersService,
-              private toastr: ToastrService,
-              private router: Router) {
+              private toastr: ToastrService) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
   }
 
   ngOnInit(): void {
     this.threadId = this.activatedRoute.snapshot.paramMap.get('threadId');
     if (this.user) {
+      this.isUserBlocked = this.user.roles.includes('Zablokowany');
       this.membersService.getCurrentlyLoggedMemberId().subscribe(m => {
         // @ts-ignore
         this.currentlyLoggedMember = m;
@@ -87,7 +88,13 @@ export class ForumPostsComponent implements OnInit {
     } else {
       this.toastr.error("Treść nie może być pusta");
     }
+  }
 
+  public deletePost(postId: number): void {
+    this.forumService.deleteForumPost(postId).subscribe(r => {
+      window.location.reload();
+      this.toastr.success('Usunięto post');
+    });
   }
 
 }

@@ -51,14 +51,15 @@ export class UserManagementComponent implements OnInit {
   }
 
   // @ts-ignore
-  private getRolesArray(user){
+  private getRolesArray(user) {
     const roles: any[] = [];
     const userRoles = user.roles;
     const availableRoles: any[] = [
       {name: 'Admin', value: 'Admin'},
       {name: 'Moderator', value: 'Moderator'},
       {name: 'Redaktor', value: 'Redaktor'},
-      {name: 'Użytkownik', value: 'Użytkownik'}
+      {name: 'Użytkownik', value: 'Użytkownik'},
+      {name: 'Zablokowany', value: 'UżytZablokowanykownik'}
     ];
 
     availableRoles.forEach(role => {

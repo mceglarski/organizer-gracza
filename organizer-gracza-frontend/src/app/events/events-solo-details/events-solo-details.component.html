@@ -8,19 +8,21 @@
 
     <div class="col-xl-6">
       <div class="event-details">
+        <h2 class="event-solo-details-winner" *ngIf="eventFinished">Wydarzenie zakończone!</h2>
+        <h4 class="event-solo-details-winner" *ngIf="eventFinished">Zwycięzca: {{eventFinished?.user?.nickname}}<br></h4>
         <p>DATA: {{event.startDate | date}} - {{event.endDate | date}}</p>
         <p>GRA: {{event.game.title}}</p>
         <p>ORGANIZATOR: {{event.eventOrganiser}}</p>
         <p>RODZAJ: {{event.eventType}}</p>
-        <p>PULA NAGRÓD: {{event.winnerPrize}}</p>
+        <p>PULA NAGRÓD: ${{event.winnerPrize | number: '1.0-0'}}</p>
         <p>OPIS: {{event.description}}</p>
       </div>
 
       <div *ngIf="user">
         <h3 class="">ZAKWALIFIKOWANI GRACZE</h3>
         <div class="row">
-          <div class="qualified-teams" *ngFor="let member of Members">
-            <img class="qualified-users-image" src="{{this.member.photoUrl}}" alt="./assets/user.png">
+          <div class="qualified-teams" *ngFor="let member of members">
+            <img class="qualified-users-image" src="{{member.photoUrl}}" alt="{{member.nickname}}">
           </div>
         </div>
         <button class="btn btn-success" (click)="joinEvent()">ZAPISZ SIĘ</button>
@@ -28,8 +30,8 @@
 
     </div>
 
-    <div class="event-image col-xl-6">
-      <img src="{{event.photoUrl}}" alt="{{event.name}}">
+    <div class="col-xl-6">
+      <img class="img-fluid event-image" src="{{event.photoUrl}}" alt="{{event.name}}">
     </div>
 
 

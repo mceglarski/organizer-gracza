@@ -6,7 +6,7 @@ import {EventTeamResult} from "../model/model";
 @Injectable({
   providedIn: 'root'
 })
-export class eventteamsresultsService {
+export class EventTeamsResultsService {
 
   baseUrl = environment.apiUrl;
 
@@ -15,16 +15,20 @@ export class eventteamsresultsService {
   getEventsTeamResults(){
     return this.http.get(this.baseUrl + 'eventsteamresults');
   }
+
   getEventTeamResult(eventTeamResultId: number){
     return this.http.get(this.baseUrl + 'eventsteamresults/' + eventTeamResultId);
   }
+
   addEventTeamResult(model: any){
     return this.http.post(this.baseUrl + 'eventsteamresults', model);
   }
+
   deleteEventTeamResult(eventTeamResultId: number){
     return this.http.delete(this.baseUrl + 'eventsteamresults/' + eventTeamResultId);
   }
+
   updateEventTeamResult(eventTeamResult: EventTeamResult, eventResultId: number){
-    return this.http.put(this.baseUrl + 'eventsteamresults/' + eventResultId, eventsteamresults)
+    return this.http.put(this.baseUrl + 'eventsteamresults/' + eventResultId, eventTeamResult)
   }
 }
