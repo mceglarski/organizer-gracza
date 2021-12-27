@@ -30,6 +30,7 @@ import {ForumAddNewThreadComponent} from "./forum/forum-add-new-thread/forum-add
 import {NewsEditorPanelComponent} from "./news-editor/news-editor-panel/news-editor-panel.component";
 import {EditorGuard} from "./_guards/editor.guard";
 import {ActivateMailComponent} from "./member-page/activate-mail/activate-mail.component";
+import {ResetPasswordComponent} from "./login/reset-password/reset-password.component";
 
 const routes: Routes = [
   {path: '', component: MainPageContentComponent},
@@ -37,6 +38,7 @@ const routes: Routes = [
   {path: 'events/eventsteam/:eventTeamId', component: EventsTeamDetailsComponent},
   {path: 'events', component: EventsListComponent},
   {path: 'news', component: NewsListComponent},
+  {path: 'resetpassword/:security', component: ResetPasswordComponent},
   {path: 'news/:newsId', component: NewsFullArticleComponent},
   {path: 'broadcasts', component: BroadcastsComponent},
   {path: 'broadcast/:userName', component: BroadcastEmbeddedComponent},

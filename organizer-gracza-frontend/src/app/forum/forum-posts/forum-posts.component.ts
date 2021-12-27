@@ -72,8 +72,6 @@ export class ForumPostsComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    console.log(this.addPostForm);
-
     if (this.addPostForm.valid) {
       this.forumService.addForumPost({
         content: this.addPostForm.value.content.trim(),

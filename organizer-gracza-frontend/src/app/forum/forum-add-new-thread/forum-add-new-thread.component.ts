@@ -49,7 +49,6 @@ export class ForumAddNewThreadComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    console.log(this.addThreadForm);
     if (this.addThreadForm.valid) {
       this.forumService.addForumThread({
         title: this.addThreadForm.value.title.trim(),
