@@ -203,7 +203,7 @@ namespace organizer_gracza_backend.Controllers
                 var response = await client.SendEmailAsync(msg);
                 if (!response.IsSuccessStatusCode)
                     BadRequest("Nie udało się wysłać wiadomości w celu zresetowania hasła.");
-                return Ok("Link has been sent");
+                return Ok();
             }
 
             return Ok();
