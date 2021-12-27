@@ -51,7 +51,7 @@
         <select
           class="form-control"
           formControlName="teamId">
-          <option [ngValue]="team.teamId" *ngFor="let team of teams">{{team.teamId}}</option>
+          <option [ngValue]="team.teamId" *ngFor="let team of teams">{{team.team.name}}</option>
         </select>
       </div>
     </form>

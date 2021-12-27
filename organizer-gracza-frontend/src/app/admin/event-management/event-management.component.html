@@ -25,6 +25,7 @@
               <td>{{event!.eventOrganiser}}</td>
               <td>{{event!.game.gameId}}</td>
               <td>
+                <button (click)="setUserEventResult(event)" class="btn btn-warning admin-panel-option-btn">Wpisz wyniki</button>
                 <button (click)="openEditEventUserModal(event)" class="btn btn-info admin-panel-option-btn">Edit Event</button>
                 <button (click)="deleteUserEvent(event.eventUserId)" class="btn btn-danger admin-panel-option-btn">Delete Event</button>
               </td>
@@ -58,6 +59,7 @@
             <td>{{event!.eventOrganiser}}</td>
             <td>{{event!.game.gameId}}</td>
             <td>
+              <button (click)="setTeamEventResult(event)" class="btn btn-warning admin-panel-option-btn">Wpisz wyniki</button>
               <button (click)="openEditEventTeamModal(event)" class="btn btn-info admin-panel-option-btn">Edit Event</button>
               <button (click)="deleteTeamEvent(event.eventTeamId)" class="btn btn-danger admin-panel-option-btn">Delete Event</button>
             </td>

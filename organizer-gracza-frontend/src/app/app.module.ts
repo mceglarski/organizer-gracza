@@ -96,6 +96,10 @@ import { SteamInformationComponent } from './member-page/steam-information/steam
 import { ActivateMailComponent } from './member-page/activate-mail/activate-mail.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
+import { EventsTeamResultComponent } from './events/events-team-result/events-team-result.component';
+import { EventsSoloResultComponent } from './events/events-solo-result/events-solo-result.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 registerLocaleData(localePl, 'pl');
 
@@ -163,7 +167,9 @@ FullCalendarModule.registerPlugins([
     NewsEditorPanelComponent,
     SteamInformationComponent,
     ActivateMailComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    EventsTeamResultComponent,
+    EventsSoloResultComponent
   ],
   imports: [
     BrowserModule,
@@ -199,7 +205,9 @@ FullCalendarModule.registerPlugins([
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
     NgxMatNativeDateModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

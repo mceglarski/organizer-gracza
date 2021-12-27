@@ -1,0 +1,37 @@
+<h1 mat-dialog-title>Dodaj wyniki wydarzenia</h1>
+
+<div mat-dialog-content>
+
+  <div class="modal-body">
+
+    <div class="form-group">
+      <mat-label>Nazwa wydarzenia:</mat-label>
+      <h6>{{data.event.name}}</h6>
+    </div>
+
+    <div class="form-group">
+      <mat-label>Gra</mat-label>
+      <h6>{{data.event.game.title}}</h6>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field class="event-team-result-winner" appearance="fill">
+        <mat-label>Zwycięzca</mat-label>
+        <input type="text"
+               placeholder="Wybierz zwycięzcę"
+               aria-label="Number"
+               matInput
+               [formControl]="myControl"
+               [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let team of filteredTeams | async" value="{{team.name}}">
+            {{team.name}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+    <button [disabled]="!myControl.valid" mat-button class="btn btn-success" (click)="sendResult()">Zapisz</button>
+    <button mat-button class="btn btn-danger" (click)="closeModal()">Anuluj</button>
+  </div>
+
+</div>

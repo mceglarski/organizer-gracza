@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {EventTeam, EventTeamRegistration, Team, User} from "../../model/model";
+import {EventTeam, EventTeamRegistration, Team, TeamUser, User} from "../../model/model";
 import {EventsService} from "../../_services/events.service";
 import {ActivatedRoute} from "@angular/router";
 import {TeamsService} from "../../_services/teams.service";
@@ -17,7 +17,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 })
 export class EventsTeamDetailsComponent implements OnInit {
 
-  public teams: Team[];
+  public teams: TeamUser[];
   public event: EventTeam;
   public user: User
   public newTeamRegistrationForm: FormGroup;
@@ -50,10 +50,11 @@ export class EventsTeamDetailsComponent implements OnInit {
       teamId: this.newTeamRegistrationForm.value.teamId,
       eventTeamId: this.event.eventTeamId
     }
-    this.eventsService.addTeamEventRegistration(this.model).subscribe(response =>{
-      this.toastr.success("Zapisałeś drużyne do wydarzenia")
+    this.eventsService.addTeamEventRegistration(this.model).subscribe(response => {
+      window.location.reload();
+      this.toastr.success("Zapisałeś drużyne do wydarzenia");
     }, error => {
-      this.toastr.error("Nie udało się dołączyć do wydarzenia")
+      this.toastr.error("Nie udało się dołączyć do wydarzenia");
     })
   }
 
@@ -84,7 +85,8 @@ export class EventsTeamDetailsComponent implements OnInit {
     this.teamService.getTeamsForUser(this.user.username).subscribe(teams => {
       // @ts-ignore
       this.teams = teams;
-    })
+      console.log(this.teams);
+    });
   }
 
   private initializeAddTeamForEvent(): void {
