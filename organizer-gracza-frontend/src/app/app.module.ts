@@ -95,6 +95,7 @@ import { NewsEditorPanelComponent } from './news-editor/news-editor-panel/news-e
 import { SteamInformationComponent } from './member-page/steam-information/steam-information.component';
 import { ActivateMailComponent } from './member-page/activate-mail/activate-mail.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
 
 registerLocaleData(localePl, 'pl');
 
@@ -161,7 +162,8 @@ FullCalendarModule.registerPlugins([
     ForumAddNewThreadComponent,
     NewsEditorPanelComponent,
     SteamInformationComponent,
-    ActivateMailComponent
+    ActivateMailComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

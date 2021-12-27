@@ -15,15 +15,17 @@ export class RegistrationComponent implements OnInit {
   registerForm: FormGroup;
   validationErrors: string[] = [];
 
-  constructor(private modalService: NgbModal, private accountService: AccountService,
-              private toastr: ToastrService, public router: Router) {
+  constructor(public router: Router,
+              private modalService: NgbModal,
+              private accountService: AccountService,
+              private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
     this.initializeForm();
   }
 
-  initializeForm(){
+  private initializeForm(){
     this.registerForm = new FormGroup({
       username: new FormControl('', Validators.required),
       nickname: new FormControl('', Validators.required),
@@ -38,25 +40,25 @@ export class RegistrationComponent implements OnInit {
     })
   }
 
-  matchValues(matchTo: string): ValidatorFn{
-    return (control: AbstractControl) => {
-      // @ts-ignore
-      return control?.value === control?.parent?.controls[matchTo].value
-        ? null : {isMatching: true}
-    }
-  }
-
-  open(content: any) {
+  public open(content: any): void {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
   }
 
-  register(){
+  public register(): void {
     this.accountService.register(this.registerForm.value).subscribe(response => {
       this.router.navigateByUrl('/');
     }, error => {
       this.validationErrors = error;
       console.log(error);
       this.toastr.error('Zarejestrowanie się nie powiodło');
-    })
+    });
+  }
+
+  private matchValues(matchTo: string): ValidatorFn {
+    return (control: AbstractControl) => {
+      // @ts-ignore
+      return control?.value === control?.parent?.controls[matchTo].value
+        ? null : {isMatching: true}
+    }
   }
 }

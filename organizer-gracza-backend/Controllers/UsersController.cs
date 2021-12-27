@@ -209,16 +209,16 @@ namespace organizer_gracza_backend.Controllers
         }
         
         [AllowAnonymous]
-        [HttpPut("resetpassword/{newPassword}/{stamp}")]
-        public async Task<ActionResult<User>> ChangeForgottenPassword(string newPassword, string stamp)
+        [HttpPut("resetpassword")]
+        public async Task<ActionResult<User>> ChangeForgottenPassword(ResetPasswordDTO resetPasswordDto)
         {
-            if (await StampExists(stamp))
+            if (!await StampExists(resetPasswordDto.SecurityStamp))
                 return BadRequest("Password change failed");
 
-            var user = _context.Users.SingleAsync(x => x.SecurityStamp.ToLower().Equals(stamp.ToLower())).Result;
+            var user = _context.Users.SingleAsync(x => x.SecurityStamp.ToLower().Equals(resetPasswordDto.SecurityStamp.ToLower())).Result;
             
             await _userManager.RemovePasswordAsync(user);
-            await _userManager.AddPasswordAsync(user, newPassword); ;
+            await _userManager.AddPasswordAsync(user, resetPasswordDto.Password);
 
             _userRepository.Update(user);
 

@@ -40,6 +40,11 @@ export interface Member {
   userGames?: UserGame[];
 }
 
+export interface ResetPassword {
+  password: string;
+  securityStamp: string;
+}
+
 export interface SteamInformation {
   communityvisibilitystate?: number;
   profilestate?: number;

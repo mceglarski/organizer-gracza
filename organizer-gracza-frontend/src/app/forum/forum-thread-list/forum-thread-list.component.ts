@@ -32,10 +32,8 @@ export class ForumThreadListComponent implements OnInit {
         this.forumThread.forEach(thread => {
           thread.user.photoUrl = <string>this.members?.find(m => m?.username === thread?.user?.username)?.photoUrl;
         });
-        console.log('members: ', m);
         return;
       });
-      console.log('threads: ', f);
       return;
     });
   }
