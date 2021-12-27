@@ -54,6 +54,11 @@
   margin-right: 5px;
 }
 
+.btn-delete
+{
+  background-color: #c40000;
+}
+
 @media only screen and (max-width: 1000px) {
   .thread-thumbnail {
     min-width: 100px;

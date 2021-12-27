@@ -2,8 +2,8 @@
   {
     "Name": "Celeste Speedrun Challenge",
     "Description": "Celeste Speedrun Challenge to coroczne wydarzenie organizowane przez twórce gry.\n Zawodnicy z całego świata biorą udział w wydarzeniu na czas, gdzie za zadanie masz przejść całą grę w jak najszbszym czasie. \n Wydarzenie jest organizowane w Kanadzie dokładne miejsce zostanie ogłoszone.",
-    "StartDate": "2022-01-02",
-    "EndDate": "2022-01-10",
+    "StartDate": "2021-12-27",
+    "EndDate": "2021-12-28",
     "WinnerPrize": 10000,
     "EventType": "Solo",
     "EventOrganiser": "Maddy Thorson",
@@ -254,6 +254,7 @@
       }
     ],
     "EventUserResult": {
+      "EventUserId": 2,
       "UserId": 1
     }
   },
@@ -343,10 +344,10 @@
     ]
   },
   {
-    "Name": "Fornite - Solo Open Hype Cup",
+    "Name": "Fortnite - Solo Open Hype Cup",
     "Description": "Solo Open Hype Cup to wydarzenie organizowane przez twórców gry w celu sprawdzenia umiejętności szybkiej budowy przez graczy. \n Gracze biorą udział w jak najszbszym zbudowaniu bazy a później mają za zadanie zniszczenie swoich przeciwników.",
     "StartDate": "2022-01-02",
-    "EndDate": "2022-01-12",
+    "EndDate": "2022-01-04",
     "WinnerPrize": 5000,
     "EventType": "Battle Royale",
     "EventOrganiser": "Epic Games",
@@ -427,6 +428,7 @@
       }
     ],
     "EventUserResult": {
+      "EventUserId": 6, 
       "UserId": 8
     }
   },

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {EventTeam, EventTeamRegistration, Team, TeamUser, User} from "../../model/model";
+import {EventTeam, EventTeamRegistration, EventTeamResult, Team, TeamUser, User} from "../../model/model";
 import {EventsService} from "../../_services/events.service";
 import {ActivatedRoute} from "@angular/router";
 import {TeamsService} from "../../_services/teams.service";
@@ -9,6 +9,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MembersService} from "../../_services/members.service";
 import {ToastrService} from "ngx-toastr";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {EventTeamsResultsService} from "../../_services/event-teams-results.service";
 
 @Component({
   selector: 'app-events-team-details',
@@ -18,11 +19,14 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 export class EventsTeamDetailsComponent implements OnInit {
 
   public teams: TeamUser[];
+  public eventId: string;
   public event: EventTeam;
   public user: User
   public newTeamRegistrationForm: FormGroup;
   public model: { eventTeamId: number; teamId: number };
   public teamRegistrations: EventTeamRegistration[];
+  public eventTeamResults: EventTeamResult[];
+  public eventFinished: EventTeamResult;
 
 
   constructor(public route: ActivatedRoute,
@@ -30,6 +34,7 @@ export class EventsTeamDetailsComponent implements OnInit {
               private teamService: TeamsService,
               private accountService: AccountService,
               private memberService: MembersService,
+              private eventTeamsResultsService: EventTeamsResultsService,
               private toastr: ToastrService,
               private modalService: NgbModal) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
@@ -38,11 +43,13 @@ export class EventsTeamDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.eventId = <string>this.route.snapshot.paramMap.get('eventTeamId');
     this.loadEvent();
     if (this.user) {
       this.loadTeamsForUser();
       this.initializeAddTeamForEvent();
     }
+    this.loadEventTeamResults();
   }
 
   public joinEvent(): void {
@@ -64,13 +71,22 @@ export class EventsTeamDetailsComponent implements OnInit {
 
   private loadEvent(): void {
     // @ts-ignore
-    this.eventsService.getTeamEvent(this.route.snapshot.paramMap.get('eventTeamId')).subscribe(specifiedEvent => {
+    this.eventsService.getTeamEvent(this.eventId).subscribe(specifiedEvent => {
       // @ts-ignore
       this.event = specifiedEvent;
       if (this.user) {
         this.loadTeamRegistrations();
       }
-    })
+    });
+  }
+
+  private loadEventTeamResults(): void {
+    this.eventTeamsResultsService.getEventsTeamResults().subscribe(r => {
+      // @ts-ignore
+      this.eventTeamResults = r;
+      // @ts-ignore
+      this.eventFinished = this.eventTeamResults.find(f => f.eventTeamId == this.eventId);
+    });
   }
 
   private loadTeamRegistrations(): void {

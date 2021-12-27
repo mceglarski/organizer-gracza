@@ -1,12 +1,14 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {EventsService} from "../../_services/events.service";
 import {ActivatedRoute} from "@angular/router";
-import {EventUser, EventUserRegistration, Member, User} from "../../model/model";
+import {EventUser, EventUserRegistration, EventUserResult, Member, User} from "../../model/model";
 import {TeamsService} from "../../_services/teams.service";
 import {MembersService} from "../../_services/members.service";
 import {take} from "rxjs/operators";
 import {AccountService} from "../../_services/account.service";
 import {ToastrService} from "ngx-toastr";
+import {EventsSoloResultComponent} from "../events-solo-result/events-solo-result.component";
+import {EventUserResultsService} from "../../_services/event-user-results.service";
 
 @Component({
   selector: 'app-events-solo-details',
@@ -16,12 +18,15 @@ import {ToastrService} from "ngx-toastr";
 export class EventsSoloDetailsComponent implements OnInit {
 
   public event: EventUser;
+  public eventId: string;
   public model: { eventUserId: number; userId: number };
   public user: User
   public memberId: number;
   public userRegistrations: EventUserRegistration[];
   public Members: Member[] = [];
   public UsersId: number[] = [];
+  public eventUserResult: EventUserResult[];
+  public eventFinished: EventUserResult;
 
   constructor(public route: ActivatedRoute,
               private eventsService: EventsService,
@@ -29,7 +34,7 @@ export class EventsSoloDetailsComponent implements OnInit {
               private memberService: MembersService,
               private accountService: AccountService,
               private toastr: ToastrService,
-              private changeDetRef: ChangeDetectorRef)
+              private eventUserResultsService: EventUserResultsService)
   {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
       this.user = user;
@@ -37,10 +42,12 @@ export class EventsSoloDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.eventId = <string>this.route.snapshot.paramMap.get('eventUserId');
     this.loadEvent();
     if (this.user) {
       this.loadMemberId();
     }
+    this.loadEventUserResults();
   }
 
 
@@ -58,13 +65,22 @@ export class EventsSoloDetailsComponent implements OnInit {
 
   private loadEvent(): void {
     // @ts-ignore
-    this.eventsService.getUserEvent(this.route.snapshot.paramMap.get('eventUserId')).subscribe(specifiedEvent => {
+    this.eventsService.getUserEvent(this.eventId).subscribe(specifiedEvent => {
       // @ts-ignore
       this.event = specifiedEvent;
       if (this.user) {
         this.loadUserRegistrations();
       }
-    })
+    });
+  }
+
+  private loadEventUserResults(): void {
+    this.eventUserResultsService.getEventsUserResults().subscribe(r => {
+      // @ts-ignore
+      this.eventUserResult = r;
+      // @ts-ignore
+      this.eventFinished = this.eventUserResult.find(f => f.eventUserId == this.eventId);
+    });
   }
 
   private loadMemberId(): void {

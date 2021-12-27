@@ -8,11 +8,13 @@
 
     <div class="col-xl-6">
       <div class="event-details">
+        <h2 class="event-solo-details-winner" *ngIf="eventFinished">Wydarzenie zakończone!</h2>
+        <h4 class="event-solo-details-winner" *ngIf="eventFinished">Zwycięzca: {{eventFinished?.user?.nickname}}<br></h4>
         <p>DATA: {{event.startDate | date}} - {{event.endDate | date}}</p>
         <p>GRA: {{event.game.title}}</p>
         <p>ORGANIZATOR: {{event.eventOrganiser}}</p>
         <p>RODZAJ: {{event.eventType}}</p>
-        <p>PULA NAGRÓD: {{event.winnerPrize}}</p>
+        <p>PULA NAGRÓD: ${{event.winnerPrize | number: '1.0-0'}}</p>
         <p>OPIS: {{event.description}}</p>
       </div>
 
@@ -28,8 +30,8 @@
 
     </div>
 
-    <div class="event-image col-xl-6">
-      <img src="{{event.photoUrl}}" alt="{{event.name}}">
+    <div class="col-xl-6">
+      <img class="img-fluid event-image" src="{{event.photoUrl}}" alt="{{event.name}}">
     </div>
 
 

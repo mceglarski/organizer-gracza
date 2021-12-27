@@ -4,6 +4,7 @@ import {ForumThread, Member, User} from "../../model/model";
 import {MembersService} from "../../_services/members.service";
 import {take} from "rxjs/operators";
 import {AccountService} from "../../_services/account.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-forum-thread-list',
@@ -19,7 +20,8 @@ export class ForumThreadListComponent implements OnInit {
 
   constructor(private forumService: ForumService,
               private accountService: AccountService,
-              private membersService: MembersService) {
+              private membersService: MembersService,
+              private toastr: ToastrService) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
   }
 
@@ -34,6 +36,14 @@ export class ForumThreadListComponent implements OnInit {
         });
         return;
       });
+      return;
+    });
+  }
+
+  public deleteThread(forumThreadId: number): void {
+    this.forumService.deleteForumThread(forumThreadId).subscribe(r => {
+      window.location.reload();
+      this.toastr.success('Usunięto wątek');
       return;
     });
   }

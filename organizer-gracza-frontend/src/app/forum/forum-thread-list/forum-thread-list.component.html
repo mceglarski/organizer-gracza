@@ -45,6 +45,9 @@
             {{thread.user.nickname}}
           </a>
         </div>
+        <div *appHasRole='["Moderator"]' class="col d-flex justify-content-end">
+          <button mat-button (click)="deleteThread(thread.forumThreadId)" class="btn btn-danger btn-delete">X</button>
+        </div>
       </div>
 
     </div>
