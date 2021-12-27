@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {EventsService} from "../../_services/events.service";
-import {EventUser, EventUserResult, Member} from "../../model/model";
+import {EventUser, EventUserResult, Member, User} from "../../model/model";
 import {EventUserResultsService} from "../../_services/event-user-results.service";
 import {MembersService} from "../../_services/members.service";
+import {take} from "rxjs/operators";
+import {AccountService} from "../../_services/account.service";
 
 @Component({
   selector: 'app-events-solo-list',
@@ -14,10 +16,14 @@ export class EventsSoloListComponent implements OnInit {
   public events: EventUser[];
   public eventUserResults: EventUserResult[];
   public members: Member[];
+  public user: User;
 
   constructor(private eventService: EventsService,
               private eventUserResultsService: EventUserResultsService,
-              private membersService: MembersService) { }
+              private membersService: MembersService,
+              private accountService: AccountService) {
+    this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
+  }
 
   ngOnInit(): void {
     this.loadSoloEvents();

@@ -1,29 +1,42 @@
-.form-control{
+.form-control {
   margin-bottom: 10px;
+  color: black;
 }
-.btn-link{
+
+.btn-link {
   margin-left: 10%;
 }
-.modal-header{
+
+.modal-header {
   background-color: #292E37;
   border-bottom:2px solid #C3073F;
 }
-.modal-body{
+
+.modal-body {
   background-color: #292E37;
   border-bottom:2px solid #C3073F;
 }
-.modal-footer{
+
+.modal-footer {
   background-color: #292E37;
   border: 0;
 }
-h4{
+
+h4 {
   color: #C3073F;
   font-weight: bold;
 }
+
 .close {
   color: #fff;
   opacity: 1;
 }
-input{
-  background-color: #3d4452;
+
+input {
+  background-color: #646f86;
+  color: black;
+}
+
+input::placeholder {
+  color: black;
 }

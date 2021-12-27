@@ -24,14 +24,16 @@
           </a>
         </div>
         <div class="col-xl-12 d-flex justify-content-center">
-          <a href="/members/{{result.user?.username}}">
+          <a *ngIf="user" href="/members/{{result.user?.username}}">
             <img class="image-fluid event-result-image" src="{{result.user?.photoUrl}}">
           </a>
+          <img *ngIf="!user" class="image-fluid event-result-image" src="{{result.user?.photoUrl}}">
         </div>
         <div class="col d-flex justify-content-center">
-          <a href="/members/{{result.user?.username}}">
+          <a *ngIf="user" href="/members/{{result.user?.username}}">
             <span class="event-result-winner-nickname">{{result.user?.nickname}}</span>
           </a>
+          <span *ngIf="!user" class="event-result-winner-nickname">{{result.user?.nickname}}</span>
         </div>
       </div>
     </div>

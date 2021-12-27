@@ -15,6 +15,7 @@ export class ForumThreadListComponent implements OnInit {
 
   public forumThread: ForumThread[] = []
   public user: User;
+  public isUserBlocked: boolean = false;
 
   private members: Member[] = [];
 
@@ -26,6 +27,9 @@ export class ForumThreadListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.user) {
+      this.isUserBlocked = this.user.roles.includes('Zablokowany');
+    }
     this.forumService.getForumThreads().subscribe(f => {
       // @ts-ignore
       this.forumThread = f;

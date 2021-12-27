@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {EventsService} from "../../_services/events.service";
 import {ActivatedRoute} from "@angular/router";
 import {EventUser, EventUserRegistration, EventUserResult, Member, User} from "../../model/model";
@@ -7,7 +7,6 @@ import {MembersService} from "../../_services/members.service";
 import {take} from "rxjs/operators";
 import {AccountService} from "../../_services/account.service";
 import {ToastrService} from "ngx-toastr";
-import {EventsSoloResultComponent} from "../events-solo-result/events-solo-result.component";
 import {EventUserResultsService} from "../../_services/event-user-results.service";
 
 @Component({
@@ -23,7 +22,7 @@ export class EventsSoloDetailsComponent implements OnInit {
   public user: User
   public memberId: number;
   public userRegistrations: EventUserRegistration[];
-  public Members: Member[] = [];
+  public members: Member[] = [];
   public UsersId: number[] = [];
   public eventUserResult: EventUserResult[];
   public eventFinished: EventUserResult;
@@ -109,14 +108,9 @@ export class EventsSoloDetailsComponent implements OnInit {
     this.UsersId.forEach((value,index) =>{
       this.memberService.getMemberById(value).subscribe(member =>{
         // this.Members = member;
-        this.Members.push(member);
-      })
+        this.members.push(member);
+        console.log(this.members);
+      });
     })
   }
-
-  // loadMember(){
-  //   this.memberService.getMemberById(this.event.eventUserId).subscribe(memberId =>{
-  //     this.memberId = memberId;
-  //   })
-  // }
 }

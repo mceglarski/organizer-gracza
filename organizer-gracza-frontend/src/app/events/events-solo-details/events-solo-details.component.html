@@ -21,8 +21,8 @@
       <div *ngIf="user">
         <h3 class="">ZAKWALIFIKOWANI GRACZE</h3>
         <div class="row">
-          <div class="qualified-teams" *ngFor="let member of Members">
-            <img class="qualified-users-image" src="{{this.member.photoUrl}}" alt="./assets/user.png">
+          <div class="qualified-teams" *ngFor="let member of members">
+            <img class="qualified-users-image" src="{{member.photoUrl}}" alt="{{member.nickname}}">
           </div>
         </div>
         <button class="btn btn-success" (click)="joinEvent()">ZAPISZ SIĘ</button>

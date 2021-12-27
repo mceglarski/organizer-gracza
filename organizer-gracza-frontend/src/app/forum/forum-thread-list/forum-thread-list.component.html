@@ -3,7 +3,7 @@
 
   <div class="thread-row-first d-flex justify-content-between align-items-center">
     <span style="margin-left: 0.5rem;">Wątki</span>
-  <button *ngIf="user" mat-raised-button color="primary" routerLink="/forum/thread/add">Dodaj wątek</button>
+  <button *ngIf="user && !isUserBlocked" mat-raised-button color="primary" routerLink="/forum/thread/add">Dodaj wątek</button>
   </div>
   <div class="thread-row" *ngFor="let thread of forumThread">
     <div class="row align-items-center">

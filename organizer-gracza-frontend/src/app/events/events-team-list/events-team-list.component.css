@@ -43,7 +43,8 @@
 
 .event-result-winner-nickname {
   font-style: italic;
-  color: #ffdb00;
+  font-weight: 500;
+  color: #009edc;
 }
 
 .event-result-image {
