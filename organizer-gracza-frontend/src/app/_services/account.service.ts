@@ -58,7 +58,7 @@ export class AccountService {
   }
 
   // @ts-ignore
-  getDecodedToken(token){
+  getDecodedToken(token) {
     return JSON.parse(atob(token.split('.')[1]));
   }
 }

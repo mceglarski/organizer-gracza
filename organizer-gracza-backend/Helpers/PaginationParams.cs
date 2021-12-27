@@ -2,7 +2,7 @@ namespace organizer_gracza_backend.Helpers
 {
     public class PaginationParams
     {
-        private const int MaxPageSize = 50;
+        private const int MaxPageSize = 200;
         public int PageNumber { get; set; } = 1;
         private int _pageSize = 5;
 

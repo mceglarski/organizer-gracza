@@ -1,6 +1,5 @@
 <button class="btn btn-lg btn-outline-success" (click)="open(content)">Zaloguj</button>
 
-
 <ng-template #content let-modal>
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Zaloguj się</h4>
@@ -17,11 +16,40 @@
                [(ngModel)]="model.password" placeholder="Hasło">
       </div>
     </form>
-    <button type="button" class="btn btn-link" (click)="modal.close()">Nie pamiętam hasła</button>
+    <button type="button" class="btn btn-link" (click)="open(resetPassword)">Nie pamiętam hasła</button>
     <app-registration (click)="modal.close()"></app-registration>
   </div>
   <div class="modal-footer">
     <button type="submit" class="btn btn-success" form="loginForm" (click)="modal.close()">Zaloguj się</button>
     <button type="button" class="btn btn-danger" (click)="modal.close()">Anuluj</button>
   </div>
+</ng-template>
+
+<ng-template #resetPassword let-modal>
+
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Przypomnij hasło</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <form [formGroup]="resetPasswordForm" (ngSubmit)="resetPasswordForm.valid && sendResetPassword()" autocomplete="off" id="registerForm">
+      <div class="form-group">
+        <input
+          [class.is-invalid]='resetPasswordForm.get("email")?.errors && resetPasswordForm.get("username")?.touched'
+          type="text"
+          class="form-control"
+          formControlName="email"
+          placeholder="Wpisz swój email">
+        <div class="invalid-feedback">Email jest wymagany</div>
+      </div>
+    </form>
+    <div class="modal-footer">
+      <button [disabled]="!resetPasswordForm.valid" type="submit" class="btn btn-success" form="registerForm" (click)="modal.close()">Wyślij</button>
+      <button type="button" class="btn btn-danger" (click)="modal.close()">Anuluj</button>
+    </div>
+  </div>
+
 </ng-template>
