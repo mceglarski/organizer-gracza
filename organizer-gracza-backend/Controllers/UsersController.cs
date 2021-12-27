@@ -153,6 +153,7 @@ namespace organizer_gracza_backend.Controllers
         }
 
 
+        
         [HttpGet("resetpassword")]
         public async Task<ActionResult> ForgotPassword(MemberUpdateDto memberUpdateDto, string email)
         {
@@ -205,7 +206,7 @@ namespace organizer_gracza_backend.Controllers
                 return Ok("Link has been sent");
             }
 
-            return BadRequest("Link has not been sent");
+            return Ok();
         }
         
         [AllowAnonymous]
@@ -220,6 +221,8 @@ namespace organizer_gracza_backend.Controllers
             await _userManager.RemovePasswordAsync(user);
             await _userManager.AddPasswordAsync(user, resetPasswordDto.Password);
 
+            _mapper.Map<ResetPasswordDTO>(resetPasswordDto);
+            
             _userRepository.Update(user);
 
             if (await _userRepository.SaveAllAsync())

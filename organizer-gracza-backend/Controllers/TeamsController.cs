@@ -101,10 +101,11 @@ namespace organizer_gracza_backend.Controllers
             
             if (!await _teamUsersRepository.SaveAllAsync())
                 return BadRequest("Failed to join created team");
-            
+
             var userAchievement =
                 _userAchievementCounterRepository.GetUserAchievementCounterByUsernameAsync(User.GetUsername());
 
+            userAchievement.Result.NumberOfTeamsJoined++;
             userAchievement.Result.NumberOfTeamsCreated++;
 
             if (!await _userAchievementCounterRepository.SaveAllAsync())

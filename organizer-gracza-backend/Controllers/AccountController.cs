@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualBasic;
 using Newtonsoft.Json.Linq;
+using organizer_gracza_backend.Data;
 using organizer_gracza_backend.DTOs;
 using organizer_gracza_backend.Interfaces;
 using organizer_gracza_backend.Model;
@@ -24,16 +25,20 @@ namespace organizer_gracza_backend.Controllers
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly IConfiguration _configuration;
-
+        private readonly DataContext _context;
+        private readonly IUserAchievementCounterRepository _userAchievementCounterRepository;
 
         public AccountController(UserManager<User> userManager, SignInManager<User> signInManager,
-            ITokenService tokenService, IMapper mapper, IConfiguration configuration)
+            ITokenService tokenService, IMapper mapper, IConfiguration configuration, DataContext context,
+            IUserAchievementCounterRepository userAchievementCounterRepository)
         {
             _tokenService = tokenService;
             _mapper = mapper;
             _userManager = userManager;
             _signInManager = signInManager;
             _configuration = configuration;
+            _context = context;
+            _userAchievementCounterRepository = userAchievementCounterRepository;
         }
         
         private string API_Key => _configuration["SendGrid:API_Key"];
@@ -85,6 +90,21 @@ namespace organizer_gracza_backend.Controllers
             if (!response.IsSuccessStatusCode)
                 BadRequest("Nie udało się wysłać wiadomości z linkiem do potwierdzenia E-mailu.");
 
+            var userAchievementCounter = new UserAchievementCounter()
+            {
+                NumberOfPostsCreated = 0,
+                NumberOfTeamsCreated = 0,
+                NumberOfTeamsJoined = 0,
+                NumberOfThreadsCreated = 0,
+                NumberOfEventUserJoined = 0,
+                UserId = user.Id
+            };
+
+            _context.UserAchievementCounters.Add(userAchievementCounter);
+            
+            if (!await _userAchievementCounterRepository.SaveAllAsync())
+                return BadRequest("Failed to add counter for user");
+            
             return new UserDto()
             {
                 Id = user.Id,
