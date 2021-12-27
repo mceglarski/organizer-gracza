@@ -8,10 +8,14 @@ namespace organizer_gracza_backend.Model
 {
     public class User : IdentityUser<int>
     {
-        [MinLength(2), MaxLength(20)] public override string UserName { get; set; }
-        [MinLength(2), MaxLength(20)] public string Nickname { get; set; }
-        [MaxLength(1000)] public string Description { get; set; }
-        [MinLength(17), MaxLength(17)] public string SteamId { get; set; }
+        [MinLength(2), MaxLength(20)] 
+        public override string UserName { get; set; }
+        [MinLength(2), MaxLength(20)]
+        public string Nickname { get; set; }
+        [MaxLength(1000)]
+        public string Description { get; set; }
+        [MinLength(17), MaxLength(17)] 
+        public string SteamId { get; set; }
         [MaxLength(50)] public override string Email { get; set; }
 
         public DateTime Created { get; set; } = DateTime.Now;
