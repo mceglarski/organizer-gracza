@@ -65,6 +65,7 @@ export class MemberListComponent implements OnInit {
   private loadMembers(): void {
     this.memberService.getMembers(this.userParams).subscribe(response => {
       this.members = response.result;
+      this.members = this.members.filter(f => f.id != 52);
       this.membersToShow = this.members;
       this.pagination = response.pagination;
     });

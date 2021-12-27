@@ -4,6 +4,7 @@ import {ForumThread, Member, User} from "../../model/model";
 import {MembersService} from "../../_services/members.service";
 import {take} from "rxjs/operators";
 import {AccountService} from "../../_services/account.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-forum-thread-list',
@@ -14,16 +15,21 @@ export class ForumThreadListComponent implements OnInit {
 
   public forumThread: ForumThread[] = []
   public user: User;
+  public isUserBlocked: boolean = false;
 
   private members: Member[] = [];
 
   constructor(private forumService: ForumService,
               private accountService: AccountService,
-              private membersService: MembersService) {
+              private membersService: MembersService,
+              private toastr: ToastrService) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
   }
 
   ngOnInit(): void {
+    if (this.user) {
+      this.isUserBlocked = this.user.roles.includes('Zablokowany');
+    }
     this.forumService.getForumThreads().subscribe(f => {
       // @ts-ignore
       this.forumThread = f;
@@ -34,6 +40,14 @@ export class ForumThreadListComponent implements OnInit {
         });
         return;
       });
+      return;
+    });
+  }
+
+  public deleteThread(forumThreadId: number): void {
+    this.forumService.deleteForumThread(forumThreadId).subscribe(r => {
+      window.location.reload();
+      this.toastr.success('Usunięto wątek');
       return;
     });
   }

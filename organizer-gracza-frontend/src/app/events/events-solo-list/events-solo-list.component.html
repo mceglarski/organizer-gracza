@@ -2,7 +2,7 @@
 
   <h1 class="section-title"><span class="section-title-accent">WYDARZENIA</span> SOLO&nbsp;</h1>
 
-  <div class="row">
+  <div class="row d-flex justify-content-center">
     <div class="col">
       <div class="row justify-content-center">
         <div class="solo-event" *ngFor="let event of events" routerLink="eventsuser/{{event.eventUserId}}">
@@ -15,7 +15,27 @@
     </div>
 
     <div class="event-result col-xl-4">
-      WynikiWynikiWynikiWynikiWyniki WynikiWynikiWynikiWynikiWynikiWynikiWyniki WynikiWynikiWyniki
+      <h3 class="event-solo-result-title">Ostatnie wyniki: </h3>
+
+      <div *ngFor="let result of eventUserResults" class="row justify-content-center event-result-row">
+        <div class="col-xl-12 d-flex justify-content-center">
+          <a class="event-result-event-link" href="/events/eventsuser/{{result.eventUserId}}">
+            <span class="event-result-name">{{result.eventUserName}}</span>
+          </a>
+        </div>
+        <div class="col-xl-12 d-flex justify-content-center">
+          <a *ngIf="user" href="/members/{{result.user?.username}}">
+            <img class="image-fluid event-result-image" src="{{result.user?.photoUrl}}">
+          </a>
+          <img *ngIf="!user" class="image-fluid event-result-image" src="{{result.user?.photoUrl}}">
+        </div>
+        <div class="col d-flex justify-content-center">
+          <a *ngIf="user" href="/members/{{result.user?.username}}">
+            <span class="event-result-winner-nickname">{{result.user?.nickname}}</span>
+          </a>
+          <span *ngIf="!user" class="event-result-winner-nickname">{{result.user?.nickname}}</span>
+        </div>
+      </div>
     </div>
   </div>
 

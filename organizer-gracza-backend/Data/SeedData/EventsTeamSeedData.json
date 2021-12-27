@@ -83,7 +83,8 @@
       }
     ],
     "EventTeamResult": {
-      "TeamId": 1
+      "EventTeamId": 5,
+      "TeamId": 5
     }
   },
   {
@@ -180,6 +181,7 @@
       }
     ],
     "EventTeamResult": {
+      "EventTeamId": 2,
       "TeamId": 8
     }
   }

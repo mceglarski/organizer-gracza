@@ -84,8 +84,10 @@ namespace organizer_gracza_backend.Controllers
 
             if (!await _teamUsersRepository.SaveAllAsync()) 
                 return BadRequest("Failed to add user for team");
+            
             var userAchievement = await _userAchievementCounterRepository
-                .GetUserAchievementCounterByIdAsync(teamUsersDto.UserId);
+                .GetUserAchievementCounterByUserId(teamUsersDto.UserId);
+            
             userAchievement.NumberOfTeamsJoined++;
 
             return Ok(_mapper.Map<TeamUsersDto>(newTeamUsers));

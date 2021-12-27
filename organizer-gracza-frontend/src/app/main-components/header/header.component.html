@@ -9,7 +9,7 @@
 
       <ul class="navbar-nav">
         <ng-container *ngIf="accountService.currentUser$ | async">
-          <li *appHasRole='["Admin", "Moderator"]' class="nav-item">
+          <li *appHasRole='["Admin"]' class="nav-item">
             <a class="nav-link header-align-right" routerLink="/admin">ADMIN PANEL</a>
           </li>
           <li *appHasRole='["Admin", "Redaktor"]' class="nav-item">
