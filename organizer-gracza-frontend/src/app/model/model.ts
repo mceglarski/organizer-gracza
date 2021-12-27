@@ -37,6 +37,12 @@ export interface Member {
   description: string;
   steamId: string;
   emailConfirmed?: number;
+  userGames?: UserGame[];
+}
+
+export interface ResetPassword {
+  password: string;
+  securityStamp: string;
 }
 
 export interface SteamInformation {
@@ -75,7 +81,7 @@ export class PaginatedResult<T> {
 
 export class PagintationParams {
   pageNumber = 1;
-  pageSize = 20;
+  pageSize = 200;
 }
 
 export interface Message {

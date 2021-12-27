@@ -2,20 +2,23 @@
 
   <h1 class="section-title"><span class="section-title-accent">WYDARZENIA</span> SOLO&nbsp;</h1>
 
-
-  <div class="flex-page-content container-fluid">
-    <div class="flex-container col-xl-8">
-      <div class="solo-event" *ngFor="let event of events" routerLink="eventsuser/{{event.eventUserId}}">
-        <p><h4 class="text-break">{{event.name}}</h4>
-        <p>DATA: {{event.startDate | date}} - {{event.endDate | date}}</p>
-        <p>GRA: {{event.game.title}}</p>
-        <p>PULA NAGRÓD: ${{event.winnerPrize | number: '1.0-0'}}</p>
+  <div class="row">
+    <div class="col">
+      <div class="row justify-content-center">
+        <div class="solo-event" *ngFor="let event of events" routerLink="eventsuser/{{event.eventUserId}}">
+          <p><h4 class="text-break">{{event.name}}</h4>
+          <p>DATA: {{event.startDate | date}} - {{event.endDate | date}}</p>
+          <p>GRA: {{event.game.title}}</p>
+          <p>PULA NAGRÓD: ${{event.winnerPrize | number: '1.0-0'}}</p>
+        </div>
       </div>
     </div>
 
     <div class="event-result col-xl-4">
-      Wyniki
+      WynikiWynikiWynikiWynikiWyniki WynikiWynikiWynikiWynikiWynikiWynikiWyniki WynikiWynikiWyniki
     </div>
   </div>
+
+
 
 </div>

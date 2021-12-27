@@ -48,7 +48,6 @@ export class NewsEditorPanelComponent implements OnInit {
 
   public onSubmit(): void {
     if (this.articleForm.valid && this.photoUploaded) {
-      console.log(this.articleForm);
       this.articleService.addArticle({
         title: this.articleForm.value.title.trim(),
         content: this.articleForm.value.content.trim(),
@@ -97,7 +96,6 @@ export class NewsEditorPanelComponent implements OnInit {
       if(response) {
         const photo: Photo = JSON.parse(response);
         this.photoUploaded = photo;
-        console.log('photo: ', photo);
       }
     }
   }

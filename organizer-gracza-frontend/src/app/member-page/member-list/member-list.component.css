@@ -20,6 +20,7 @@
 .member-list-search {
   background-color: #454d55;
   color: white;
+  width: 15rem;
 }
 
 .member-list-search::placeholder {

@@ -3,9 +3,9 @@
     <app-member-image></app-member-image>
   </div>
   <div class="member-profile-description">
-    <h1 class="section-title">O MNIE&nbsp;</h1>
-    <span class="member-profile-description-text">{{member.description}}</span><br><br>
-    <h4>Interesuje mnie</h4>
+    <h1 *ngIf="member.description || gamesToShow.length > 0" class="section-title">O MNIE&nbsp;</h1>
+    <span *ngIf="member.description" class="member-profile-description-text">{{member.description}}<br><br></span>
+    <h4 *ngIf="gamesToShow.length > 0">Interesuje mnie</h4>
     <h5 class="col member-profile-interested-game" *ngFor="let game of gamesToShow">
       <i class="material-icons member-profile-game-icon">videogame_asset</i>{{game}}
     </h5>

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {Member, PagintationParams} from "../model/model";
+import {Member, PagintationParams, ResetPassword} from "../model/model";
 import {of,} from "rxjs";
 import {map} from "rxjs/operators";
 import {getPaginatedResult, getPaginationHeaders} from "./paginationHelper";
@@ -102,6 +102,15 @@ export class MembersService {
         this.members[index] = member;
       })
     )
+  }
+
+  sendLink(email: string) {
+    return this.http.get(this.baseUrl + 'users/sendlink/' + email);
+  }
+
+  resetPassword(resetPassword: ResetPassword) {
+    // @ts-ignore
+    return this.http.put(this.baseUrl + 'users/resetpassword', resetPassword);
   }
 
   setMainPhoto(photoId: number) {
