@@ -59,7 +59,7 @@ export class UserManagementComponent implements OnInit {
       {name: 'Moderator', value: 'Moderator'},
       {name: 'Redaktor', value: 'Redaktor'},
       {name: 'Użytkownik', value: 'Użytkownik'},
-      {name: 'Zablokowany', value: 'UżytZablokowanykownik'}
+      {name: 'Zablokowany', value: 'Zablokowany'}
     ];
 
     availableRoles.forEach(role => {

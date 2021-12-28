@@ -3,6 +3,7 @@
   margin-top: 1%;
   color: #fff;
   padding: 1rem;
+  height: 105%;
 }
 
 .forum-posts-main {
@@ -43,6 +44,11 @@
 
 .btn-delete {
   background-color: #c40000;
+}
+
+.forum-post-edit {
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 /*

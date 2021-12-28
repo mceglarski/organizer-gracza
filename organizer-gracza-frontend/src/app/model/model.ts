@@ -35,7 +35,7 @@ export interface Member {
   photoUrl: string;
   photos: Photo[];
   description: string;
-  steamId: string;
+  steamId?: string | null;
   emailConfirmed?: number;
   userGames?: UserGame[];
 }

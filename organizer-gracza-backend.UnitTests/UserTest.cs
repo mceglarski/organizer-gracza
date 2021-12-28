@@ -23,7 +23,8 @@ namespace organizer_gracza_backend.UnitTests
         [SetUp]
         public void Setup()
         {
-            _usersController = new UsersController(_userRepository,_mapper, _photoService, _userManager, _configuration, _context);
+            _usersController = new UsersController(_userRepository,_mapper, _photoService, _userManager,
+                _configuration, _context);
         }
 
         [Test]
