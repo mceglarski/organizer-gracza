@@ -56,7 +56,9 @@ export class MemberEditComponent implements OnInit {
 
   private loadMember(): void {
     this.memberService.getMember(this.user.username).subscribe(member => {
-      this.steamUrl = 'https://steamcommunity.com/profiles/' + member.steamId;
+      if (member.steamId) {
+        this.steamUrl = 'https://steamcommunity.com/profiles/' + member.steamId;
+      }
       this.member = member;
       return;
     });
@@ -75,17 +77,21 @@ export class MemberEditComponent implements OnInit {
   }
 
   public updateMember() {
-    if (this.steamUrl.slice(-1) === '/') {
+    if (this.steamUrl && this.steamUrl.slice(-1) === '/') {
       this.steamUrl = this.steamUrl.substring(0, this.steamUrl.length-1);
     }
-    if (this.steamUrl.substr(-17).includes('/')) {
+    if (this.steamUrl && (this.steamUrl.substr(-17).includes('/') || this.steamUrl.length != 53)) {
       this.toastr.error('Niepoprawny adres profilu Steam, wklej adres z SteamID64');
     }
     else {
-      this.member.steamId = this.steamUrl.substr(-17);
+      this.member.steamId = this.steamUrl ? this.steamUrl.substr(-17) : null;
+      if (this.steamUrl) {
+        this.steamUrl = 'https://steamcommunity.com/profiles/' + this.member.steamId;
+      }
       this.memberService.updateMember(this.member).subscribe(() => {
         this.toastr.success('Profil został zaktualizowany!');
         this.editForm.reset(this.member);
+        window.location.reload();
         return;
       });
       this.userGameService.deleteAllUserGames(this.member.id).subscribe(r => {
