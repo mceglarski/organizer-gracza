@@ -1,7 +1,7 @@
 <div class="container forum-posts-container">
   <h3>{{forumThread?.title}}&nbsp;</h3>
-  <div class="row forum-posts-main">
 
+  <div class="row forum-posts-main">
     <div class="row">
       <div class="col forum-posts-meta-data">
         <a href="/members/{{forumThread?.user?.username}}">
@@ -18,8 +18,36 @@
 
     <div class="col text-break forum-posts-text">
       {{forumThread?.content}}
+      <span *ngIf="forumThread?.userId === user?.id" class="d-flex justify-content-end">
+        <small class="forum-post-edit"><button mat-button (click)="setEditThreadStatus(forumThread)" class="btn btn-warning">Edytuj</button></small>
+      </span>
+      <div class="row justify-content-center"
+           *ngIf="forumThread?.userId === user?.id && !isUserBlocked && isEditingThread">
+        <div class="col-xl-12 forum-posts-reply">
+          <form [formGroup]="editTreadForm" (ngSubmit)="onEditThreadSubmit()">
+            <label class="field field_v3">
+                <input class="field__input"
+                          formControlName="editThreadTitle"
+                          rows="1">
+              <span class="field__label-wrap">
+                <span class="field__label">Edytuj tytuł wątku</span>
+              </span>
+            </label>
+            <label class="field field_v3">
+                <textarea class="field__input"
+                          formControlName="editThreadContent"
+                          rows="1"
+                          cols="50"
+                          style="min-height: 10rem;">{{forumThread.content}}</textarea>
+              <span class="field__label-wrap">
+                <span class="field__label">Edytuj wątek</span>
+              </span>
+            </label>
+            <button mat-raised-button color="primary" type="submit">Edytuj wątek</button>
+          </form>
+        </div>
+      </div>
     </div>
-
   </div>
 
   <div class="row forum-posts-main" *ngFor="let post of posts">
@@ -41,9 +69,32 @@
 
     <div class="col text-break forum-posts-text">
       {{post?.content}}
-      <span class="d-flex justify-content-end">
-        <button *appHasRole='["Moderator"]' mat-button (click)="deletePost(post.forumPostId)" class="btn btn-danger btn-delete">X</button>
+      <span *appHasRole='["Moderator"]' class="d-flex justify-content-end">
+        <button mat-button (click)="deletePost(post.forumPostId)" class="btn btn-danger btn-delete">X</button>
       </span>
+      <span *ngIf="post.userId === user?.id" class="d-flex justify-content-end">
+        <small class="forum-post-edit"><button mat-button (click)="setEditPostStatus(post)" class="btn btn-warning">Edytuj</button></small>
+      </span>
+
+      <div class="row justify-content-center"
+           *ngIf="post.userId === user?.id && !isUserBlocked && isEditingPost && post.forumPostId === editedPostId">
+        <div class="col-xl-12 forum-posts-reply">
+          <form [formGroup]="editPostForm" (ngSubmit)="onEditPostSubmit()">
+            <label class="field field_v3">
+                <textarea class="field__input"
+                          formControlName="editPostControl"
+                          rows="1"
+                          cols="50"
+                          style="min-height: 10rem;">{{post.content}}</textarea>
+              <span class="field__label-wrap">
+                <span class="field__label">Edytuj odpowiedź</span>
+              </span>
+            </label>
+            <button mat-raised-button color="primary" type="submit">Edytuj odpowiedź</button>
+          </form>
+        </div>
+      </div>
+
     </div>
 
   </div>
@@ -59,7 +110,7 @@
                           style="min-height: 10rem;"></textarea>
             <span class="field__label-wrap">
                 <span class="field__label">Dodaj odpowiedź</span>
-                </span>
+            </span>
           </label>
           <button mat-raised-button color="primary" type="submit">Dodaj odpowiedź</button>
         </form>

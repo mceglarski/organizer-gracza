@@ -162,12 +162,10 @@ namespace organizer_gracza_backend.Controllers
         {
             var forumThreadAsync = await _forumThread.GetForumThreadAsync(id);
 
-            forumThreadAsync.ForumThreadId = forumThreadAsync.ForumThreadId;
             if (forumThread.Title != null)
                 forumThreadAsync.Title = forumThread.Title;
             if (forumThread.Content != null)
                 forumThreadAsync.Content = forumThread.Content;
-            forumThreadAsync.ThreadDate = forumThread.ThreadDate;
 
             if (await _forumThread.SaveAllAsync())
                 return NoContent();
