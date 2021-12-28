@@ -27,10 +27,11 @@ namespace organizer_gracza_backend.Controllers
         private readonly IConfiguration _configuration;
         private readonly DataContext _context;
         private readonly IUserAchievementCounterRepository _userAchievementCounterRepository;
+        private readonly IPhotoService _photoService;
 
         public AccountController(UserManager<User> userManager, SignInManager<User> signInManager,
             ITokenService tokenService, IMapper mapper, IConfiguration configuration, DataContext context,
-            IUserAchievementCounterRepository userAchievementCounterRepository)
+            IUserAchievementCounterRepository userAchievementCounterRepository, IPhotoService photoService)
         {
             _tokenService = tokenService;
             _mapper = mapper;
@@ -39,6 +40,7 @@ namespace organizer_gracza_backend.Controllers
             _configuration = configuration;
             _context = context;
             _userAchievementCounterRepository = userAchievementCounterRepository;
+            _photoService = photoService;
         }
         
         private string API_Key => _configuration["SendGrid:API_Key"];
@@ -104,7 +106,18 @@ namespace organizer_gracza_backend.Controllers
             
             if (!await _userAchievementCounterRepository.SaveAllAsync())
                 return BadRequest("Failed to add counter for user");
-            
+
+            var photo = new Photo()
+            {
+                Url = "https://cdn1.iconfinder.com/data/icons/game-design-butterscotch-vol-1/256/Gamer-512.png",
+                UserId = user.Id,
+                IsMain = true
+            };
+
+            _context.Photos.Add(photo);
+            if (!await _photoService.SaveAllAsync())
+                return BadRequest("Failed to save photo");
+
             return new UserDto()
             {
                 Id = user.Id,
@@ -113,6 +126,8 @@ namespace organizer_gracza_backend.Controllers
                 Token = await _tokenService.CreateToken(user),
                 PhotoUrl = "https://cdn1.iconfinder.com/data/icons/game-design-butterscotch-vol-1/256/Gamer-512.png"
             };
+            
+            
         }
 
         [HttpPost("login")]
