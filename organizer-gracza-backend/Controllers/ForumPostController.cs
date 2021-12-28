@@ -163,11 +163,8 @@ namespace organizer_gracza_backend.Controllers
         {
             var forumPostAsync = await _forumPost.GetForumPostAsync(id);
 
-            forumPostAsync.ForumThreadId = forumPostAsync.ForumThreadId;
-
             if (forumPost.Content != null)
                 forumPostAsync.Content = forumPost.Content;
-            forumPostAsync.PostDate = forumPost.PostDate;
 
             if (await _forumPost.SaveAllAsync())
                 return NoContent();

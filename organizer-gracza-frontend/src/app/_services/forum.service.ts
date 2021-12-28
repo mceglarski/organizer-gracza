@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {ForumThread} from "../model/model";
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +30,7 @@ export class ForumService {
     return this.http.delete(this.baseUrl + 'forumthread/' + forumThreadId)
   }
 
-  updateForumThread(forumThread: ForumThread, forumThreadId: number){
+  updateForumThread(forumThread: any, forumThreadId: number){
     return this.http.put(this.baseUrl + 'forumthread/' + forumThreadId, forumThread)
   }
 
@@ -55,7 +54,7 @@ export class ForumService {
     return this.http.delete(this.baseUrl + 'forumpost/' + forumPostId)
   }
 
-  updateForumPost(forumPost: ForumThread, forumPostId: number){
+  updateForumPost(forumPost: any, forumPostId: number){
     return this.http.put(this.baseUrl + 'forumpost/' + forumPostId, forumPost)
   }
 }

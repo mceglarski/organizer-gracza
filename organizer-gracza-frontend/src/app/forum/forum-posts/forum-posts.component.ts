@@ -26,6 +26,19 @@ export class ForumPostsComponent implements OnInit {
     content: new FormControl('', [Validators.required, this.noWhitespaceValidator])
   });
 
+  public isEditingPost: boolean = false;
+  public editedPostId: number;
+  public editPostForm = new FormGroup({
+    editPostControl: new FormControl('', [Validators.required, this.noWhitespaceValidator])
+  });
+
+  public isEditingThread: boolean = false;
+  public editedThreadId: number;
+  public editTreadForm = new FormGroup({
+    editThreadTitle: new FormControl('', [Validators.required, this.noWhitespaceValidator]),
+    editThreadContent: new FormControl('', [Validators.required, this.noWhitespaceValidator])
+  });
+
   private members: Member[] = [];
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -81,9 +94,54 @@ export class ForumPostsComponent implements OnInit {
         userId: this.currentlyLoggedMember
       }).subscribe(result => {
         window.location.reload();
+        this.toastr.success("Dodano post");
       }, error => {
         this.toastr.error("Nie udało się dodać nowego postu");
         console.log(error);
+      });
+    } else {
+      this.toastr.error("Treść nie może być pusta");
+    }
+  }
+
+  public setEditPostStatus(post: ForumPost): void {
+    this.isEditingPost = !this.isEditingPost;
+    this.editedPostId = post.forumPostId;
+    this.editPostForm.setValue({
+      editPostControl: post.content
+    });
+  }
+
+  public onEditPostSubmit(): void {
+    if (this.editPostForm.valid) {
+      this.forumService.updateForumPost({
+        content: this.editPostForm.value.editPostControl.trim()
+      }, this.editedPostId).subscribe(result => {
+        window.location.reload();
+        this.toastr.success("Zedytowano post");
+      });
+    } else {
+      this.toastr.error("Treść nie może być pusta");
+    }
+  }
+
+  public setEditThreadStatus(thread: ForumThread): void {
+    this.isEditingThread = !this.isEditingThread;
+    this.editedThreadId = thread.forumThreadId;
+    this.editTreadForm.setValue({
+      editThreadTitle: thread.title,
+      editThreadContent: thread.content
+    });
+  }
+
+  public onEditThreadSubmit(): void {
+    if (this.editTreadForm.valid) {
+      this.forumService.updateForumThread({
+        title: this.editTreadForm.value.editThreadTitle.trim(),
+        content: this.editTreadForm.value.editThreadContent.trim()
+      }, this.editedThreadId).subscribe(result => {
+        window.location.reload();
+        this.toastr.success("Zedytowano wątek");
       });
     } else {
       this.toastr.error("Treść nie może być pusta");
