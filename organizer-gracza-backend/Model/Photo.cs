@@ -2,7 +2,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace organizer_gracza_backend.Model
 {
-    [Table("Photos")]
     public class Photo
     {
         public int PhotoId { get; set; }
