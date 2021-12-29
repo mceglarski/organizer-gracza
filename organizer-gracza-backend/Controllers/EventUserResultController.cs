@@ -14,13 +14,22 @@ namespace organizer_gracza_backend.Controllers
         private readonly DataContext _context;
         private readonly IMapper _mapper;
         private readonly IEventUserResultRepository _eventUserResultRepository;
+        private readonly IUserRepository _userRepository;
+        private readonly IGameStatisticsRepository _gameStatisticsRepository;
+        private readonly IEventUserRepository _eventUserRepository;
+        private readonly IGeneralStatisticsRepository _generalStatisticsRepository;
 
         public EventUserResultController(DataContext context, IEventUserResultRepository eventUserResultRepository,
-            IMapper mapper)
+            IMapper mapper, IUserRepository userRepository, IGameStatisticsRepository gameStatisticsRepository,
+            IEventUserRepository eventUserRepository, IGeneralStatisticsRepository generalStatisticsRepository)
         {
             _context = context;
             _eventUserResultRepository = eventUserResultRepository;
             _mapper = mapper;
+            _userRepository = userRepository;
+            _gameStatisticsRepository = gameStatisticsRepository;
+            _eventUserRepository = eventUserRepository;
+            _generalStatisticsRepository = generalStatisticsRepository;
         }
 
         [HttpGet]
@@ -40,7 +49,7 @@ namespace organizer_gracza_backend.Controllers
 
             return _mapper.Map<EventUserResultDto>(eventUserResult);
         }
-        
+
         [HttpPost]
         public async Task<ActionResult<EventUserResultDto>> CreateEventUserResult(EventUserResultDto eventUserResultDto)
         {
@@ -49,14 +58,47 @@ namespace organizer_gracza_backend.Controllers
                 EventUserResultId = eventUserResultDto.EventUserResultId,
                 EventUserId = eventUserResultDto.EventUserId,
                 UserId = eventUserResultDto.UserId
-                
             };
 
             _eventUserResultRepository.AddEventUserResult(newEventUserResult);
 
-            if (await _eventUserResultRepository.SaveAllAsync())
-                return Ok(_mapper.Map<EventUserResultDto>(newEventUserResult));
-            return BadRequest("Failed to add event user result");
+            if (!await _eventUserResultRepository.SaveAllAsync())
+                return BadRequest("Failed to add event user result");
+
+            int userId = eventUserResultDto.UserId;
+            var user = await _userRepository.GetUserByIdAsync(userId);
+
+            var eventUserId = eventUserResultDto.EventUserId;
+            var eventUser = await _eventUserRepository.GetEventUserAsync(eventUserId);
+
+            eventUser.EventUserResultId = newEventUserResult.EventUserResultId;
+            if (!await _eventUserRepository.SaveAllAsync())
+                return BadRequest("Failed to add event user result");
+
+            int gameId = eventUser.GameId;
+            var game = await _gameStatisticsRepository.GetGameStatisticsByIdAsync(gameId);
+
+            foreach (var userIds in eventUser.EventUserRegistration)
+            {
+                var userParticipiant = _userRepository.GetUserByIdAsync(userIds.UserId);
+                var gameStats = _gameStatisticsRepository.GetGameStatisticsForUser(userParticipiant.Result.Id, gameId);
+                gameStats.Result.LostGames++;
+
+                if (!await _gameStatisticsRepository.SaveAllAsync())
+                    return BadRequest("Failed to save game statistics");
+            }
+
+            var gameStatsForWinner = _gameStatisticsRepository.GetGameStatisticsForUser(userId, gameId);
+            gameStatsForWinner.Result.LostGames--;
+            gameStatsForWinner.Result.WonGames++;
+            var generalStatistics = _generalStatisticsRepository.GetGeneralStatisticsByUserIdAsync(userId);
+            generalStatistics.Result.EventsWon++;
+            generalStatistics.Result.EventsParticipated++;
+            
+            if (!await _gameStatisticsRepository.SaveAllAsync())
+                return BadRequest("Failed to save game statistics for the winner");
+
+            return Ok(_mapper.Map<EventUserResultDto>(newEventUserResult));
         }
 
         [HttpDelete("{id}")]
@@ -71,7 +113,7 @@ namespace organizer_gracza_backend.Controllers
 
             return BadRequest("An error occurred while deleting event user result");
         }
-        
+
         [HttpPut("{id}")]
         public async Task<ActionResult> UpdateEventTeamResult(EventUserResult eventUserResult, int id)
         {
@@ -80,7 +122,7 @@ namespace organizer_gracza_backend.Controllers
             eventUserResultAsync.EventUserResultId = eventUserResultAsync.EventUserResultId;
             eventUserResultAsync.UserId = eventUserResult.UserId;
             eventUserResultAsync.EventUserId = eventUserResult.EventUserId;
-        
+
             if (await _eventUserResultRepository.SaveAllAsync())
                 return NoContent();
             return BadRequest("Failed to update event user result");

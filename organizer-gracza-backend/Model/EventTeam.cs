@@ -22,7 +22,7 @@ namespace organizer_gracza_backend.Model
         public string EventOrganiser { get; set; }
         [MaxLength(200)]
         public string PhotoUrl { get; set; }
-        public int? GameId { get; set; }
+        public int GameId { get; set; }
         public Game Game { get; set; }
         public ICollection<EventTeamRegistration> EventTeamRegistration { get; set; }
         
