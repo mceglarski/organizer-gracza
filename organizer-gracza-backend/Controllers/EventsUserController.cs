@@ -30,7 +30,7 @@ namespace organizer_gracza_backend.Controllers
             _mapper = mapper;
             _photoEventService = photoEventService;
         }
-        
+
         [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<EventUserDto>>> GetEventsUserAsync()
@@ -47,21 +47,20 @@ namespace organizer_gracza_backend.Controllers
         public async Task<ActionResult<EventUserDto>> GetEventUserAsync(int id)
         {
             var specifiedEvent = await _eventUserRepository.GetEventUserAsync(id);
-            
+
             return _mapper.Map<EventUserDto>(specifiedEvent);
 
             // return await _eventUserRepository.GetEventDtoUserAsync(id);
 
             // return await _userRepository.GetMemberAsync(username);
-
         }
-        
+
         [AllowAnonymous]
         [HttpGet("specified/{name}", Name = "GetEventUser")]
         public async Task<ActionResult<EventUserDto>> GetEventUserByNameAsync(string name)
         {
             var specifiedEvent = await _eventUserRepository.GetEventUserByNameAsync(name);
-            
+
             return _mapper.Map<EventUserDto>(specifiedEvent);
         }
 
@@ -72,10 +71,10 @@ namespace organizer_gracza_backend.Controllers
 
             if (await NameExists(eventUserDto.Name))
                 return BadRequest("Name is already taken");
-            
+
             if (await NameExistsToLower(eventUserDto.Name.ToLower()))
                 return BadRequest("Name is already taken");
-            
+
             var newEventUser = new EventUser()
             {
                 Name = eventUserDto.Name,
@@ -89,7 +88,7 @@ namespace organizer_gracza_backend.Controllers
                 PhotoUrl = eventUserDto.PhotoUrl,
                 EventUserResultId = eventUserDto.EventUserResultId
             };
-            
+
             if (eventUserDto.StartDate > eventUserDto.EndDate)
                 return BadRequest("The start date must not be later than the end date of the event");
 
@@ -143,8 +142,7 @@ namespace organizer_gracza_backend.Controllers
                 eventAsync.EventType = specifiedEvent.EventType;
             if (specifiedEvent.WinnerPrize != null)
                 eventAsync.WinnerPrize = specifiedEvent.WinnerPrize;
-            if (specifiedEvent.GameId != null)
-                eventAsync.GameId = specifiedEvent.GameId;
+            eventAsync.GameId = specifiedEvent.GameId;
             if (specifiedEvent.EventOrganiser != null)
                 eventAsync.EventOrganiser = specifiedEvent.EventOrganiser;
             if (specifiedEvent.PhotoUrl != null)
@@ -175,18 +173,18 @@ namespace organizer_gracza_backend.Controllers
 
             if (await _eventUserRepository.SaveAllAsync())
             {
-                return CreatedAtRoute("GetEventUser", new {name = specifiedEvent.Name} ,_mapper.Map<PhotoDto>(photo));
+                return CreatedAtRoute("GetEventUser", new { name = specifiedEvent.Name }, _mapper.Map<PhotoDto>(photo));
                 // return _mapper.Map<PhotoDto>(photo);
-
             }
+
             return BadRequest("Problem occured when adding photo");
         }
-        
+
         private async Task<bool> NameExists(string name)
         {
             return await _context.EventUser.AnyAsync(x => x.Name.Equals(name));
         }
-        
+
         private async Task<bool> NameExistsToLower(string name)
         {
             return await _context.EventUser.AnyAsync(x => x.Name.ToLower().Equals(name.ToLower()));
