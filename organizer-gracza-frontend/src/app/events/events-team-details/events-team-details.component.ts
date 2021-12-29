@@ -101,7 +101,6 @@ export class EventsTeamDetailsComponent implements OnInit {
     this.teamService.getTeamsForUser(this.user.username).subscribe(teams => {
       // @ts-ignore
       this.teams = teams;
-      console.log(this.teams);
     });
   }
 

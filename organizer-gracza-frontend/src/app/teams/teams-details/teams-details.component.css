@@ -3,18 +3,31 @@
   height: 100%;
   color: white;
 }
-img{
+
+.team-details-logo {
   max-height: 500px;
   max-width: 500px;
   min-height: 500px;
   max-height: 500px;
 }
+
 .flex-content{
   display: flex;
 }
+
 .team-photo{
   margin-left: 300px;
 }
-.btn{
 
+.team-details-member {
+  margin-bottom: 0.5rem;
+}
+
+.team-details-member-link {
+  color: white;
+}
+
+.team-details-member-img {
+  width: 120px;
+  border-radius: 5%;
 }

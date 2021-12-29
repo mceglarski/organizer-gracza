@@ -44,7 +44,7 @@ export class EventsSoloListComponent implements OnInit {
           this.members = m.result;
           this.eventUserResults.forEach(e => {
             // @ts-ignore
-            e.eventUserName = this.events.find(f => f.eventUserId === e.eventUserId).name;
+            e.eventUserName = this.events.find(f => f.eventUserId === e.eventUserId)?.name;
             // @ts-ignore
             e.user?.photoUrl = this.members.find(f => f.id === e.userId)?.photoUrl;
           });

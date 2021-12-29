@@ -31,6 +31,7 @@ import {NewsEditorPanelComponent} from "./news-editor/news-editor-panel/news-edi
 import {EditorGuard} from "./_guards/editor.guard";
 import {ActivateMailComponent} from "./member-page/activate-mail/activate-mail.component";
 import {ResetPasswordComponent} from "./login/reset-password/reset-password.component";
+import {NewsEditorUpdateComponent} from "./news-editor/news-editor-update/news-editor-update.component";
 
 const routes: Routes = [
   {path: '', component: MainPageContentComponent},
@@ -59,6 +60,7 @@ const routes: Routes = [
       {path: 'messages/thread/:username', component: MessagesMembersChatComponent, resolve: {member: MemberDetailedResolver}},
       {path: 'admin', component: AdminPanelComponent, canActivate: [AdminGuard]},
       {path: 'editor-panel', component: NewsEditorPanelComponent, canActivate: [EditorGuard]},
+      {path: 'editor-panel/update/:newsId', component: NewsEditorUpdateComponent, canActivate: [EditorGuard]},
       {path: 'admin/events/eventsuser/:eventUserId', component: EventsSoloEditComponent},
       {path: 'admin/events/eventsteam/:eventTeamId', component: EventsTeamEditComponent},
       {path: 'forum/thread/add', component: ForumAddNewThreadComponent}
