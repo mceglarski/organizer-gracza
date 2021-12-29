@@ -34,6 +34,7 @@ export class AddNewEventModalComponent implements OnInit {
         startDate: this.addNewEventForm.controls.eventDatePick.value,
         userId: this.currentUser.id
       }).subscribe(response => {
+        window.location.reload();
         this.toastr.info("Wydarzenie zostało dodane");
         this.dialogRef.close();
       }, error => {

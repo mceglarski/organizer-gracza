@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   padding: 10px;
+  height: 99%;
 }
 .news-extended-image {
   background-color: #292E37;

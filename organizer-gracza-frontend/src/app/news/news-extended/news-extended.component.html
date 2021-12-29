@@ -4,8 +4,8 @@
   </div>
   <div class="news-extended-description">
     <h1>{{newsInput?.title}}</h1>
-    <p>{{(newsInput?.content | slice:0:400)+'...'}}</p>
+    <p>{{(newsInput?.content | slice:0:600)+'...'}}</p>
     <h6>{{newsInput?.publicationDate | date: 'short'}}</h6>
-    <button class="btn news-extended-read-more-btn" routerLink="/news/{{newsInput?.articlesId}}">Czytaj dalej</button>
   </div>
+  <button class="btn news-extended-read-more-btn" routerLink="/news/{{newsInput?.articlesId}}">Czytaj dalej</button>
 </div>
