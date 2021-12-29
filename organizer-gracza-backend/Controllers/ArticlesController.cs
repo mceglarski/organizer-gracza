@@ -108,17 +108,12 @@ namespace organizer_gracza_backend.Controllers
             
             var articlesAsync = await _articlesRepository.GetArticleById(id);
 
-            articlesAsync.ArticlesId = articles.ArticlesId;
             if (articles.Title != null)
                 articlesAsync.Title = articles.Title;
             if (articles.Content != null)
                 articlesAsync.Content = articles.Content;
-            if (articles.PublicationDate != null)
-                articlesAsync.PublicationDate = articles.PublicationDate;
             if (articles.PhotoUrl != null)
                 articlesAsync.PhotoUrl = articles.PhotoUrl;
-            if (articles.UserId != null)
-                articlesAsync.UserId = articles.UserId;
 
             if (await _articlesRepository.SaveAllAsync())
                 return NoContent();

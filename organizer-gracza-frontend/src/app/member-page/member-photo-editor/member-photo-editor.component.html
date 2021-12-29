@@ -9,7 +9,7 @@
             (click)="setMainPhoto(photo)"
             [ngClass]='photo.isMain ? "btn-success active" : ""'
             class="btn btn-sm btn-info col-xl-4">
-            Main
+            Główne
         </button>
         <button
           [disabled]="photo.isMain"
@@ -32,7 +32,7 @@
            [uploader]="uploader"
            class="card bg-faded p-3 text-center mb-3 my-drop-zone">
           <i class="fa fa-upload fa-3x"></i>
-        Drop photos here
+        Przenieś zdjęcia tutaj
       </div>
 
       <input type="file" ng2FileSelect [uploader]="uploader" multiple />

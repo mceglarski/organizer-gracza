@@ -109,7 +109,6 @@ export class EventsSoloDetailsComponent implements OnInit {
       this.memberService.getMemberById(value).subscribe(member =>{
         // this.Members = member;
         this.members.push(member);
-        console.log(this.members);
       });
     })
   }

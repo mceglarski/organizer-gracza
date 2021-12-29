@@ -33,6 +33,15 @@ namespace organizer_gracza_backend.Data
                 .ToListAsync();
         }
 
+        public Task<EventTeamRegistration> GetEventRegistrationForEvent(int eventTeamId, int teamId)
+        {
+            return _context.EventTeamRegistration
+                .Include(e => e.EventTeam)
+                .Include(t => t.Team)
+                .Where(x => x.EventTeamId == eventTeamId)
+                .FirstOrDefaultAsync(a => a.TeamId == teamId);
+        }
+
         public async Task<IEnumerable<EventTeamRegistration>> GetEventsTeamRegistrationAsync()
         {
             return await _context.EventTeamRegistration

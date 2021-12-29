@@ -15,7 +15,7 @@ namespace organizer_gracza_backend.Data
         {
             _context = context;
         }
-        
+
         public async Task<TeamUser> GetTeamUsersAsync(int teamId)
         {
             return await _context.TeamUsers
@@ -23,7 +23,16 @@ namespace organizer_gracza_backend.Data
                 .Include(t => t.Team)
                 .FirstOrDefaultAsync(x => x.TeamId == teamId);
         }
-        
+
+        public async Task<IEnumerable<TeamUser>> GetTeamForUsersByIdAsync(int userId)
+        {
+            return await _context.TeamUsers
+                .Include(u => u.User)
+                .Include(t => t.Team)
+                .Where(x => x.UserId == userId)
+                .ToListAsync();
+        }
+
         public async Task<IEnumerable<TeamUser>> GetUsersInTeam(int teamId)
         {
             return await _context.TeamUsers
@@ -32,6 +41,24 @@ namespace organizer_gracza_backend.Data
                 .Where(x => x.TeamId == teamId)
                 .ToListAsync();
         }
+
+        public async Task<ICollection<TeamUser>> GetUsersInTeamCollection(int teamId)
+        {
+            return await _context.TeamUsers
+                .Include(t => t.Team)
+                .Include(u => u.User)
+                .Where(t => t.TeamId == teamId)
+                .ToListAsync();
+        }
+
+        public int GetNumberOfTeamsForUser(int userId)
+        {
+            return _context.TeamUsers
+                .Include(e => e.User)
+                .Include(t => t.Team)
+                .Count(x => x.UserId == userId);
+        }
+
         public async Task<IEnumerable<TeamUser>> GetTeamsUsersAsync()
         {
             return await _context.TeamUsers
@@ -48,7 +75,7 @@ namespace organizer_gracza_backend.Data
                 .Where(x => x.User.UserName == username)
                 .ToListAsync();
         }
-        
+
 
         public void AddTeamUser(TeamUser teamUser)
         {
