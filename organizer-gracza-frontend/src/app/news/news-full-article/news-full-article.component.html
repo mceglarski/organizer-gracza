@@ -9,5 +9,8 @@
     <p class="full-article-date col-xl-9">Data publikacji: {{news?.publicationDate | date: 'short'}}</p>
     <p class="full-article-content col-xl-9">{{news?.content}}</p>
   </div>
-
+<button mat-button
+        *appHasRole='["Admin", "Redaktor"]'
+        class="btn btn-warning"
+        (click)="editArticle(news)">Edytuj artykuł</button>
 </div>

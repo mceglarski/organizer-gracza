@@ -17,6 +17,7 @@ export class TeamsDetailsComponent implements OnInit {
   public team: Team;
   public user: User;
   public model = {};
+  public allMembers: Member[] = [];
   public memberId: number;
   public teamUsers: TeamUser[];
 
@@ -34,7 +35,6 @@ export class TeamsDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadTeam();
-    this.loadMember();
   }
 
   public joinTeam(): void {
@@ -43,9 +43,10 @@ export class TeamsDetailsComponent implements OnInit {
       teamId: this.team.teamId
     }
     this.teamService.addTeamUser(this.model).subscribe(response =>{
-      this.toastr.success("Dołączyłeś do drużyny")
+      window.location.reload();
+      this.toastr.success("Dołączyłeś do drużyny");
     }, error => {
-      this.toastr.error("Nie udało się dołączyć do drużyny")
+      this.toastr.error("Należysz już do drużyny")
     })
   }
 
@@ -54,21 +55,22 @@ export class TeamsDetailsComponent implements OnInit {
     this.teamService.getTeamByName(this.route.snapshot.paramMap.get('name')).subscribe(specifiedTeam => {
       // @ts-ignore
       this.team = specifiedTeam;
-      this.loadUsersInTeam();
-    })
-  }
-
-  private loadMember(): void {
-    this.memberService.getMemberIdByUsername(this.user.username).subscribe(memberId =>{
-      this.memberId = memberId;
-    })
-  }
-
-  private loadUsersInTeam(): void {
-    this.teamService.getUsersInTeam(this.team.teamId).subscribe(teamUsers => {
-      // @ts-ignore
-      this.teamUsers = teamUsers;
-      return;
+      this.teamService.getUsersInTeam(this.team.teamId).subscribe(teamUsers => {
+        // @ts-ignore
+        this.teamUsers = teamUsers;
+        this.memberService.getMemberIdByUsername(this.user.username).subscribe(memberId =>{
+          this.memberId = memberId;
+        });
+        this.memberService.getMembers({pageNumber: 1, pageSize: 99999}).subscribe(m => {
+          this.allMembers = m.result;
+          this.teamUsers.forEach(t => {
+            // @ts-ignore
+            t.user.photoUrl = this.allMembers.find(mem => mem.id == t.user.id)?.photoUrl;
+          });
+          return
+        });
+        return;
+      });
     });
   }
 

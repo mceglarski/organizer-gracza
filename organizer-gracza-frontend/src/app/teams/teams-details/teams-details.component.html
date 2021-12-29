@@ -7,12 +7,16 @@
       <h2 class="">Nazwa drużyny: <span class="section-title-accent">{{team.name}}</span></h2><br>
       <h2 class="">Skład drużyny:
       </h2>
-        <div *ngFor="let user of teamUsers">{{user.user.photoUrl}}{{user.user.nickname}}</div>
-
+        <div *ngFor="let user of teamUsers" class="team-details-member">
+          <a href="/members/{{user.user.username}}" class="team-details-member-link">
+            <img src="{{user.user.photoUrl}}" class="img-fluid team-details-member-img">
+            {{user.user.nickname}}
+          </a>
+        </div>
     </div>
-    <div class="col ">
+    <div class="col">
       <h2>Logo drużyny</h2>
-      <img src="{{team.photoUrl}}" alt="{{team}}">
+      <img src="{{team.photoUrl}}" alt="{{team}}" class="team-details-logo">
     </div>
   </div>
   <div>
