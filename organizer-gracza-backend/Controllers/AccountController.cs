@@ -28,10 +28,14 @@ namespace organizer_gracza_backend.Controllers
         private readonly DataContext _context;
         private readonly IUserAchievementCounterRepository _userAchievementCounterRepository;
         private readonly IPhotoService _photoService;
+        private readonly IGameStatisticsRepository _gameStatisticsRepository;
+        private readonly IGeneralStatisticsRepository _generalStatisticsRepository;
 
         public AccountController(UserManager<User> userManager, SignInManager<User> signInManager,
             ITokenService tokenService, IMapper mapper, IConfiguration configuration, DataContext context,
-            IUserAchievementCounterRepository userAchievementCounterRepository, IPhotoService photoService)
+            IUserAchievementCounterRepository userAchievementCounterRepository, IPhotoService photoService,
+            IGameStatisticsRepository gameStatisticsRepository,
+            IGeneralStatisticsRepository generalStatisticsRepository)
         {
             _tokenService = tokenService;
             _mapper = mapper;
@@ -41,6 +45,8 @@ namespace organizer_gracza_backend.Controllers
             _context = context;
             _userAchievementCounterRepository = userAchievementCounterRepository;
             _photoService = photoService;
+            _gameStatisticsRepository = gameStatisticsRepository;
+            _generalStatisticsRepository = generalStatisticsRepository;
         }
         
         private string API_Key => _configuration["SendGrid:API_Key"];
@@ -103,6 +109,16 @@ namespace organizer_gracza_backend.Controllers
             };
 
             _context.UserAchievementCounters.Add(userAchievementCounter);
+
+            var userGeneralStatistics = new GeneralStatistics
+            {
+                EventsParticipated = 0,
+                EventsWon = 0,
+                PostWritten = 0,
+                UserId = user.Id,
+            };
+
+            _context.GeneralStatistics.Add(userGeneralStatistics);
             
             if (!await _userAchievementCounterRepository.SaveAllAsync())
                 return BadRequest("Failed to add counter for user");
