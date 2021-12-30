@@ -80,20 +80,54 @@ namespace organizer_gracza_backend.Controllers
 
             foreach (var userIds in eventUser.EventUserRegistration)
             {
-                var userParticipiant = _userRepository.GetUserByIdAsync(userIds.UserId);
-                var gameStats = _gameStatisticsRepository.GetGameStatisticsForUser(userParticipiant.Result.Id, gameId);
-                gameStats.Result.LostGames++;
+                var userParticipant = _userRepository.GetUserByIdAsync(userIds.UserId);
+                var gameStats = _gameStatisticsRepository.GetGameStatisticsForUser(userParticipant.Result.Id, gameId);
+                if (gameStats.Result == null)
+                {
+                    var newGameStatistics = new GameStatistics()
+                    {
+                        GameId = gameId,
+                        LostGames = 1,
+                        WonGames = 0,
+                        UserId = userParticipant.Result.Id
+                    };
 
+                    _context.GameStatistics.Add(newGameStatistics);
+                }
+                else
+                {
+                    gameStats.Result.LostGames++;
+                }
+                
+                var generalStatistics = _generalStatisticsRepository.GetGeneralStatisticsByUserIdAsync(userParticipant.Result.Id);
+                generalStatistics.Result.EventsParticipated++;
+                
+                
                 if (!await _gameStatisticsRepository.SaveAllAsync())
                     return BadRequest("Failed to save game statistics");
             }
 
             var gameStatsForWinner = _gameStatisticsRepository.GetGameStatisticsForUser(userId, gameId);
-            gameStatsForWinner.Result.LostGames--;
-            gameStatsForWinner.Result.WonGames++;
-            var generalStatistics = _generalStatisticsRepository.GetGeneralStatisticsByUserIdAsync(userId);
-            generalStatistics.Result.EventsWon++;
-            generalStatistics.Result.EventsParticipated++;
+            if (gameStatsForWinner.Result == null)
+            {
+                var newGameStatistics = new GameStatistics()
+                {
+                    GameId = gameId,
+                    LostGames = 0,
+                    WonGames = 1,
+                    UserId = userId
+                };
+
+                _context.GameStatistics.Add(newGameStatistics);
+            }
+            else
+            {
+                gameStatsForWinner.Result.LostGames--;
+                gameStatsForWinner.Result.WonGames++;
+            }
+
+            var generalStatisticsForWinner = _generalStatisticsRepository.GetGeneralStatisticsByUserIdAsync(userId);
+            generalStatisticsForWinner.Result.EventsWon++;
             
             if (!await _gameStatisticsRepository.SaveAllAsync())
                 return BadRequest("Failed to save game statistics for the winner");

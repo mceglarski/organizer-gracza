@@ -335,6 +335,9 @@ namespace organizer_gracza_backend.Controllers
                     return false;
             }
 
+            if (array.Length > 17)
+                return false;
+                    
             return true;
         }
 

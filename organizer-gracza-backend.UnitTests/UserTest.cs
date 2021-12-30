@@ -57,5 +57,35 @@ namespace organizer_gracza_backend.UnitTests
             var query = _usersController.IsValidSteamid("123/4567");
             Assert.IsFalse(query);
         }
+        [Test]
+        public void CheckIfSteamIdIsInValidFormatDigitsAndLength()
+        {
+            var query = _usersController.IsValidSteamid("291829384950192382");
+            Assert.IsFalse(query);
+        }
+        [Test]
+        public void CheckIfSteamIdIsInValidFormatDigitsLetterAndLength()
+        {
+            var query = _usersController.IsValidSteamid("29182938495019238A");
+            Assert.IsFalse(query);
+        }
+        [Test]
+        public void CheckIfSteamIdIsInValidFormatDigitsPunctuationAndLength()
+        {
+            var query = _usersController.IsValidSteamid("29182938495019238-");
+            Assert.IsFalse(query);
+        }
+        [Test]
+        public void CheckIfSteamIdIsInValidFormatDigitsSpaceAndLength()
+        {
+            var query = _usersController.IsValidSteamid("2918293849 5019238");
+            Assert.IsFalse(query);
+        }
+        [Test]
+        public void CheckIfSteamIdIsInValidFormatSpace()
+        {
+            var query = _usersController.IsValidSteamid("       ");
+            Assert.IsFalse(query);
+        }
     }
 }
