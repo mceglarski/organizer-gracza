@@ -1,5 +1,5 @@
 .event-management-content{
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.85);
   color: white;
 }
 ::ng-deep.nav-tabs {

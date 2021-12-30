@@ -14,7 +14,7 @@ import {ToastrService} from "ngx-toastr";
 export class ActivateMailComponent implements OnInit {
 
   public member: Member;
-  private user: User;
+  public user: User;
 
   constructor(private memberService: MembersService,
               private accountService: AccountService,
@@ -24,10 +24,12 @@ export class ActivateMailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.memberService.getMember(this.user.username).subscribe(member => {
-      this.member = member;
-      return;
-    });
+    if (this.user) {
+      this.memberService.getMember(this.user.username).subscribe(member => {
+        this.member = member;
+        return;
+      });
+    }
   }
 
   public activateEmail(): void {
