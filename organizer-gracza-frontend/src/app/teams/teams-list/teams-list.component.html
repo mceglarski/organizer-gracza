@@ -1,11 +1,5 @@
 <div class="teams-page-content">
 
-<!--  <div class="input-group teams-list-search-container">-->
-<!--    <input type="search" class="form-control teams-list-search rounded mt-3 ml-3" placeholder="Wyszukaj drużynę" aria-label="Search"-->
-<!--           aria-describedby="search-addon"/>-->
-<!--    <button type="button" class="btn btn-outline-secondary teams-list-search-btn mt-3">Szukaj</button>-->
-<!--  </div>-->
-
   <div class="flex-container justify-content-center">
     <div *ngFor="let team of teams">
       <app-teams-card [team]="team"></app-teams-card>
