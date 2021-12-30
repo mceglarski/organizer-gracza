@@ -95,7 +95,27 @@ namespace organizer_gracza_backend.Controllers
                     listOfUserIds.Add(specifiedUser.Id);
                     var gameStatistics =
                         _gameStatisticsRepository.GetGameStatisticsForUser(specifiedUser.Id, eventTeam.Result.GameId);
-                    gameStatistics.Result.LostGames++;
+                    if (gameStatistics.Result == null)
+                    {
+                        var newGameStatistics = new GameStatistics()
+                        {
+                            GameId = eventTeam.Result.GameId,
+                            LostGames = 1,
+                            WonGames = 0,
+                            UserId = specifiedUser.Id
+                        };
+
+                        _context.GameStatistics.Add(newGameStatistics);
+                    }
+
+                    else
+                    {
+                        gameStatistics.Result.LostGames++;
+                    }
+                    
+                    if (!await _gameStatisticsRepository.SaveAllAsync())
+                        return BadRequest("Failed to save game statistics");
+                    
                     var generalStatistics =
                         _generalStatisticsRepository.GetGeneralStatisticsByUserIdAsync(specifiedUser.Id);
                     generalStatistics.Result.EventsParticipated++;
@@ -109,8 +129,23 @@ namespace organizer_gracza_backend.Controllers
                 var usersWinner = _userRepository.GetUserByIdAsync(userInWinnerTeam.UserId);
                 var gameStatisticsWinner =
                     _gameStatisticsRepository.GetGameStatisticsForUser(usersWinner.Result.Id, eventTeam.Result.GameId);
-                gameStatisticsWinner.Result.LostGames--;
-                gameStatisticsWinner.Result.WonGames++;
+                if (gameStatisticsWinner.Result == null)
+                {
+                    var newGameStatistics = new GameStatistics()
+                    {
+                        GameId = eventTeam.Result.GameId,
+                        LostGames = 0,
+                        WonGames = 1,
+                        UserId = usersWinner.Result.Id
+                    };
+
+                    _context.GameStatistics.Add(newGameStatistics);
+                }
+                else
+                {
+                    gameStatisticsWinner.Result.LostGames--;
+                    gameStatisticsWinner.Result.WonGames++;
+                }
                 var generalStatistics =
                     _generalStatisticsRepository.GetGeneralStatisticsByUserIdAsync(usersWinner.Result.Id);
                 generalStatistics.Result.EventsWon++;

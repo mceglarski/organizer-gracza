@@ -19,16 +19,19 @@ namespace organizer_gracza_backend.Controllers
         private readonly IUserAchievementCounterRepository _userAchievementCounterRepository;
         private readonly IUserAchievementRepository _userAchievementRepository;
         private readonly DataContext _context;
+        private readonly IGeneralStatisticsRepository _generalStatisticsRepository;
 
         public ForumPostController(IForumPost forumPost, DataContext context,
             IMapper mapper, IUserAchievementCounterRepository userAchievementCounterRepository,
-            IUserAchievementRepository userAchievementRepository)
+            IUserAchievementRepository userAchievementRepository,
+            IGeneralStatisticsRepository generalStatisticsRepository)
         {
             _forumPost = forumPost;
             _mapper = mapper;
             _userAchievementCounterRepository = userAchievementCounterRepository;
             _userAchievementRepository = userAchievementRepository;
             _context = context;
+            _generalStatisticsRepository = generalStatisticsRepository;
         }
 
         [HttpGet]
@@ -78,6 +81,10 @@ namespace organizer_gracza_backend.Controllers
             var userAchievement = await _userAchievementCounterRepository
                 .GetUserAchievementCounterByUserId(forumPostDto.UserId);
 
+            var generalStatistics = _generalStatisticsRepository
+                .GetGeneralStatisticsByUserIdAsync(forumPostDto.UserId);
+
+            generalStatistics.Result.PostWritten++;
             userAchievement.NumberOfPostsCreated++;
             
             if (!await _userAchievementCounterRepository.SaveAllAsync())

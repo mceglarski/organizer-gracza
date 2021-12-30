@@ -1,4 +1,4 @@
-<div class="container activate-mail-container">
+<div *ngIf="user" class="container activate-mail-container">
 
   <ng-container *ngIf="!member?.emailConfirmed">
     <h1 class="section-title"><span class="section-title-accent">AKTYWUJ</span> EMAIL&nbsp;</h1>
@@ -16,4 +16,9 @@
     <h4>Twój mail jest już aktywny</h4>
   </ng-container>
 
+</div>
+
+<div *ngIf="!user" class="container activate-mail-container">
+  <h1 class="section-title"><span class="section-title-accent">AKTYWUJ</span> EMAIL&nbsp;</h1>
+  <h4>Zaloguj się aby aktywować konto</h4>
 </div>

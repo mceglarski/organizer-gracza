@@ -17,7 +17,7 @@
   min-width: 125px;
   max-width: 150px;
   max-height: 200px;
-  background-color: #000000;
+  background-color: rgba(0, 0, 0, 0);
   color: white;
   /*border: 1px solid #C3073F;*/
 }

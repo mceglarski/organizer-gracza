@@ -56,6 +56,7 @@ export class EventsSoloDetailsComponent implements OnInit {
       eventUserId: this.event.eventUserId
     }
     this.eventsService.addUserEventRegistration(this.model).subscribe(response =>{
+      window.location.reload();
       this.toastr.success("Dołączyłeś do wydarzenia")
     }, error => {
       this.toastr.error("Nie udało się dołączyć do wydarzenia")
