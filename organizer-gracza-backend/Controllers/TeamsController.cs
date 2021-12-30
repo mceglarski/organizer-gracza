@@ -85,6 +85,8 @@ namespace organizer_gracza_backend.Controllers
                 PhotoUrl = teamDto.PhotoUrl
             };
 
+            newTeam.PhotoUrl ??= "https://i.ibb.co/Z2RJhWy/T.png";
+
             _teamsRepository.AddTeam(newTeam);
 
             if (!await _teamsRepository.SaveAllAsync()) 
