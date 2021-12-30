@@ -26,7 +26,7 @@
             <img class="qualified-users-image" src="{{registration.team.photoUrl}}" alt="{{registration.team.name}}">
           </div>
         </div>
-        <button class="btn btn-success" (click)="open(addTeamRegistration)">ZAPISZ SIĘ</button>
+        <button *ngIf="!eventFinished" class="btn btn-success" (click)="open(addTeamRegistration)">ZAPISZ SIĘ</button>
 
       </div>
     </div>
