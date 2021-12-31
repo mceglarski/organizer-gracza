@@ -7,9 +7,14 @@
   margin-bottom: 1rem;
 }
 
+.steam-header {
+  font-family: Lato;
+  font-weight: 600;
+}
+
 .steam-information-profile-url {
-  /*text-decoration: none;*/
-  color: white;
+  margin-top: 0.5rem;
+  color: #eaeaea;
   font-size: 1.2rem;
   text-align: left;
 }

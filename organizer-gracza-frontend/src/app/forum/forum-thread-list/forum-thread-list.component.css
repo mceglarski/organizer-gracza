@@ -1,29 +1,46 @@
 .thread-list-container {
   background-color: rgba(0, 0, 0, 0.85);
   margin-top: 1%;
-  color: #fff;
+  color: #eaeaea;
   padding: 1rem;
   height: 102%;
 }
 
 .thread-row-first {
-  background-color: #3d4452;
+  background-color: #242427;
   padding: 0.2rem;
-  margin-bottom: 0.1rem;
-  border-radius: 1%;
+  margin-bottom: 0.5rem;
+  border-radius: 10px;
+}
+
+.thread-td {
+  margin-left: 0.8rem;
+  font-size: 1.1rem;
+  font-family: Lato;
+  font-weight: 600;
+}
+
+.thread-list-title {
+  font-family: Lato;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .thread-row {
-  background-color: #3d4452;
+  background-color: #242427;
   padding: 0.2rem;
   margin-bottom: 0.5rem;
-  border-radius: 2%;
+  border-radius: 10px;
+}
+
+.thread-row:hover {
+  background-color: #414147;
 }
 
 .thread-thumbnail {
   max-width: 100px;
   margin: 0;
-  border-radius: 1px;
+  border-radius: 5px;
 }
 
 .thread-list-author-img {
@@ -35,7 +52,7 @@
 
 .thread-list-nickname-link {
   text-decoration: none;
-  color: white;
+  color: #eaeaea;
 }
 
 .calendar-icon {
@@ -44,18 +61,27 @@
 
 .thread-list-link {
   text-decoration: none;
-  color: white;
+  color: #f6f6f6;
 }
 
 .thread-list-post-counter {
   padding: 5px;
   text-align: center;
-  border-right: 4px dotted;
+  border-right: 4px dotted #F29F05;
   margin-right: 5px;
+}
+
+.thread-list-details {
+  padding-left: 20rem;
 }
 
 .btn-delete {
   background-color: #c40000;
+}
+
+.btn-add-thread {
+  background-color: #F29F05;
+  margin: 0.3rem;
 }
 
 @media only screen and (max-width: 1000px) {
@@ -70,5 +96,9 @@
     height: 25px;
     object-fit: fill;
     border-radius: 50%;
+  }
+
+  .thread-list-details {
+    padding-left: 0rem;
   }
 }

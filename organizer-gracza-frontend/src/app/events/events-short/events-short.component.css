@@ -8,12 +8,16 @@
 }
 
 .product-item-content {
-  height: 350px;
-  background-color: #292E37;
+  height: 21rem;
+  background-color: #242427;
   border-radius: 2px;
   text-align: center;
   margin: 0.3rem;
   padding-bottom: 0.3rem;
+}
+
+.product-item-content:hover {
+  background-color: #414147;
 }
 
 .product-image {

@@ -1,22 +1,35 @@
-<div class="member-profile-content container-fluid" *ngIf="member">
+<div class="member-profile-content container-fluid" *ngIf="member && user">
+
   <div class="">
     <app-member-image></app-member-image>
   </div>
+
   <div class="member-profile-description">
-    <h1 *ngIf="member.description || gamesToShow.length > 0" class="section-title">O MNIE&nbsp;</h1>
+    <h1 *ngIf="member.description || gamesToShow.length > 0" class="section-title"><span class="section-title-accent">O</span> MNIE&nbsp;</h1>
     <span *ngIf="member.description" class="member-profile-description-text">{{member.description}}<br><br></span>
-    <h4 *ngIf="gamesToShow.length > 0">Interesuje mnie</h4>
+    <h1 *ngIf="gamesToShow.length > 0" class="section-title"><span class="section-title-accent">INTERESUJĄ</span> MNIE &nbsp;</h1>
     <h5 class="col member-profile-interested-game" *ngFor="let game of gamesToShow">
       <i class="material-icons member-profile-game-icon">videogame_asset</i>{{game}}
     </h5>
   </div>
+
   <div class="" *ngIf="member.steamId">
     <app-steam-information [steamId]="member.steamId"></app-steam-information>
   </div><br><br>
+
   <div class="">
     <app-member-achievements [member]="member"></app-member-achievements>
   </div><br><br>
+
   <div class="">
     <app-member-statistics [member]="member"></app-member-statistics>
+  </div>
+
+</div>
+
+<div class="member-profile-content container-fluid" *ngIf="!user">
+  <h1 class="log-in-to-enter">Zaloguj się, aby zobaczyć profil tego gracza</h1>
+  <div class="">
+    <app-member-image></app-member-image>
   </div>
 </div>

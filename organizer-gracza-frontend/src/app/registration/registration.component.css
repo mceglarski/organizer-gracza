@@ -9,12 +9,12 @@
 
 .modal-header {
   background-color: #292E37;
-  border-bottom:2px solid #C3073F;
+  border-bottom:2px solid #F29F05;
 }
 
 .modal-body {
   background-color: #292E37;
-  border-bottom:2px solid #C3073F;
+  border-bottom:2px solid #F29F05;
 }
 
 .modal-footer {
@@ -23,7 +23,7 @@
 }
 
 h4 {
-  color: #C3073F;
+  color: #F29F05;
   font-weight: bold;
 }
 

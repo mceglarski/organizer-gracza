@@ -1,23 +1,25 @@
 .header {
-  color: wheat;
-  background-image: url("../../../assets/background.jpg");
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  background-color: #111211;
+  font-family: "Tomorrow";
+  margin-bottom: 0.5rem;
+}
+
+.header-logo {
+  height: 70px;
 }
 
 .navbar {
-  background-color: rgba(0, 0, 0, 0.8);
+  max-width: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
 .flex-menu-container {
   justify-content: flex-end;
-  margin-right: 5%;
+  margin-right: 3%;
 }
 
 .navbar-brand {
-  margin-left: 5%;
+  margin-left: 3%;
   font-weight: bold;
   font-size: 1.5rem;
 }
@@ -37,7 +39,7 @@
 .header-avatar {
   height: 50px;
   width: 50px;
-  border: 2px solid #ffffff;
+  border: 2px solid #bbbbbb;
   display: inline;
   object-fit: fill;
   margin-right: 0.2rem;

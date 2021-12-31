@@ -27,8 +27,8 @@
   </select>
 
 
-  <div class="row">
-    <div *ngFor="let broadcast of twitchBroadcasts" class="col">
+  <div class="row justify-content-center">
+    <div *ngFor="let broadcast of twitchBroadcasts" class="">
 
       <div class="broadcasts-element">
         <img class="img-fluid broadcast-thumbnail" src="{{broadcast.thumbnail_url}}" routerLink="/broadcast/{{broadcast.user_name}}">

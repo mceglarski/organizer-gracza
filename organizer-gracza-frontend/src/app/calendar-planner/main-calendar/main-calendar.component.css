@@ -1,7 +1,8 @@
 .main-calendar-container {
   background: rgba(0, 0, 0, 0.85);
-  color: white;
+  color: #eaeaea;
   padding: 1rem;
+  height: 103%;
 }
 
 .main-calendar {
@@ -10,21 +11,23 @@
 
 ::ng-deep.fc, .fc *, .fc:after, .fc:before {
   padding: 1rem;
-  background-color: #3d4452;
-  border-top-left-radius: 1%;
-  border-top-right-radius: 1%;
+  background-color: #242427;
+  border-bottom-left-radius: 3%;
+  border-bottom-right-radius: 3%;
 }
 
 .add-new-event-background {
   padding: 1rem;
-  background-color: #3d4452;
-  border-radius: 1%;
+  background-color: #242427;
+  text-align: right;
+  border-top-left-radius: 3%;
+  border-top-right-radius: 3%;
 }
 
 .add-event-button {
-  color: #ffffff;
-  background: #6366F1;
-  border: 1px solid #6366F1;
+  color: #242427;
+  background: #F29F05;
+  border: 1px solid black;
   font-size: 1rem;
   transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
   border-radius: 6px;

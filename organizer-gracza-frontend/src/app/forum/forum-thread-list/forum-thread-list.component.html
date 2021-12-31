@@ -1,9 +1,9 @@
 <div class="container thread-list-container">
-  <h1 class="section-title">FORUM &nbsp;</h1>
+  <h1 class="section-title"><span class="section-title-accent">FORUM</span> &nbsp;</h1>
 
   <div class="thread-row-first d-flex justify-content-between align-items-center">
-    <span style="margin-left: 0.5rem;">Wątki</span>
-  <button *ngIf="user && !isUserBlocked" mat-raised-button color="primary" routerLink="/forum/thread/add">Dodaj wątek</button>
+    <span class="thread-td">Wątki</span>
+  <button *ngIf="user && !isUserBlocked" mat-raised-button class="btn-add-thread" routerLink="/forum/thread/add">Dodaj wątek</button>
   </div>
   <div class="thread-row" *ngFor="let thread of forumThread">
     <div class="row align-items-center">
@@ -17,7 +17,7 @@
 
         <div class="row d-flex align-items-center">
           <div class="col">
-            <h6 class="text-break"><a href="/forum/{{thread.forumThreadId}}" class="thread-list-link">{{thread.title}}</a></h6>
+            <h6 class="text-break thread-list-title"><a href="/forum/{{thread.forumThreadId}}" class="thread-list-link">{{thread.title}}</a></h6>
           </div>
         </div>
 
@@ -30,7 +30,7 @@
 
       </div>
 
-      <div class="col d-flex align-items-center">
+      <div class="col d-flex align-items-center thread-list-details">
         <div class="col d-flex align-items-center justify-content-end" style="padding: 5px;">
           <span class="thread-list-post-counter">{{thread.forumPosts.length}}<br>{{(thread.forumPosts.length > 4 || thread.forumPosts.length === 0) ? 'postów' : (thread.forumPosts.length > 1) ? 'posty' : 'post'}}</span>
           <a class="thread-list-nickname-link" href="/members/{{thread?.user?.username}}">

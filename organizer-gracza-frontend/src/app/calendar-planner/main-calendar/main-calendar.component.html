@@ -1,6 +1,11 @@
 <div class="container main-calendar-container">
-  <full-calendar [options]="calendarOptions" class="main-calendar"></full-calendar>
+  <p>W tym miejscu przypilnujesz swoich terminów. Sprawdź harmonogram wydarzeń lub dodaj nowe przypomnienie.</p>
+  Zmiana widoku: <br>
+  Widok miesiąca - domyślny widok kalendarza <br>
+  Widok listy - wszystkie przypomnienia wyświetlone w formie listy <br>
+  Dzisiaj - powrót zaznaczenia do dnia dzisiejszego
   <div class="add-new-event-background">
-    <button mat-button class="add-event-button" (click)="addNewEvent()">Dodaj nowe wydarzenie</button>
+    <button mat-button class="add-event-button" (click)="addNewEvent()">Dodaj nowe przypomnienie</button>
   </div>
+  <full-calendar [options]="calendarOptions" class="main-calendar"></full-calendar>
 </div>

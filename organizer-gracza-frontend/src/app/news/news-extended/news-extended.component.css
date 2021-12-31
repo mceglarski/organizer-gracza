@@ -1,13 +1,20 @@
 .news-extended {
-  background-color: #292E37;
+  background-color: #242427;
   border: 1px solid black;
   display: flex;
   flex-direction: column;
   padding: 10px;
   height: 99%;
 }
+
+.news-extended-title {
+  font-family: "Raleway";
+  color: #eaeaea;
+  font-weight: 600;
+}
+
 .news-extended-image {
-  background-color: #292E37;
+  background-color: #242427;
 }
 
 .news-extended-thumbnail {
@@ -20,6 +27,10 @@
   margin-top: 0.2rem;
 }
 
+.news-extended-content {
+  line-height: 1.7;
+}
+
 .news-extended-read-more-btn {
   background-color: #1a1b21;
   border-color: #2c2c31;
@@ -29,9 +40,9 @@
 }
 
 .news-extended-read-more-btn:hover {
-  background-color: #C3073F;
+  background-color: #414147;
 }
 
 .news-extended-read-more-btn:active {
-  background-color: #9a042f;
+  background-color: #414147;
 }

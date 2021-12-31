@@ -1,11 +1,55 @@
-.banner{
-  background-color: black;
-  height: 300px;
+.banner-container {
+  padding-top: 8%;
+  margin-bottom: -2%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+.line {
+  width: 90vw;
+}
+.left, .right {
+  width: 50%;
+  overflow: hidden;
+  display: inline-block;
+}
+.left {
+  color: #F29F05;
+  transform: skew(0deg, -15deg);
+}
+.right {
+  color: #ffffff;
+  transform: skew(0deg, 15deg);
+}
+.left .content {
+  width: 90vw;
+  text-align: center;
 }
 
-.banner-image {
-  height: 300px;
-  width: 100%;
-  object-fit: none;
-  object-position: 50% 17%;
+.right .content {
+  width: 100vw;
+  text-align: center;
+  transform: translate(-50vw);
+}
+span {
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 5vw;
+  text-transform: uppercase;
+  line-height: .8;
+  transition: ease-out .6s;
+}
+
+.banner-phrase {
+  font-family: "Tomorrow";
+  font-size: 1.7rem;
+  color: #b4b4b4;
+  text-align: center;
+}
+
+.banner-login {
+  margin-bottom: 10px;
+}
+
+.text-phrase {
+  margin-bottom: 0;
 }
