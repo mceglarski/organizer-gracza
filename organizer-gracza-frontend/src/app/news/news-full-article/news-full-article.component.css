@@ -2,19 +2,21 @@
   height: 103%;
   background-color: black;
   margin-top: 1%;
-  color: #fff;
+  color: #dedede;
   padding: 1rem;
 }
 
 .full-article-content-container {
-  background-color: #3d4452;
+  background-color: #242427;
   margin: 1rem;
   border-radius: 0.5%;
 }
 
 .full-article-title {
   margin-top: 1rem;
-  color: #d52b58;
+  font-family: "Raleway";
+  font-weight: 600;
+  color: #eaeaea;
 }
 
 .full-article-date {
@@ -22,5 +24,6 @@
 }
 
 .full-article-content {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  line-height: 1.7;
 }

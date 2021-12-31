@@ -11,7 +11,7 @@ export class NewsShortComponent implements OnInit {
 
   @Output()
   public articlesExtended = new EventEmitter<News>();
-  public selectedArticle: number = -1;
+  public selectedArticle: number = 0;
   public articleArray: News[] = [];
 
   constructor(private articlesService: ArticlesService) { }

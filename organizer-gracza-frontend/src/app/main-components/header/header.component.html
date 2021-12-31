@@ -1,6 +1,6 @@
-<div class="header fixed-top">
-  <nav class="navbar navbar-expand-lg navbar-dark mt-4">
-    <a class="navbar-brand" href="/">OrganizerGracza</a>
+<div class="header">
+  <nav class="navbar navbar-expand-xl navbar-dark">
+    <a class="navbar-brand" href="/"><img class="header-logo" src="assets/gamepad.png"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -10,22 +10,19 @@
       <ul class="navbar-nav">
         <ng-container *ngIf="accountService.currentUser$ | async">
           <li *appHasRole='["Admin"]' class="nav-item">
-            <a class="nav-link header-align-right" routerLink="/admin">ADMIN PANEL</a>
+            <a class="nav-link" routerLink="/admin">ADMIN</a>
           </li>
           <li *appHasRole='["Admin", "Redaktor"]' class="nav-item">
-            <a class="nav-link header-align-right" routerLink="/editor-panel">PANEL REDAKTORA</a>
+            <a class="nav-link" routerLink="/editor-panel">REDAKTOR</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link header-align-right" href="/planner">TWÓJ PLAN</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/news">NEWSY</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink='/community'>SPOŁECZNOŚĆ</a>
+            <a class="nav-link" href="/planner">KALENDARZ</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="/events">WYDARZENIA</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink='/community'>SPOŁECZNOŚĆ</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="/broadcasts">TRANSMISJE</a>
@@ -36,11 +33,11 @@
           <li class="nav-item">
             <a class="nav-link" href="/forum">FORUM</a>
           </li>
-        </ng-container>
-        <ng-container *ngIf="(accountService.currentUser$ | async) === null">
           <li class="nav-item">
             <a class="nav-link" href="/news">NEWSY</a>
           </li>
+        </ng-container>
+        <ng-container *ngIf="(accountService.currentUser$ | async) === null">
           <li class="nav-item">
             <a class="nav-link" routerLink="/events">WYDARZENIA</a>
           </li>
@@ -49,6 +46,9 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/forum">FORUM</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/news">NEWSY</a>
           </li>
         </ng-container>
         <li class="hide nav-item">
@@ -68,7 +68,7 @@
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" routerLink='/member/edit'>Edytuj profil</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" (click)="login.logout()"> Wyloguj</a>
+          <a class="dropdown-item" (click)="login.logout()">Wyloguj</a>
         </div>
       </div>
 

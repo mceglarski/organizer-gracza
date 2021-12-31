@@ -171,7 +171,7 @@ FullCalendarModule.registerPlugins([
     ResetPasswordComponent,
     EventsTeamResultComponent,
     EventsSoloResultComponent,
-    NewsEditorUpdateComponent
+    NewsEditorUpdateComponent,
   ],
   imports: [
     BrowserModule,
@@ -209,7 +209,7 @@ FullCalendarModule.registerPlugins([
     NgxMatNativeDateModule,
     MatTooltipModule,
     MatAutocompleteModule,
-    MatFormFieldModule,
+    MatFormFieldModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

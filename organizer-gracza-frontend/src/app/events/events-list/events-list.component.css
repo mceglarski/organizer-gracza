@@ -21,3 +21,31 @@
 ::ng-deep.nav-tabs {
   border: none !important;
 }
+
+.events-list-banner {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  height: 10rem;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.ml4 {
+  text-align: center;
+  position: relative;
+  font-weight: 900;
+  font-size: 4.5em;
+}
+
+.ml4 .letters {
+  position: absolute;
+  /*margin: auto;*/
+  left: 0;
+  top: 0.3em;
+  right: 0;
+  opacity: 0;
+}
+
+.letters-3 {
+  color: #F29F05;
+}
