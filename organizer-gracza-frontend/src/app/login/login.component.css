@@ -9,12 +9,12 @@
 
 .modal-header {
   background-color: #292E37;
-  border-bottom:2px solid #C3073F;
+  border-bottom:2px solid #F29F05;
 }
 
 .modal-body {
   background-color: #292E37;
-  border-bottom:2px solid #C3073F;
+  border-bottom:2px solid #F29F05;
 }
 
 .modal-footer {
@@ -23,7 +23,23 @@
 }
 
 h4 {
-  color: #e00949;
+  color: #F29F05;
+}
+
+.login-btn {
+  color: #b4b4b4;
+  text-align: center;
+  font-family: "Tomorrow";
+  font-size: 1.3rem;
+  font-style: italic;
+  border: 1px solid #414147;
+  padding: 0.2rem 0.7rem 0.5rem 0.5rem;
+  margin-bottom: 0.1rem;
+}
+
+.login-btn:hover {
+  transition: 0.2s;
+  box-shadow: 0.5rem 0.5rem #3e3e44, -0.5rem -0.5rem #d28a04;
 }
 
 .close {

@@ -18,9 +18,15 @@
 }
 
 .member-list-search {
-  background-color: #454d55;
+  background-color: #414147;
   color: white;
   width: 15rem;
+  margin-top: 1rem;
+}
+
+.select-tooltip {
+  padding-left: 0.2rem;
+  margin-top: 1.2rem;
 }
 
 .member-list-search::placeholder {
@@ -36,7 +42,7 @@
 }
 
 ::ng-deep.page-item > a {
-  border-color: #499aff !important;
+  border-color: #414147 !important;
 }
 
 ::ng-deep.page-item.active > a {

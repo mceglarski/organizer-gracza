@@ -3,9 +3,9 @@
     <img src="{{newsInput?.photoUrl}}" class="news-extended-thumbnail">
   </div>
   <div class="news-extended-description">
-    <h1>{{newsInput?.title}}</h1>
-    <p>{{(newsInput?.content | slice:0:600)+'...'}}</p>
-    <h6>{{newsInput?.publicationDate | date: 'short'}}</h6>
+    <h1 class="news-extended-title">{{newsInput?.title}}</h1>
+    <p class="news-extended-content">{{(newsInput?.content | slice:0:600)+'...'}}</p>
+    <h6>{{newsInput?.publicationDate | date: 'mediumDate'}}</h6>
   </div>
   <button class="btn news-extended-read-more-btn" routerLink="/news/{{newsInput?.articlesId}}">Czytaj dalej</button>
 </div>

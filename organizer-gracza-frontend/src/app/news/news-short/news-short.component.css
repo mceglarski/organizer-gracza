@@ -1,3 +1,9 @@
+.short-news-title {
+  font-family: "Lato";
+  font-weight: 600;
+  color: #eaeaea;
+}
+
 h5 {
   font-size: 1.1rem;
 }
@@ -10,22 +16,23 @@ h6 {
   background-color: black;
   height: 33%;
 }
+
 .news-short-content:hover {
   transition: 0.2s;
-  background-color: #d52b58;
+  background-color: #414147;
 }
 
 .news-short-content {
   height: 100%;
   display: flex;
   flex-direction: row;
-  background-color: #292E37;
+  background-color: #242427;
   border: 1px solid black;
   padding: 10px;
 }
 
 .news-short-content-clicked {
-  background-color: #d52b58;
+  background-color: #414147;
 }
 
 .news-thumbnail {

@@ -3,37 +3,130 @@
 }
 
 .solo-event {
-  background-color: rgba(41, 46, 55, 0.85);
-  color: white;
+  background-color: #242427;
+  color: #eaeaea;
   height: 205px;
   width: 420px;
-  margin: 0px 10px 20px 10px;
+  margin: 0px 15px 30px 15px;
   padding-left: 5px;
 }
 
 .event-result {
   padding: 0.5rem;
-  background-color: rgba(41, 46, 55, 0.85);
+  background-color: #242427;
   height: 100%;
   margin-right: 1rem;
+  background-image: url("src/assets/results-achievements.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .solo-event:hover {
-  background-color: #d52b58;
+  background-color: #414147;
   cursor: pointer;
   transition: 0.2s;
+  box-shadow: 0.5rem 0.5rem #3e3e44, -0.5rem -0.5rem #d28a04;
+}
+
+.event-solo-list-lol {
+  background-image: url("src/assets/lol-short-event.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.event-solo-list-wot {
+  background-image: url("src/assets/wot-short-event.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.event-solo-list-valorant {
+  background-image: url("src/assets/valorant-short-event.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.event-solo-list-csgo {
+  background-image: url("src/assets/csgo-short-event.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.event-solo-list-dota {
+  background-image: url("src/assets/dota-short-event.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.event-solo-list-starcraft {
+  background-image: url("src/assets/starcraft-short-event.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.event-solo-list-cod {
+  background-image: url("src/assets/cod-short-event.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.event-solo-list-tarkov {
+  background-image: url("src/assets/tarkov-short-event.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.event-solo-list-celeste {
+  background-image: url("src/assets/celeste-short-event.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.event-solo-list-fortnite {
+  background-image: url("src/assets/fortnite-short-event.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.event-solo-list-title {
+  font-family: Lato;
+  font-weight: bold;
 }
 
 .event-result-row {
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
 }
 
 .event-solo-result-title {
   text-align: center;
+  font-family: Lato;
+  font-weight: bold;
 }
 
 .event-result-event-link {
-  color: white;
+  color: #eaeaea;
 }
 
 .event-result-name {
@@ -44,8 +137,8 @@
 
 .event-result-winner-nickname {
   font-style: italic;
-  font-weight: 500;
-  color: #009edc;
+  font-weight: 600;
+  color: #F29F05;
 }
 
 .event-result-image {

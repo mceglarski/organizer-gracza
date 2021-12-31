@@ -2,7 +2,7 @@
 
   <h1 class="section-title"><span class="section-title-accent">SZCZEGÓŁY</span> WYDARZENIA&nbsp;</h1>
 
-  <h2 class="ml-2 mt-1 mb-3">{{event.name}}</h2>
+  <h2 class="ml-2 mt-1 mb-3 event-solo-details-name">{{event.name}}</h2>
 
   <div class="details-content row">
 
@@ -10,16 +10,16 @@
       <div class="event-details">
         <h2 class="event-solo-details-winner" *ngIf="eventFinished">Wydarzenie zakończone!</h2>
         <h4 class="event-solo-details-winner" *ngIf="eventFinished">Zwycięzca: {{eventFinished?.user?.nickname}}<br></h4>
-        <p>DATA: {{event.startDate | date}} - {{event.endDate | date}}</p>
+        <p>{{event.startDate | date}} - {{event.endDate | date}}</p>
         <p>GRA: {{event.game.title}}</p>
         <p>ORGANIZATOR: {{event.eventOrganiser}}</p>
         <p>RODZAJ: {{event.eventType}}</p>
         <p>PULA NAGRÓD: ${{event.winnerPrize | number: '1.0-0'}}</p>
-        <p>OPIS: {{event.description}}</p>
+        <p>{{event.description}}</p>
       </div>
 
       <div *ngIf="user">
-        <h3 class="">ZAKWALIFIKOWANI GRACZE</h3>
+        <h3 class="event-solo-details-name">ZAKWALIFIKOWANI GRACZE</h3>
         <div class="row">
           <div class="qualified-teams" *ngFor="let member of members">
             <img class="qualified-users-image" src="{{member.photoUrl}}" alt="{{member.nickname}}">

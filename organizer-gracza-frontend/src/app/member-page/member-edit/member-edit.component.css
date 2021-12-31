@@ -6,7 +6,10 @@
 }
 
 .edit-member-section-title {
-  color: #ff004f;
+  color: #F29F05;
+  font-family: Lato;
+  font-weight: 600;
+  font-size: 1.5rem;
 }
 
 .edit-member-container {
@@ -31,6 +34,7 @@
 
 .member-edit-steam-link {
   color: white;
+  line-height: 1.6;
 }
 
 img.img-thumbnail {

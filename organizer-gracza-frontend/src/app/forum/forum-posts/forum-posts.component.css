@@ -1,22 +1,32 @@
 .forum-posts-container {
   background-color: rgba(0, 0, 0, 0.85);
   margin-top: 1%;
-  color: #fff;
+  color: #dedede;
   padding: 1rem;
   height: 105%;
 }
 
 .forum-posts-main {
-  background-color: #3d4452;
+  background-color: #242427;
   border-radius: 1%;
-  border: 2px solid gray;
+  border: 2px solid #414147;
   margin-bottom: 0.5rem;
   padding: 0.5rem;
+}
+
+.forum-thread-title {
+  font-family: Lato;
+  font-width: 600;
+  color: #eaeaea
 }
 
 .forum-posts-meta-data img{
   max-width: 100px;
   border-radius: 50%;
+}
+
+.forum-post-date {
+  font-size: 0.7rem;
 }
 
 .forum-posts-meta-data {

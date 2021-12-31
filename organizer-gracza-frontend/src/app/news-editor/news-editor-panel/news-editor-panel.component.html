@@ -32,7 +32,7 @@
         <input class="news-editor-panel-file-upload" type="file" ng2FileSelect [uploader]="uploader" />
       </div>
       <div class="row">
-        <button type="button" class="btn btn-success btn-s"
+        <button type="button" class="btn btn-info btn-s"
                 (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
           <span class="fa fa-upload"></span> Prześlij zdjęcie
         </button>
@@ -40,7 +40,7 @@
       </div>
 
       <div class="row">
-        <button mat-raised-button color="primary" class="news-editor-panel-submit" type="submit">Dodaj artykuł</button>
+        <button mat-raised-button class="news-editor-panel-submit" type="submit">Dodaj artykuł</button>
       </div>
 
     </form>

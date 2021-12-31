@@ -1,5 +1,7 @@
 <div class="container-fluid news-list-container">
-  <h1>Najnowsze wiadomości ze świata E-SPORTU</h1>
+  <div class="row articles-heading justify-content-center">
+    <h1 class="col-xl-10">Najnowsze wiadomości ze świata E-SPORTU</h1>
+  </div>
   <div class="row news-list-article-row justify-content-center" *ngFor="let article of articleArray">
     <div class="col-xl-10 news-list-article">
 
@@ -9,8 +11,8 @@
         </div>
 
         <div class="col-xl-8">
-          <h3>{{article?.title}}</h3>
-          <div class="news-list-article-content">
+          <h3 class="col articles-heading">{{article?.title}}</h3>
+          <div class="col news-list-article-content">
             {{(article.content.length > 400) ? (article.content | slice:0:400)+'...' : article.content}}
           </div>
           <button class="btn news-list-article-read-more-btn" routerLink="/news/{{article?.articlesId}}">Czytaj dalej</button>

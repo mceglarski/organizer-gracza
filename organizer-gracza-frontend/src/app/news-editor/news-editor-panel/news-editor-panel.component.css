@@ -1,13 +1,12 @@
 .news-editor-panel-container {
   background-color: rgba(0, 0, 0, 0.85);
   margin-top: 1%;
-  color: #fff;
+  color: #dedede;
   padding: 1rem;
 }
 
 .news-editor-panel-form {
   padding: 0.5rem 2rem 2rem 1rem;
-  /*border: 2px solid gray;*/
 }
 
 .news-editor-panel-label {
@@ -24,6 +23,7 @@
 
 .news-editor-panel-submit {
   margin-top: 2rem;
+  background-color: #F29F05;
 }
 
 /*
@@ -38,7 +38,7 @@ RESET STYLES
   background-color: transparent;
   border-radius: 0;
   border: none;
-  color: white;
+  color: #eaeaea;
   -webkit-appearance: none;
   -moz-appearance: none;
 
@@ -69,7 +69,7 @@ CORE STYLES
   display: var(--fieldDisplay, inline-flex);
   position: relative;
   font-size: var(--fieldFontSize, 1rem);
-  color: white;
+  color: #eaeaea;
 }
 
 .field__input{

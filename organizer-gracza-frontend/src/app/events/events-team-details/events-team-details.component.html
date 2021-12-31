@@ -3,7 +3,7 @@
   <h1 class="section-title"><span class="section-title-accent">SZCZEGÓŁY</span> WYDARZENIA&nbsp;</h1>
 
 
-  <h2 class="ml-2 mt-1 mb-3">{{event.name}}</h2>
+  <h2 class="ml-2 mt-1 mb-3 event-team-details-name">{{event.name}}</h2>
 
   <div class="details-content row">
 
@@ -11,22 +11,22 @@
       <div class="event-details">
         <h2 class="event-team-details-winner" *ngIf="eventFinished">Wydarzenie zakończone!</h2>
         <h4 class="event-team-details-winner" *ngIf="eventFinished">Zwycięzca: {{eventFinished?.team?.name}}<br></h4>
-        <p>DATA: {{event.startDate | date}} - {{event.endDate | date}}</p>
+        <p>{{event.startDate | date}} - {{event.endDate | date}}</p>
         <p>GRA: {{event.game.title}}</p>
         <p>ORGANIZATOR: {{event.eventOrganiser}}</p>
         <p>RODZAJ: {{event.eventType}}</p>
         <p>PULA NAGRÓD: ${{event.winnerPrize | number: '1.0-0'}}</p>
-        <p>OPIS: {{event.description}}</p>
+        <p>{{event.description}}</p>
       </div>
 
       <div *ngIf="user">
-        <h3 class="">ZAKWALIFIKOWANE DRUŻYNY</h3>
+        <h3 class="event-team-details-name">ZAKWALIFIKOWANE DRUŻYNY</h3>
         <div class="row">
           <div class="qualified-teams" *ngFor="let registration of teamRegistrations">
             <img class="qualified-users-image" src="{{registration.team.photoUrl}}" alt="{{registration.team.name}}">
           </div>
         </div>
-        <button *ngIf="!eventFinished" class="btn btn-success" (click)="open(addTeamRegistration)">ZAPISZ SIĘ</button>
+        <button *ngIf="!eventFinished" class="btn btn-success" (click)="open(addTeamRegistration)">ZAPISZ DRUŻYNĘ</button>
 
       </div>
     </div>

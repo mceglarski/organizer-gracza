@@ -7,12 +7,19 @@
 
 .event-team-details-winner {
   color: #ffcb00;
+  font-family: Lato;
+  font-weight: 600;
 }
 
 .event-details {
-  background-color: #292E37;
+  background-color: #242427;
   padding: 1rem;
-  color: white;
+  color: #dedede;
+}
+
+.event-team-details-name {
+  font-family: Lato;
+  font-weight: 600;
 }
 
 .event-image {

@@ -1,12 +1,11 @@
 .main-page-content {
-  background-color: rgba(0, 0, 0, 0.85);
-  margin-top: 1%;
-  color: #fff;
+  background-color: #111211;
+  color: #dedede;
   padding: 0.5rem;
 }
 
 .main-page-content-news {
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 .main-page-news-short {
@@ -18,43 +17,4 @@
 
 .main-page-content-event {
   margin-bottom: 25px;
-}
-
-.main-page-content-title {
-  color: #C3073F;
-}
-
-.title {
-  display: flex;
-  flex-direction: row;
-}
-
-.separator {
-  margin-left: 10px;
-  margin-right: 10px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  width: 5%;
-}
-
-.separator::before {
-  content: '';
-  flex: 1;
-  border-bottom: 0.3rem solid #2D2D2D;
-}
-
-.separator2 {
-  margin-left: 10px;
-  margin-right: 10px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  width: 75%;
-}
-
-.separator2::after {
-  content: '';
-  flex: 1;
-  border-bottom: 0.3rem solid #2D2D2D;
 }

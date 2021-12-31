@@ -64,6 +64,7 @@ export class ForumPostsComponent implements OnInit {
       // @ts-ignore
       this.forumThread = f;
       this.posts = this.forumThread.forumPosts;
+      this.posts = this.posts.sort((a, b) => new Date(a.postDate).getTime() - new Date(b.postDate).getTime());
       // match thread and posts photoUrl and nicknames to users
       this.membersService.getMembers({pageNumber: 1, pageSize: 99999}).subscribe(m => {
         this.members = m.result;

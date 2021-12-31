@@ -1,5 +1,5 @@
 <div class="container forum-posts-container">
-  <h3>{{forumThread?.title}}&nbsp;</h3>
+  <h3 class="forum-thread-title">{{forumThread?.title}}&nbsp;</h3>
 
   <div class="row forum-posts-main">
     <div class="row">
@@ -12,7 +12,7 @@
             {{forumThread?.user?.nickname}}
           </a>
         </div>
-        <div class="col">{{forumThread?.threadDate | date}}</div>
+        <div class="col forum-post-date">{{forumThread?.threadDate | date}}</div>
       </div>
     </div>
 
@@ -62,7 +62,7 @@
             <span class="text-break">{{post?.nickname}}</span>
           </a>
         </div>
-        <div class="col">{{post?.postDate | date}}</div>
+        <div class="col forum-post-date">{{post?.postDate | date}}</div>
       </div>
 
     </div>
