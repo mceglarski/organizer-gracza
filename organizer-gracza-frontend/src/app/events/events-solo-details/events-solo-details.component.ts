@@ -8,6 +8,7 @@ import {take} from "rxjs/operators";
 import {AccountService} from "../../_services/account.service";
 import {ToastrService} from "ngx-toastr";
 import {EventUserResultsService} from "../../_services/event-user-results.service";
+import {ReminderService} from "../../_services/reminder.service";
 
 @Component({
   selector: 'app-events-solo-details',
@@ -32,6 +33,7 @@ export class EventsSoloDetailsComponent implements OnInit {
               private teamService: TeamsService,
               private memberService: MembersService,
               private accountService: AccountService,
+              private reminderService: ReminderService,
               private toastr: ToastrService,
               private eventUserResultsService: EventUserResultsService)
   {
@@ -56,6 +58,11 @@ export class EventsSoloDetailsComponent implements OnInit {
       eventUserId: this.event.eventUserId
     }
     this.eventsService.addUserEventRegistration(this.model).subscribe(response =>{
+      this.reminderService.addReminder({
+        title: this.event.name,
+        startDate: this.event.startDate,
+        userId: this.memberId
+      }).subscribe();
       window.location.reload();
       this.toastr.success("Dołączyłeś do wydarzenia")
     }, error => {
