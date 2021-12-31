@@ -19,5 +19,15 @@
     </div>
   </div>
 
-</div>
+  <div class="col-xl-9" *ngIf="messages.length === 0">
+    <div class="row justify-content-center">
+      <img class="empty-img" src="assets/empty-mailbox.png">
+    </div>
+    <div class="row justify-content-center">
+      <span class="empty-text">Nie masz jeszcze żadnych wiadomości! <br>
+        Przejdź do zakładki Społeczność i napisz komuś coś miłego.</span>
+    </div>
+  </div>
+
+  </div>
 </div>

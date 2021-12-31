@@ -27,6 +27,10 @@
   margin-top: 0.2rem;
 }
 
+.news-extended-content {
+  line-height: 1.7;
+}
+
 .news-extended-read-more-btn {
   background-color: #1a1b21;
   border-color: #2c2c31;

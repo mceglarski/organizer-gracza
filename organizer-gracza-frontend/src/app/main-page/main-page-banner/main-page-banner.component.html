@@ -25,5 +25,6 @@
     </div>
 </div>
 <div class="banner-phrase">
-  PLAY GAMES, WATCH GAMES, WIN GAMES
+  <app-login *ngIf="!user" class="justify-content-center banner-login"></app-login>
+  <p class="text-phrase">PLAY GAMES, WATCH GAMES, WIN GAMES</p>
 </div>

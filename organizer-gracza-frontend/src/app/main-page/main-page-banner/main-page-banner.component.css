@@ -45,3 +45,11 @@ span {
   color: #b4b4b4;
   text-align: center;
 }
+
+.banner-login {
+  margin-bottom: 10px;
+}
+
+.text-phrase {
+  margin-bottom: 0;
+}

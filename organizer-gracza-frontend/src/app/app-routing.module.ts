@@ -46,6 +46,7 @@ const routes: Routes = [
   {path: 'forum', component: ForumThreadListComponent},
   {path: 'forum/:threadId', component: ForumPostsComponent},
   {path: 'activate-email', component: ActivateMailComponent},
+  {path: 'members/:username', component: MemberContentComponent},
   {
     path: '',
     runGuardsAndResolvers: 'always',
@@ -53,7 +54,6 @@ const routes: Routes = [
     children: [
       {path: 'community', component: CommunityListComponent},
       {path: 'planner', component: MainCalendarComponent},
-      {path: 'members/:username', component: MemberContentComponent},
       {path: 'teams/details/:name', component: TeamsDetailsComponent},
       {path: 'member/edit', component: MemberEditComponent, canDeactivate: [PreventUnsavedChangesGuard]},
       {path: 'messages', component: MessagesChatComponent},

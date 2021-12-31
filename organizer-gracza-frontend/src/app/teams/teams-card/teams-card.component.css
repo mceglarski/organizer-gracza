@@ -40,6 +40,11 @@
   opacity: 1;
 }
 
+.btn-icons {
+  background-color: #c48105;
+  border-color: #242427;
+}
+
 .animate {
   transition: all 0.3s ease-in-out;
 }

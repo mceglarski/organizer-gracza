@@ -3,7 +3,7 @@
   height: 100%;
   opacity: 0.9;
   background-color: black;
-  color: white;
+  color: #dedede;
   padding: 0.5rem;
 }
 .img-circle{
@@ -11,18 +11,26 @@
 }
 
 .messages-text {
-  color: white
+}
+
+.empty-img {
+  opacity: 0.9;
+}
+
+.empty-text {
+  text-align: center;
+  line-height: 1.8;
 }
 
 .messages-chat-list-row {
-  border: 1px solid lightsteelblue;
+  border: 1px solid #F29F05;
   border-radius: 10px;
   margin: 0.5rem;
   transition: 0.2s;
 }
 
 .messages-chat-list-row:hover {
-  background-color: #5a5a5a;
+  background-color: #414147;
 }
 
 .messages-chat-list-picture {
@@ -34,11 +42,13 @@
 }
 
 .messages-chat-image-container {
-  border-right: 5px dotted #d52b58;
+  border-right: 5px dotted #F29F05;
   margin-right: 0.5rem;
 }
 
 .messages-chat-list-name {
+  font-family: Lato;
+  font-size: 1.2rem;
   font-weight: bold;
   margin-top: 0.5rem;
 }

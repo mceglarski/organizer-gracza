@@ -1,7 +1,12 @@
 .member-profile-content {
   background-color: rgba(0, 0, 0, 0.85);
   height: 110%;
-  color: white;
+  color: #eaeaea;
+}
+
+.log-in-to-enter {
+  font-family: Lato;
+  padding: 3rem;
 }
 
 .member-profile-description {
@@ -9,7 +14,6 @@
 }
 
 .member-profile-description-text {
-  /*margin-left: 10px;*/
   margin-top: 20px;
 }
 

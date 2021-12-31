@@ -5,7 +5,7 @@
     <div class="news-short-image">
       <img src="../assets/short-news-icon.jpg" class="news-thumbnail">
     </div>
-    <div class="text col-md-10">
+    <div class="text col-md-9">
       <h4 class="short-news-title">{{news.title}}</h4>
       <h5 class="short-news-content">{{(news.content.length > 100) ? (news.content | slice:0:100)+'...' : news.content}}</h5>
       <h6>{{news.publicationDate | date: 'mediumDate'}}</h6>

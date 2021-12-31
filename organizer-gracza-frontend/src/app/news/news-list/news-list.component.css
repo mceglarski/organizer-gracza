@@ -1,8 +1,13 @@
 .news-list-container {
   background-color: rgba(0, 0, 0, 0.85);
   margin-top: 1%;
-  color: #fff;
+  color: #eaeaea;
   padding: 1rem;
+}
+
+.articles-heading {
+  font-family: Lato;
+  font-weight: 600;
 }
 
 .news-list-article-row {
@@ -11,12 +16,14 @@
 }
 
 .news-list-article {
-  background-color: #3d4452;
+  background-color: #242427;
+  border-radius: 15px;
   padding: 1rem;
 }
 
 .news-list-article-content {
   padding: 1rem;
+  line-height: 1.7;
 }
 
 .news-list-article-read-more-btn {
@@ -28,9 +35,12 @@
 }
 
 .news-list-article-read-more-btn:hover {
-  background-color: #C3073F;
+  background-color: #F29F05;
+  color: black;
+  font-weight: bold;
 }
 
 .news-list-article-read-more-btn:active {
-  background-color: #9a042f;
+  background-color: #F29F05;
+  color: black;
 }

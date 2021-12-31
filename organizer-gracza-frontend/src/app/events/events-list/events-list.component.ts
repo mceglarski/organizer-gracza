@@ -7,11 +7,10 @@ import anime from 'animejs/lib/anime.es';
   templateUrl: './events-list.component.html',
   styleUrls: ['./events-list.component.css']
 })
-// @ts-ignore
 export class EventsListComponent implements OnInit {
 
   constructor() { }
-// @ts-nocheck
+
   ngOnInit(): void {
     var ml4 = {};
     // @ts-ignore

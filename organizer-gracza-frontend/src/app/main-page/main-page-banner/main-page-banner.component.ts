@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {User} from "../../model/model";
 
 @Component({
   selector: 'app-main-page-banner',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPageBannerComponent implements OnInit {
 
+  public user: User;
+
   constructor() { }
 
   ngOnInit(): void {
+    // @ts-ignore
+    this.user = JSON.parse(localStorage.getItem('user'));
 
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('resize', handleWindowResize);

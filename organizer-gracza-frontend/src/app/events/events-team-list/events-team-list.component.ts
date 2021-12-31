@@ -18,6 +18,17 @@ export class EventsTeamListComponent implements OnInit {
   public teams: Team[];
   public user: User;
 
+  private LEAGUEOFLEGENDS = 'League of Legends';
+  private WORLDOFTANKS = 'World of Tanks';
+  private VALORANT = 'Valorant';
+  private CSGO = 'Counter Strike: Global Offensive';
+  private DOTA = 'Dota 2';
+  private STARCRAFT = 'StarCraft 2';
+  private COD = 'Call of Duty: Warzone';
+  private TARKOV = 'Escape from Tarkov';
+  private CELESTE = 'Celeste';
+  private FORTNITE = 'Fortnite';
+
   constructor(private eventService: EventsService,
               private eventTeamResultsService: EventTeamsResultsService,
               private teamsService: TeamsService,
@@ -52,5 +63,39 @@ export class EventsTeamListComponent implements OnInit {
         return;
       });
     });
+  }
+
+  public checkClassName(game: string): string {
+    if (game === this.LEAGUEOFLEGENDS) {
+      return 'event-solo-list-lol';
+    }
+    if (game === this.WORLDOFTANKS) {
+      return 'event-solo-list-wot';
+    }
+    if (game === this.VALORANT) {
+      return 'event-solo-list-valorant';
+    }
+    if (game === this.CSGO) {
+      return 'event-solo-list-csgo';
+    }
+    if (game === this.DOTA) {
+      return 'event-solo-list-dota';
+    }
+    if (game === this.STARCRAFT) {
+      return 'event-solo-list-starcraft';
+    }
+    if (game === this.COD) {
+      return 'event-solo-list-cod';
+    }
+    if (game === this.TARKOV) {
+      return 'event-solo-list-tarkov';
+    }
+    if (game === this.CELESTE) {
+      return 'event-solo-list-celeste';
+    }
+    if (game === this.FORTNITE) {
+      return 'event-solo-list-fortnite';
+    }
+    return '';
   }
 }

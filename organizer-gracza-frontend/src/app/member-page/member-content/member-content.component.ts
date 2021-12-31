@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {Game, Member, UserGame} from "../../model/model";
+import {Game, Member, User, UserGame} from "../../model/model";
 import {MembersService} from "../../_services/members.service";
 import {ActivatedRoute} from "@angular/router";
 import {UsergameService} from "../../_services/usergame.service";
@@ -12,6 +12,7 @@ import {GameService} from "../../_services/game.service";
 })
 export class MemberContentComponent implements OnInit {
 
+  public user: User;
   public member: Member;
   public userGames: UserGame[];
   public gamesToShow: string[] = [];
@@ -26,6 +27,9 @@ export class MemberContentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // @ts-ignore
+    this.user = JSON.parse(localStorage.getItem('user'));
+    console.log(this.user);
     this.route.params.subscribe(params => {
       const name = params['username'];
       this.memberService.getMember(name).subscribe(m => {
