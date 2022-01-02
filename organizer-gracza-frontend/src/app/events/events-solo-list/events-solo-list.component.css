@@ -27,7 +27,7 @@
   background-color: #414147;
   cursor: pointer;
   transition: 0.2s;
-  box-shadow: 0.5rem 0.5rem #3e3e44, -0.5rem -0.5rem #d28a04;
+  box-shadow: 0.5rem 0.5rem #d28a04, -0.5rem -0.5rem #d28a04;
 }
 
 .event-solo-list-lol {

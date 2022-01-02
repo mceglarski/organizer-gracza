@@ -19,7 +19,7 @@ export class EventsListComponent implements OnInit {
     ml4.scaleOut = 3;// @ts-ignore
     ml4.durationIn = 800;// @ts-ignore
     ml4.durationOut = 600;// @ts-ignore
-    ml4.delay = 700;// @ts-ignore
+    ml4.delay = 500;// @ts-ignore
 
     anime.timeline({loop: true})
       .add({
@@ -62,7 +62,7 @@ export class EventsListComponent implements OnInit {
       targets: '.ml4',
       opacity: 0,
       duration: 500,
-      delay: 1500
+      delay: 500
     });
   }
 
