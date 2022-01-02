@@ -11,9 +11,9 @@ import {Router} from "@angular/router";
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-  // @ts-ignore
-  registerForm: FormGroup;
-  validationErrors: string[] = [];
+
+  public registerForm: FormGroup;
+  public validationErrors: string[] = [];
 
   constructor(public router: Router,
               private modalService: NgbModal,
@@ -23,21 +23,6 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeForm();
-  }
-
-  private initializeForm(){
-    this.registerForm = new FormGroup({
-      username: new FormControl('', Validators.required),
-      nickname: new FormControl('', Validators.required),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(8),
-        Validators.maxLength(24)]),
-      confirmPassword: new FormControl('', [Validators.required,
-        this.matchValues('password')])
-    })
-    this.registerForm.controls.password.valueChanges.subscribe(() => {
-      this.registerForm.controls.confirmPassword.updateValueAndValidity();
-    })
   }
 
   public open(content: any): void {
@@ -53,6 +38,23 @@ export class RegistrationComponent implements OnInit {
       this.toastr.error('Zarejestrowanie się nie powiodło');
     });
   }
+
+  private initializeForm(): void {
+    this.registerForm = new FormGroup({
+      username: new FormControl('', Validators.required),
+      nickname: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(8),
+        Validators.maxLength(24),
+        Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}')]),
+      confirmPassword: new FormControl('', [Validators.required,
+        this.matchValues('password')])
+    })
+    this.registerForm.controls.password.valueChanges.subscribe(() => {
+      this.registerForm.controls.confirmPassword.updateValueAndValidity();
+    })
+  }
+
 
   private matchValues(matchTo: string): ValidatorFn {
     return (control: AbstractControl) => {

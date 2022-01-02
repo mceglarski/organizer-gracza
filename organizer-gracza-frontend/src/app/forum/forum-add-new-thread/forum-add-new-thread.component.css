@@ -25,6 +25,15 @@
   margin-bottom: 1rem;
 }
 
+.add-thread-btn {
+  color: #242427;
+  background: #F29F05;
+  border: 1px solid black;
+  font-size: 1rem;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  border-radius: 6px;
+}
+
 /*
 =====
 RESET STYLES

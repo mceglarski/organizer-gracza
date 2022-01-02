@@ -40,3 +40,7 @@ input {
 input::placeholder {
   color: black;
 }
+
+.register-btn {
+  color: #dedede;
+}

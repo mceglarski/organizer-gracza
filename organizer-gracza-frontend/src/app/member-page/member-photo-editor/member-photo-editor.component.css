@@ -4,6 +4,8 @@
 
 .my-drop-zone {
   color: #F29F05;
+  font-weight: bold;
+  background-color: #dedede;
 }
 
 .img-thumbnail{

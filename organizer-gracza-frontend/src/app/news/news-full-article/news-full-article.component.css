@@ -16,7 +16,7 @@
   margin-top: 1rem;
   font-family: "Raleway";
   font-weight: 600;
-  color: #eaeaea;
+  color: #dedede;
 }
 
 .full-article-date {
@@ -25,5 +25,5 @@
 
 .full-article-content {
   font-size: 1.2rem;
-  line-height: 1.7;
+  line-height: 1.8;
 }

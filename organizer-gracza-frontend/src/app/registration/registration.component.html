@@ -1,4 +1,4 @@
-<button class="btn btn-link" (click)="open(content)">Zarejestruj się</button>
+<button class="btn register-btn" (click)="open(content)">Zarejestruj się</button>
 
 
 <ng-template #content let-modal>
@@ -41,6 +41,7 @@
       </div>
 
       <div class="form-group">
+        Hasło musi składać się z 8 znaków, dużych i małych liter, i znaku specjalnego.
         <input
           [class.is-invalid]='registerForm.get("password")?.errors && registerForm.get("password")?.touched'
           type="password"
@@ -49,6 +50,9 @@
           placeholder="Hasło">
         <div *ngIf="registerForm.get('password')?.hasError('required')"
              class="invalid-feedback">Hasło jest wymagane
+        </div>
+        <div *ngIf="registerForm.get('password')?.hasError('pattern')"
+             class="invalid-feedback">Hasło jest za słabe
         </div>
         <div *ngIf="registerForm.get('password')?.hasError('minlength')"
              class="invalid-feedback">Hasło musi zawierać przynajmniej 8 znaki

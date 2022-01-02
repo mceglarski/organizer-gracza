@@ -1,7 +1,7 @@
 .edit-page-content {
   background-color: rgba(0, 0, 0, 0.85);
   height: 105%;
-  color: #ffffff;
+  color: #dedede;
   padding: 1rem;
 }
 
@@ -18,22 +18,25 @@
   padding: 1rem;
 }
 
+.edit-member-input {
+  background-color: #dedede;
+}
+
 .member-edit-games {
-  color: white;
+  color: #dedede;
   font-size: 1.2rem;
 }
 
 .member-edit-games-checkbox {
-  /*-webkit-appearance:none;*/
   width:20px;
   height:20px;
-  background:white;
+  background: #dedede;
   border-radius:5px;
   border:2px solid #555;
 }
 
 .member-edit-steam-link {
-  color: white;
+  color: #dedede;
   line-height: 1.6;
 }
 

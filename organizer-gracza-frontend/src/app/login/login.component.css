@@ -54,3 +54,8 @@ input {
 input::placeholder {
   color: black;
 }
+
+.login-reset-password {
+  color: #dedede;
+  text-align: right;
+}
