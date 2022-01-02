@@ -16,8 +16,10 @@
                [(ngModel)]="model.password" placeholder="Hasło">
       </div>
     </form>
-    <button type="button" class="btn btn-link" (click)="open(resetPassword)">Nie pamiętam hasła</button>
-    <app-registration (click)="modal.close()"></app-registration>
+    <div class="row justify-content-center">
+      <button type="button" class="btn login-reset-password" (click)="open(resetPassword)">Nie pamiętam hasła</button>
+      <app-registration (click)="modal.close()"></app-registration>
+    </div>
   </div>
   <div class="modal-footer">
     <button type="submit" class="btn btn-success" form="loginForm" (click)="modal.close()">Zaloguj się</button>
