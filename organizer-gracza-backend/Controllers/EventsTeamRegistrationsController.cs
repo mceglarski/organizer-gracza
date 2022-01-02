@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using organizer_gracza_backend.Data;
 using organizer_gracza_backend.DTOs;
 using organizer_gracza_backend.Interfaces;
 using organizer_gracza_backend.Model;
@@ -15,13 +16,23 @@ namespace organizer_gracza_backend.Controllers
     {
         private readonly IEventTeamRegistrationRepository _eventTeamRegistrationRepository;
         private readonly IMapper _mapper;
+        private readonly IReminderRepository _reminderRepository;
+        private readonly ITeamUsersRepository _teamUsersRepository;
+        private readonly IEventTeamRepository _eventTeamRepository;
+        private readonly DataContext _dataContext;
 
         public EventsTeamRegistrationsController(
-            IEventTeamRegistrationRepository eventTeamRegistrationRepository, IMapper mapper)
+            IEventTeamRegistrationRepository eventTeamRegistrationRepository, IMapper mapper, IReminderRepository
+                reminderRepository, ITeamUsersRepository teamUsersRepository, IEventTeamRepository eventTeamRepository,
+            DataContext dataContext)
 
         {
             _eventTeamRegistrationRepository = eventTeamRegistrationRepository;
             _mapper = mapper;
+            _reminderRepository = reminderRepository;
+            _teamUsersRepository = teamUsersRepository;
+            _eventTeamRepository = eventTeamRepository;
+            _dataContext = dataContext;
         }
 
         [HttpGet]
@@ -74,9 +85,33 @@ namespace organizer_gracza_backend.Controllers
 
             _eventTeamRegistrationRepository.AddEventTeamRegistration(newEventTeamRegistration);
 
-            if (await _eventTeamRegistrationRepository.SaveAllAsync())
-                return Ok(_mapper.Map<EventTeamRegistrationDto>(newEventTeamRegistration));
-            return BadRequest("Failed to add registration for teams event");
+            if (!await _eventTeamRegistrationRepository.SaveAllAsync())
+                return BadRequest("Failed to add registration for teams event");
+
+            var team = _teamUsersRepository.GetUsersInTeam(newEventTeamRegistration.TeamId);
+            var eventTeam = _eventTeamRepository.GetEventTeamAsync(newEventTeamRegistration.EventTeamId);
+            foreach (var teamUser in team.Result)
+            {
+                var remind = _reminderRepository
+                    .GetReminderByNameForUser(eventTeam.Result.Name, teamUser.UserId);
+
+                if (remind.Result != null)
+                    continue;
+
+                var newReminder = new Reminder()
+                {
+                    Title = eventTeam.Result.Name,
+                    StartDate = eventTeam.Result.StartDate,
+                    UserId = teamUser.UserId
+                };
+
+                _dataContext.Reminder.Add(newReminder);
+            }
+
+            if (!await _reminderRepository.SaveAllAsync())
+                return BadRequest("Failed to add reminder");
+
+            return Ok(_mapper.Map<EventTeamRegistrationDto>(newEventTeamRegistration));
         }
 
         [HttpDelete("{id}")]

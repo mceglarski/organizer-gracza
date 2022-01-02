@@ -39,6 +39,14 @@ namespace organizer_gracza_backend.Data
                 .SingleOrDefaultAsync(r => r.ReminderId == reminderId);
         }
 
+        public async Task<Reminder> GetReminderByNameForUser(string title, int userId)
+        {
+            return await _context.Reminder
+                .Include(u => u.User)
+                .Where(a => a.Title.ToLower().Equals(title.ToLower()))
+                .SingleOrDefaultAsync(r => r.UserId == userId);
+        }
+
         public async Task<IEnumerable<Reminder>> GetReminders()
         {
             return await _context.Reminder
