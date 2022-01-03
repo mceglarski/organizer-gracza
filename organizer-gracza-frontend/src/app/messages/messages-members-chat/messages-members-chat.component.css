@@ -1,6 +1,7 @@
 .chat-content {
   background-color: rgba(0, 0, 0, 0.9);
   color: white;
+  height: 105%;
 }
 
 .card {
