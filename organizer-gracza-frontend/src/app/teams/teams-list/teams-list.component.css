@@ -3,6 +3,10 @@
   flex-flow: row wrap;
 }
 
+.teams-list-create-heading {
+  color: black;
+}
+
 .input-group {
   max-width: 300px;
 }
