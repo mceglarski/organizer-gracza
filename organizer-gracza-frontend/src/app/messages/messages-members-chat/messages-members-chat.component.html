@@ -1,7 +1,7 @@
 <div class="chat-content container" *ngIf="member">
   <div class="card-body"
        #scrollMe
-       style="overflow: auto; height: 635px;"
+       style="overflow: auto; height: 455px;"
        [scrollTop]="scrollMe.scrollHeight">
     <div *ngIf="(messageService.messageThread$ | async)?.length === 0">
       Nie masz jeszcze żadnych wiaodmości z użytkownikiem {{member.username}} wyślij pierwszą wiadomość.
@@ -15,7 +15,7 @@
                  alt="{{message.senderUsername}}">
           </span>
           <div class="chat-body">
-            <div class="header">
+            <div class="">
               <small class="text-muted">
                 <span class="fa fa-clock-o">{{message.messageSent | timeago}}</span>
                 <span class="text-danger" *ngIf="!message.dateRead && message.senderUsername!== member.username">

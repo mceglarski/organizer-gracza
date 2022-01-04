@@ -5,7 +5,7 @@
   <div class="news-extended-description">
     <h1 class="news-extended-title">{{newsInput?.title}}</h1>
     <p class="news-extended-content">{{(newsInput?.content | slice:0:600)+'...'}}</p>
-    <h6>{{newsInput?.publicationDate | date: 'mediumDate'}}</h6>
+    <h6 class="news-extended-date">{{newsInput?.publicationDate | date: 'mediumDate'}}</h6>
   </div>
   <button class="btn news-extended-read-more-btn" routerLink="/news/{{newsInput?.articlesId}}">Czytaj dalej</button>
 </div>
