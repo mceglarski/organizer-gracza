@@ -4,11 +4,13 @@
   display: flex;
   flex-direction: column;
   padding: 10px;
-  height: 99%;
+  height: 93%;
 }
 
 .news-extended-title {
   font-family: "Raleway";
+  font-size: 1.6rem;
+  margin-top: 5px;
   color: #eaeaea;
   font-weight: 600;
 }
@@ -28,7 +30,13 @@
 }
 
 .news-extended-content {
+  font-size: 0.9rem;
   line-height: 1.7;
+  text-align: justify;
+}
+
+.news-extended-date {
+  font-size: 0.7rem;
 }
 
 .news-extended-read-more-btn {
