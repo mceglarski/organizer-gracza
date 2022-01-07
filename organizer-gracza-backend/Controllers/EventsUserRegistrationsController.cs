@@ -135,6 +135,19 @@ namespace organizer_gracza_backend.Controllers
 
             return BadRequest("An error occurred while deleting event registration for users");
         }
+        
+        [HttpDelete("delete/{eventUserId}/{userId}")]
+        public async Task<ActionResult> DeleteEventUserRegistration(int eventUserId, int userId)
+        {
+            var specifiedEvent = await _eventUserRegistrationRepository.GetEventUserRegistrationForUserAsync(eventUserId, userId);
+
+            _eventUserRegistrationRepository.DeleteEventUserRegistration(specifiedEvent);
+
+            if (await _eventUserRegistrationRepository.SaveAllAsync())
+                return Ok();
+
+            return BadRequest("An error occurred while deleting event registration for users");
+        }
 
         // [HttpPost("add-photo/{id}")]
         // public async Task<ActionResult<PhotoDto>> AddPhoto(IFormFile file, int id)
