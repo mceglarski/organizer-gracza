@@ -8,10 +8,12 @@ namespace organizer_gracza_backend.Interfaces
     {
         Task<EventUserRegistration> GetEventUserRegistrationAsync(int eventUserRegistrationId);
         Task<IEnumerable<EventUserRegistration>> GetEventRegistrationAsync(int eventUserId);
+        Task<EventUserRegistration> GetEventUserRegistrationForUserAsync(int eventUserId, int userId);
 
         Task<IEnumerable<EventUserRegistration>> GetEventsUserRegistrationAsync();
         void AddEventUserRegistration(EventUserRegistration eventUserRegistration);
         void DeleteEventUserRegistration(EventUserRegistration eventUserRegistration);
+        
         Task<bool> SaveAllAsync();    
     }
 }

@@ -126,6 +126,19 @@ namespace organizer_gracza_backend.Controllers
 
             return BadRequest("An error occurred while deleting event registration for teams");
         }
+        
+        [HttpDelete("delete/{eventTeamId}/{teamId}")]
+        public async Task<ActionResult> DeleteEventTeamRegistration(int eventTeamId, int teamId)
+        {
+            var specifiedEvent = await _eventTeamRegistrationRepository.GetEventRegistrationForEvent(eventTeamId, teamId);
+
+            _eventTeamRegistrationRepository.DeleteEventTeamRegistration(specifiedEvent);
+
+            if (await _eventTeamRegistrationRepository.SaveAllAsync())
+                return Ok();
+
+            return BadRequest("An error occurred while deleting event registration for teams");
+        }
     }
 }
 // [HttpPost("add-photo/{id}")]

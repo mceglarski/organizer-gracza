@@ -81,4 +81,12 @@ export class EventsService {
   updateTeamEvent(teamEvent: EventTeam, eventId: number) {
     return this.http.put(this.baseUrl + 'eventsteam/' + eventId, teamEvent);
   }
+
+  deleteUserEventRegistration(userEventId: number, userId: number){
+    return this.http.delete(this.baseUrl + 'eventsuserregistrations/delete/' + userEventId + '/' + userId);
+  }
+
+  deleteTeamEventRegistration(eventTeamId: number, teamId: number){
+    return this.http.delete(this.baseUrl + 'eventsteamregistrations/delete/' + eventTeamId + '/' + teamId);
+  }
 }
