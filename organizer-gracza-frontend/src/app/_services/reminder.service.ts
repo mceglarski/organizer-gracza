@@ -26,7 +26,7 @@ export class ReminderService {
   addReminder(model: any){
     return this.http.post(this.baseUrl + 'reminder', model);
   }
-  deleteTeam(reminderId: number){
+  deleteReminder(reminderId: number){
     return this.http.delete(this.baseUrl + 'reminder/' + reminderId);
   }
   updateReminder(model: any, reminderId: number){

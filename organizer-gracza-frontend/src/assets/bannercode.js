@@ -1,6 +1,5 @@
 window.addEventListener('mousemove', handleMouseMove);
 window.addEventListener('resize', handleWindowResize);
-console.log('HALO ALO');
 const spansSlow = document.querySelectorAll('.spanSlow');
 const spansFast = document.querySelectorAll('.spanFast');
 

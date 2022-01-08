@@ -11,6 +11,7 @@ import {take} from "rxjs/operators";
 import {AccountService} from "../../_services/account.service";
 import {MatDialog} from "@angular/material/dialog";
 import {UploadImageModalComponent} from "../../modals/upload-image-modal/upload-image-modal.component";
+import {NgxSpinner, NgxSpinnerService} from "ngx-spinner";
 
 
 @Component({
@@ -37,7 +38,8 @@ export class TeamsListComponent implements OnInit {
               private toastr: ToastrService,
               private router: Router,
               private accountService: AccountService,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private spinner: NgxSpinnerService) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
   }
 
@@ -110,14 +112,31 @@ export class TeamsListComponent implements OnInit {
 
     this.uploader.onSuccessItem = (item, response, status, headers) => {
       if (response) {
-        this.loadTeam();
-        const photo: Photo = JSON.parse(response);
-        this.team.photoUrl = photo.url;
+        this.teamService.getTeamByName(this.newTeamForm.value.name).subscribe(team => {
+          // @ts-ignore
+          this.team = team;
+          const photo: Photo = JSON.parse(response);
+          if (photo.url) {
+            this.team.photoUrl = photo.url;
+          }
+          this.toastr.success('Drużyna założona!');
+          this.spinner.hide();
+          window.location.reload();
+        });
       }
     }
   }
 
   fileOverBase(e: any) {
     this.hasBaseDropzoneOver = e;
+  }
+
+  public reloadPage(): void {
+    this.spinner.show(undefined,{
+      type: 'line-scale-party',
+      bdColor: 'rgba(0, 0, 0, 0.8)',
+      size: 'medium',
+      template: 'Ładowanie'
+    });
   }
 }

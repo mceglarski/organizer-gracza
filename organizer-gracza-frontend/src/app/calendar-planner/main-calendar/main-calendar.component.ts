@@ -4,6 +4,7 @@ import {ReminderService} from "../../_services/reminder.service";
 import {MatDialog} from "@angular/material/dialog";
 import {AddNewEventModalComponent} from "../add-new-event-modal/add-new-event-modal.component";
 import {Reminder} from "../../model/model";
+import {EventDetailModalComponent} from "../event-detail-modal/event-detail-modal.component";
 
 @Component({
   selector: 'app-main-calendar',
@@ -58,14 +59,15 @@ export class MainCalendarComponent implements OnInit {
         selectable: true,
         dayMaxEventRows: true,
         eventDisplay: 'block',
-        events: this.eventSource
+        events: this.eventSource,
+        eventClick: (info) => { this.openEventDetailModal(info); }
       }
       this.cd.detectChanges();
     });
     this.cd.detectChanges();
   }
 
-  public addNewEvent() {
+  public addNewEvent(): void {
     const dialogRef = this.dialog.open(AddNewEventModalComponent, {
       width: '600px',
       disableClose: true
@@ -73,6 +75,18 @@ export class MainCalendarComponent implements OnInit {
     dialogRef.afterClosed().subscribe(() => {
       this.init();
       this.cd.detectChanges();
+      return;
+    });
+  }
+
+  private openEventDetailModal(event: any): void {
+    const dialogRef = this.dialog.open(EventDetailModalComponent, {
+      width: '600px',
+      data: event
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      // this.init();
+      // this.cd.detectChanges();
       return;
     });
   }

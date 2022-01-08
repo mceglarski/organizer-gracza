@@ -25,7 +25,8 @@
             <img class="qualified-users-image" src="{{member.photoUrl}}" alt="{{member.nickname}}">
           </div>
         </div>
-        <button mat-button *ngIf="!eventFinished" class="event-solo-sign-btn" (click)="joinEvent()">ZAPISZ SIĘ</button>
+        <button mat-button *ngIf="!eventFinished && !isMemberSigned" class="event-solo-sign-btn" (click)="joinEvent()">ZAPISZ SIĘ</button>
+        <button mat-button *ngIf="!eventFinished && isMemberSigned" class="event-solo-resign-btn" (click)="resignEvent()">WYCOFAJ ZGŁOSZENIE</button>
       </div>
 
     </div>

@@ -19,10 +19,14 @@ import {EventTeamsResultsService} from "../../_services/event-teams-results.serv
 export class EventsTeamDetailsComponent implements OnInit {
 
   public teams: TeamUser[];
-  public eventId: string;
+  public memberTeamsRegistrated: TeamUser[] = [];
+  public eventId: number;
   public event: EventTeam;
   public user: User
   public newTeamRegistrationForm: FormGroup;
+  public deleteTeamRegistrationForm: FormGroup = new FormGroup({
+    teamId: new FormControl('', Validators.required),
+  });
   public model: { eventTeamId: number; teamId: number };
   public teamRegistrations: EventTeamRegistration[];
   public eventTeamResults: EventTeamResult[];
@@ -43,10 +47,10 @@ export class EventsTeamDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.eventId = <string>this.route.snapshot.paramMap.get('eventTeamId');
+    // @ts-ignore
+    this.eventId = this.route.snapshot.paramMap.get('eventTeamId');
     this.loadEvent();
     if (this.user) {
-      this.loadTeamsForUser();
       this.initializeAddTeamForEvent();
     }
     this.loadEventTeamResults();
@@ -61,7 +65,17 @@ export class EventsTeamDetailsComponent implements OnInit {
       window.location.reload();
       this.toastr.success("Zapisałeś drużyne do wydarzenia");
     }, error => {
-      this.toastr.error("Nie udało się dołączyć do wydarzenia");
+      this.toastr.error("Wybrana drużyna bierze już udział w wydarzeniu");
+    })
+  }
+
+  public deleteEventRegistration(): void {
+    const deletedTeamId: number = this.deleteTeamRegistrationForm.value.teamId;
+    this.eventsService.deleteTeamEventRegistration(this.eventId, deletedTeamId).subscribe(r => {
+      window.location.reload();
+      this.toastr.success('Wypisano drużynę z wydarzenia');
+    }, error => {
+      console.log(error);
     })
   }
 
@@ -93,21 +107,24 @@ export class EventsTeamDetailsComponent implements OnInit {
     this.eventsService.getTeamEventRegistration(this.event.eventTeamId).subscribe(teamRegistrations => {
       // @ts-ignore
       this.teamRegistrations = teamRegistrations;
-    })
-  }
-
-  private loadTeamsForUser(): void {
-    // @ts-ignore
-    this.teamService.getTeamsForUser(this.user.username).subscribe(teams => {
       // @ts-ignore
-      this.teams = teams;
-    });
+      this.teamService.getTeamsForUser(this.user.username).subscribe(teams => {
+        // @ts-ignore
+        this.teams = teams;
+        this.teams.forEach(team => {
+          if (this.teamRegistrations.find(t => t.teamId == team.teamId)) {
+            this.memberTeamsRegistrated.push(team);
+          }
+        });
+        console.log(this.memberTeamsRegistrated);
+      });
+    })
   }
 
   private initializeAddTeamForEvent(): void {
     this.newTeamRegistrationForm = new FormGroup({
       teamId: new FormControl('', Validators.required),
-    })
+    });
   }
 
 }

@@ -9,7 +9,7 @@
     </div>
   </div>
 
-  <button class="btn btn-success teams-list-create-team-btn" (click)="open(content)">Utwórz drużynę</button>
+  <button class="btn teams-list-create-team-btn" (click)="open(content)">Utwórz drużynę</button>
 
 </div>
 
@@ -34,7 +34,7 @@
     </form>
   </div>
   <div class="modal-footer">
-    <button [disabled]="!newTeamForm.valid" type="submit" class="btn btn-success" form="newTeamForm"
+    <button [disabled]="!newTeamForm.valid" type="submit" class="btn teams-create-btn" form="newTeamForm"
             (click)="modal.close()">Przejdź do wyboru zdjęcia</button>
     <button type="button" class="btn btn-danger" (click)="modal.close()">Anuluj</button>
   </div>
@@ -43,31 +43,27 @@
 
 <ng-template #addPhotoForTeam let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Dodaj zdjęcie swojej drużynie </h4>
+    <h4 class="modal-title teams-add-header" id="modal-basic-title">Dodaj zdjęcie swojej drużyny</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <div class="col-md-3">
-
-      <h3>Add Photos</h3>
-
+    <div class="col teams-add-file">
       <div ng2FileDrop
            [ngClass]="{'nv-file-over': hasBaseDropzoneOver}"
            (fileOver)="fileOverBase($event)"
            [uploader]="uploader"
-           class="card bg-faded p-3 text-center mb-3 my-drop-zone">
+           class="card bg-faded p-3 text-center mb-3 my-drop-zone teams-add-file">
         <i class="fa fa-upload fa-3x"></i>
-        Drop photo here
+        Upuść zdjęcie tutaj
       </div>
-
-      Single
-      <input type="file" ng2FileSelect [uploader]="uploader"/>
+      Lub
+      <input type="file" class="teams-add-file" ng2FileSelect [uploader]="uploader"/>
+      <button type="button" class="btn teams-add-send-file-btn"
+              (click)="uploader.uploadAll()" (click)="modal.close(); reloadPage()">
+        <span class="fa fa-upload"></span> Prześlij
+      </button>
     </div>
-    <button type="button" class="btn btn-success btn-s"
-            (click)="uploader.uploadAll()" (click)="modal.close()">
-      <span class="fa fa-upload"></span> Upload all
-    </button>
   </div>
 </ng-template>
