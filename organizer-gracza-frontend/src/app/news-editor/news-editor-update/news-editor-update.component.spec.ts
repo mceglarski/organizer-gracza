@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NewsEditorUpdateComponent } from './news-editor-update.component';
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('NewsEditorUpdateComponent', () => {
   let component: NewsEditorUpdateComponent;
@@ -8,6 +9,7 @@ describe('NewsEditorUpdateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
       declarations: [ NewsEditorUpdateComponent ]
     })
     .compileComponents();

@@ -76,10 +76,14 @@ export class MemberEditComponent implements OnInit {
     });
   }
 
-  public updateMember() {
-    if (this.steamUrl && this.steamUrl.slice(-1) === '/') {
-      this.steamUrl = this.steamUrl.substring(0, this.steamUrl.length-1);
+  public formatSteamUrl(steamUrl: string = this.steamUrl): void {
+    if (steamUrl && steamUrl.slice(-1) === '/') {
+      this.steamUrl = steamUrl.substring(0, this.steamUrl.length-1);
     }
+  }
+
+  public updateMember() {
+    this.formatSteamUrl();
     if (this.steamUrl && (this.steamUrl.substr(-17).includes('/') || this.steamUrl.length != 53)) {
       this.toastr.error('Niepoprawny adres profilu Steam, wklej adres z SteamID64');
     }

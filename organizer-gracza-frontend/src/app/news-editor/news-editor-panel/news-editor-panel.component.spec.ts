@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NewsEditorPanelComponent } from './news-editor-panel.component';
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('NewsEditorPanelComponent', () => {
   let component: NewsEditorPanelComponent;
@@ -8,6 +9,7 @@ describe('NewsEditorPanelComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
       declarations: [ NewsEditorPanelComponent ]
     })
     .compileComponents();

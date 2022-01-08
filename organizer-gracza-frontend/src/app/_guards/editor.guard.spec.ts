@@ -1,12 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 
 import { EditorGuard } from './editor.guard';
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('EditorGuard', () => {
   let guard: EditorGuard;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule]
+    });
     guard = TestBed.inject(EditorGuard);
   });
 
