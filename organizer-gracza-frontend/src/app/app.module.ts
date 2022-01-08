@@ -101,6 +101,7 @@ import { EventsSoloResultComponent } from './events/events-solo-result/events-so
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { NewsEditorUpdateComponent } from './news-editor/news-editor-update/news-editor-update.component';
+import { EventDetailModalComponent } from './calendar-planner/event-detail-modal/event-detail-modal.component';
 
 registerLocaleData(localePl, 'pl');
 
@@ -172,6 +173,7 @@ FullCalendarModule.registerPlugins([
     EventsTeamResultComponent,
     EventsSoloResultComponent,
     NewsEditorUpdateComponent,
+    EventDetailModalComponent,
   ],
   imports: [
     BrowserModule,

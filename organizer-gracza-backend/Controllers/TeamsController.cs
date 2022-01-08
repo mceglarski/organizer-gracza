@@ -188,6 +188,7 @@ namespace organizer_gracza_backend.Controllers
             }
             return BadRequest("Problem adding photo");
         }
+        
         private async Task<bool> NameExists(string name)
         {
             return await _context.Teams.AnyAsync(x => x.Name.Equals(name));

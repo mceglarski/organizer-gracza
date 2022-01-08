@@ -20,6 +20,15 @@
   border-radius: 6px;
 }
 
+.event-solo-resign-btn {
+  color: #dcdcdc;
+  background: #a50000;
+  border: 1px solid black;
+  font-size: 1rem;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  border-radius: 6px;
+}
+
 .event-details {
   background-color: #242427;
   padding: 1rem;

@@ -56,3 +56,25 @@ h3 {
   margin: 10px;
 }
 
+.team-event-add-team {
+  color: black;
+}
+
+.team-event-sign-btn {
+  color: #242427;
+  background: #F29F05;
+  font-size: 1rem;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  border-radius: 6px;
+}
+
+.event-team-resign-btn {
+  color: #dcdcdc;
+  background: #a50000;
+  margin-left: 10px;
+  border: 1px solid black;
+  font-size: 1rem;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  border-radius: 6px;
+}
+

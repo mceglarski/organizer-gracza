@@ -20,7 +20,7 @@ export class TeamsDetailsComponent implements OnInit {
   public allMembers: Member[] = [];
   public memberId: number;
   public teamUsers: TeamUser[];
-
+  public isMemberInTeam: boolean;
 
   constructor(public route: ActivatedRoute,
               private teamService: TeamsService,
@@ -60,6 +60,7 @@ export class TeamsDetailsComponent implements OnInit {
         this.teamUsers = teamUsers;
         this.memberService.getMemberIdByUsername(this.user.username).subscribe(memberId =>{
           this.memberId = memberId;
+          this.isMemberInTeam = !!this.teamUsers.find(t => t.user.id === this.memberId);
         });
         this.memberService.getMembers({pageNumber: 1, pageSize: 99999}).subscribe(m => {
           this.allMembers = m.result;

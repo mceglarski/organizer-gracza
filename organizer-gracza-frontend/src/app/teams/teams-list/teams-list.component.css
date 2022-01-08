@@ -32,6 +32,32 @@
 
 .teams-list-create-team-btn {
   margin: 0.8rem;
+  color: #dedede;
   background-color: #414147;
   border-color: #F29F05;
+}
+
+.teams-add-header {
+  color: black;
+}
+
+.teams-add-file {
+  color: black;
+}
+
+.teams-create-btn {
+  color: #242427;
+  background: #F29F05;
+  font-size: 1rem;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  border-radius: 6px;
+}
+
+.teams-add-send-file-btn {
+  margin-top: 10px;
+  color: #242427;
+  background: #F29F05;
+  font-size: 1rem;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  border-radius: 6px;
 }

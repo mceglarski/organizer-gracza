@@ -29,7 +29,6 @@ export class MemberContentComponent implements OnInit {
   ngOnInit(): void {
     // @ts-ignore
     this.user = JSON.parse(localStorage.getItem('user'));
-    console.log(this.user);
     this.route.params.subscribe(params => {
       const name = params['username'];
       this.memberService.getMember(name).subscribe(m => {
