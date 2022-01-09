@@ -18,7 +18,6 @@ namespace organizer_gracza_backend.UnitTests
         private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
         private UsersController _usersController;
-
         
         [SetUp]
         public void Setup()
@@ -26,7 +25,7 @@ namespace organizer_gracza_backend.UnitTests
             _usersController = new UsersController(_userRepository,_mapper, _photoService, _userManager,
                 _configuration, _context);
         }
-
+        
         [Test]
         public void CheckIfSteamIdIsInValidFormatLettersInvalid()
         {
