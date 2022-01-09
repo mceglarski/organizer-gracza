@@ -142,8 +142,6 @@ namespace organizer_gracza_backend.Controllers
                 Token = await _tokenService.CreateToken(user),
                 PhotoUrl = "https://cdn1.iconfinder.com/data/icons/game-design-butterscotch-vol-1/256/Gamer-512.png"
             };
-            
-            
         }
 
         [HttpPost("login")]
