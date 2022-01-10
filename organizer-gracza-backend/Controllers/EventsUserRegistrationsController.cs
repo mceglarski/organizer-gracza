@@ -75,7 +75,7 @@ namespace organizer_gracza_backend.Controllers
             if (userRegistrations.Any(teamUser => newEventUserRegistration.EventUserId ==
                     teamUser.EventUserId && newEventUserRegistration.UserId == teamUser.UserId))
             {
-                return BadRequest("Nie można dołączyć do wydarzenia, której jest się już członkiem");
+                return BadRequest("Użytkownik jest już zapisany na wydarzenie");
             }
 
 
@@ -127,6 +127,19 @@ namespace organizer_gracza_backend.Controllers
         public async Task<ActionResult> DeleteEventUserRegistration(int id)
         {
             var specifiedEvent = await _eventUserRegistrationRepository.GetEventUserRegistrationAsync(id);
+
+            _eventUserRegistrationRepository.DeleteEventUserRegistration(specifiedEvent);
+
+            if (await _eventUserRegistrationRepository.SaveAllAsync())
+                return Ok();
+
+            return BadRequest("An error occurred while deleting event registration for users");
+        }
+        
+        [HttpDelete("delete/{eventUserId}/{userId}")]
+        public async Task<ActionResult> DeleteEventUserRegistration(int eventUserId, int userId)
+        {
+            var specifiedEvent = await _eventUserRegistrationRepository.GetEventUserRegistrationForUserAsync(eventUserId, userId);
 
             _eventUserRegistrationRepository.DeleteEventUserRegistration(specifiedEvent);
 

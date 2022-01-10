@@ -63,7 +63,6 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
-import {AchievementsComponent} from './achievements/achievements.component';
 import {CarouselModule} from "primeng/carousel";
 import {ButtonModule} from 'primeng/button';
 import {ToastModule} from "primeng/toast";
@@ -101,6 +100,7 @@ import { EventsSoloResultComponent } from './events/events-solo-result/events-so
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { NewsEditorUpdateComponent } from './news-editor/news-editor-update/news-editor-update.component';
+import { EventDetailModalComponent } from './calendar-planner/event-detail-modal/event-detail-modal.component';
 
 registerLocaleData(localePl, 'pl');
 
@@ -152,7 +152,6 @@ FullCalendarModule.registerPlugins([
     EventsSoloEditComponent,
     EventsTeamEditComponent,
     EventsSoloUpdateComponent,
-    AchievementsComponent,
     EventsTeamUpdateComponent,
     UploadImageModalComponent,
     NewsFullArticleComponent,
@@ -172,6 +171,7 @@ FullCalendarModule.registerPlugins([
     EventsTeamResultComponent,
     EventsSoloResultComponent,
     NewsEditorUpdateComponent,
+    EventDetailModalComponent,
   ],
   imports: [
     BrowserModule,

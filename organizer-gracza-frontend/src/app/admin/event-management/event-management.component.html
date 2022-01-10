@@ -80,7 +80,7 @@
 <ng-template #addUserEvent let-modal>
 
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Utwórz nowe wydarzenie dla użytkowników </h4>
+    <h4 class="modal-title event-management-header" id="modal-basic-title">Utwórz nowe wydarzenie dla użytkowników </h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -181,12 +181,12 @@
 
   <ng-template #addPhotoUserEvent let-modal>
     <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Dodaj zdjęcie do swojego wydarzenia </h4>
+      <h4 class="modal-title event-management-header" id="modal-basic-title">Dodaj zdjęcie do swojego wydarzenia </h4>
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <div class="modal-body">
+    <div class="modal-body event-management-header">
       <div class="col-md-3">
 
         <h3>Add Photos</h3>
@@ -200,13 +200,13 @@
           Drop photo here
         </div>
 
-        Single
         <input type="file" ng2FileSelect [uploader]="uploader"/>
+        <button type="button" class="btn btn-success btn-s"
+                (click)="uploader.uploadAll()" (click)="modal.close()">
+          <span class="fa fa-upload"></span> Upload all
+        </button>
       </div>
-      <button type="button" class="btn btn-success btn-s"
-              (click)="uploader.uploadAll()" (click)="modal.close()">
-        <span class="fa fa-upload"></span> Upload all
-      </button>
+
 
     </div>
 </ng-template>
@@ -215,8 +215,8 @@
 
 <ng-template #addTeamEvent let-modal>
 
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Utwórz nowe wydarzenie drużynowe </h4>
+  <div class="modal-header event-management-header">
+    <h4 class="modal-title" id="modal-basic-title event-management-header">Utwórz nowe wydarzenie drużynowe </h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -313,7 +313,7 @@
 </ng-template>
 
 <ng-template #addPhotoTeamEvent let-modal>
-  <div class="modal-header">
+  <div class="modal-header event-management-header">
     <h4 class="modal-title" id="modal-basic-title">Dodaj zdjęcie do swojego wydarzenia </h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>

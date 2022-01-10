@@ -80,7 +80,7 @@ namespace organizer_gracza_backend.Controllers
             if (teamRegistration.Any(teamUser => newEventTeamRegistration.TeamId ==
                     teamUser.TeamId && newEventTeamRegistration.EventTeamId == teamUser.EventTeamId))
             {
-                return BadRequest("Nie można zapisać swojej drużyny do wydarzenia, którego jest już członkiem");
+                return BadRequest("Wybrana drużyna bierze już udział w wydarzeniu");
             }
 
             _eventTeamRegistrationRepository.AddEventTeamRegistration(newEventTeamRegistration);
@@ -108,9 +108,6 @@ namespace organizer_gracza_backend.Controllers
                 _dataContext.Reminder.Add(newReminder);
             }
 
-            if (!await _reminderRepository.SaveAllAsync())
-                return BadRequest("Failed to add reminder");
-
             return Ok(_mapper.Map<EventTeamRegistrationDto>(newEventTeamRegistration));
         }
 
@@ -118,6 +115,19 @@ namespace organizer_gracza_backend.Controllers
         public async Task<ActionResult> DeleteEventTeamRegistration(int id)
         {
             var specifiedEvent = await _eventTeamRegistrationRepository.GetEventTeamRegistrationAsync(id);
+
+            _eventTeamRegistrationRepository.DeleteEventTeamRegistration(specifiedEvent);
+
+            if (await _eventTeamRegistrationRepository.SaveAllAsync())
+                return Ok();
+
+            return BadRequest("An error occurred while deleting event registration for teams");
+        }
+        
+        [HttpDelete("delete/{eventTeamId}/{teamId}")]
+        public async Task<ActionResult> DeleteEventTeamRegistration(int eventTeamId, int teamId)
+        {
+            var specifiedEvent = await _eventTeamRegistrationRepository.GetEventRegistrationForEvent(eventTeamId, teamId);
 
             _eventTeamRegistrationRepository.DeleteEventTeamRegistration(specifiedEvent);
 

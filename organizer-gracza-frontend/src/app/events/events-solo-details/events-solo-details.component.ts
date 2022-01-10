@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {EventsService} from "../../_services/events.service";
 import {ActivatedRoute} from "@angular/router";
-import {EventUser, EventUserRegistration, EventUserResult, Member, User} from "../../model/model";
+import {EventUser, EventUserRegistration, EventUserResult, Member, Reminder, User} from "../../model/model";
 import {TeamsService} from "../../_services/teams.service";
 import {MembersService} from "../../_services/members.service";
 import {take} from "rxjs/operators";
@@ -18,15 +18,20 @@ import {ReminderService} from "../../_services/reminder.service";
 export class EventsSoloDetailsComponent implements OnInit {
 
   public event: EventUser;
-  public eventId: string;
+  public eventId: number;
   public model: { eventUserId: number; userId: number };
   public user: User
   public memberId: number;
   public userRegistrations: EventUserRegistration[];
   public members: Member[] = [];
-  public UsersId: number[] = [];
+  public registeredMembers: Member[] = [];
+  // public usersId: number[] = [];
   public eventUserResult: EventUserResult[];
   public eventFinished: EventUserResult;
+  public isMemberSigned: boolean = false;
+
+  private memberReminders: Reminder[] = [];
+  private reminderToDelete: number;
 
   constructor(public route: ActivatedRoute,
               private eventsService: EventsService,
@@ -35,7 +40,8 @@ export class EventsSoloDetailsComponent implements OnInit {
               private accountService: AccountService,
               private reminderService: ReminderService,
               private toastr: ToastrService,
-              private eventUserResultsService: EventUserResultsService)
+              private eventUserResultsService: EventUserResultsService,
+              private cd: ChangeDetectorRef)
   {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
       this.user = user;
@@ -43,7 +49,8 @@ export class EventsSoloDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.eventId = <string>this.route.snapshot.paramMap.get('eventUserId');
+    // @ts-ignore
+    this.eventId = this.route.snapshot.paramMap.get('eventUserId');
     this.loadEvent();
     if (this.user) {
       this.loadMemberId();
@@ -66,8 +73,25 @@ export class EventsSoloDetailsComponent implements OnInit {
       window.location.reload();
       this.toastr.success("Dołączyłeś do wydarzenia")
     }, error => {
-      this.toastr.error("Nie udało się dołączyć do wydarzenia")
+      this.toastr.error("Jesteś już zapisany na to wydarzenie")
     })
+  }
+
+  public resignEvent(): void {
+    this.eventsService.deleteUserEventRegistration(<number>this.eventId, this.memberId).subscribe(r => {
+      this.toastr.success('Zgłoszenie zostało wycofane');
+      this.reminderService.getRemindsForUserById(this.memberId).subscribe(r => {
+        // @ts-ignore
+        this.memberReminders = r;
+        // @ts-ignore
+        this.reminderToDelete = this.memberReminders.find(r => r.title === this.event.name).reminderId;
+        this.reminderService.deleteReminder(this.reminderToDelete).subscribe();
+      });
+      window.location.reload();
+    }, error => {
+      this.toastr.error('Wystąpił błąd z wycofaniem zgłoszenia');
+      console.log(error);
+    });
   }
 
   private loadEvent(): void {
@@ -93,31 +117,33 @@ export class EventsSoloDetailsComponent implements OnInit {
   private loadMemberId(): void {
     this.memberService.getMemberIdByUsername(this.user.username).subscribe(memberId =>{
       this.memberId = memberId;
-    })
+    });
   }
 
   private loadUserRegistrations(): void {
     this.eventsService.getUserEventRegistration(this.event.eventUserId).subscribe(userRegistration => {
       // @ts-ignore
       this.userRegistrations = userRegistration;
-      this.loadUsersIds();
-    })
-  }
-
-  private loadUsersIds(): void {
-    for(let user of this.userRegistrations)
-    {
-      this.UsersId.push(user.userId);
-    }
-    this.loadMembers();
+      this.cd.detectChanges();
+      this.loadMembers();
+      this.cd.detectChanges();
+    });
   }
 
   private loadMembers(): void {
-    this.UsersId.forEach((value,index) =>{
-      this.memberService.getMemberById(value).subscribe(member =>{
-        // this.Members = member;
-        this.members.push(member);
+    this.memberService.getMembers({pageNumber: 1, pageSize: 99999}).subscribe(members => {
+      this.members = members.result;
+      this.members.forEach(m => {
+        if (this.userRegistrations.find(u => u.userId === m.id)) {
+          this.registeredMembers.push(m);
+          this.isMemberSigned = !!this.registeredMembers.find(mm => mm.id === this.memberId);
+          this.cd.detectChanges();
+        }
+        this.cd.detectChanges();
       });
-    })
+      this.cd.detectChanges();
+    });
+    this.cd.detectChanges();
   }
+
 }

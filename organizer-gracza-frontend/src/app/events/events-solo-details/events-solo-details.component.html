@@ -21,11 +21,12 @@
       <div *ngIf="user">
         <h3 class="event-solo-details-name">ZAKWALIFIKOWANI GRACZE</h3>
         <div class="row">
-          <div class="qualified-teams" *ngFor="let member of members">
+          <div class="qualified-teams" *ngFor="let member of registeredMembers">
             <img class="qualified-users-image" src="{{member.photoUrl}}" alt="{{member.nickname}}">
           </div>
         </div>
-        <button mat-button *ngIf="!eventFinished" class="event-solo-sign-btn" (click)="joinEvent()">ZAPISZ SIĘ</button>
+        <button mat-button *ngIf="!eventFinished && !isMemberSigned" class="event-solo-sign-btn" (click)="joinEvent()">ZAPISZ SIĘ</button>
+        <button mat-button *ngIf="!eventFinished && isMemberSigned" class="event-solo-resign-btn" (click)="resignEvent()">WYCOFAJ ZGŁOSZENIE</button>
       </div>
 
     </div>

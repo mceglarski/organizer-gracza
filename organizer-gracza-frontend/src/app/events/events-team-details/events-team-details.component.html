@@ -27,7 +27,9 @@
           </div>
         </div>
         <button mat-button *ngIf="!eventFinished" class="event-team-sign-btn" (click)="open(addTeamRegistration)">ZAPISZ DRUŻYNĘ</button>
-
+        <button mat-button *ngIf="!eventFinished && memberTeamsRegistrated.length > 0"
+                class="event-team-resign-btn"
+                (click)="open(deleteTeamRegistration)">WYPISZ DRUŻYNĘ</button>
       </div>
     </div>
 
@@ -39,14 +41,15 @@
 </div>
 
 <ng-template #addTeamRegistration let-modal>
- <div *ngIf="user">
+ <div *ngIf="user" class="team-event-add-team">
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Zapisz drużyne do wydarzenia </h4>
+    <h4 class="modal-title" id="modal-basic-title">Zapisz drużynę do wydarzenia </h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
+    Wybierz swoją drużynę, którą chcesz zapisać do wydarzenia
     <form [formGroup]='newTeamRegistrationForm' (ngSubmit)="newTeamRegistrationForm.valid && joinEvent()" autocomplete="off"
           id="newTeamRegistrationForm">
       <div class="form-group">
@@ -62,12 +65,47 @@
   <div class="modal-footer">
     <button [disabled]="!newTeamRegistrationForm.valid"
             type="submit"
-            class="btn btn-success"
+            class="btn team-event-sign-btn"
             form="newTeamRegistrationForm"
             (click)="modal.close">
-      Zapisz drużyne
+      Zapisz drużynę
     </button>
     <button type="button" class="btn btn-danger" (click)="modal.close()">Anuluj</button>
   </div>
  </div>
+</ng-template>
+
+<ng-template #deleteTeamRegistration let-modal>
+  <div *ngIf="user" class="team-event-add-team">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title2">Wypisz drużynę z wydarzenia </h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      Wybierz swoją drużynę, którą chcesz wypisać z wydarzenia
+      <form [formGroup]='deleteTeamRegistrationForm' (ngSubmit)="deleteTeamRegistrationForm.valid && deleteEventRegistration()" autocomplete="off"
+            id="deleteTeamRegistrationForm">
+        <div class="form-group">
+          <select
+            class="form-control"
+            formControlName="teamId">
+            <option [ngValue]="team.teamId" *ngFor="let team of memberTeamsRegistrated">{{team.team.name}}</option>
+          </select>
+        </div>
+      </form>
+    </div>
+
+    <div class="modal-footer">
+      <button [disabled]="!deleteTeamRegistrationForm.valid"
+              type="submit"
+              class="btn team-event-sign-btn"
+              form="deleteTeamRegistrationForm"
+              (click)="modal.close">
+        Wypisz drużynę
+      </button>
+      <button type="button" class="btn btn-danger" (click)="modal.close()">Anuluj</button>
+    </div>
+  </div>
 </ng-template>

@@ -8,7 +8,13 @@ import {News} from "../../model/model";
 })
 export class MainPageContentComponent implements OnInit {
 
-  public news?: News;
+  public news?: News = {
+    articlesId: 1,
+    title: '',
+    content: '',
+    publicationDate: new Date(),
+    photoUrl: '',
+    userId: 1};
 
   constructor() { }
 

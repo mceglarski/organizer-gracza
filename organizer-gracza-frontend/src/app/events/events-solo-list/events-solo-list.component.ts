@@ -13,21 +13,27 @@ import {AccountService} from "../../_services/account.service";
 })
 export class EventsSoloListComponent implements OnInit {
 
-  public events: EventUser[];
+  public eventsToShow: EventUser[] = [];
+  public eventsAll: EventUser[] = [];
+  public eventsFinished: EventUser[] = [];
+  public eventsComing: EventUser[] = [];
+  public comingSelected = true;
+  public finishedSelected = false;
+  public allSelected = false;
   public eventUserResults: EventUserResult[];
   public members: Member[];
   public user: User;
 
-  private LEAGUEOFLEGENDS = 'League of Legends';
-  private WORLDOFTANKS = 'World of Tanks';
-  private VALORANT = 'Valorant';
-  private CSGO = 'Counter Strike: Global Offensive';
-  private DOTA = 'Dota 2';
-  private STARCRAFT = 'StarCraft 2';
-  private COD = 'Call of Duty: Warzone';
-  private TARKOV = 'Escape from Tarkov';
-  private CELESTE = 'Celeste';
-  private FORTNITE = 'Fortnite';
+  private readonly LEAGUEOFLEGENDS = 'League of Legends';
+  private readonly WORLDOFTANKS = 'World of Tanks';
+  private readonly VALORANT = 'Valorant';
+  private readonly CSGO = 'Counter Strike: Global Offensive';
+  private readonly DOTA = 'Dota 2';
+  private readonly STARCRAFT = 'StarCraft 2';
+  private readonly COD = 'Call of Duty: Warzone';
+  private readonly TARKOV = 'Escape from Tarkov';
+  private readonly CELESTE = 'Celeste';
+  private readonly FORTNITE = 'Fortnite';
 
   constructor(private eventService: EventsService,
               private eventUserResultsService: EventUserResultsService,
@@ -43,19 +49,28 @@ export class EventsSoloListComponent implements OnInit {
   private loadSoloEvents(): void {
     this.eventService.getUserEvents().subscribe(events => {
       // @ts-ignore
-      this.events = events;
-      this.events = this.events
+      this.eventsToShow = events;
+      this.eventsToShow
         .sort((a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime());
+      this.eventsAll = this.eventsToShow;
       this.eventUserResultsService.getEventsUserResults().subscribe(r => {
         // @ts-ignore
         this.eventUserResults = r;
+        this.eventUserResults.forEach(e => {
+          if (e.eventUser) {
+            // @ts-ignore
+            this.eventsFinished.push(this.eventsAll.find(a => a.eventUserId == e.eventUserId));
+          }
+        });
+        this.eventsComing = this.eventsAll.filter(e => !this.eventsFinished.includes(e));
+        this.eventsToShow = this.eventsComing;
         // @ts-ignore
         this.eventUserResults = this.eventUserResults.sort((a, b) => b.eventUserResultId - a.eventUserResultId);
         this.membersService.getMembers({pageNumber: 1, pageSize: 99999}).subscribe(m => {
           this.members = m.result;
           this.eventUserResults.forEach(e => {
             // @ts-ignore
-            e.eventUserName = this.events.find(f => f.eventUserId === e.eventUserId)?.name;
+            e.eventUserName = this.eventsToShow.find(f => f.eventUserId === e.eventUserId)?.name;
             // @ts-ignore
             e.user?.photoUrl = this.members.find(f => f.id === e.userId)?.photoUrl;
           });
@@ -63,6 +78,27 @@ export class EventsSoloListComponent implements OnInit {
         return;
       });
     });
+  }
+
+  public showFinishedEvents(): void {
+    this.eventsToShow = this.eventsFinished;
+    this.comingSelected = false;
+    this.finishedSelected = true;
+    this.allSelected = false;
+  }
+
+  public showAllEvents(): void {
+    this.eventsToShow = this.eventsAll;
+    this.comingSelected = false;
+    this.finishedSelected = false;
+    this.allSelected = true;
+  }
+
+  public showComingEvents(): void {
+    this.eventsToShow = this.eventsComing;
+    this.comingSelected = true;
+    this.finishedSelected = false;
+    this.allSelected = false;
   }
 
   public checkClassName(game: string): string {

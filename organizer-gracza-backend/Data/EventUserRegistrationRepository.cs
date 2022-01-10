@@ -32,6 +32,15 @@ namespace organizer_gracza_backend.Data
                 .ToListAsync();
         }
 
+        public async Task<EventUserRegistration> GetEventUserRegistrationForUserAsync(int eventUserId, int userId)
+        {
+            return await _context.EventUserRegistration
+                .Include(e => e.EventUser)
+                .Include(u => u.User)
+                .Where(x => x.EventUserId == eventUserId)
+                .SingleOrDefaultAsync(x => x.UserId == userId);
+        }
+
         public async Task<IEnumerable<EventUserRegistration>> GetEventsUserRegistrationAsync()
         {
             return await _context.EventUserRegistration

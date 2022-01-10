@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq.Expressions;
+using organizer_gracza_backend.Interfaces;
 
 namespace organizer_gracza_backend.Model
 {

@@ -15,11 +15,10 @@
         </div>
     </div>
     <div class="col">
-      <h2>Logo drużyny</h2>
       <img src="{{team.photoUrl}}" alt="{{team}}" class="team-details-logo">
     </div>
   </div>
   <div>
-    <button class="btn btn-success btn-lg" (click)="joinTeam()">Dołącz do drużyny</button>
+    <button class="btn btn-success btn-lg" *ngIf="!isMemberInTeam" (click)="joinTeam()">Dołącz do drużyny</button>
   </div>
 </div>
