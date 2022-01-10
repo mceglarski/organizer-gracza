@@ -40,7 +40,6 @@ export class MessagesChatComponent implements OnInit {
   public loadMessages(): void {
     this.loading = true;
     this.messageService.getMessages(this.pageNumber, this.pageSize, this.container).subscribe(response => {
-      console.log(response);
       this.messages = response.result;
       this.pagination = response.pagination;
       this.loading = false;

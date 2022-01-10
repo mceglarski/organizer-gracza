@@ -17,7 +17,7 @@ export class MainCalendarComponent implements OnInit {
 
   private reminderArray: Reminder[] = [];
   private eventSource: any[] = []
-  private user: User;
+  public user: User;
 
   public calendarOptions: CalendarOptions = {};
 

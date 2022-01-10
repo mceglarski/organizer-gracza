@@ -116,7 +116,6 @@ export class EventsTeamDetailsComponent implements OnInit {
             this.memberTeamsRegistrated.push(team);
           }
         });
-        console.log(this.memberTeamsRegistrated);
       });
     })
   }

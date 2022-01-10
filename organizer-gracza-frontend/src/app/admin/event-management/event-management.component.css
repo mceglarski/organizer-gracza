@@ -6,6 +6,10 @@
   border: none !important;
 }
 
+.event-management-header {
+  color: black;
+}
+
 .admin-panel-option-btn {
   margin-right: 0.2rem;
 }

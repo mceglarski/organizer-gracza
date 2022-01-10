@@ -38,6 +38,7 @@ export class ActivateMailComponent implements OnInit {
       this.router.navigate(['/']);
     }, error => {
       this.toastr.error('Coś poszło nie tak');
+      console.log(error);
     });
   }
 
