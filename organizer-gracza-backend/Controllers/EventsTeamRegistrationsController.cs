@@ -108,6 +108,9 @@ namespace organizer_gracza_backend.Controllers
                 _dataContext.Reminder.Add(newReminder);
             }
 
+            if (!await _reminderRepository.SaveAllAsync())
+                return Ok("Did not add reminder");
+            
             return Ok(_mapper.Map<EventTeamRegistrationDto>(newEventTeamRegistration));
         }
 
