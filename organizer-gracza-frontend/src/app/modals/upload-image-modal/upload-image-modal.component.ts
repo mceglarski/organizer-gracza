@@ -44,11 +44,7 @@ export class UploadImageModalComponent implements OnInit {
 
     this.uploader.onSuccessItem = (item, response, status, headers) => {
       if (response) {
-        // this.loadTeam();
-        // console.log(this.team)
-        // const photo: Photo = JSON.parse(response);
-        // console.log(photo)
-        // this.team.photoUrl = photo.url;
+
       }
     }
   }

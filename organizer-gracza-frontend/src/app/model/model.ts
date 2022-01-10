@@ -239,6 +239,7 @@ export interface EventTeamResult {
   eventTeamId: number;
   teamId: number;
   eventTeamName?: string;
+  eventTeam?: EventTeam;
   team?: Team;
 }
 

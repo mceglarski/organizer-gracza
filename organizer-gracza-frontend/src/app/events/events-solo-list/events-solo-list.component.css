@@ -11,6 +11,23 @@
   padding-left: 5px;
 }
 
+.events-filter {
+  background-color: #2e2e32;
+  margin: -20px 0.8rem 30px 0;
+  color: #dcdcdc;
+  border: 1px solid #eaeaea;
+}
+
+.events-filter:hover {
+  box-shadow: -0.5rem -0.5rem #d28a04;
+  transition: 0.2s;
+}
+
+.events-filter-selected {
+  box-shadow: -0.5rem -0.5rem #d28a04;
+  transition: 0.2s;
+}
+
 .event-result {
   padding: 0.5rem;
   background-color: #242427;

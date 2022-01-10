@@ -80,7 +80,7 @@ namespace organizer_gracza_backend.Controllers
             if (teamRegistration.Any(teamUser => newEventTeamRegistration.TeamId ==
                     teamUser.TeamId && newEventTeamRegistration.EventTeamId == teamUser.EventTeamId))
             {
-                return BadRequest("Nie można zapisać swojej drużyny do wydarzenia, którego jest już członkiem");
+                return BadRequest("Wybrana drużyna bierze już udział w wydarzeniu");
             }
 
             _eventTeamRegistrationRepository.AddEventTeamRegistration(newEventTeamRegistration);
@@ -107,9 +107,6 @@ namespace organizer_gracza_backend.Controllers
 
                 _dataContext.Reminder.Add(newReminder);
             }
-
-            if (!await _reminderRepository.SaveAllAsync())
-                return BadRequest("Failed to add reminder");
 
             return Ok(_mapper.Map<EventTeamRegistrationDto>(newEventTeamRegistration));
         }

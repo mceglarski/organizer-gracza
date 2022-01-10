@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {EventsService} from "../../_services/events.service";
 import {ActivatedRoute} from "@angular/router";
 import {EventUser, EventUserRegistration, EventUserResult, Member, Reminder, User} from "../../model/model";
@@ -25,7 +25,7 @@ export class EventsSoloDetailsComponent implements OnInit {
   public userRegistrations: EventUserRegistration[];
   public members: Member[] = [];
   public registeredMembers: Member[] = [];
-  public usersId: number[] = [];
+  // public usersId: number[] = [];
   public eventUserResult: EventUserResult[];
   public eventFinished: EventUserResult;
   public isMemberSigned: boolean = false;
@@ -40,7 +40,8 @@ export class EventsSoloDetailsComponent implements OnInit {
               private accountService: AccountService,
               private reminderService: ReminderService,
               private toastr: ToastrService,
-              private eventUserResultsService: EventUserResultsService)
+              private eventUserResultsService: EventUserResultsService,
+              private cd: ChangeDetectorRef)
   {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
       this.user = user;
@@ -72,7 +73,7 @@ export class EventsSoloDetailsComponent implements OnInit {
       window.location.reload();
       this.toastr.success("Dołączyłeś do wydarzenia")
     }, error => {
-      this.toastr.error("Nie udało się dołączyć do wydarzenia")
+      this.toastr.error("Jesteś już zapisany na to wydarzenie")
     })
   }
 
@@ -123,27 +124,26 @@ export class EventsSoloDetailsComponent implements OnInit {
     this.eventsService.getUserEventRegistration(this.event.eventUserId).subscribe(userRegistration => {
       // @ts-ignore
       this.userRegistrations = userRegistration;
-      this.loadUsersIds();
-    })
-  }
-
-  private loadUsersIds(): void {
-    for(let user of this.userRegistrations)
-    {
-      this.usersId.push(user.userId);
-    }
-    this.loadMembers();
+      this.cd.detectChanges();
+      this.loadMembers();
+      this.cd.detectChanges();
+    });
   }
 
   private loadMembers(): void {
     this.memberService.getMembers({pageNumber: 1, pageSize: 99999}).subscribe(members => {
       this.members = members.result;
       this.members.forEach(m => {
-        if (this.usersId.find(u => u === m.id)) {
+        if (this.userRegistrations.find(u => u.userId === m.id)) {
           this.registeredMembers.push(m);
           this.isMemberSigned = !!this.registeredMembers.find(mm => mm.id === this.memberId);
+          this.cd.detectChanges();
         }
-      })
+        this.cd.detectChanges();
+      });
+      this.cd.detectChanges();
     });
+    this.cd.detectChanges();
   }
+
 }

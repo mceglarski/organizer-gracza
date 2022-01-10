@@ -20,8 +20,8 @@
   padding: 1rem;
   background-color: #242427;
   text-align: right;
-  border-top-left-radius: 3%;
-  border-top-right-radius: 3%;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
 }
 
 .add-event-button {

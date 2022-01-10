@@ -3,8 +3,10 @@ import {CalendarOptions} from "@fullcalendar/angular";
 import {ReminderService} from "../../_services/reminder.service";
 import {MatDialog} from "@angular/material/dialog";
 import {AddNewEventModalComponent} from "../add-new-event-modal/add-new-event-modal.component";
-import {Reminder} from "../../model/model";
+import {Reminder, User} from "../../model/model";
 import {EventDetailModalComponent} from "../event-detail-modal/event-detail-modal.component";
+import {take} from "rxjs/operators";
+import {AccountService} from "../../_services/account.service";
 
 @Component({
   selector: 'app-main-calendar',
@@ -15,29 +17,33 @@ export class MainCalendarComponent implements OnInit {
 
   private reminderArray: Reminder[] = [];
   private eventSource: any[] = []
-  private currentUser: any;
+  public user: User;
 
   public calendarOptions: CalendarOptions = {};
 
   constructor(private dialog: MatDialog,
               private reminderService: ReminderService,
-              private cd: ChangeDetectorRef) {  }
+              private cd: ChangeDetectorRef,
+              private accountService: AccountService) {
+    this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
+      this.user = user;
+    });
+  }
 
   ngOnInit(): void {
-    // @ts-ignore
-    this.currentUser = JSON.parse(localStorage.getItem('user'));
     this.init();
   }
 
   public init(): void {
-    this.reminderService.getRemindsForUserById(this.currentUser.id).subscribe(reminder => {
+    this.reminderService.getRemindsForUserById(this.user.id).subscribe(reminder => {
       // @ts-ignore
       this.reminderArray = reminder;
       this.reminderArray.forEach( r => {
         this.eventSource.push({
           title: r.title,
           date: r.startDate,
-          allDay: false
+          allDay: false,
+          id: r.reminderId
         });
         return;
       })
@@ -82,11 +88,14 @@ export class MainCalendarComponent implements OnInit {
   private openEventDetailModal(event: any): void {
     const dialogRef = this.dialog.open(EventDetailModalComponent, {
       width: '600px',
-      data: event
+      data: {
+        event: event,
+        memberId: this.user.id
+      }
     });
     dialogRef.afterClosed().subscribe(() => {
-      // this.init();
-      // this.cd.detectChanges();
+      this.init();
+      this.cd.detectChanges();
       return;
     });
   }

@@ -75,7 +75,7 @@ namespace organizer_gracza_backend.Controllers
             if (userRegistrations.Any(teamUser => newEventUserRegistration.EventUserId ==
                     teamUser.EventUserId && newEventUserRegistration.UserId == teamUser.UserId))
             {
-                return BadRequest("Nie można dołączyć do wydarzenia, której jest się już członkiem");
+                return BadRequest("Użytkownik jest już zapisany na wydarzenie");
             }
 
 

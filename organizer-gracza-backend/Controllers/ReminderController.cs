@@ -90,13 +90,10 @@ namespace organizer_gracza_backend.Controllers
         {
             var reminderAsync = await _reminderRepository.GetReminderById(id);
 
-            reminderAsync.ReminderId = reminder.ReminderId;
             if (reminder.Title != null)
                 reminderAsync.Title = reminder.Title;
             if (reminder.StartDate != null)
                 reminderAsync.StartDate = reminder.StartDate;
-            if (reminder.UserId != null)
-                reminderAsync.UserId = reminder.UserId;
 
             if (await _reminderRepository.SaveAllAsync())
                 return NoContent();

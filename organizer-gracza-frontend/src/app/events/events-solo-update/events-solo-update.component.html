@@ -114,16 +114,16 @@
 </div>
 
 <ng-template #addPhotoUserEvent let-modal>
-  <div class="modal-header">
+  <div class="modal-header edit-event-add-photo">
     <h4 class="modal-title" id="modal-basic-title">Dodaj zdjęcie do swojego wydarzenia </h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body">
-    <div class="col-md-3">
+  <div class="modal-body edit-event-add-photo">
+    <div class="col">
 
-      <h3>Add Photos</h3>
+      <h3>Dodaj zdjęcie</h3>
 
       <div ng2FileDrop
            [ngClass]="{'nv-file-over': hasBaseDropzoneOver}"
@@ -134,13 +134,12 @@
         Drop photo here
       </div>
 
-      Single
       <input type="file" ng2FileSelect [uploader]="uploader"/>
+      <button type="button" class="btn btn-success btn-s"
+              (click)="uploader.uploadAll()" (click)="modal.close()">
+        <span class="fa fa-upload"></span> Upload all
+      </button>
     </div>
-    <button type="button" class="btn btn-success btn-s"
-            (click)="uploader.uploadAll()" (click)="modal.close()">
-      <span class="fa fa-upload"></span> Upload all
-    </button>
 
   </div>
 </ng-template>

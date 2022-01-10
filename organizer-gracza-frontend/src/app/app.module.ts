@@ -63,7 +63,6 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
-import {AchievementsComponent} from './achievements/achievements.component';
 import {CarouselModule} from "primeng/carousel";
 import {ButtonModule} from 'primeng/button';
 import {ToastModule} from "primeng/toast";
@@ -153,7 +152,6 @@ FullCalendarModule.registerPlugins([
     EventsSoloEditComponent,
     EventsTeamEditComponent,
     EventsSoloUpdateComponent,
-    AchievementsComponent,
     EventsTeamUpdateComponent,
     UploadImageModalComponent,
     NewsFullArticleComponent,

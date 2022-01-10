@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {News} from "../../model/model";
+import {News, User} from "../../model/model";
 
 @Component({
   selector: 'app-news-extended',
