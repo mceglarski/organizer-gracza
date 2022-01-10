@@ -88,20 +88,21 @@ namespace organizer_gracza_backend.Controllers
             if (!await _eventTeamRegistrationRepository.SaveAllAsync())
                 return BadRequest("Failed to add registration for teams event");
 
-            var team = _teamUsersRepository.GetUsersInTeam(newEventTeamRegistration.TeamId);
-            var eventTeam = _eventTeamRepository.GetEventTeamAsync(newEventTeamRegistration.EventTeamId);
-            foreach (var teamUser in team.Result)
+            var team = await _teamUsersRepository.GetUsersInTeam(newEventTeamRegistration.TeamId);
+            var eventTeam = await _eventTeamRepository.GetEventTeamAsync(newEventTeamRegistration.EventTeamId);
+            
+            foreach (var teamUser in team)
             {
-                var remind = _reminderRepository
-                    .GetReminderByNameForUser(eventTeam.Result.Name, teamUser.UserId);
+                var remind = await _reminderRepository
+                    .GetReminderByNameForUser(eventTeam.Name, teamUser.UserId);
 
-                if (remind.Result != null)
+                if (remind != null)
                     continue;
 
                 var newReminder = new Reminder()
                 {
-                    Title = eventTeam.Result.Name,
-                    StartDate = eventTeam.Result.StartDate,
+                    Title = eventTeam.Name,
+                    StartDate = eventTeam.StartDate,
                     UserId = teamUser.UserId
                 };
 
