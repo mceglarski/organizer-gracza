@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {EventsService} from "../../_services/events.service";
 import {EventUser, EventUserResult, Member, User} from "../../model/model";
 import {EventUserResultsService} from "../../_services/event-user-results.service";
@@ -13,8 +13,8 @@ import {AccountService} from "../../_services/account.service";
 })
 export class EventsSoloListComponent implements OnInit {
 
-  public eventsToShow: EventUser[] = [];
   public eventsAll: EventUser[] = [];
+  public eventsToShow: EventUser[] = [];
   public eventsFinished: EventUser[] = [];
   public eventsComing: EventUser[] = [];
   public comingSelected = true;
@@ -38,7 +38,8 @@ export class EventsSoloListComponent implements OnInit {
   constructor(private eventService: EventsService,
               private eventUserResultsService: EventUserResultsService,
               private membersService: MembersService,
-              private accountService: AccountService) {
+              private accountService: AccountService,
+              private cd: ChangeDetectorRef) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
   }
 
@@ -70,7 +71,7 @@ export class EventsSoloListComponent implements OnInit {
           this.members = m.result;
           this.eventUserResults.forEach(e => {
             // @ts-ignore
-            e.eventUserName = this.eventsToShow.find(f => f.eventUserId === e.eventUserId)?.name;
+            e.eventUserName = this.eventsAll.find(ea => ea.eventUserId == e.eventUserId)?.name;
             // @ts-ignore
             e.user?.photoUrl = this.members.find(f => f.id === e.userId)?.photoUrl;
           });

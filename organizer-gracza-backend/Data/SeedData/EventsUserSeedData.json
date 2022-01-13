@@ -7,7 +7,7 @@
     "WinnerPrize": 10000,
     "EventType": "Solo",
     "EventOrganiser": "Maddy Thorson",
-    "PhotoUrl": "https://media.cdn.videotesty.pl/media/pliki/produkty/2018/12/22/Celeste.jpg",
+    "PhotoUrl": "https://res.cloudinary.com/dmh7ly7i7/image/upload/v1642104044/Celeste_chkthm.jpg",
     "GameId": 9,
     "EventUserRegistration": [
       {
@@ -92,7 +92,7 @@
     "WinnerPrize": 250000,
     "EventType": "Solo 1v1",
     "EventOrganiser": "ESL",
-    "PhotoUrl": "https://gamingsociety.pl/wp-content/uploads/2021/02/IEM-Katowice-2021-2-1.jpg",
+    "PhotoUrl": "https://res.cloudinary.com/dmh7ly7i7/image/upload/v1642104044/IEM-Katowice-2021-2-1_gqiyah.jpg",
     "GameId": 6,
     "EventUserRegistration": [
       {
@@ -172,12 +172,12 @@
   {
     "Name": "Code Red Escape from Tarkov tournament",
     "Description": "Code Red tournament to wydarzenie organizowane przez twórców gry w celu wybrania najlepszego gracza Escape from Tarkov. \n Gracze biorą udział w wydarzeniu Battle Royale każdy na każdego a w dużej mierze o zwyciężeniu zadecyduje szczęście.",
-    "StartDate": "2022-01-06",
-    "EndDate": "2022-01-08",
+    "StartDate": "2022-02-06",
+    "EndDate": "2022-02-08",
     "WinnerPrize": 10000,
     "EventType": "Battle Royale",
     "EventOrganiser": "BattleState Games",
-    "PhotoUrl": "https://mocah.org/uploads/posts/577816-escape-from.jpg",
+    "PhotoUrl": "https://res.cloudinary.com/dmh7ly7i7/image/upload/v1642104044/577816-escape-from_d3s5hb.jpg",
     "GameId": 8,
     "EventUserRegistration": [
       {
@@ -266,7 +266,7 @@
     "WinnerPrize": 2000000,
     "EventType": "Solo 1v1",
     "EventOrganiser": "Valve",
-    "PhotoUrl": "https://www.fantasyexpo.pl/wp-content/uploads/2021/05/FExPGL_1920x1080e-1.jpg",
+    "PhotoUrl": "https://res.cloudinary.com/dmh7ly7i7/image/upload/v1642104044/FExPGL_1920x1080e-1_nqabtt.jpg",
     "GameId": 4,
     "EventUserRegistration": [
       {
@@ -351,7 +351,7 @@
     "WinnerPrize": 5000,
     "EventType": "Battle Royale",
     "EventOrganiser": "Epic Games",
-    "PhotoUrl": "https://www.elecspo.com/static/uploads/13/2021/04/14br-competitive-hypecup-social-1920x1080-905654173.jpg",
+    "PhotoUrl": "https://res.cloudinary.com/dmh7ly7i7/image/upload/v1642104044/14br-competitive-hypecup-social-1920x1080-905654173_zwivsz.jpg",
     "GameId": 10,
     "EventUserRegistration": [
       {
@@ -434,13 +434,13 @@
   },
   {
     "Name": "Valorant - TEC Challenger Series #6",
-    "Description": "TEC Challenger Series to szósta już odsłona wydarzenia organizowana przez twórców. \n Gracze mają za pokonać swojego przeciwnika na klasycznych zasadach rozgrywki. \n.",
+    "Description": "TEC Challenger Series to szósta już odsłona wydarzenia organizowana przez twórców. \n Gracze mają za pokonać swojego przeciwnika na klasycznych zasadach rozgrywki.",
     "StartDate": "2022-02-06",
     "EndDate": "2022-02-16",
     "WinnerPrize": 2000000,
     "EventType": "Solo 1v1",
     "EventOrganiser": "Riot",
-    "PhotoUrl": "https://theesports.club/wp-content/uploads/2020/12/Home-page-banner-S4-1130x650.jpg",
+    "PhotoUrl": "https://res.cloudinary.com/dmh7ly7i7/image/upload/v1642104044/Home-page-banner-S4-1130x650_mpwvvw.jpg",
     "GameId": 3,
     "EventUserRegistration": [
       {
