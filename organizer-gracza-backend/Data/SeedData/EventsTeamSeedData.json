@@ -7,7 +7,7 @@
     "WinnerPrize": 300000,
     "EventType": "Drużyny 5v5",
     "EventOrganiser": "CdProjekt",
-    "PhotoUrl": "https://img.gg.deals/c6/de/9e190b91e32d3591026db93a61312e8d1cb8_1920xt1080_S1000.jpg",
+    "PhotoUrl": "https://res.cloudinary.com/dmh7ly7i7/image/upload/v1642104324/9e190b91e32d3591026db93a61312e8d1cb8_1920xt1080_S1000_ig4oqq.jpg",
     "GameId": 10,
     "EventTeamRegistration": [
       {
@@ -35,7 +35,7 @@
     "WinnerPrize": 250000,
     "EventType": "Duo 2v2",
     "EventOrganiser": "Battle.net",
-    "PhotoUrl": "https://www.tabletowo.pl/wp-content/uploads/2020/04/Call-of-Duty-Warzone-Receznzja-Tabletowo.jpg",
+    "PhotoUrl": "https://res.cloudinary.com/dmh7ly7i7/image/upload/v1642104324/Call-of-Duty-Warzone-Receznzja-Tabletowo_rfzuib.jpg",
     "GameId": 7,
     "EventTeamRegistration": [
       {
@@ -58,12 +58,12 @@
   {
     "Name": "The International 2021",
     "Description": "The International 2021 znany również jako The International 10 (TI10), był dziesiątą iteracją The International, corocznego turnieju esportowego mistrzostw świata w Dota 2.\n Turniej, którego gospodarzem jest Valve, producent gry, odbył się po rocznej serii turniejów przyznających punkty kwalifikacyjne, znanych jako Dota Pro Circuit (DPC), z 12 najlepszymi drużynami w rankingu, które zostały bezpośrednio zaproszone do turnieju.\n Dodatkowo, sześć kolejnych drużyn zdobyło zaproszenia poprzez regionalne kwalifikacje, które odbyły się wcześniej w 2021 roku. Turniej odbędzie się w Bukareszcie, w Rumunii, z głównym wydarzeniem za zamkniętymi drzwiami w Arena Națională z powodu ograniczeń dotyczących zgromadzeń w mieście.",
-    "StartDate": "2021-12-07",
-    "EndDate": "2021-12-17",
+    "StartDate": "2021-01-30",
+    "EndDate": "2021-01-31",
     "WinnerPrize": 40018195,
     "EventType": "Drużyny 5v5",
     "EventOrganiser": "Valve",
-    "PhotoUrl": "https://cdn-wp.thesportsrush.com/2021/10/3a65757a-ti-10-prize-pool.jpg",
+    "PhotoUrl": "https://res.cloudinary.com/dmh7ly7i7/image/upload/v1642104324/3a65757a-ti-10-prize-pool_x99dsd.jpg",
     "GameId": 5,
     "EventTeamRegistration": [
       {
@@ -95,7 +95,7 @@
     "WinnerPrize": 500000,
     "EventType": "Drużyny 5v5",
     "EventOrganiser": "Riot",
-    "PhotoUrl": "https://support-leagueoflegends.riotgames.com/hc/article_attachments/4406813626643/Worlds_JarvanIV_PS.jpg",
+    "PhotoUrl": "https://res.cloudinary.com/dmh7ly7i7/image/upload/v1642104324/Worlds_JarvanIV_PS_zrcl9y.jpg",
     "GameId": 1,
     "EventTeamRegistration": [
       {
@@ -122,12 +122,12 @@
   {
     "Name": "World of Tanks Championship International 2021",
     "Description": "Jest to pierwszy na świecie turniej 15v15 w World of Tanks, w którym wezmą udział najlepsze drużyny z pięciu regionów: Wspólnoty Niepodległych Państw, Europy, Ameryki Północnej, Azji i Pacyfiku oraz Chin!.",
-    "StartDate": "2022-01-01",
-    "EndDate": "2022-01-04",
+    "StartDate": "2022-02-11",
+    "EndDate": "2022-02-14",
     "WinnerPrize": 130000,
     "EventType": "Drużyny 15v15",
     "EventOrganiser": "WarGaming",
-    "PhotoUrl": "https://eu-wotp.wgcdn.co/dcont/fb/image/regional_champions_en.jpg",
+    "PhotoUrl": "https://res.cloudinary.com/dmh7ly7i7/image/upload/v1642104324/regional_champions_en_sefjfj.jpg",
     "GameId": 2,
     "EventTeamRegistration": [
       {
@@ -158,7 +158,7 @@
     "WinnerPrize": 1000000,
     "EventType": "Drużyny 5v5",
     "EventOrganiser": "VCT",
-    "PhotoUrl": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/bltc9e63f8e745e1711/6131ebe785514a6ee3faca1e/1.VCT_Berlin_Art_04_KR.jpg",
+    "PhotoUrl": "https://res.cloudinary.com/dmh7ly7i7/image/upload/v1642104324/9e190b91e32d3591026db93a61312e8d1cb8_1920xt1080_S1000_ig4oqq.jpg",
     "GameId": 3,
     "EventTeamRegistration": [
       {
