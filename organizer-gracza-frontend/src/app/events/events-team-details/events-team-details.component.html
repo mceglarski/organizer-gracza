@@ -23,7 +23,12 @@
         <h3 class="event-team-details-name">ZAKWALIFIKOWANE DRUŻYNY</h3>
         <div class="row">
           <div class="qualified-teams" *ngFor="let registration of teamRegistrations">
-            <img class="qualified-users-image" src="{{registration.team.photoUrl}}" alt="{{registration.team.name}}">
+            <a href="/teams/details/{{registration.team.name}}">
+            <img class="qualified-users-image"
+                 src="{{registration.team.photoUrl}}"
+                 alt="{{registration.team.name}}"
+                 [matTooltip]="registration.team.name">
+            </a>
           </div>
         </div>
         <button mat-button *ngIf="!eventFinished" class="event-team-sign-btn" (click)="open(addTeamRegistration)">ZAPISZ DRUŻYNĘ</button>

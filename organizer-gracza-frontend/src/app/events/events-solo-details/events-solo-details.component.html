@@ -22,7 +22,12 @@
         <h3 class="event-solo-details-name">ZAKWALIFIKOWANI GRACZE</h3>
         <div class="row">
           <div class="qualified-teams" *ngFor="let member of registeredMembers">
-            <img class="qualified-users-image" src="{{member.photoUrl}}" alt="{{member.nickname}}">
+            <a href="/members/{{member.username}}">
+            <img class="qualified-users-image"
+                 src="{{member.photoUrl}}"
+                 alt="{{member.nickname}}"
+                 [matTooltip]="member.nickname">
+            </a>
           </div>
         </div>
         <button mat-button *ngIf="!eventFinished && !isMemberSigned" class="event-solo-sign-btn" (click)="joinEvent()">ZAPISZ SIĘ</button>
