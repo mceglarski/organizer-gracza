@@ -118,7 +118,8 @@ namespace organizer_gracza_backend.Controllers
         public async Task<ActionResult> DeleteEventTeamRegistration(int id)
         {
             var specifiedEvent = await _eventTeamRegistrationRepository.GetEventTeamRegistrationAsync(id);
-
+            
+            
             _eventTeamRegistrationRepository.DeleteEventTeamRegistration(specifiedEvent);
 
             if (await _eventTeamRegistrationRepository.SaveAllAsync())
@@ -131,6 +132,20 @@ namespace organizer_gracza_backend.Controllers
         public async Task<ActionResult> DeleteEventTeamRegistration(int eventTeamId, int teamId)
         {
             var specifiedEvent = await _eventTeamRegistrationRepository.GetEventRegistrationForEvent(eventTeamId, teamId);
+            
+            var team = await _teamUsersRepository.GetUsersInTeam(specifiedEvent.TeamId);
+            var eventTeam = await _eventTeamRepository.GetEventTeamAsync(specifiedEvent.EventTeamId);
+            
+            foreach (var teamUser in team)
+            {
+                var remind = await _reminderRepository
+                    .GetReminderByNameForUser(eventTeam.Name, teamUser.UserId);
+                
+                if (remind == null)
+                    continue;
+
+                _reminderRepository.DeleteReminder(remind);
+            }
 
             _eventTeamRegistrationRepository.DeleteEventTeamRegistration(specifiedEvent);
 
