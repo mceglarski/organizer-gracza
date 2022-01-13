@@ -10,7 +10,7 @@
   <div class="col edit-member-container">
     <form #editForm="ngForm" (ngSubmit)="updateMember()" id="editForm">
       <h4 class="edit-member-section-title">Nickname</h4>
-      <input type="text" class="col-xl-4 form-control edit-member-input" [(ngModel)]="member.nickname" name="nickname">
+      <input required type="text" class="col-xl-4 form-control edit-member-input" [(ngModel)]="member.nickname" name="nickname">
       <br>
       <h4 class="edit-member-section-title">Opis</h4>
       <textarea class="form-control edit-member-input" [(ngModel)]="member.description" name="description" rows="10"></textarea>

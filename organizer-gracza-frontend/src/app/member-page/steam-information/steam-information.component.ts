@@ -89,7 +89,9 @@ export class SteamInformationComponent implements OnInit, OnChanges {
     this.steamService.getUserAchievements(steamId, gameid).subscribe( game => {
       // @ts-ignore
       this.firstGameAchievements = game.playerstats.achievements;
-      this.firstGameAchievements.forEach(a => this.firstGameUnlockedAchievements += a.achieved);
+      if (this.firstGameAchievements) {
+        this.firstGameAchievements.forEach(a => this.firstGameUnlockedAchievements += a.achieved);
+      }
       return;
     }, error => {
       return;

@@ -77,7 +77,7 @@ export class MemberEditComponent implements OnInit {
   }
 
   public formatSteamUrl(steamUrl: string = this.steamUrl): string {
-    if (steamUrl.slice(-1) === '/') {
+    if (steamUrl && steamUrl.slice(-1) === '/') {
       return steamUrl.substring(0, steamUrl.length-1);
     }
     return steamUrl;
@@ -93,18 +93,23 @@ export class MemberEditComponent implements OnInit {
       if (this.steamUrl) {
         this.steamUrl = 'https://steamcommunity.com/profiles/' + this.member.steamId;
       }
-      this.memberService.updateMember(this.member).subscribe(() => {
-        this.toastr.success('Profil został zaktualizowany!');
-        this.editForm.reset(this.member);
-        window.location.reload();
-        return;
-      });
-      this.userGameService.deleteAllUserGames(this.member.id).subscribe(r => {
-        return;
-      });
-      this.userGameService.addUserGameList(this.userGames).subscribe(r => {
-        return;
-      });
+      if (this.member.nickname.length == 0) {
+        this.toastr.error('Nickname nie może być pusty');
+      }
+      else {
+        this.memberService.updateMember(this.member).subscribe(() => {
+          this.toastr.success('Profil został zaktualizowany!');
+          this.editForm.reset(this.member);
+          this.userGameService.deleteAllUserGames(this.member.id).subscribe(r => {
+            return;
+          });
+          this.userGameService.addUserGameList(this.userGames).subscribe(r => {
+            return;
+          });
+          window.location.reload();
+          return;
+        });
+      }
     }
   }
 }
