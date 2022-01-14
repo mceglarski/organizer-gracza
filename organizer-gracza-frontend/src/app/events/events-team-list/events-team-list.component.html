@@ -1,4 +1,5 @@
 <br><span class="col">Sprawdź listę wydarzeń - wybierz odpowiednią zakładkę</span>
+<br><span *ngIf="!user" class="col">Zaloguj się, aby wziąć udział lub zobaczyć zapisane drużyny</span>
 <div class="container-fluid event-team-page-content" *ngIf="eventsToShow">
 
   <h1 class="section-title"><span class="section-title-accent">WYDARZENIA</span> DRUŻYNOWE&nbsp;</h1><br>
