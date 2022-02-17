@@ -13,7 +13,7 @@ import {ToastrService} from "ngx-toastr";
 })
 export class ForumThreadListComponent implements OnInit {
 
-  public forumThread: ForumThread[] = []
+  public forumThread: ForumThread[] = [];
   public user: User;
   public isUserBlocked: boolean = false;
 
@@ -38,6 +38,7 @@ export class ForumThreadListComponent implements OnInit {
         this.forumThread.forEach(thread => {
           thread.user.photoUrl = <string>this.members?.find(m => m?.username === thread?.user?.username)?.photoUrl;
         });
+        this.forumThread.sort((a, b) => new Date(b.threadDate).getTime() - new Date(a.threadDate).getTime());
         return;
       });
       return;
