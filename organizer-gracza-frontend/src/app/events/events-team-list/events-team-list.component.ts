@@ -74,7 +74,7 @@ export class EventsTeamListComponent implements OnInit {
             e.eventTeamName = this.eventsAll.find(f => f.eventTeamId === e.eventTeamId).name;
           });
         });
-        return;
+
       });
     });
   }

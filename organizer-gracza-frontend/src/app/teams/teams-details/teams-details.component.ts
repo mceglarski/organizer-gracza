@@ -4,7 +4,7 @@ import {TeamsService} from "../../_services/teams.service";
 import {MembersService} from "../../_services/members.service";
 import {AccountService} from "../../_services/account.service";
 import {take} from "rxjs/operators";
-import {Member, PagintationParams, Participiant, Team, TeamUser, User} from "../../model/model";
+import {Member, Team, TeamUser, User} from "../../model/model";
 import {ToastrService} from "ngx-toastr";
 
 @Component({
@@ -26,9 +26,8 @@ export class TeamsDetailsComponent implements OnInit {
               private teamService: TeamsService,
               private memberService: MembersService,
               private accountService: AccountService,
-              private toastr: ToastrService)
-  {
-      this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
+              private toastr: ToastrService) {
+    this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
       this.user = user;
     })
   }
@@ -42,10 +41,10 @@ export class TeamsDetailsComponent implements OnInit {
       userId: this.memberId,
       teamId: this.team.teamId
     }
-    this.teamService.addTeamUser(this.model).subscribe(response =>{
+    this.teamService.addTeamUser(this.model).subscribe(() => {
       window.location.reload();
       this.toastr.success("Dołączyłeś do drużyny");
-    }, error => {
+    }, () => {
       this.toastr.error("Należysz już do drużyny")
     })
   }
@@ -58,7 +57,7 @@ export class TeamsDetailsComponent implements OnInit {
       this.teamService.getUsersInTeam(this.team.teamId).subscribe(teamUsers => {
         // @ts-ignore
         this.teamUsers = teamUsers;
-        this.memberService.getMemberIdByUsername(this.user.username).subscribe(memberId =>{
+        this.memberService.getMemberIdByUsername(this.user.username).subscribe(memberId => {
           this.memberId = memberId;
           this.isMemberInTeam = !!this.teamUsers.find(t => t.user.id === this.memberId);
         });
@@ -68,9 +67,8 @@ export class TeamsDetailsComponent implements OnInit {
             // @ts-ignore
             t.user.photoUrl = this.allMembers.find(mem => mem.id == t.user.id)?.photoUrl;
           });
-          return
         });
-        return;
+
       });
     });
   }

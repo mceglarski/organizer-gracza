@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {EventsService} from "../../_services/events.service";
 import {EventUser, Game, Photo, User} from "../../model/model";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {NgForm} from "@angular/forms";
 import {GameService} from "../../_services/game.service";

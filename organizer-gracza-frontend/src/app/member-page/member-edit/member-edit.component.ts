@@ -60,7 +60,6 @@ export class MemberEditComponent implements OnInit {
         this.steamUrl = 'https://steamcommunity.com/profiles/' + member.steamId;
       }
       this.member = member;
-      return;
     });
   }
 
@@ -72,7 +71,6 @@ export class MemberEditComponent implements OnInit {
         // @ts-ignore
         this.games = games;
       });
-      return;
     });
   }
 
@@ -100,14 +98,13 @@ export class MemberEditComponent implements OnInit {
         this.memberService.updateMember(this.member).subscribe(() => {
           this.toastr.success('Profil został zaktualizowany!');
           this.editForm.reset(this.member);
-          this.userGameService.deleteAllUserGames(this.member.id).subscribe(r => {
+          this.userGameService.deleteAllUserGames(this.member.id).subscribe(() => {
             return;
           });
-          this.userGameService.addUserGameList(this.userGames).subscribe(r => {
+          this.userGameService.addUserGameList(this.userGames).subscribe(() => {
             return;
           });
           window.location.reload();
-          return;
         });
       }
     }

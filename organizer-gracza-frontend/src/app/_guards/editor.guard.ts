@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {CanActivate, Router} from '@angular/router';
+import {Observable} from 'rxjs';
 import {AccountService} from "../_services/account.service";
 import {ToastrService} from "ngx-toastr";
 import {map} from "rxjs/operators";
@@ -12,7 +12,8 @@ export class EditorGuard implements CanActivate {
 
   constructor(private accountService: AccountService,
               private toastr: ToastrService,
-              private route: Router) {}
+              private route: Router) {
+  }
 
 
   canActivate(): Observable<boolean> {
@@ -20,7 +21,7 @@ export class EditorGuard implements CanActivate {
     return this.accountService.currentUser$.pipe(
       // @ts-ignore
       map(user => {
-        if(user.roles.includes('Admin') || user.roles.includes('Redaktor')){
+        if (user.roles.includes('Admin') || user.roles.includes('Redaktor')) {
           return true;
         }
         this.toastr.error('You cannot enter this area');

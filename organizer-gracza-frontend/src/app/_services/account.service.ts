@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {BehaviorSubject, ReplaySubject} from "rxjs";
+import {ReplaySubject} from "rxjs";
 import {map} from "rxjs/operators";
 import {User} from "../model/model";
 import {environment} from "../../environments/environment";

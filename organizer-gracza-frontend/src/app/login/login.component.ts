@@ -1,4 +1,4 @@
-import {Component, Injectable, OnInit, EventEmitter, Output} from '@angular/core';
+import {Component, Injectable} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AccountService} from "../_services/account.service";
 import {ToastrService} from "ngx-toastr";
@@ -13,7 +13,7 @@ import {MembersService} from "../_services/members.service";
   styleUrls: ['./login.component.css']
 })
 @Injectable()
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   public resetPasswordForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, this.noWhitespaceValidator, Validators.email]),
@@ -24,9 +24,7 @@ export class LoginComponent implements OnInit {
               private memberService: MembersService,
               private modalService: NgbModal,
               private toastr: ToastrService,
-              private router: Router) {}
-
-  ngOnInit(): void {
+              private router: Router) {
   }
 
   public open(content: any): void {
@@ -34,20 +32,20 @@ export class LoginComponent implements OnInit {
   }
 
   public login(): void {
-    this.accountService.login(this.model).subscribe(response => {
+    this.accountService.login(this.model).subscribe(() => {
       window.location.reload();
     });
   }
 
-  public logout(): void{
+  public logout(): void {
     this.accountService.logout();
     this.router.navigateByUrl('/');
   }
 
   public sendResetPassword(): void {
-    this.memberService.sendLink(this.resetPasswordForm.value.email).subscribe(response => {
+    this.memberService.sendLink(this.resetPasswordForm.value.email).subscribe(() => {
       this.toastr.success('Jeśli podany mail jest prawidłowy, link do przywrócenia hasła został wysłany');
-    }, error => {
+    }, () => {
       this.toastr.error('Coś poszło nie tak');
     })
   }
@@ -55,6 +53,6 @@ export class LoginComponent implements OnInit {
   private noWhitespaceValidator(control: FormControl) {
     const isWhitespace = (control.value || '').trim().length === 0;
     const isValid = !isWhitespace;
-    return isValid ? null : { 'whitespace': true };
+    return isValid ? null : {'whitespace': true};
   }
 }

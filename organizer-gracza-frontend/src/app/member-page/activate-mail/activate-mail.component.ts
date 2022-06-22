@@ -27,14 +27,14 @@ export class ActivateMailComponent implements OnInit {
     if (this.user) {
       this.memberService.getMember(this.user.username).subscribe(member => {
         this.member = member;
-        return;
+
       });
     }
   }
 
   public activateEmail(): void {
     this.member.emailConfirmed = 1;
-    this.memberService.emailConfirmed(this.member).subscribe(r => {
+    this.memberService.emailConfirmed(this.member).subscribe(() => {
       this.router.navigate(['/']);
     }, error => {
       this.toastr.error('Coś poszło nie tak');

@@ -35,7 +35,7 @@ export class NewsEditorPanelComponent implements OnInit {
     this.membersService.getCurrentlyLoggedMemberId().subscribe( m => {
       // @ts-ignore
       this.currentUserId = m;
-      return;
+
     });
     this.initializeUploader();
   }
@@ -56,11 +56,11 @@ export class NewsEditorPanelComponent implements OnInit {
         userId: this.currentUserId
       }).subscribe(response => {
         this.router.navigate(["/news"]);
-        return;
+
       }, error => {
         this.toastr.error('Wystąpił błąd podczas dodawania artykułu');
         console.log(error);
-        return;
+
       });
     }
     else {

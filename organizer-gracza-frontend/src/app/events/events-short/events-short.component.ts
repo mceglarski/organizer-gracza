@@ -48,7 +48,7 @@ export class EventsShortComponent implements OnInit {
       e = {...e,
       eventUrl: '/events/eventsuser/'+e.eventUserId};
       event[index] = e;
-      return;
+
     });
   }
 
@@ -57,7 +57,7 @@ export class EventsShortComponent implements OnInit {
       e = {...e,
         eventUrl: '/events/eventsteam/'+e.eventTeamId};
       event[index] = e;
-      return;
+
     });
   }
 

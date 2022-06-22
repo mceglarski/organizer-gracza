@@ -64,21 +64,21 @@ export class EventsSoloDetailsComponent implements OnInit {
       userId: this.memberId,
       eventUserId: this.event.eventUserId
     }
-    this.eventsService.addUserEventRegistration(this.model).subscribe(response =>{
+    this.eventsService.addUserEventRegistration(this.model).subscribe(() =>{
       this.reminderService.addReminder({
         title: this.event.name,
         startDate: this.event.startDate,
         userId: this.memberId
       }).subscribe();
       window.location.reload();
-      this.toastr.success("Dołączyłeś do wydarzenia")
-    }, error => {
-      this.toastr.error("Jesteś już zapisany na to wydarzenie")
+      this.toastr.success("Dołączyłeś do wydarzenia");
+    }, () => {
+      this.toastr.error("Jesteś już zapisany na to wydarzenie");
     })
   }
 
   public resignEvent(): void {
-    this.eventsService.deleteUserEventRegistration(<number>this.eventId, this.memberId).subscribe(r => {
+    this.eventsService.deleteUserEventRegistration(this.eventId, this.memberId).subscribe(() => {
       this.toastr.success('Zgłoszenie zostało wycofane');
       this.reminderService.getRemindsForUserById(this.memberId).subscribe(r => {
         // @ts-ignore

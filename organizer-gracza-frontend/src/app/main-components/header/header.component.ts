@@ -1,7 +1,6 @@
-import {Component, OnChanges, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LoginComponent} from "../../login/login.component";
 import {AccountService} from "../../_services/account.service";
-import {MemberContentComponent} from "../../member-page/member-content/member-content.component";
 
 @Component({
   selector: 'app-header',
@@ -13,7 +12,8 @@ export class HeaderComponent implements OnInit {
   public isLogged = false;
 
   constructor(public login: LoginComponent,
-              public accountService: AccountService) {}
+              public accountService: AccountService) {
+  }
 
   ngOnInit(): void {
     this.isLogged = !!this.accountService.currentUser$;

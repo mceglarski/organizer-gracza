@@ -56,7 +56,7 @@ export class ForumPostsComponent implements OnInit {
       this.membersService.getCurrentlyLoggedMemberId().subscribe(m => {
         // @ts-ignore
         this.currentlyLoggedMember = m;
-        return;
+
       });
     }
     // @ts-ignore
@@ -74,9 +74,9 @@ export class ForumPostsComponent implements OnInit {
           post.nickname = <string>this.members?.find(m => m?.id === post.userId)?.nickname;
           post.username = <string>this.members?.find(m => m?.id === post.userId)?.username;
         });
-        return;
+
       });
-      return;
+
     });
   }
 
@@ -93,7 +93,7 @@ export class ForumPostsComponent implements OnInit {
         postDate: new Date(),
         forumThreadId: this.threadId,
         userId: this.currentlyLoggedMember
-      }).subscribe(result => {
+      }).subscribe(() => {
         window.location.reload();
         this.toastr.success("Dodano post");
       }, error => {
@@ -117,7 +117,7 @@ export class ForumPostsComponent implements OnInit {
     if (this.editPostForm.valid) {
       this.forumService.updateForumPost({
         content: this.editPostForm.value.editPostControl.trim()
-      }, this.editedPostId).subscribe(result => {
+      }, this.editedPostId).subscribe(() => {
         window.location.reload();
         this.toastr.success("Zedytowano post");
       });
@@ -140,7 +140,7 @@ export class ForumPostsComponent implements OnInit {
       this.forumService.updateForumThread({
         title: this.editTreadForm.value.editThreadTitle.trim(),
         content: this.editTreadForm.value.editThreadContent.trim()
-      }, this.editedThreadId).subscribe(result => {
+      }, this.editedThreadId).subscribe(() => {
         window.location.reload();
         this.toastr.success("Zedytowano wątek");
       });
@@ -150,7 +150,7 @@ export class ForumPostsComponent implements OnInit {
   }
 
   public deletePost(postId: number): void {
-    this.forumService.deleteForumPost(postId).subscribe(r => {
+    this.forumService.deleteForumPost(postId).subscribe(() => {
       window.location.reload();
       this.toastr.success('Usunięto post');
     });

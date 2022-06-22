@@ -31,13 +31,16 @@
     <div *ngFor="let broadcast of twitchBroadcasts" class="">
 
       <div class="broadcasts-element">
-        <img class="img-fluid broadcast-thumbnail" src="{{broadcast.thumbnail_url}}" routerLink="/broadcast/{{broadcast.user_name}}">
+        <img class="img-fluid broadcast-thumbnail"
+             src="{{broadcast.thumbnail_url}}"
+             routerLink="/broadcast/{{broadcast.user_name}}"
+             alt="{{broadcast.thumbnail_url}}">
         <h5 class="broadcast-element-content">
           <a class="broadcast-link" href="/broadcast/{{broadcast.user_name}}">{{(broadcast.title.length > 50) ? (broadcast.title | slice:0:47)+'...' : broadcast.title}}</a>
         </h5>
         <h6 class="broadcast-element-content">
           <a class="broadcast-link" href="/broadcast/{{broadcast.user_name}}">{{broadcast.user_name}}</a>
-          <i class="material-icons broadcast-person-icon">person</i> {{broadcast.viewer_count | number: '1.0-0'}}
+          <em class="material-icons broadcast-person-icon">person</em> {{broadcast.viewer_count | number: '1.0-0'}}
         </h6>
       </div>
 

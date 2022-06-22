@@ -22,7 +22,7 @@ export class NewsFullArticleComponent implements OnInit {
     this.articlesService.getArticle(this.newsId).subscribe(a => {
       // @ts-ignore
       this.news = a;
-      return;
+
     });
   }
 

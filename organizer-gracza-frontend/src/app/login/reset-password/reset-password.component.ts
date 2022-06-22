@@ -48,11 +48,11 @@ export class ResetPasswordComponent implements OnInit {
         password: this.resetPasswordForm.value.password,
         securityStamp: this.securityStamp
       }
-      this.memberService.resetPassword(this.resetPassword).subscribe(r => {
+      this.memberService.resetPassword(this.resetPassword).subscribe(() => {
         // @ts-ignore
         this.router.navigateByUrl(['/']);
         this.toastr.success('Hasło zostało zresetowane');
-      }, error => {
+      }, () => {
         this.toastr.error('Wystąpił błąd');
       })
     } else {

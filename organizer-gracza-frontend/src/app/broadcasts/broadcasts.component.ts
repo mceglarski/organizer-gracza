@@ -19,7 +19,7 @@ export class BroadcastsComponent implements OnInit {
     this.twitchService.getData().subscribe( b => {
       // @ts-ignore
       this.twitchBroadcasts = b.data;
-      return;
+
     });
   }
 
@@ -38,28 +38,28 @@ export class BroadcastsComponent implements OnInit {
       this.twitchService.getData().subscribe( b => {
         // @ts-ignore
         this.twitchBroadcasts = b.data;
-        return;
+
       });
     }
     else if (this.language !== "" && this.game !== "") {
       this.twitchService.getDataForGameAndLanguage(this.game, this.language).subscribe(b => {
         // @ts-ignore
         this.twitchBroadcasts = b.data;
-        return;
+
       });
     }
     else if (this.language === "" && this.game !== "") {
       this.twitchService.getDataForGame(this.game).subscribe(b => {
         // @ts-ignore
         this.twitchBroadcasts = b.data;
-        return;
+
       });
     }
     else if (this.language !== "" && this.game === "") {
       this.twitchService.getDataForLanguage(this.language).subscribe(b => {
         // @ts-ignore
         this.twitchBroadcasts = b.data;
-        return;
+
       });
     }
   }

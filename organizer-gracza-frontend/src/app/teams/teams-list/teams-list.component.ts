@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Member, Pagination, PagintationParams, Photo, Team, User} from "../../model/model";
+import {Pagination, PagintationParams, Photo, Team, User} from "../../model/model";
 import {TeamsService} from "../../_services/teams.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {ToastrService} from "ngx-toastr";
@@ -11,7 +11,7 @@ import {take} from "rxjs/operators";
 import {AccountService} from "../../_services/account.service";
 import {MatDialog} from "@angular/material/dialog";
 import {UploadImageModalComponent} from "../../modals/upload-image-modal/upload-image-modal.component";
-import {NgxSpinner, NgxSpinnerService} from "ngx-spinner";
+import {NgxSpinnerService} from "ngx-spinner";
 
 
 @Component({
@@ -26,7 +26,7 @@ export class TeamsListComponent implements OnInit {
   public uploader: FileUploader;
   public hasBaseDropzoneOver = false;
   public pagination: Pagination;
-  public hasCreatedTeam: Boolean = true;
+  public hasCreatedTeam: boolean = true;
 
   private userParams: PagintationParams;
   private user: User;
@@ -69,7 +69,7 @@ export class TeamsListComponent implements OnInit {
   }
 
   open(content: any) {
-     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
   }
 
   public openUploadImageModal(): void {
@@ -81,13 +81,11 @@ export class TeamsListComponent implements OnInit {
         user: this.user
       }
     });
-    dialogRef.afterClosed().subscribe(() => {
-      return;
-    });
+    dialogRef.afterClosed().subscribe();
   }
 
   createNewTeam(content: any) {
-    this.teamService.addTeam(this.newTeamForm.value).subscribe(response => {
+    this.teamService.addTeam(this.newTeamForm.value).subscribe(() => {
       this.hasCreatedTeam = true;
       this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
       this.toastr.success("Utworzono nową drużynę");
@@ -132,7 +130,7 @@ export class TeamsListComponent implements OnInit {
   }
 
   public reloadPage(): void {
-    this.spinner.show(undefined,{
+    this.spinner.show(undefined, {
       type: 'line-scale-party',
       bdColor: 'rgba(0, 0, 0, 0.8)',
       size: 'medium',

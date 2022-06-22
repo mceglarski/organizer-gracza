@@ -1,7 +1,7 @@
-import {Component, OnInit, Output, EventEmitter} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {News} from "../../model/model";
 import {ArticlesService} from "../../_services/articles.service";
-import {takeUntil} from "rxjs/operators";
+
 @Component({
   selector: 'app-news-short',
   templateUrl: './news-short.component.html',
@@ -14,7 +14,8 @@ export class NewsShortComponent implements OnInit {
   public selectedArticle: number = 0;
   public articleArray: News[] = [];
 
-  constructor(private articlesService: ArticlesService) { }
+  constructor(private articlesService: ArticlesService) {
+  }
 
   ngOnInit(): void {
     this.articlesService.getArticles().subscribe(article => {
@@ -23,7 +24,7 @@ export class NewsShortComponent implements OnInit {
       this.articleArray.sort((a, b) => {
         return new Date(b.publicationDate).getTime() - new Date(a.publicationDate).getTime();
       });
-      this.articleArray = this.articleArray.slice(0,3);
+      this.articleArray = this.articleArray.slice(0, 3);
       this.sendExtendedNews(this.articleArray[0]);
     });
   }
