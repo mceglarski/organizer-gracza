@@ -190,7 +190,7 @@ export class EventManagementComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(() => {
       this.init();
-      return;
+
     });
   }
 
@@ -205,7 +205,7 @@ export class EventManagementComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(() => {
       this.init();
-      return;
+
     });
   }
 
@@ -241,7 +241,7 @@ export class EventManagementComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(() => {
       this.init();
-      return;
+
     });
   }
 
@@ -255,7 +255,7 @@ export class EventManagementComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(() => {
       this.init();
-      return;
+
     });
   }
 

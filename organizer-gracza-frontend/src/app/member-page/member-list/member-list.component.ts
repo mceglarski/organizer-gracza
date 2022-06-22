@@ -75,7 +75,7 @@ export class MemberListComponent implements OnInit {
     this.gameService.getGames().subscribe( game => {
       // @ts-ignore
       this.games = game;
-      return;
+
     })
   }
 

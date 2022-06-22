@@ -29,8 +29,6 @@ export class ErrorInterceptor implements HttpInterceptor {
                   }
                 }
                 throw modalStateErrors.flat();
-              } else {
-                // this.toastr.error('Bad Request', error.status);
               }
               break;
             case 401:

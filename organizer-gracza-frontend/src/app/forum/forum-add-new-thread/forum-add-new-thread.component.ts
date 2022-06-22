@@ -39,12 +39,12 @@ export class ForumAddNewThreadComponent implements OnInit {
     this.gameService.getGames().subscribe(g => {
       // @ts-ignore
       this.games = g;
-      return;
+
     });
     this.membersService.getCurrentlyLoggedMemberId().subscribe(m => {
       // @ts-ignore
       this.currentlyLoggedMember = m;
-      return;
+
     });
   }
 
@@ -56,7 +56,7 @@ export class ForumAddNewThreadComponent implements OnInit {
         threadDate: new Date(),
         gameId: this.addThreadForm.value.game,
         userId: this.currentlyLoggedMember
-      }).subscribe(result => {
+      }).subscribe(() => {
         this.toastr.info("Wątek został dodany!");
         this.router.navigate(["/forum"]);
       }, error => {

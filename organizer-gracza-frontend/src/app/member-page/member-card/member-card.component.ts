@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Member} from "../../model/model";
 import {PresenceService} from "../../_services/presence.service";
 
@@ -7,13 +7,11 @@ import {PresenceService} from "../../_services/presence.service";
   templateUrl: './member-card.component.html',
   styleUrls: ['./member-card.component.css']
 })
-export class MemberCardComponent implements OnInit {
+export class MemberCardComponent {
 
   @Input() member: Member;
 
-  constructor(public presenceService: PresenceService) { }
-
-  ngOnInit(): void {
+  constructor(public presenceService: PresenceService) {
   }
 
 }

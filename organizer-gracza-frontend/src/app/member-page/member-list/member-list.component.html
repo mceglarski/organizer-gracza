@@ -1,6 +1,6 @@
 <br><span class="col">Znajdź swoją bratnią duszę do gry, wyszukuj użytkowników po ich zainteresowaniach.<br></span>
-<span class="col">Kliknij w <i class="fa fa-user mr-2"></i>, aby wyświetlić pełen profil. <br></span>
-<span class="col">Kliknij w <i class="fa fa-envelope"></i>, aby napisać wiadomość prywatną.</span>
+<span class="col">Kliknij w <em class="fa fa-user mr-2"></em>, aby wyświetlić pełen profil. <br></span>
+<span class="col">Kliknij w <em class="fa fa-envelope"></em>, aby napisać wiadomość prywatną.</span>
 <div class="member-list-content container">
   <div class="row">
 
@@ -10,8 +10,8 @@
         <option value=-1>Wszystkie gry</option>
         <option *ngFor="let game of games"
                 [value]="game.gameId">{{game.title}}</option>
-      </select><i class="material-icons select-tooltip"
-                  [matTooltip]="'Wybierz odpowiedni filtr z grą, \naby wyświetlić użytkowników, \nktórzy też w nią grają'">info_outline</i>
+      </select><em class="material-icons select-tooltip"
+                  [matTooltip]="'Wybierz odpowiedni filtr z grą, \naby wyświetlić użytkowników, \nktórzy też w nią grają'">info_outline</em>
     </div>
   </div>
 

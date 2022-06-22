@@ -1,11 +1,11 @@
-import {AfterViewChecked, ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Member, Message, User} from "../../model/model";
 import {MessageService} from "../../_services/message.service";
 import {MembersService} from "../../_services/members.service";
 import {AccountService} from "../../_services/account.service";
 import {take} from "rxjs/operators";
 import {ActivatedRoute, Router} from "@angular/router";
-import {FormControl, NgForm} from "@angular/forms";
+import {NgForm} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
 
 @Component({
@@ -13,7 +13,7 @@ import {ToastrService} from "ngx-toastr";
   templateUrl: './messages-members-chat.component.html',
   styleUrls: ['./messages-members-chat.component.css']
 })
-export class MessagesMembersChatComponent implements OnInit, OnDestroy  {
+export class MessagesMembersChatComponent implements OnInit, OnDestroy {
   @ViewChild('messageForm') messageForm: NgForm;
   public messages: Message[];
   public user: User;
@@ -54,19 +54,18 @@ export class MessagesMembersChatComponent implements OnInit, OnDestroy  {
       this.messageService.sendMessage(this.member.username, this.messageContent).then(() => {
         this.messageForm.reset();
       }).finally(() => this.loading = false);
-    }
-    else {
+    } else {
       this.loading = false;
     }
   }
 
   public deleteMessage(id: number): void {
-    this.messageService.deleteMessage(id).subscribe(result => {
+    this.messageService.deleteMessage(id).subscribe(() => {
       window.location.reload();
-      return;
-    }, error => {
+
+    }, () => {
       this.toastr.error("Nie udało się usunąć wiadomości");
-      return;
+
     });
   }
 

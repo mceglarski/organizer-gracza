@@ -39,7 +39,7 @@ export class NewsEditorUpdateComponent implements OnInit {
     this.membersService.getCurrentlyLoggedMemberId().subscribe( m => {
       // @ts-ignore
       this.currentUserId = m;
-      return;
+
     });
     this.articleService.getArticle(this.newsId).subscribe(a => {
       // @ts-ignore
@@ -48,7 +48,7 @@ export class NewsEditorUpdateComponent implements OnInit {
         title: this.editedNews.title,
         content: this.editedNews.content
       });
-      return;
+
     });
     this.initializeUploader();
   }
@@ -64,7 +64,7 @@ export class NewsEditorUpdateComponent implements OnInit {
       this.articleService.updateArticle({
         title: this.articleForm.value.title.trim(),
         content: this.articleForm.value.content.trim()
-      }, this.newsId).subscribe(r => {
+      }, this.newsId).subscribe(() => {
         window.location.reload();
         this.toastr.success('Artykuł zaktualizowany');
       });
@@ -77,11 +77,11 @@ export class NewsEditorUpdateComponent implements OnInit {
       }, this.newsId).subscribe(response => {
         window.location.reload();
         this.toastr.success('Artykuł zaktualizowany');
-        return;
+
       }, error => {
         this.toastr.error('Wystąpił błąd podczas aktualizowania artykułu');
         console.log(error);
-        return;
+
       });
     }
     else {

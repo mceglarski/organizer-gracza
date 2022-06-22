@@ -9,8 +9,6 @@ import anime from 'animejs/lib/anime.es';
 })
 export class EventsListComponent implements OnInit {
 
-  constructor() { }
-
   ngOnInit(): void {
     var ml4 = {};
     // @ts-ignore

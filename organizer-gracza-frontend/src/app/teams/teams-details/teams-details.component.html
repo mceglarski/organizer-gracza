@@ -9,7 +9,7 @@
       </h2>
         <div *ngFor="let user of teamUsers" class="team-details-member">
           <a href="/members/{{user.user.username}}" class="team-details-member-link">
-            <img src="{{user.user.photoUrl}}" class="img-fluid team-details-member-img">
+            <img src="{{user.user.photoUrl}}" class="img-fluid team-details-member-img" alt="user's picture">
             {{user.user.nickname}}
           </a>
         </div>

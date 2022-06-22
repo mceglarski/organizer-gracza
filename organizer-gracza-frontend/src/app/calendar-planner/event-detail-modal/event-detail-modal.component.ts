@@ -4,7 +4,7 @@ import {EventTeam, EventUser} from "../../model/model";
 import {ReminderService} from "../../_services/reminder.service";
 import {EventsService} from "../../_services/events.service";
 import {Router} from "@angular/router";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-event-detail-modal',

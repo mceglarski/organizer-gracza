@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {EventTeam, EventTeamRegistration, EventTeamResult, Team, TeamUser, User} from "../../model/model";
+import {EventTeam, EventTeamRegistration, EventTeamResult, TeamUser, User} from "../../model/model";
 import {EventsService} from "../../_services/events.service";
 import {ActivatedRoute} from "@angular/router";
 import {TeamsService} from "../../_services/teams.service";
@@ -64,14 +64,14 @@ export class EventsTeamDetailsComponent implements OnInit {
     this.eventsService.addTeamEventRegistration(this.model).subscribe(response => {
       window.location.reload();
       this.toastr.success("Zapisałeś drużyne do wydarzenia");
-    }, error => {
+    }, () => {
       this.toastr.error("Wybrana drużyna bierze już udział w wydarzeniu");
     })
   }
 
   public deleteEventRegistration(): void {
     const deletedTeamId: number = this.deleteTeamRegistrationForm.value.teamId;
-    this.eventsService.deleteTeamEventRegistration(this.eventId, deletedTeamId).subscribe(r => {
+    this.eventsService.deleteTeamEventRegistration(this.eventId, deletedTeamId).subscribe(() => {
       window.location.reload();
       this.toastr.success('Wypisano drużynę z wydarzenia');
     }, error => {

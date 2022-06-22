@@ -39,17 +39,17 @@ export class ForumThreadListComponent implements OnInit {
           thread.user.photoUrl = <string>this.members?.find(m => m?.username === thread?.user?.username)?.photoUrl;
         });
         this.forumThread.sort((a, b) => new Date(b.threadDate).getTime() - new Date(a.threadDate).getTime());
-        return;
+
       });
-      return;
+
     });
   }
 
   public deleteThread(forumThreadId: number): void {
-    this.forumService.deleteForumThread(forumThreadId).subscribe(r => {
+    this.forumService.deleteForumThread(forumThreadId).subscribe(() => {
       window.location.reload();
       this.toastr.success('Usunięto wątek');
-      return;
+
     });
   }
 

@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialogRef} from "@angular/material/dialog";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ReminderService} from "../../_services/reminder.service";
@@ -33,7 +33,7 @@ export class AddNewEventModalComponent implements OnInit {
         title: this.addNewEventForm.controls.eventName.value,
         startDate: this.addNewEventForm.controls.eventDatePick.value,
         userId: this.currentUser.id
-      }).subscribe(response => {
+      }).subscribe(() => {
         window.location.reload();
         this.toastr.info("Wydarzenie zostało dodane");
         this.dialogRef.close();

@@ -5,7 +5,7 @@
     <div class="row">
 
       <div class="messages-chat-image-container">
-        <img class="messages-chat-list-picture" src="{{chatInfo[i].pictureUrl}}">
+        <img class="messages-chat-list-picture" src="{{chatInfo[i].pictureUrl}}" alt="user's picture">
       </div>
 
       <div class="col">
@@ -21,7 +21,7 @@
 
   <div class="col-xl-9" *ngIf="messages.length === 0">
     <div class="row justify-content-center">
-      <img class="empty-img" src="assets/empty-mailbox.png">
+      <img class="empty-img" src="assets/empty-mailbox.png" alt="empty mailbox icon">
     </div>
     <div class="row justify-content-center">
       <span class="empty-text">Nie masz jeszcze żadnych wiadomości! <br>

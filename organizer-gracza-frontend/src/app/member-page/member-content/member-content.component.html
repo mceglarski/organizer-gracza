@@ -9,7 +9,7 @@
     <span *ngIf="member.description" class="member-profile-description-text">{{member.description}}<br><br></span>
     <h1 *ngIf="gamesToShow.length > 0" class="section-title"><span class="section-title-accent">INTERESUJĄ</span> MNIE &nbsp;</h1>
     <h5 class="col member-profile-interested-game" *ngFor="let game of gamesToShow">
-      <i class="material-icons member-profile-game-icon">videogame_asset</i>{{game}}
+      <em class="material-icons member-profile-game-icon">videogame_asset</em>{{game}}
     </h5>
   </div>
 

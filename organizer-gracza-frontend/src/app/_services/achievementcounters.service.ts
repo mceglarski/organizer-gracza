@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {Achievements, UserAchievementCounter} from "../model/model";
+import {UserAchievementCounter} from "../model/model";
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +31,7 @@ export class AchievementcountersService {
     return this.http.delete(this.baseUrl + 'userachievementcounter/' + achievementId);
   }
 
-  updateAchievementCounterById(UserAchievementCounter: UserAchievementCounter, achievementCounterId: number){
-    return this.http.put(this.baseUrl + 'userachievementcounter/' + achievementCounterId , UserAchievementCounter);
+  updateAchievementCounterById(userAchievementCounter: UserAchievementCounter, achievementCounterId: number){
+    return this.http.put(this.baseUrl + 'userachievementcounter/' + achievementCounterId , userAchievementCounter);
   }
 }

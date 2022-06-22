@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {Component, Input, OnChanges} from '@angular/core';
 import {SteamService} from "../../_services/steam.service";
 import {SteamAchievements, SteamInformation, SteamLastPlayedGame} from "../../model/model";
 
@@ -7,7 +7,7 @@ import {SteamAchievements, SteamInformation, SteamLastPlayedGame} from "../../mo
   templateUrl: './steam-information.component.html',
   styleUrls: ['./steam-information.component.css']
 })
-export class SteamInformationComponent implements OnInit, OnChanges {
+export class SteamInformationComponent implements OnChanges {
 
   @Input() steamId: string;
   public steamInfo: SteamInformation;
@@ -19,9 +19,6 @@ export class SteamInformationComponent implements OnInit, OnChanges {
   public isRecentGameAvailable: boolean;
 
   constructor(private steamService: SteamService) { }
-
-  ngOnInit(): void {
-  }
 
   ngOnChanges() {
     this.init();
@@ -61,7 +58,7 @@ export class SteamInformationComponent implements OnInit, OnChanges {
             // @ts-ignore
             this.secondGameAchievements = game.playerstats.achievements;
             this.secondGameAchievements.forEach(a => this.secondGameUnlockedAchievements += a.achieved);
-            return;
+
           });
         }
         else if (this.lastPlayedGame?.length === 1 && !this.steamInfo.gameid) {
@@ -76,12 +73,12 @@ export class SteamInformationComponent implements OnInit, OnChanges {
             // @ts-ignore
             this.secondGameAchievements = game.playerstats.achievements;
             this.secondGameAchievements.forEach(a => this.secondGameUnlockedAchievements += a.achieved);
-            return;
+
           });
         }
-        return;
+
       });
-      return;
+
     });
   }
 
@@ -92,9 +89,9 @@ export class SteamInformationComponent implements OnInit, OnChanges {
       if (this.firstGameAchievements) {
         this.firstGameAchievements.forEach(a => this.firstGameUnlockedAchievements += a.achieved);
       }
-      return;
+
     }, error => {
-      return;
+      console.log(error);
     });
   }
 

@@ -9,7 +9,7 @@
     <div class="row align-items-center">
       <div class="col thread-thumbnail">
         <a href="/forum/{{thread.forumThreadId}}" class="thread-list-link">
-          <img class="img-fluid" src="{{thread.game.photoUrl}}">
+          <img class="img-fluid" src="{{thread.game.photoUrl}}" alt="thread's game picture">
         </a>
       </div>
 
@@ -23,7 +23,7 @@
 
         <div class="row d-flex align-items-center">
           <div class="col">
-            <p><i class="material-icons calendar-icon">calendar_today</i>
+            <p><em class="material-icons calendar-icon">calendar_today</em>
               {{thread.threadDate | date}}</p>
           </div>
         </div>
@@ -34,10 +34,10 @@
         <div class="col d-flex align-items-center justify-content-end" style="padding: 5px;">
           <span class="thread-list-post-counter">{{thread.forumPosts.length}}<br>{{(thread.forumPosts.length > 4 || thread.forumPosts.length === 0) ? 'postów' : (thread.forumPosts.length > 1) ? 'posty' : 'post'}}</span>
           <a class="thread-list-nickname-link" href="/members/{{thread?.user?.username}}">
-            <i *ngIf="thread.user.photoUrl === null || thread.user.photoUrl === undefined" class="material-icons">person_outline</i>
+            <em *ngIf="thread.user.photoUrl === null || thread.user.photoUrl === undefined" class="material-icons">person_outline</em>
           </a>
           <a href="/members/{{thread?.user?.username}}">
-            <img *ngIf="thread.user.photoUrl" src="{{thread.user.photoUrl}}" class="thread-list-author-img">
+            <img *ngIf="thread.user.photoUrl" src="{{thread.user.photoUrl}}" class="thread-list-author-img" alt="user's picture">
           </a>
         </div>
         <div class="col" style="padding: 5px;">

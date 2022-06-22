@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {FileUploader} from "ng2-file-upload";
 import {environment} from "../../../environments/environment";
-import {Photo, User} from "../../model/model";
+import {User} from "../../model/model";
 
 @Component({
   selector: 'app-upload-image-modal',
@@ -18,10 +18,11 @@ export class UploadImageModalComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: {
-      path: String,
+      path: string,
       user: User
     }
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.initializeUploader();
@@ -42,11 +43,6 @@ export class UploadImageModalComponent implements OnInit {
       maxFileSize: 10 * 1024 * 1024
     });
 
-    this.uploader.onSuccessItem = (item, response, status, headers) => {
-      if (response) {
-
-      }
-    }
   }
 
 }

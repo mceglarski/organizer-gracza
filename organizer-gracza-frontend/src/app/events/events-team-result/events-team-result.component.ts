@@ -51,7 +51,7 @@ export class EventsTeamResultComponent implements OnInit {
           if (this.existingEventResult) {
             this.myControl.setValue(this.teams?.find(f => f.teamId === this.existingEventResult?.teamId)?.name);
           }
-          return;
+
         });
         // @ts-ignore
         this.teamEvent.eventTeamRegistration.forEach(team => this.teamsParticipated.push(this.teams.find(f => f.teamId == team.teamId)));
@@ -73,14 +73,14 @@ export class EventsTeamResultComponent implements OnInit {
     if (this.existingEventResult && this.winnerTeam) {
       this.eventTeamsResultService
         .updateEventTeamResult({teamId: this.winnerTeam.teamId, eventTeamId: this.data.event.eventTeamId}, <number>this.existingEventResult.eventTeamResultId)
-        .subscribe(r => {
+        .subscribe(() => {
           this.dialogRef.close();
           this.toastr.success('Pomyślnie zaktualizowano wynik wydarzenia');
         });
     } else if (this.winnerTeam) {
       this.eventTeamsResultService
         .addEventTeamResult({teamId: this.winnerTeam.teamId, eventTeamId: this.data.event.eventTeamId})
-        .subscribe(r => {
+        .subscribe(() => {
           this.dialogRef.close();
           this.toastr.success('Pomyślnie dodano wynik wydarzenia');
         });

@@ -10,8 +10,6 @@ export class MainPageBannerComponent implements OnInit {
 
   public user: User;
 
-  constructor() { }
-
   ngOnInit(): void {
     // @ts-ignore
     this.user = JSON.parse(localStorage.getItem('user'));

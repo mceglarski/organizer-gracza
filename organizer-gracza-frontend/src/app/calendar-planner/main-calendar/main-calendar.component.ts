@@ -45,7 +45,7 @@ export class MainCalendarComponent implements OnInit {
           allDay: false,
           id: r.reminderId
         });
-        return;
+
       })
       this.cd.detectChanges();
       this.calendarOptions = {
@@ -81,7 +81,7 @@ export class MainCalendarComponent implements OnInit {
     dialogRef.afterClosed().subscribe(() => {
       this.init();
       this.cd.detectChanges();
-      return;
+
     });
   }
 
@@ -96,7 +96,7 @@ export class MainCalendarComponent implements OnInit {
     dialogRef.afterClosed().subscribe(() => {
       this.init();
       this.cd.detectChanges();
-      return;
+
     });
   }
 

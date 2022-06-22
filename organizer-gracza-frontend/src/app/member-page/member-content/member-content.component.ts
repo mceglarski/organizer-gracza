@@ -44,12 +44,12 @@ export class MemberContentComponent implements OnInit {
               // @ts-ignore
               this.gamesToShow.push(this.games.find(f => f.gameId === g.gameId).title);
             });
-            return;
+
           });
         });
-        return;
+
       });
-      return;
+
     });
 
     this.cd.detectChanges();

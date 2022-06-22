@@ -76,7 +76,6 @@ export class EventsSoloListComponent implements OnInit {
             e.user?.photoUrl = this.members.find(f => f.id === e.userId)?.photoUrl;
           });
         });
-        return;
       });
     });
   }

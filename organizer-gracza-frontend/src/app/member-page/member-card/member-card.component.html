@@ -10,12 +10,12 @@
     <ul class="list-inline member-icons animate text-center">
       <li class="list-inline-item">
         <button class="btn btn-primary btn-icons" routerLink="/members/{{member.username}}">
-          <i class="fa fa-user"></i>
+          <em class="fa fa-user"></em>
         </button>
       </li>
       <li class="list-inline-item">
         <button routerLink="/messages/thread/{{member.username}}" class="btn btn-primary btn-icons">
-          <i class="fa fa-envelope"></i>
+          <em class="fa fa-envelope"></em>
         </button>
       </li>
     </ul>
@@ -24,7 +24,7 @@
   <div class="row card-body p-1">
     <h6 class="col card-title text-center mb-1">
       <span [class.is-online]="(presenceService.onlineUsers$ | async)?.includes(member.username)">
-              <i class="fa fa-user mr-2"></i>
+              <em class="fa fa-user mr-2"></em>
       </span>
       <span class="text-break"><a href="/members/{{member.username}}" class="member-card-profile-link">{{member.nickname}}</a></span>
     </h6>

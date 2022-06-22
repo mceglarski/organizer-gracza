@@ -21,7 +21,6 @@ export class MessagesChatComponent implements OnInit {
   constructor(private messageService: MessageService) { }
 
   ngOnInit(): void {
-    // this.loadMessages();
     this.getAllUserThread();
     this.getPicturesFromMessages();
   }

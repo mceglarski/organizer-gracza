@@ -29,9 +29,9 @@
         </div>
         <div class="col-xl-12 d-flex justify-content-center">
           <a *ngIf="user" href="/members/{{result.user?.username}}">
-            <img class="image-fluid event-result-image" src="{{result.user?.photoUrl}}">
+            <img class="image-fluid event-result-image" src="{{result.user?.photoUrl}}" alt="user's picture">
           </a>
-          <img *ngIf="!user" class="image-fluid event-result-image" src="{{result.user?.photoUrl}}">
+          <img *ngIf="!user" class="image-fluid event-result-image" src="{{result.user?.photoUrl}}" alt="user's picture">
         </div>
         <div class="col d-flex justify-content-center">
           <a *ngIf="user" href="/members/{{result.user?.username}}">

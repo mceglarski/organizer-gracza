@@ -71,14 +71,14 @@ export class EventsSoloResultComponent implements OnInit {
     if (this.existingEventResult && this.winnerMember) {
       this.eventUserResultService
         .updateEventUserResult({userId: this.winnerMember.id, eventUserId: this.data.event.eventUserId}, <number>this.existingEventResult.eventUserResultId)
-        .subscribe(r => {
+        .subscribe(() => {
           this.dialogRef.close();
           this.toastr.success('Pomyślnie zaktualizowano wynik wydarzenia');
         });
     } else if (this.winnerMember) {
       this.eventUserResultService
         .addEventUserResult({userId: this.winnerMember.id, eventUserId: this.data.event.eventUserId})
-        .subscribe(r => {
+        .subscribe(() => {
           this.dialogRef.close();
           this.toastr.success('Pomyślnie dodano wynik wydarzenia');
         });

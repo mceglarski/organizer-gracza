@@ -29,9 +29,9 @@
         </div>
         <div class="col-xl-12 d-flex justify-content-center">
           <a *ngIf="user" class="event-result-event-link" href="/teams/details/{{result.team?.name}}">
-            <img class="image-fluid event-result-image" src="{{result.team?.photoUrl}}">
+            <img class="image-fluid event-result-image" src="{{result.team?.photoUrl}}" alt="team's picture">
           </a>
-          <img *ngIf="!user" class="image-fluid event-result-image" src="{{result.team?.photoUrl}}">
+          <img *ngIf="!user" class="image-fluid event-result-image" src="{{result.team?.photoUrl}}" alt="team's picture">
         </div>
         <div class="col d-flex justify-content-center">
           <a *ngIf="user" class="event-result-event-link" href="/teams/details/{{result.team?.name}}">

@@ -1,9 +1,7 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {mod} from "ngx-bootstrap/chronos/utils";
-import {EventTeam, EventUser, Member} from "../model/model";
-import {map} from "rxjs/operators";
+import {EventTeam, EventUser} from "../model/model";
 
 @Injectable({
   providedIn: 'root'
