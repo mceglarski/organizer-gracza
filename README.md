@@ -4,6 +4,8 @@ This is an engineering thesis at the Polish-Japanese Academy of Information Tech
 
 Demo: https://organizer-gracza.herokuapp.com/
 
+The application was created as a convenient tool for each user, thanks to which they will be able to save their events in the calendar, join e-sports tournaments, chat with friends, watch live game broadcasts, read articles about the gaming world and participate in forum discussions.
+
 # Requirments
 
 dotnet version 5.0.4
